@@ -46,7 +46,7 @@ const Skills = () => {
         {skills.map((skill) => (
           <div
             key={skill.id}
-            className="bg-slate-50 p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300"
+            className="bg-bgShade p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300"
           >
             <img
               src={skill.image}
