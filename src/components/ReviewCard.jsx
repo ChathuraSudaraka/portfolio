@@ -11,7 +11,7 @@ const reviews = [
     company: "Starbucks",
     comment:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "//assets/Avatar1.png",
+    photo: "/assets/Avatar1.png",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const reviews = [
     company: "Louis Vuitton",
     comment:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "//assets/Avatar2.png",
+    photo: "/assets/Avatar2.png",
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ const reviews = [
     company: "McDonald's",
     comment:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "//assets/Avatar3.png",
+    photo: "/assets/Avatar3.png",
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const reviews = [
     company: "Starbucks",
     comment:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "//assets/Avatar1.png",
+    photo: "/assets/Avatar1.png",
   },
   {
     id: 5,
@@ -43,7 +43,7 @@ const reviews = [
     company: "Louis Vuitton",
     comment:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "//assets/Avatar2.png",
+    photo: "/assets/Avatar2.png",
   },
   {
     id: 6,
@@ -51,7 +51,7 @@ const reviews = [
     company: "McDonald's",
     comment:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "//assets/Avatar3.png",
+    photo: "/assets/Avatar3.png",
   },
 ];
 
@@ -83,7 +83,7 @@ const ReviewCard = () => {
             className="border border-bgShade bg-bgShade p-8 rounded hover:border-[#006B6A]"
           >
             <div>
-              <img src="//assets/starts.png" alt="" className="h-4" />
+              <img src="/assets/starts.png" alt="" className="h-4" />
               <p className="my-5">" {review.comment}</p>
               <div className="flex gap-4 items-center">
                 <img src={review.photo} alt="" className="h-10" />

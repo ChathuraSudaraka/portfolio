@@ -25,7 +25,7 @@ const skills = [
     name: "Webflow Development",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
-    image: "//assets/skills-4.png",
+    image: "/assets/skills-4.png",
   },
 ];
 
