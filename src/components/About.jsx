@@ -1,4 +1,4 @@
-import proPic from "../assets/profile.png";
+import proPic from "/assets/profile.png";
 const About = () => {
   return (
     <div className="lg:mx-12 mx-4" id="about">

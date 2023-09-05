@@ -4,28 +4,28 @@ const skills = [
     name: "Strategy & Direction",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
-    image: "src/assets/skills-1.png",
+    image: "/assets/skills-1.png",
   },
   {
     id: 2,
     name: "Branding & Logo",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
-    image: "src/assets/skills-2.png",
+    image: "/assets/skills-2.png",
   },
   {
     id: 3,
     name: "UI & UX Design",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
-    image: "src/assets/skills-3.png",
+    image: "/assets/skills-3.png",
   },
   {
     id: 4,
     name: "Webflow Development",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
-    image: "/src/assets/skills-4.png",
+    image: "//assets/skills-4.png",
   },
 ];
 

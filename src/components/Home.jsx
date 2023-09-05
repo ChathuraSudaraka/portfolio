@@ -1,5 +1,5 @@
-import banner from "../assets/banner.png";
-import pdf from "../assets/file/dummy.pdf";
+import banner from "/assets/banner.png";
+import pdf from "/assets/file/dummy.pdf";
 
 const Home = () => {
   const handleViewPdf = () => {

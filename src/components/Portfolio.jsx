@@ -25,7 +25,7 @@ const Portfolio = () => {
         <a href="https://github.com/ChathuraSudaraka" target="_blank" rel="noopener noreferrer">
           <button className="py-3 px-4 text-white rounded-md bg-sky-500 hover:bg-sky-700 shadow-xl sm:w-auto flex items-center">
             <img
-              src="/src/assets/github-48.png"
+              src="//assets/github-48.png"
               alt="Dribbble Logo"
               className="w-8 h-8 inline-block mr-2"
             />
@@ -50,7 +50,7 @@ const Portfolio = () => {
               >
                 View In GitHub{""}
                 <img
-                  src="/src/assets/github-48.png"
+                  src="//assets/github-48.png"
                   alt=""
                   className="w-6 inline-block ml-3"
                 />
