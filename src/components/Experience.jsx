@@ -54,7 +54,10 @@ const Experience = () => {
         </div>
       </div>
 
-      <div ref={ref} className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative">
+      <div
+        ref={ref}
+        className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative"
+      >
         <motion.div
           style={{ scaleY: scrollYProgress }}
           className="absolute left-9 top-0 w-[4px] h-full bg-black origin-top"
@@ -63,32 +66,32 @@ const Experience = () => {
         <ul className="w-full flex flex-col items-start justify-between ml-4">
           <Details
             position={"Software Engineer"}
-            company={"Google"}
-            companyLink={"www.google.com"}
+            company={"Eversoft IT Solutions"}
+            companyLink={"https://eversoft.cf/"}
             time={"2022-Present"}
             address={"Colombo, Sri Lanka"}
             work={
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+              "Eversoft IT Solutions: Creative, efficient, reliable. Your innovation partner for a transformed digital future through trusted collaboration."
             }
           />
           <Details
             position={"Software Engineer"}
-            company={"Google"}
-            companyLink={"www.google.com"}
-            time={"2023-Present"}
+            company={"Eversoft IT Solutions"}
+            companyLink={"https://eversoft.cf/"}
+            time={"2022-Present"}
             address={"Colombo, Sri Lanka"}
             work={
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+              "As a software engineer, I orchestrate system creation while embracing perpetual learning and innovation in this ever-evolving industry."
             }
           />
           <Details
             position={"Software Engineer"}
-            company={"Google"}
-            companyLink={"www.google.com"}
-            time={"2024-Present"}
+            company={"Eversoft IT Solutions"}
+            companyLink={"https://eversoft.cf/"}
+            time={"2022-Present"}
             address={"Colombo, Sri Lanka"}
             work={
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."
+              "I design versatile software solutions for libraries, schools, restaurants, and efficient Point of Sale systems, adapting to diverse industry needs."
             }
           />
         </ul>

@@ -1,12 +1,12 @@
 [
     {
-        "id" : 1, "name" : "Ahuse", "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.", "image": "/assets/project-1.png"
+        "id" : 1, "name" : "Library Management System", "description" : "Streamlining libraries, our system organizes resources, simplifies borrowing, and enriches the library experience for all.", "image": "/assets/project-1.png"
     },
     {
-        "id" : 2, "name" : "App Dashboard", "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.", "image": "/assets/project-2.png"
+        "id" : 2, "name" : "POS System", "description" : "POS systems simplify sales, inventory, and customer interactions, boosting efficiency and service quality for businesses.", "image": "/assets/project-2.png"
     },
     {
-        "id" : 3, "name" : "Easy Rent", "description" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.", "image": "/assets/project-3.png"
+        "id" : 3, "name" : "Chat App", "description" : "Coming Soon.", "image": "/assets/project-3.png"
     }
 ]
 

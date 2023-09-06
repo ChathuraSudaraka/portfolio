@@ -45,7 +45,10 @@ const Education = () => {
         </div>
       </div>
 
-      <div ref={ref} className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative">
+      <div
+        ref={ref}
+        className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative"
+      >
         <motion.div
           style={{ scaleY: scrollYProgress }}
           className="absolute left-9 top-0 w-[4px] h-full bg-black origin-top"
@@ -55,20 +58,26 @@ const Education = () => {
           <Details
             type={"Bachelor Of Science (BSc) In Software Engineering"}
             time={"2022-2026"}
-            place={"Java institute htmlFor Advance Technology"}
-            info={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."}
+            place={"Java institute For Advance Technology"}
+            info={
+              "The Java Institute for Advanced Technology is a prominent research-oriented higher education institution based in Sri Lanka, fostering innovation and excellence."
+            }
           />
           <Details
-            type={"Bachelor Of Science (BSc) In Software Engineering"}
-            time={"2022-2026"}
-            place={"Java institute htmlFor Advance Technology"}
-            info={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."}
+            type={"Diploma In Information Technology (DIT)"}
+            time={"2022-2023"}
+            place={"ESOFT Metro Campus"}
+            info={
+              "With roots going back to the year 2000, ESOFT has grown to be the largest private sector higher education network in Sri Lanka"
+            }
           />
           <Details
-            type={"Bachelor Of Science (BSc) In Software Engineering"}
-            time={"2022-2026"}
-            place={"Java institute htmlFor Advance Technology"}
-            info={"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique."}
+            type={"Diploma In English (DIE)"}
+            time={"2022-2023"}
+            place={"ESOFT Metro Campus"}
+            info={
+              "With roots going back to the year 2000, ESOFT has grown to be the largest private sector higher education network in Sri Lanka"
+            }
           />
         </ul>
       </div>

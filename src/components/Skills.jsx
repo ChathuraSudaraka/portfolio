@@ -3,28 +3,28 @@ const skills = [
     id: 1,
     name: "Strategy & Direction",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+      "Strategy is the compass that charts the path, while Direction leads each step toward triumphant horizons.",
     image: "/assets/skills-1.png",
   },
   {
     id: 2,
     name: "Branding & Logo",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+      "Branding shapes a distinctive identity, while a Logo is its visual emblem, both vital for brand recognition.",
     image: "/assets/skills-2.png",
   },
   {
     id: 3,
     name: "UI & UX Design",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+      "UI (User Interface) focuses on aesthetics and usability; UX (User Experience) ensures seamless, satisfying interactions.",
     image: "/assets/skills-3.png",
   },
   {
     id: 4,
-    name: "Webflow Development",
+    name: "Backend Development",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.",
+      "Backend Development powers the server, databases, and logic behind web applications, ensuring functionality and data management.",
     image: "/assets/skills-4.png",
   },
 ];

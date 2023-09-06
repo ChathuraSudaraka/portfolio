@@ -1,4 +1,4 @@
-import logo from "/assets/logo.svg";
+import logo from "/assets/logo.png";
 import {
   FaFacebookF,
   FaInstagram,
@@ -11,7 +11,7 @@ const Footer = () => {
     <div className="bg-bgShade py-28 md:px-12 px-4">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-20">
         <a href="/">
-          <img src={logo} alt="" />
+          <img className="h-10" src={logo} alt="" />
         </a>
         <div className="flex flex-col md:flex-row md:items-center gap-4 flex-wrap">
           <a

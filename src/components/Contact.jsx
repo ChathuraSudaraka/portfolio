@@ -74,7 +74,7 @@ const Contact = () => {
             />
           </div>
           <div className="flex items-center justify-between">
-          <button className="btn-primary">Submit</button>
+            <button className="btn-primary">Submit</button>
           </div>
         </form>
       </div>
