@@ -9,7 +9,7 @@ const Contact = () => {
           Contact me
         </h2>
         <p className="mt-5">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.{" "}
+          Contact us anytime for assistance or inquiries. We're here to help.
         </p>
       </div>
       <div className="mx-auto mb-20">

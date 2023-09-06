@@ -32,7 +32,9 @@ const About = () => {
             let's connect on GitHub and embark on this incredible journey
             together.
           </p>
-          <button className="btn-primary">Contact Me</button>
+          <a href="https://wa.me/0705321516">
+            <button className="btn-primary">Contact Me</button>
+          </a>
         </div>
       </div>
     </div>

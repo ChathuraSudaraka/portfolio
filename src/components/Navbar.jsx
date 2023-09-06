@@ -29,7 +29,9 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 lg:top-2 lg:left-10 lg:right-10 w-full lg:w-auto">
       <nav
-        className={`py-4 md:px-12 px-4 lg:rounded-lg bg-blue-500 bg-opacity-60 ${isSticky ? "sticky top-0 right-0 left-0 " : ""}`}
+        className={`py-4 md:px-12 px-4 lg:rounded-lg bg-blue-500 bg-opacity-60 ${
+          isSticky ? "sticky top-0 right-0 left-0 " : ""
+        }`}
       >
         <div className="flex items-center justify-between">
           <div className="text-white font-bold text-lg cursor-pointer">
@@ -112,9 +114,11 @@ const Navbar = () => {
 
           {/* contact me btn */}
           <div className="lg:block hidden">
-            <button className="px-4 py-2 bg-transparent border border-primary text-primary rounded hover:bg-primary hover:text-white transition-all duration-300">
-              Contact Me
-            </button>
+            <a href="tel:+94705321516">
+              <button className="px-4 py-2 bg-transparent border border-primary text-primary rounded hover:bg-primary hover:text-white transition-all duration-300">
+                Contact Me
+              </button>
+            </a>
           </div>
 
           {/* btn htmlFor small devices */}
