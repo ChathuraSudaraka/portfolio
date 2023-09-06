@@ -8,7 +8,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-bgShade py-28 md:px-12 px-4">
+    <div className="bg-bgShade py-20 md:px-12 px-4">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-20">
         <a href="/">
           <img className="h-10" src={logo} alt="" />
@@ -53,6 +53,10 @@ const Footer = () => {
             Cookies Settings
           </a>
         </div>
+      </div>
+      <div className="mt-5 flex flex-col md:flex-row justify-between gap-8">
+        <p className="hover:text-slate-400">Chathuraoriginal2005@gmail.com</p>
+        <p className="hover:text-slate-400">0705321516</p>
       </div>
     </div>
   );
