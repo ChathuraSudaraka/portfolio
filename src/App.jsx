@@ -2,6 +2,7 @@ import "./App.css";
 import About from "./components/About";
 import BackToTop from "./components/BackToTop";
 import Contact from "./components/Contact";
+import DarkLight from "./components/DarkLight";
 import Education from "./components/Education";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
@@ -25,6 +26,7 @@ function App() {
       <Contact />
       <Footer />
       <BackToTop />
+      <DarkLight />
     </>
   );
 }

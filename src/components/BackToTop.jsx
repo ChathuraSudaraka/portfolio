@@ -1,4 +1,5 @@
 import React from "react";
+import Arrow from "/assets/up-arrow.png";
 
 const BackToTop = () => {
   const scrollToTop = () => {
@@ -9,26 +10,15 @@ const BackToTop = () => {
   };
 
   return (
-    <div className="fixed bottom-5 right-5">
-      <button
-        className="bg-blue-500 hover:bg-blue-900 text-white font-bold opacity-90 py-0 px-0 rounded-full"
-        onClick={scrollToTop} // Attach the scrollToTop function to the button's onClick event
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={2}
-          stroke="currentColor"
-          className="w-10 h-10"
+    <div className="bg-slate-400">
+      <div className="fixed bottom-5 right-0 bg-white rounded-l-full shadow-lg p-1">
+        <button
+          className={`w-12 h-12 flex items-center justify-center rounded-full border-2 border-blue-900`}
+          onClick={scrollToTop}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M15 11.25l-3-3m0 0l-3 3m3-3v7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-          />
-        </svg>
-      </button>
+          <img src={Arrow} alt="Scroll to Top" className="w-8 h-8" />
+        </button>
+      </div>
     </div>
   );
 };

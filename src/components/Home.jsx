@@ -7,7 +7,7 @@ const Home = () => {
   };
 
   return (
-    <div className="mt-20 bg-bgShade" id="home">
+    <div className="bg-bgShade dark:bg-slate-500" id="home">
       <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5">
         <div className="md:w-1/2 w-full">
           <img src={banner} alt="" className="w-full" />
