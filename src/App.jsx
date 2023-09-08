@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
 import Skills from "./components/Skills";
 import Testimonial from "./components/Testimonial";
+import Article from "./components/blog";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Experience />
       <Education />
       <Portfolio />
+      <Article />
       <Testimonial />
       <Contact />
       <Footer />
