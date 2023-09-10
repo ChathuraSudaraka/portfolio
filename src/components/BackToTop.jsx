@@ -1,5 +1,23 @@
 import React from "react";
 import Arrow from "/assets/up-arrow.svg";
+import imageCompression from 'browser-image-compression';
+
+async function handleImageUpload(event) {
+
+  const imageFile = event.target.files[0];
+
+  const options = {
+    maxSizeMB: 1,
+    maxWidthOrHeight: 1920
+  }
+  try {
+    const compressedFile = await imageCompression(imageFile, options);
+    console.log(compressedFile.size/1024/1024);
+  } catch (error) {
+    console.log(error);
+  }
+
+}
 
 const BackToTop = () => {
   const scrollToTop = () => {

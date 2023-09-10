@@ -1,4 +1,23 @@
 import proPic from "/assets/profile.png";
+import imageCompression from 'browser-image-compression';
+
+async function handleImageUpload(event) {
+
+  const imageFile = event.target.files[0];
+
+  const options = {
+    maxSizeMB: 1,
+    maxWidthOrHeight: 1920
+  }
+  try {
+    const compressedFile = await imageCompression(imageFile, options);
+    console.log(compressedFile.size/1024/1024);
+  } catch (error) {
+    console.log(error);
+  }
+
+}
+
 const About = () => {
   return (
     <div className="dark:bg-slate-500">
