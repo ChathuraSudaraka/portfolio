@@ -1,5 +1,5 @@
 import React from "react";
-import Arrow from "/assets/up-arrow.png";
+import Arrow from "/assets/up-arrow.svg";
 
 const BackToTop = () => {
   const scrollToTop = () => {

@@ -1,19 +1,40 @@
 import banner from "/assets/banner.png";
 import pdf from "/assets/file/dummy.pdf";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const handleViewPdf = () => {
     window.open(pdf, "_blank");
   };
 
+  const imageAnimation = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.8 } },
+  };
+
+  const textAnimation = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.5 } },
+  };
+
   return (
     <div className="bg-bgShade dark:bg-slate-500" id="home">
       <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5">
-        <div className="md:w-1/2 w-full">
+        <motion.div
+          variants={imageAnimation}
+          initial="hidden"
+          animate="visible"
+          className="md:w-1/2 w-full"
+        >
           <img src={banner} alt="" className="w-full" />
-        </div>
+        </motion.div>
         {/* left side */}
-        <div className="md:w-1/2 w-full mt-5">
+        <motion.div
+          variants={textAnimation}
+          initial="hidden"
+          animate="visible"
+          className="md:w-1/2 w-full mt-5"
+        >
           <p className="text-xl text-headingcolor font-semibold mb-5">
             Hey, I am Chathura Sudaraka
           </p>
@@ -29,8 +50,8 @@ const Home = () => {
           <button onClick={handleViewPdf} className="btn-primary">
             Download My CV
           </button>
-        </div>
-        {/* rigth side */}
+        </motion.div>
+        {/* right side */}
       </div>
     </div>
   );

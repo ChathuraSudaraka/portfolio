@@ -1,6 +1,6 @@
 import useThemeSwitcher from "./hooks/useThemeSwitcher";
-import Moon from "/assets/moon.png";
-import Sun from "/assets/sun.png";
+import Moon from "/assets/moon.svg";
+import Sun from "/assets/sun.svg";
 
 const DarkLight = () => {
   const [mode, setMode] = useThemeSwitcher();

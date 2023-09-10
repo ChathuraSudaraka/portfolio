@@ -12,6 +12,7 @@ import Portfolio from "./components/Portfolio";
 import Skills from "./components/Skills";
 import Testimonial from "./components/Testimonial";
 import Article from "./components/blog";
+import CircleFollowMouse from "./components/hooks/use-follow-pointer";
 
 function App() {
   return (
@@ -27,8 +28,10 @@ function App() {
       <Testimonial />
       <Contact />
       <Footer />
+      {/* Buttons */}
       <BackToTop />
       <DarkLight />
+      <CircleFollowMouse />
     </>
   );
 }

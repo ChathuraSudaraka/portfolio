@@ -4,7 +4,7 @@ const About = () => {
     <div className="dark:bg-slate-500">
       <div className="lg:mx-12 mx-4" id="about">
         <div className="flex flex-col sm:flex-row md:gap-24 gap-12 items-center justify-between">
-          <div className="sm:w-1/2">
+          <div className="sm:w-1/2 delay-[300ms] duration-[600ms] taos:[transform:translate3d(200px,0,0)_scale(0.6)] taos:opacity-0" data-taos-offset="400">
             <img src={proPic} alt="" className="w-full sm:w-11/12" />
           </div>
           <div className="sm:w-1/2">
