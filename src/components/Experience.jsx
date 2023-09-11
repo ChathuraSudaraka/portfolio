@@ -57,6 +57,8 @@ const Experience = () => {
       <div
         ref={ref}
         className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative"
+        data-aos="fade-up"
+        data-aos-offset="150"
       >
         <motion.div
           style={{ scaleY: scrollYProgress }}

@@ -1,58 +1,19 @@
 import banner from "/assets/banner.png";
 import pdf from "/assets/file/dummy.pdf";
-import { motion } from "framer-motion";
-import imageCompression from 'browser-image-compression';
-
-async function handleImageUpload(event) {
-
-  const imageFile = event.target.files[0];
-
-  const options = {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 1920
-  }
-  try {
-    const compressedFile = await imageCompression(imageFile, options);
-    console.log(compressedFile.size/1024/1024);
-  } catch (error) {
-    console.log(error);
-  }
-
-}
 
 const Home = () => {
   const handleViewPdf = () => {
     window.open(pdf, "_blank");
   };
 
-  const imageAnimation = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.8 } },
-  };
-
-  const textAnimation = {
-    hidden: { opacity: 0, y: -20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.5 } },
-  };
-
   return (
     <div className="bg-bgShade dark:bg-slate-500" id="home">
       <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5">
-        <motion.div
-          variants={imageAnimation}
-          initial="hidden"
-          animate="visible"
-          className="md:w-1/2 w-full"
-        >
+        <div className="md:w-1/2 w-full" data-aos="fade-right">
           <img src={banner} alt="" className="w-full" />
-        </motion.div>
+        </div>
         {/* left side */}
-        <motion.div
-          variants={textAnimation}
-          initial="hidden"
-          animate="visible"
-          className="md:w-1/2 w-full mt-5"
-        >
+        <div className="md:w-1/2 w-full mt-5" data-aria-owns="fade-left">
           <p className="text-xl text-headingcolor font-semibold mb-5">
             Hey, I am Chathura Sudaraka
           </p>
@@ -68,8 +29,8 @@ const Home = () => {
           <button onClick={handleViewPdf} className="btn-primary">
             Download My CV
           </button>
-        </motion.div>
-        {/* right side */}
+        </div>
+        {/* rigth side */}
       </div>
     </div>
   );

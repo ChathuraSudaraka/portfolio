@@ -1,29 +1,13 @@
 import proPic from "/assets/profile.png";
-import imageCompression from 'browser-image-compression';
-
-async function handleImageUpload(event) {
-
-  const imageFile = event.target.files[0];
-
-  const options = {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 1920
-  }
-  try {
-    const compressedFile = await imageCompression(imageFile, options);
-    console.log(compressedFile.size/1024/1024);
-  } catch (error) {
-    console.log(error);
-  }
-
-}
-
 const About = () => {
   return (
     <div className="dark:bg-slate-500">
       <div className="lg:mx-12 mx-4" id="about">
         <div className="flex flex-col sm:flex-row md:gap-24 gap-12 items-center justify-between">
-          <div className="sm:w-1/2 delay-[300ms] duration-[600ms] taos:[transform:translate3d(200px,0,0)_scale(0.6)] taos:opacity-0" data-taos-offset="400">
+          <div className="sm:w-1/2"
+           data-aos="fade-right"
+           data-aos-offset="400"
+           >
             <img src={proPic} alt="" className="w-full sm:w-11/12" />
           </div>
           <div className="sm:w-1/2">
@@ -33,7 +17,9 @@ const About = () => {
             <h2 className="md:text-5xl text-4xl text-headingcolor font-bold">
               My Expertise
             </h2>
-            <p className="mt-8 md:pr-8 mb-8">
+            <p className="mt-8 md:pr-8 mb-8"
+            data-aos="fade-up"
+            data-aos-offset="400">
               I'm Chathura Sudaraka, a dedicated software engineering student at
               JIAT. My journey in the world of technology is a constant pursuit
               of growth and learning. With every line of code I write, my aim is

@@ -12,6 +12,7 @@ import Portfolio from "./components/Portfolio";
 import Skills from "./components/Skills";
 import Testimonial from "./components/Testimonial";
 import Article from "./components/blog";
+import ScrollAnimation from "./components/hooks/ScrollAnimation";
 import CircleFollowMouse from "./components/hooks/use-follow-pointer";
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <BackToTop />
       <DarkLight />
       <CircleFollowMouse />
+      <ScrollAnimation />
     </>
   );
 }
