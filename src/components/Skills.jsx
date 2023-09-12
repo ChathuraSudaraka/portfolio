@@ -48,6 +48,8 @@ const Skills = () => {
             <div
               key={skill.id}
               className="bg-bgShade p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300"
+              data-aos="fade-zoom-in"
+              data-aos-offset="300"
             >
               <img
                 src={skill.image}

@@ -80,6 +80,8 @@ const Contact = () => {
           ref={form}
           onSubmit={sendEmail}
           className="bg-bgShade rounded-md shadow-lg px-8 pt-6 pb-8 mb-4"
+          data-aos="fade-up"
+          data-aos-offset="300"
         >
           <div className="grid sm:grid-cols-2 gap-4">
             <div className="mb-1">

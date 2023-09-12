@@ -35,7 +35,10 @@ const Portfolio = () => {
       </div>
 
       {/* project card */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
+      data-aos="fade-up"
+      data-aos-offset="300"
+      >
         {projects.map((project) => (
           <div key={project.id} className="shadow-xl rounded-lg">
             <img src={project.image} alt="" />

@@ -13,7 +13,12 @@ const Home = () => {
           <img src={banner} alt="" className="w-full" />
         </div>
         {/* left side */}
-        <div className="md:w-1/2 w-full mt-5" data-aria-owns="fade-left">
+        <div
+          className="md:w-1/2 w-full mt-5"
+          data-aria-owns="fade-left"
+          data-aos="fade-up"
+          data-aos-offset="300"
+        >
           <p className="text-xl text-headingcolor font-semibold mb-5">
             Hey, I am Chathura Sudaraka
           </p>
