@@ -15,11 +15,11 @@ const Details = ({ type, place, time, info }) => {
         whileInView={{ y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
       >
-        <h3 className="capitalize font-bold text-2xl">{type}</h3>
-        <span className="capitalize font-medium text-black/75">
+        <h3 className="capitalize font-bold text-2xl dark:text-white">{type}</h3>
+        <span className="capitalize font-medium text-black/75 dark:text-dark-white">
           {time} | {place}
         </span>
-        <p className="font-medium w-full">{info}</p>
+        <p className="font-medium w-full dark:text-gray-300">{info}</p>
       </motion.div>
     </li>
   );
@@ -34,25 +34,25 @@ const Education = () => {
 
   return (
     <div className="dark:bg-custom-blue"> 
-      <div className="lg:mx-12 mx-4 py-32" id="skills">
+      <div className="lg:mx-12 mx-4 py-32" id="education">
         <div className="mb-20">
           <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
             My Skills
           </p>
           <h2 className="md:text-5xl text-4xl text-headingcolor dark:text-white font-bold">
-            My Expertise
+            My Education
           </h2>
         </div>
 
         <div
           ref={ref}
-          className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative"
+          className="rounded-md shadow-lg pb-8 dark:bg-custom-dark-blue bg-bgShade w-[95%] mx-auto relative"
           data-aos="fade-up"
           data-aos-offset="150"
         >
           <motion.div
             style={{ scaleY: scrollYProgress }}
-            className="absolute left-9 top-0 w-[4px] h-full bg-black origin-top"
+            className="absolute left-9 top-0 w-[4px] h-full dark:bg-white bg-black origin-top"
           />
 
           <ul className="w-full flex flex-col items-start justify-between ml-4">

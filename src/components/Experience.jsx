@@ -15,7 +15,7 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
         whileInView={{ y: 0 }}
         transition={{ duration: 0.5, type: "spring" }}
       >
-        <h3 className="capitalize font-bold text-2xl">
+        <h3 className="capitalize font-bold text-2xl dark:text-white">
           {position}&nbsp;
           <a
             href={companyLink}
@@ -25,10 +25,10 @@ const Details = ({ position, company, companyLink, time, address, work }) => {
             @{company}
           </a>
         </h3>
-        <span className="capitalize font-medium text-black/75">
+        <span className="capitalize font-medium dark:text-dark-white text-black/75">
           {time} | {address}
         </span>
-        <p className="font-medium w-full">{work}</p>
+        <p className="font-medium w-full dark:text-gray-300">{work}</p>
       </motion.div>
     </li>
   );
@@ -43,27 +43,25 @@ const Experience = () => {
 
   return (
     <div className="dark:bg-custom-blue">
-      <div className="lg:mx-12 mx-4 my-32" id="experience">
-        <div className="mb-20 flex flex-col sm:flex-row md:items-center justify-between gap-5">
-          <div>
-            <p className="text-xl text-headingcolor font-semibold mb-5">
-              My Skills
-            </p>
-            <h2 className="md:text-5xl text-4xl text-headingcolor font-bold">
-              Experience
-            </h2>
-          </div>
+      <div className="lg:mx-12 mx-4 py-32" id="experience">
+        <div className="mb-20">
+          <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
+            My Skills
+          </p>
+          <h2 className="md:text-5xl text-4xl text-headingcolor dark:text-white font-bold">
+            My Experience
+          </h2>
         </div>
 
         <div
           ref={ref}
-          className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative"
+          className="rounded-md shadow-lg pb-8 dark:bg-custom-dark-blue bg-bgShade w-[95%] mx-auto relative"
           data-aos="fade-up"
           data-aos-offset="150"
         >
           <motion.div
             style={{ scaleY: scrollYProgress }}
-            className="absolute left-9 top-0 w-[4px] h-full bg-black origin-top"
+            className="absolute left-9 top-0 w-[4px] h-full dark:bg-white bg-black origin-top"
           />
 
           <ul className="w-full flex flex-col items-start justify-between ml-4">

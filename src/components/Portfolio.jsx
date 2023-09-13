@@ -12,13 +12,13 @@ const Portfolio = () => {
   }, []);
   return (
     <div className="dark:bg-custom-blue">
-      <div className="lg:mx-12 mx-4 my-32" id="portfolio">
+      <div className="lg:mx-12 mx-4 py-32" id="portfolio">
         <div className="mb-20 flex flex-col sm:flex-row md:items-center justify-between gap-5">
           <div>
-            <p className="text-xl text-headingcolor font-semibold mb-5">
+            <p className="text-xl dark:text-white text-headingcolor font-semibold mb-5">
               My Skills
             </p>
-            <h2 className="md:text-5xl text-4xl text-headingcolor font-bold">
+            <h2 className="md:text-5xl dark:text-white text-4xl text-headingcolor font-bold">
               My Expertise
             </h2>
           </div>
@@ -46,22 +46,22 @@ const Portfolio = () => {
           data-aos-offset="300"
         >
           {projects.map((project) => (
-            <div key={project.id} className="shadow-xl rounded-lg">
+            <div key={project.id} className="shadow-xl rounded-lg dark:bg-custom-dark-blue dark:outline-slate-700">
               <img src={project.image} alt="" />
               <div className="p-8">
-                <h3 className="text-2xl font-semibold mb-2 text-headingcolor">
+                <h3 className="text-2xl dark:text-white font-semibold mb-2 text-headingcolor">
                   {project.name}
                 </h3>
-                <p className="text-body mb-4">{project.description}</p>
+                <p className="text-body mb-4 dark:text-dark-white">{project.description}</p>
                 <a
                   href="https://github.com/ChathuraSudaraka"
-                  className="underline underline-offset-8"
+                  className="underline underline-offset-8 dark:text-white"
                 >
                   View In GitHub{""}
                   <img
                     src="/assets/github-48.png"
                     alt=""
-                    className="w-6 inline-block ml-3"
+                    className="w-6 inline-block ml-3 dark:bg-white dark:border rounded-full"
                   />
                 </a>
               </div>

@@ -80,14 +80,14 @@ const ReviewCard = () => {
         {reviews.map((review) => (
           <SwiperSlide
             key={review.id}
-            className="border border-bgShade bg-bgShade p-8 rounded hover:border-[#006B6A]"
+            className="border dark:bg-custom-dark-blue border-bgShade bg-bgShade p-8 rounded hover:border-[#006B6A]"
           >
             <div>
               <img src="/assets/starts.png" alt="" className="h-4" />
-              <p className="my-5">" {review.comment}</p>
+              <p className="my-5 dark:text-dark-white">" {review.comment}</p>
               <div className="flex gap-4 items-center">
                 <img src={review.photo} alt="" className="h-10" />
-                <div>
+                <div className="dark:text-dark-white">
                   <p>{review.name}</p>
                   <p className="text-sm">{review.company}</p>
                 </div>

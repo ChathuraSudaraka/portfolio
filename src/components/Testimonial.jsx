@@ -6,12 +6,12 @@ import ReviewCard from './ReviewCard';
 
 const Testimonial = () => {
   return (
-    <div className="lg:px-12 px-4 my-32 py-32 bg-white dark:bg-custom-blue" id='testimonials'>
+    <div className="lg:px-12 px-4 py-32 bg-white dark:bg-custom-blue" id='testimonials'>
       <div className="mb-20">
-        <p className="text-xl text-headingcolor font-semibold mb-5">
+        <p className="text-xl dark:text-white text-headingcolor font-semibold mb-5">
           Clients Feedback
         </p>
-        <h2 className="md:text-5xl text-4xl text-headingcolor font-bold">
+        <h2 className="md:text-5xl text-4xl dark:text-white text-headingcolor font-bold">
           Customer testimonials
         </h2>
       </div>
