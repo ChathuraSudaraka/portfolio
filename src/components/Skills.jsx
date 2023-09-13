@@ -31,13 +31,13 @@ const skills = [
 
 const Skills = () => {
   return (
-    <div className="dark:bg-slate-500"> 
+    <div className="dark:bg-custom-blue"> 
       <div className="lg:mx-12 mx-4 py-32" id="skills">
         <div className="mb-20">
-          <p className="text-xl text-headingcolor font-semibold mb-5">
+          <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
             My Skills
           </p>
-          <h2 className="md:text-5xl text-4xl text-headingcolor font-bold">
+          <h2 className="md:text-5xl text-4xl text-headingcolor dark:text-white font-bold">
             My Expertise
           </h2>
         </div>
@@ -47,7 +47,7 @@ const Skills = () => {
           {skills.map((skill) => (
             <div
               key={skill.id}
-              className="bg-bgShade p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300"
+              className="bg-bgShade dark:bg-custom-dark-blue dark:outline-slate-700 dark:text-dark-white p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300"
               data-aos="fade-zoom-in"
               data-aos-offset="300"
             >

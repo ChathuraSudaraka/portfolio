@@ -13,6 +13,9 @@ export default {
         "bgShade": "#F5FCFF",
         "dribble": "#E62872",
         "body": "#1C1E53",
+        "custom-blue": "#080f1f",
+        "custom-dark-blue": "#19203a",
+        "dark-white": "#8a9fb1"
       }
     },
   },

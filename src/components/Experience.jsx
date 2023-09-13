@@ -42,61 +42,63 @@ const Experience = () => {
   });
 
   return (
-    <div className="lg:mx-12 mx-4 my-32" id="experience">
-      <div className="mb-20 flex flex-col sm:flex-row md:items-center justify-between gap-5">
-        <div>
-          <p className="text-xl text-headingcolor font-semibold mb-5">
-            My Skills
-          </p>
-          <h2 className="md:text-5xl text-4xl text-headingcolor font-bold">
-            Experience
-          </h2>
+    <div className="dark:bg-custom-blue">
+      <div className="lg:mx-12 mx-4 my-32" id="experience">
+        <div className="mb-20 flex flex-col sm:flex-row md:items-center justify-between gap-5">
+          <div>
+            <p className="text-xl text-headingcolor font-semibold mb-5">
+              My Skills
+            </p>
+            <h2 className="md:text-5xl text-4xl text-headingcolor font-bold">
+              Experience
+            </h2>
+          </div>
         </div>
-      </div>
 
-      <div
-        ref={ref}
-        className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative"
-        data-aos="fade-up"
-        data-aos-offset="150"
-      >
-        <motion.div
-          style={{ scaleY: scrollYProgress }}
-          className="absolute left-9 top-0 w-[4px] h-full bg-black origin-top"
-        />
+        <div
+          ref={ref}
+          className="rounded-md shadow-lg pb-8 bg-bgShade w-[95%] mx-auto relative"
+          data-aos="fade-up"
+          data-aos-offset="150"
+        >
+          <motion.div
+            style={{ scaleY: scrollYProgress }}
+            className="absolute left-9 top-0 w-[4px] h-full bg-black origin-top"
+          />
 
-        <ul className="w-full flex flex-col items-start justify-between ml-4">
-          <Details
-            position={"Software Engineer"}
-            company={"Eversoft IT Solutions"}
-            companyLink={"https://eversoft.cf/"}
-            time={"2022-Present"}
-            address={"Colombo, Sri Lanka"}
-            work={
-              "Eversoft IT Solutions: Creative, efficient, reliable. Your innovation partner for a transformed digital future through trusted collaboration."
-            }
-          />
-          <Details
-            position={"Software Engineer"}
-            company={"Eversoft IT Solutions"}
-            companyLink={"https://eversoft.cf/"}
-            time={"2022-Present"}
-            address={"Colombo, Sri Lanka"}
-            work={
-              "As a software engineer, I orchestrate system creation while embracing perpetual learning and innovation in this ever-evolving industry."
-            }
-          />
-          <Details
-            position={"Software Engineer"}
-            company={"Eversoft IT Solutions"}
-            companyLink={"https://eversoft.cf/"}
-            time={"2022-Present"}
-            address={"Colombo, Sri Lanka"}
-            work={
-              "I design versatile software solutions for libraries, schools, restaurants, and efficient Point of Sale systems, adapting to diverse industry needs."
-            }
-          />
-        </ul>
+          <ul className="w-full flex flex-col items-start justify-between ml-4">
+            <Details
+              position={"Software Engineer"}
+              company={"Eversoft IT Solutions"}
+              companyLink={"https://eversoft.cf/"}
+              time={"2022-Present"}
+              address={"Colombo, Sri Lanka"}
+              work={
+                "Eversoft IT Solutions: Creative, efficient, reliable. Your innovation partner for a transformed digital future through trusted collaboration."
+              }
+            />
+            <Details
+              position={"Software Engineer"}
+              company={"Eversoft IT Solutions"}
+              companyLink={"https://eversoft.cf/"}
+              time={"2022-Present"}
+              address={"Colombo, Sri Lanka"}
+              work={
+                "As a software engineer, I orchestrate system creation while embracing perpetual learning and innovation in this ever-evolving industry."
+              }
+            />
+            <Details
+              position={"Software Engineer"}
+              company={"Eversoft IT Solutions"}
+              companyLink={"https://eversoft.cf/"}
+              time={"2022-Present"}
+              address={"Colombo, Sri Lanka"}
+              work={
+                "I design versatile software solutions for libraries, schools, restaurants, and efficient Point of Sale systems, adapting to diverse industry needs."
+              }
+            />
+          </ul>
+        </div>
       </div>
     </div>
   );

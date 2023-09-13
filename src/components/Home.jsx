@@ -7,7 +7,7 @@ const Home = () => {
   };
 
   return (
-    <div className="bg-bgShade dark:bg-slate-500" id="home">
+    <div className="bg-bgShade dark:bg-custom-blue" id="home">
       <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5">
         <div className="md:w-1/2 w-full" data-aos="fade-right">
           <img src={banner} alt="" className="w-full" />
@@ -19,15 +19,15 @@ const Home = () => {
           data-aos="fade-up"
           data-aos-offset="300"
         >
-          <p className="text-xl text-headingcolor font-semibold mb-5">
+          <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
             Hey, I am Chathura Sudaraka
           </p>
-          <h1 className="md:text-5xl text-4xl font-bold text-headingcolor leading-snug md:leading-[76px]  mb-5">
+          <h1 className="md:text-5xl text-4xl font-bold text-headingcolor dark:text-white leading-snug md:leading-[76px]  mb-5">
             Where Design Mastery Meets{" "}
             <span className="text-primary">Branding Brilliance</span> and
             Creative Innovation.
           </h1>
-          <p className="text-2xl text-body leading-9 mb-8">
+          <p className="text-2xl text-body dark:text-white leading-9 mb-8">
             Where Software Expertise Meets Creative Problem-Solving and
             Technological Innovation
           </p>
