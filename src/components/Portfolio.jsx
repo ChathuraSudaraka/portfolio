@@ -19,7 +19,7 @@ const Portfolio = () => {
               My Skills
             </p>
             <h2 className="md:text-5xl dark:text-white text-4xl text-headingcolor font-bold">
-              My Expertise
+              My Portfolio
             </h2>
           </div>
 
