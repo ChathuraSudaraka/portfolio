@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 const skills = [
   {
     id: 1,
@@ -31,7 +33,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <div className="dark:bg-custom-blue"> 
+    <div className="dark:bg-custom-blue">
       <div className="lg:mx-12 mx-4 py-32" id="skills">
         <div className="mb-20">
           <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
@@ -42,19 +44,19 @@ const Skills = () => {
           </h2>
         </div>
 
-        {/* skillis card */}
-        <div className=" grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
+        {/* skill cards */}
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
           {skills.map((skill) => (
             <div
               key={skill.id}
-              className="bg-bgShade dark:bg-custom-dark-blue dark:outline-slate-700 dark:text-dark-white p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300"
+              className="bg-bgShade shadow-lg dark:bg-custom-dark-blue dark:outline-slate-700 dark:text-dark-white p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300 hover:bg-sky-500 hover:shadow-blue-500/50 "
               data-aos="fade-zoom-in"
               data-aos-offset="300"
             >
               <img
                 src={skill.image}
                 alt=""
-                className="w-14 h-14 p-3 bg-white rounded-lg shadow-md mb-7"
+                className="w-14 h-14 p-3 bg-white rounded-lg shadow-md mb-7 transition-transform transform hover:scale-110"
               />
               <h3 className="text-2xl font-bold mb-4">{skill.name}</h3>
               <p>{skill.description}</p>

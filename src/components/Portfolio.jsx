@@ -1,5 +1,3 @@
-/* eslint-disable react/no-unknown-property */
-
 import { useEffect, useState } from "react";
 
 const Portfolio = () => {
@@ -10,6 +8,7 @@ const Portfolio = () => {
       .then((res) => res.json())
       .then((data) => setProjects(data));
   }, []);
+
   return (
     <div className="dark:bg-custom-blue">
       <div className="lg:mx-12 mx-4 py-10" id="portfolio">
@@ -46,13 +45,22 @@ const Portfolio = () => {
           data-aos-offset="300"
         >
           {projects.map((project) => (
-            <div key={project.id} className="shadow-xl rounded-lg dark:bg-custom-dark-blue dark:outline-slate-700">
-              <img src={project.image} alt="" />
+            <div
+              key={project.id}
+              className="dark:shadow-lg dark:shadow-blue-500/50 shadow-xl rounded-lg dark:bg-custom-dark-blue dark:outline-slate-700 transition-transform transform hover:scale-105 hover:opacity-80"
+            >
+              <img
+                src={project.image}
+                alt=""
+                className="transition-transform transform hover:scale-105 hover:opacity-80"
+              />
               <div className="p-8">
                 <h3 className="text-2xl dark:text-white font-semibold mb-2 text-headingcolor">
                   {project.name}
                 </h3>
-                <p className="text-body mb-4 dark:text-dark-white">{project.description}</p>
+                <p className="text-body mb-4 dark:text-dark-white">
+                  {project.description}
+                </p>
                 <a
                   href="https://github.com/ChathuraSudaraka"
                   className="underline underline-offset-8 dark:text-white"
