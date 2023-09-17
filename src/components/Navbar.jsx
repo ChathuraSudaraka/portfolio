@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 lg:top-2 lg:left-10 lg:right-10 w-full lg:w-auto">
       <nav
-        className={`py-4 md:px-12 px-4 lg:rounded-lg bg-blue-500 bg-opacity-20`}
+        className={`py-4 md:px-12 px-4 lg:rounded-lg bg-blue-700 bg-opacity-40 backdrop-filter backdrop-blur-lg backdrop-contrast-125 backdrop-grayscale-0 backdrop-hue-rotate-0 backdrop-invert-0 backdrop-opacity-100 backdrop-saturate-100 backdrop-sepia-0 bg-opacity-10 backdrop-blur-2xl backdrop-brightness-100 backdrop-contrast-100 backdrop-grayscale-0 backdrop-hue-rotate-0 backdrop-invert-0 backdrop-opacity-100 backdrop-saturate-100 backdrop-sepia-      lg:backdrop-filter lg:backdrop-blur-lg lg:backdrop-contrast-125 lg:backdrop-grayscale-0 lg:backdrop-hue-rotate-0 lg:backdrop-invert-0 lg:backdrop-opacity-100 lg:backdrop-saturate-100 lg:backdrop-sepia-0 lg:bg-opacity-10 lg:backdrop-blur-2xl lg:backdrop-brightness-100 lg:backdrop-contrast-100 lg:backdrop-grayscale-0 lg:backdrop-hue-rotate-0 lg:backdrop-invert-0 lg:backdrop-opacity-100 lg:backdrop-saturate-100 lg:backdrop-sepia-`}
       >
         <div className="flex items-center justify-between">
           <div className="text-white font-bold text-lg cursor-pointer">
@@ -120,7 +120,7 @@ const Navbar = () => {
           </div>
 
           {/* btn htmlFor small devices */}
-          <button onClick={toggleMenu} className="lg:hidden text-body text-3xl">
+          <button onClick={toggleMenu} className="lg:hidden dark:text-white text-body text-3xl">
             <HiMenu />
           </button>
         </div>

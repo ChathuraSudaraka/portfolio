@@ -31,7 +31,7 @@ const CircleFollowMouse = () => {
     >
       <div
         ref={circleRef}
-        className={`w-5 h-5 bg-blue-500 rounded-full absolute ${
+        className={`w-5 h-5 dark:bg-blue-500 dark:blur-sm dark:w-8 dark:h-8 bg-blue-500 rounded-full absolute ${
           isBouncing ? "bounce" : ""
         }`}
         style={{
