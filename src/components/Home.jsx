@@ -22,10 +22,9 @@ const Home = () => {
           <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
             Hey, I am Chathura Sudaraka
           </p>
-          <h1 className="md:text-5xl text-4xl font-bold text-headingcolor dark:text-white leading-snug md:leading-[76px]  mb-5">
-            Where Design Mastery Meets{" "}
-            <span className="text-primary">Branding Brilliance</span> and
-            Creative Innovation.
+          <h1 className="md:text-6xl text-4xl font-bold text-headingcolor dark:text-white leading-snug md:leading-[76px]  mb-5">
+            I'm a software engineer,{" "}
+            <span className="text-primary">crafting</span> elegant solutions.
           </h1>
           <p className="text-2xl text-body dark:text-white leading-9 mb-8">
             Where Software Expertise Meets Creative Problem-Solving and

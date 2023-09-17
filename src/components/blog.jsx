@@ -3,7 +3,7 @@ import React from "react";
 const Article = () => {
   return (
     <div className="dark:bg-custom-blue">
-      <div className="lg:mx-12 mx-4 py-32" id="experience">
+      <div className="lg:mx-12 mx-4 py-32" id="blog">
         <div className="mb-20">
           <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
             My Article
@@ -20,7 +20,7 @@ const Article = () => {
               <img
                 src="https://hicaps.com.ph/wp-content/uploads/2022/01/blog-examples-for-students.jpg"
                 alt="Image Alt Text"
-                className="w-full h-auto mb-2" 
+                className="w-full h-auto mb-2 transition-transform transform hover:scale-105 hover:opacity-80" 
               />
               <p className="text-gray-700 dark:text-gray-300">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -38,7 +38,7 @@ const Article = () => {
               <img
                 src="https://hicaps.com.ph/wp-content/uploads/2022/01/blog-examples-for-students.jpg"
                 alt="Image Alt Text"
-                className="w-full h-auto mb-2" 
+                className="w-full h-auto mb-2 transition-transform transform hover:scale-105 hover:opacity-80" 
               />
               <p className="text-gray-700 dark:text-gray-300">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -56,7 +56,7 @@ const Article = () => {
               <img
                 src="https://hicaps.com.ph/wp-content/uploads/2022/01/blog-examples-for-students.jpg"
                 alt="Image Alt Text"
-                className="w-full h-auto mb-2" 
+                className="w-full h-auto mb-2 transition-transform transform hover:scale-105 hover:opacity-80" 
               />
               <p className="text-gray-700 dark:text-gray-300">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
