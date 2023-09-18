@@ -2,22 +2,6 @@ import React, { useEffect, useState } from "react";
 import useThemeSwitcher from "./hooks/useThemeSwitcher";
 import Moon from "/assets/moon.svg";
 import Sun from "/assets/sun.svg";
-import imageCompression from "browser-image-compression";
-
-async function handleImageUpload(event) {
-  const imageFile = event.target.files[0];
-
-  const options = {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 1920,
-  };
-  try {
-    const compressedFile = await imageCompression(imageFile, options);
-    console.log(compressedFile.size / 1024 / 1024);
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 const DarkLight = () => {
   const [mode, setMode] = useThemeSwitcher();
@@ -30,11 +14,11 @@ const DarkLight = () => {
         setThemeTransition("");
       }, 500); // Adjust the duration (in milliseconds) as needed
     }
-  }, [mode, themeTransition]);
+  }, [themeTransition]);
 
   const toggleTheme = () => {
     setThemeTransition("transition-all duration-500");
-    setMode(mode === "light" ? "dark" : "light");
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
 
   return (

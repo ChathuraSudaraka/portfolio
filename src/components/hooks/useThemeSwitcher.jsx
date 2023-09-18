@@ -2,37 +2,30 @@ import React, { useEffect, useState } from "react";
 
 const useThemeSwitcher = () => {
   const perferDarkQuery = "(prefers-color-scheme: dark)";
-  const [mode, setMode] = useState("");
-
+  
   useEffect(() => {
     const mediaQuery = window.matchMedia(perferDarkQuery);
     const userPref = window.localStorage.getItem("theme");
-
+    const initialMode = userPref || (mediaQuery.matches ? "dark" : "light");
+    
+    document.documentElement.classList.toggle("dark", initialMode === "dark");
+    
     const handleChange = () => {
-      if (userPref) {
-        let check = userPref === "dark" ? "dark" : "light";
-        setMode(check);
-        if (check === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      } else {
-        let check = mediaQuery.matches ? "dark" : "light";
-        setMode(check);
-
-        if (check === "dark") {
-          document.documentElement.classList.add("dark");
-        } else {
-          document.documentElement.classList.remove("dark");
-        }
-      }
+      const mode = mediaQuery.matches ? "dark" : "light";
+      window.localStorage.setItem("theme", mode);
+      document.documentElement.classList.toggle("dark", mode === "dark");
     };
 
     mediaQuery.addEventListener("change", handleChange);
 
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
+
+  const [mode, setMode] = useState(() => {
+    const userPref = window.localStorage.getItem("theme");
+    const mediaQuery = window.matchMedia(perferDarkQuery);
+    return userPref || (mediaQuery.matches ? "dark" : "light");
+  });
 
   useEffect(() => {
     if (mode === "dark") {
