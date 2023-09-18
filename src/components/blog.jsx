@@ -1,6 +1,53 @@
 import React from "react";
 
+const BlogPost = ({ title, date, imageSrc, content }) => {
+  return (
+    <div
+      className="flex flex-col lg:flex-row dark:shadow-lg dark:shadow-blue-500/50 bg-bgShade dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden mb-8"
+      data-aos="fade-up"
+      data-aos-offset="300"
+    >
+      <div className="lg:w-1/3">
+        <img
+          src={imageSrc}
+          alt="Blog Post Image"
+          className="dark:shadow-lg dark:shadow-blue-500/50 w-full h-auto transition-transform transform hover:scale-105 hover:opacity-80"
+        />
+      </div>
+      <div className="p-6 lg:w-2/3">
+        <h2 className="text-xl lg:text-2xl font-semibold text-gray-800 dark:text-white mb-2">
+          {title}
+        </h2>
+        <p className="text-gray-600 dark:text-gray-400 mb-2">{date}</p>
+        <p className="text-gray-700 dark:text-gray-300">{content}</p>
+        <button className="mt-10 mb-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition-transform transform hover:scale-105">
+          Read More
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const Article = () => {
+  const blogPosts = [
+    {
+      title: "Happy Blog Day",
+      date: "September 18, 2023",
+      imageSrc:
+        "https://hicaps.com.ph/wp-content/uploads/2022/01/blog-examples-for-students.jpg",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+    {
+      title: "Happy Blog Day",
+      date: "September 18, 2023",
+      imageSrc:
+        "https://hicaps.com.ph/wp-content/uploads/2022/01/blog-examples-for-students.jpg",
+      content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
+  ];
+
   return (
     <div className="dark:bg-custom-blue">
       <div className="lg:mx-12 mx-4 py-32" id="blog">
@@ -12,63 +59,15 @@ const Article = () => {
             My Blogs
           </h2>
         </div>
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-            {/* Blog Post 1 */}
-            <div className="dark:shadow-lg dark:shadow-blue-500/50 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105">
-              <h4 className="text-xl dark:text-white font-semibold mb-2">Happy Blog Day</h4>
-              <img
-                src="https://hicaps.com.ph/wp-content/uploads/2022/01/blog-examples-for-students.jpg"
-                alt="Image Alt Text"
-                className="w-full h-auto mb-2 transition-transform transform hover:scale-105 hover:opacity-80" 
-              />
-              <p className="text-gray-700 dark:text-gray-300">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              </p>
-            </div>
-
-            {/* Blog Post 2 */}
-            <div className="dark:shadow-lg dark:shadow-blue-500/50 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105">
-              <h4 className="text-xl dark:text-white font-semibold mb-2">Happy Blog Day</h4>
-              <img
-                src="https://hicaps.com.ph/wp-content/uploads/2022/01/blog-examples-for-students.jpg"
-                alt="Image Alt Text"
-                className="w-full h-auto mb-2 transition-transform transform hover:scale-105 hover:opacity-80" 
-              />
-              <p className="text-gray-700 dark:text-gray-300">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              </p>
-            </div>
-
-            {/* Blog Post 3 */}
-            <div className="dark:shadow-lg dark:shadow-blue-500/50 bg-white dark:bg-gray-800 shadow-lg rounded-lg p-6 transition-transform transform hover:scale-105">
-              <h4 className="text-xl dark:text-white font-semibold mb-2">Happy Blog Day</h4>
-              <img
-                src="https://hicaps.com.ph/wp-content/uploads/2022/01/blog-examples-for-students.jpg"
-                alt="Image Alt Text"
-                className="w-full h-auto mb-2 transition-transform transform hover:scale-105 hover:opacity-80" 
-              />
-              <p className="text-gray-700 dark:text-gray-300">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              </p>
-            </div>
-          </div>
-        </div>
+        {blogPosts.map((post, index) => (
+          <BlogPost
+            key={index}
+            title={post.title}
+            date={post.date}
+            imageSrc={post.imageSrc}
+            content={post.content}
+          />
+        ))}
       </div>
     </div>
   );

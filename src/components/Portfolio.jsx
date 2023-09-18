@@ -52,7 +52,7 @@ const Portfolio = () => {
               <img
                 src={project.image}
                 alt=""
-                className="transition-transform transform hover:scale-105 hover:opacity-80"
+                className="transition-transform transform hover:scale-105 hover:opacity-80 rounded-lg"
               />
               <div className="p-8">
                 <h3 className="text-2xl dark:text-white font-semibold mb-2 text-headingcolor">
