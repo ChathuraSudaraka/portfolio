@@ -31,6 +31,15 @@ const reviews = [
     imageSrc:
       "https://images.unsplash.com/photo-1660936764409-4da65828b4f8?ixlib=rb-4.0.3&ixid=M3xwMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&w=1000&q=80",
   },
+  {
+    id: 3,
+    name: "Jhone Doe",
+    title: "Graphic Designer",
+    description:
+      "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
+    imageSrc:
+      "  https://media.istockphoto.com/id/1283678904/photo/stylish-woman-in-coat-posing-in-autumn-park.webp?s=170667a&w=0&k=20&c=sz4zxDOAHI2EyPfM_zhuGcZ3qgx8FanLaP59nzdC5SQ=",
+  },
   // Add more review objects as needed
 ];
 
@@ -107,65 +116,25 @@ const CustomerReviewsSlider = () => {
                             />
                           </svg>
                         </li>
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
                         {/* Add other list items */}
                       </ul>
                     </motion.div>
                   </div>
                   <motion.div
                     variants={imageVariants}
-                    className="md:mb-8 lg:mb-0"
+                    className={`md:mb-8 lg:mb-0 ${
+                      window.innerWidth <= 768
+                        ? "mobile-image flex justify-center items-center"
+                        : ""
+                    }`}
                   >
                     <img
                       src={review.imageSrc}
-                      className="lg:rotate-[6deg] w-full rounded-lg shadow-lg dark:shadow-black/20"
+                      className={`w-full rounded-lg shadow-lg dark:shadow-black/20 ${
+                        window.innerWidth <= 768
+                          ? "h-16 w-16"
+                          : "lg:rotate-[6deg] lg:max-w-md"
+                      }`}
                       alt="image"
                     />
                   </motion.div>
