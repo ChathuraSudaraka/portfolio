@@ -1,103 +1,182 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/effect-cube"; // Import the cube effect CSS
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { motion } from "framer-motion";
 
 const reviews = [
   {
     id: 1,
-    name: "Dianne Russell",
-    company: "Starbucks",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "/assets/Avatar1.png",
+    name: "Anna Doe",
+    title: "Graphic Designer",
+    description:
+      "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
+    imageSrc: "https://mdbcdn.b-cdn.net/img/new/ecommerce/vertical/080.jpg",
   },
   {
     id: 2,
-    name: "Kristin Watson",
-    company: "Louis Vuitton",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "/assets/Avatar2.png",
+    name: "Anna Doe",
+    title: "Graphic Designer",
+    description:
+      "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1689803753214-86d52624b838?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80",
   },
   {
     id: 3,
-    name: "Kathryn Murphy",
-    company: "McDonald's",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "/assets/Avatar3.png",
+    name: "Jhone Doe",
+    title: "Graphic Designer",
+    description:
+      "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
+    imageSrc:
+      "https://images.unsplash.com/photo-1660936764409-4da65828b4f8?ixlib=rb-4.0.3&ixid=M3xwMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&w=1000&q=80",
   },
-  {
-    id: 4,
-    name: "Dianne Russell",
-    company: "Starbucks",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "/assets/Avatar1.png",
-  },
-  {
-    id: 5,
-    name: "Kristin Watson",
-    company: "Louis Vuitton",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "/assets/Avatar2.png",
-  },
-  {
-    id: 6,
-    name: "Kathryn Murphy",
-    company: "McDonald's",
-    comment:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique. Duis cursus, mi quis viverra.",
-    photo: "/assets/Avatar3.png",
-  },
+  // Add more review objects as needed
 ];
 
-const ReviewCard = () => {
+const CustomerReviewsSlider = () => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    arrows: true, // Show the left/right navigation buttons by default
+    responsive: [
+      {
+        breakpoint: 768, // Set a breakpoint suitable for mobile screens
+        settings: {
+          arrows: false, // Hide the left/right navigation buttons on mobile screens
+        },
+      },
+    ],
+  };
+
+  const slideVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+  };
+
+  const textVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.2 } },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, x: -50 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.4 } },
+  };
+
   return (
-    <>
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={10}
-        breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 40,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 50,
-          },
-        }}
-        className="mySwiper -z-0"
-      >
-        {reviews.map((review) => (
-          <SwiperSlide
-            key={review.id}
-            className="border dark:bg-custom-dark-blue border-bgShade bg-bgShade p-8 rounded hover:border-[#006B6A]"
-          >
-            <div>
-              <img src="/assets/starts.png" alt="" className="h-4" />
-              <p className="my-5 dark:text-dark-white">" {review.comment}</p>
-              <div className="flex gap-4 items-center">
-                <img src={review.photo} alt="" className="h-10" />
-                <div className="dark:text-dark-white">
-                  <p>{review.name}</p>
-                  <p className="text-sm">{review.company}</p>
+    <Slider {...settings}>
+      {reviews.map((review) => (
+        <motion.div
+          key={review.id}
+          initial="hidden"
+          animate="visible"
+          variants={slideVariants}
+          className="container mx-auto md:px-6"
+        >
+          <section className="text-center lg:text-left">
+            <div className="py-12 md:px-6 md:px-12">
+              <div className="container mx-auto xl:px-32">
+                <div className="flex grid items-center lg:grid-cols-2">
+                  <div className="mb-8 md:mt-8 lg:mt-0 lg:mb-0">
+                    <motion.div
+                      variants={textVariants}
+                      className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-4 py-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[20px] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-8 lg:-mr-12"
+                    >
+                      <h2 className="mb-2 text-2xl font-bold text-primary dark:text-primary-400">
+                        {review.name}
+                      </h2>
+                      <p className="mb-2 font-semibold">{review.title}</p>
+                      <p className="mb-4 text-neutral-500 dark:text-neutral-300">
+                        {review.description}
+                      </p>
+                      <ul className="flex justify-center lg:justify-start">
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 96 960 960"
+                            className="w-4 text-primary dark:text-primary-400"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
+                            />
+                          </svg>
+                        </li>
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 96 960 960"
+                            className="w-4 text-primary dark:text-primary-400"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
+                            />
+                          </svg>
+                        </li>
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 96 960 960"
+                            className="w-4 text-primary dark:text-primary-400"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
+                            />
+                          </svg>
+                        </li>
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 96 960 960"
+                            className="w-4 text-primary dark:text-primary-400"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
+                            />
+                          </svg>
+                        </li>
+                        <li>
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 96 960 960"
+                            className="w-4 text-primary dark:text-primary-400"
+                          >
+                            <path
+                              fill="currentColor"
+                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
+                            />
+                          </svg>
+                        </li>
+                        {/* Add other list items */}
+                      </ul>
+                    </motion.div>
+                  </div>
+                  <motion.div
+                    variants={imageVariants}
+                    className="md:mb-8 lg:mb-0"
+                  >
+                    <img
+                      src={review.imageSrc}
+                      className="lg:rotate-[6deg] w-full rounded-lg shadow-lg dark:shadow-black/20"
+                      alt="image"
+                    />
+                  </motion.div>
                 </div>
               </div>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </>
+          </section>
+        </motion.div>
+      ))}
+    </Slider>
   );
 };
 
-export default ReviewCard;
+export default CustomerReviewsSlider;
