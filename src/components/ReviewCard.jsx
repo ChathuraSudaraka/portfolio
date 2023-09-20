@@ -32,13 +32,13 @@ const reviews = [
       "https://images.unsplash.com/photo-1660936764409-4da65828b4f8?ixlib=rb-4.0.3&ixid=M3xwMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&w=1000&q=80",
   },
   {
-    id: 3,
+    id: 4,
     name: "Jhone Doe",
     title: "Graphic Designer",
     description:
       "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
     imageSrc:
-      "  https://media.istockphoto.com/id/1283678904/photo/stylish-woman-in-coat-posing-in-autumn-park.webp?s=170667a&w=0&k=20&c=sz4zxDOAHI2EyPfM_zhuGcZ3qgx8FanLaP59nzdC5SQ=",
+      "https://images.unsplash.com/photo-1660936764409-4da65828b4f8?ixlib=rb-4.0.3&ixid=M3xwMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&w=1000&q=80",
   },
   // Add more review objects as needed
 ];
@@ -128,15 +128,19 @@ const CustomerReviewsSlider = () => {
                         : ""
                     }`}
                   >
-                    <img
-                      src={review.imageSrc}
-                      className={`w-full rounded-lg shadow-lg dark:shadow-black/20 ${
+                    <div
+                      className={`w-16 h-16 lg:w-auto lg:h-auto rounded-full shadow-lg dark:shadow-black/20 ${
                         window.innerWidth <= 768
-                          ? "h-16 w-16"
+                          ? "mobile-circular-image"
                           : "lg:rotate-[6deg] lg:max-w-md"
                       }`}
-                      alt="image"
-                    />
+                    >
+                      <img
+                        src={review.imageSrc}
+                        className="w-full h-full rounded-lg object-cover"
+                        alt="image"
+                      />
+                    </div>
                   </motion.div>
                 </div>
               </div>
