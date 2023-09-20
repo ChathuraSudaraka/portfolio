@@ -54,7 +54,7 @@ const Navbar = () => {
               spy={true}
               offset={-100}
               to="skills"
-              className="block hover:text-gray-400 py-2 px-4 cursor-pointer"
+              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
             >
               Skills
             </Link>
@@ -64,7 +64,7 @@ const Navbar = () => {
               spy={true}
               offset={-50}
               to="about"
-              className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
+              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
             >
               About me
             </Link>
@@ -74,7 +74,7 @@ const Navbar = () => {
               spy={true}
               offset={-100}
               to="experience"
-              className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
+              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
             >
               Experience
             </Link>
@@ -84,7 +84,7 @@ const Navbar = () => {
               spy={true}
               offset={-100}
               to="education"
-              className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
+              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
             >
               Education
             </Link>
@@ -94,7 +94,7 @@ const Navbar = () => {
               spy={true}
               offset={-100}
               to="portfolio"
-              className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
+              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
             >
               Portfolio
             </Link>
@@ -104,7 +104,7 @@ const Navbar = () => {
               spy={true}
               offset={-100}
               to="blog"
-              className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
+              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
             >
               Blogs
             </Link>
