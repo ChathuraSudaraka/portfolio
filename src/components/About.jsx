@@ -38,7 +38,7 @@ const About = () => {
               interested, let's connect on GitHub and embark on this incredible
               journey together.
             </p>
-            <a href="https://wa.me/0705321516">
+            <a href="https://wa.me/+94705321516">
               <button className="btn-primary">Contact Me</button>
             </a>
           </div>
