@@ -1,4 +1,5 @@
 import React from "react";
+import Framework from "./Framework";
 
 const ProgressBar = () => {
   // Define your coding language skills and their respective percentages here
@@ -6,6 +7,7 @@ const ProgressBar = () => {
     { name: "JavaScript", percent: 85 },
     { name: "Python", percent: 70 },
     { name: "Java", percent: 60 },
+    { name: "PHP", percent: 100 },
     { name: "HTML/CSS", percent: 100 },
     // Add more skills as needed
   ];
@@ -28,7 +30,7 @@ const ProgressBar = () => {
               key={index}
               className="bg-white dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center"
               data-aos="fade-up"
-              data-aos-offset="400"
+              data-aos-offset="150"
             >
               <div className="mb-4">
                 <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
@@ -76,6 +78,8 @@ const ProgressBar = () => {
           ))}
         </div>
       </div>
+      <Framework/>
+
     </div>
   );
 };
