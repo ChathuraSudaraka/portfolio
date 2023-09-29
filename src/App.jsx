@@ -9,6 +9,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Portfolio from "./components/Portfolio";
+import ProgressBar from "./components/ProgressBar";
 import Skills from "./components/Skills";
 import Testimonial from "./components/Testimonial";
 import Article from "./components/blog";
@@ -21,6 +22,7 @@ function App() {
       <Navbar />
       <Home />
       <Skills />
+      <ProgressBar/>
       <About />
       <Experience />
       <Education />

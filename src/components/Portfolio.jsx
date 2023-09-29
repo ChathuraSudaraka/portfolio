@@ -11,7 +11,7 @@ const Portfolio = () => {
 
   return (
     <div className="dark:bg-custom-blue">
-      <div className="lg:mx-12 mx-4 py-10" id="portfolio">
+      <div className="lg:mx-12 mx-4 py-32" id="portfolio">
         <div className="mb-20 flex flex-col sm:flex-row md:items-center justify-between gap-5">
           <div>
             <p className="text-xl dark:text-white text-headingcolor font-semibold mb-5">
