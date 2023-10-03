@@ -3,12 +3,12 @@ import React from "react";
 const Article = () => {
   return (
     <div className="dark:bg-custom-blue">
-      <div className="lg:mx-12 mx-4 py-10 md:py-20 lg:py-32" id="blog">
-        <div className="mb-10 md:mb-16">
-          <p className="text-xl md:text-2xl lg:text-headingcolor dark:text-white font-semibold mb-3 md:mb-5">
+      <div className="lg:mx-12 mx-4 py-32" id="blog">
+        <div className="mb-20">
+          <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
             My Article
           </p>
-          <h2 className="md:text-4xl lg:text-5xl text-headingcolor dark:text-white font-bold">
+          <h2 className="md:text-5xl text-4xl text-headingcolor dark:text-white font-bold">
             My Blogs
           </h2>
         </div>

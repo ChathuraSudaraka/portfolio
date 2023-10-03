@@ -98,6 +98,7 @@ const Contact = () => {
                   name="first_name"
                   type="text"
                   placeholder="First Name"
+                  autoComplete="given-name" // Add this line
                 />
               </div>
               <div className="mb-1">
@@ -113,6 +114,7 @@ const Contact = () => {
                   name="last_name"
                   type="text"
                   placeholder="Last Name"
+                  autoComplete="family-name" // Add this line
                 />
               </div>
             </div>
@@ -129,6 +131,7 @@ const Contact = () => {
                 type="text"
                 name="user_email"
                 placeholder="Email"
+                autoComplete="email" // Add this line
               />
             </div>
             <div className="mb-6">
@@ -144,6 +147,7 @@ const Contact = () => {
                 name="message"
                 placeholder="Write your comment here..."
                 rows={8}
+                autoComplete="off" // Add this line to disable autocomplete
               />
             </div>
             <div className="flex items-center justify-between">

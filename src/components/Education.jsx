@@ -10,17 +10,15 @@ const Details = ({ type, place, time, info }) => {
       className="my-8 first-mt-0 last:mb-0 w-[60%] mx-auto flex flex-col items-center justify-between"
     >
       <LiIcon reference={ref} />
-      <motion.div
-        initial={{ y: 50 }}
-        whileInView={{ y: 0 }}
-        transition={{ duration: 0.5, type: "spring" }}
-      >
-        <h3 className="capitalize font-bold text-2xl dark:text-white">{type}</h3>
+      <div data-aos="fade-up" data-aos-offset="150">
+        <h3 className="capitalize font-bold text-2xl dark:text-white">
+          {type}
+        </h3>
         <span className="capitalize font-medium text-black/75 dark:text-dark-white">
           {time} | {place}
         </span>
         <p className="font-medium w-full dark:text-gray-300">{info}</p>
-      </motion.div>
+      </div>
     </li>
   );
 };
@@ -33,7 +31,7 @@ const Education = () => {
   });
 
   return (
-    <div className="dark:bg-custom-blue"> 
+    <div className="dark:bg-custom-blue">
       <div className="lg:mx-12 mx-4 py-32" id="education">
         <div className="mb-20">
           <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
@@ -46,7 +44,7 @@ const Education = () => {
 
         <div
           ref={ref}
-          className="rounded-md shadow-lg pb-8 dark:bg-custom-dark-blue bg-bgShade w-[95%] mx-auto relative"
+          className="rounded-md shadow-lg pb-8 dark:bg-custom-dark-blue bg-bgShade mx-auto relative"
           data-aos="fade-up"
           data-aos-offset="150"
         >
