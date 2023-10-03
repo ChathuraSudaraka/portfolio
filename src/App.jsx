@@ -22,7 +22,7 @@ function App() {
       <Navbar />
       <Home />
       <Skills />
-      <ProgressBar/>
+      <ProgressBar />
       <About />
       <Experience />
       <Education />
@@ -35,6 +35,7 @@ function App() {
       <BackToTop />
       <DarkLight />
       <CircleFollowMouse />
+      {/* Library */}
       <ScrollAnimation />
     </>
   );
