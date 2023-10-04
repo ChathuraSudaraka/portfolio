@@ -26,7 +26,7 @@ const DarkLight = () => {
       <div className="fixed top-28 right-0 bg-white rounded-l-full shadow-lg p-1">
         <button
           className={`w-12 h-12 flex items-center justify-center rounded-full border-2 ${
-            mode === "dark" ? "border-gray-600" : "border-yellow-500"
+            mode === "dark" ? "border-yellow-500" : "border-gray-600"
           } hover:bg-opacity-50`}
           onClick={toggleTheme}
         >

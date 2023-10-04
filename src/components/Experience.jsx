@@ -73,7 +73,7 @@ const Experience = () => {
             <Details
               position={"Software Engineer"}
               company={"Eversoft IT Solutions"}
-              companyLink={"https://eversoft.cf/"}
+              companyLink={"https://eversoft.lk"}
               time={"2022-Present"}
               address={"Colombo, Sri Lanka"}
               work={
@@ -84,7 +84,7 @@ const Experience = () => {
             <Details
               position={"Software Engineer"}
               company={"Eversoft IT Solutions"}
-              companyLink={"https://eversoft.cf/"}
+              companyLink={"https://eversoft.lk"}
               time={"2022-Present"}
               address={"Colombo, Sri Lanka"}
               work={
@@ -95,7 +95,7 @@ const Experience = () => {
             <Details
               position={"Software Engineer"}
               company={"Eversoft IT Solutions"}
-              companyLink={"https://eversoft.cf/"}
+              companyLink={"https://eversoft.lk"}
               time={"2022-Present"}
               address={"Colombo, Sri Lanka"}
               work={

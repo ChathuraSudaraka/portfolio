@@ -3,17 +3,44 @@ import React from "react";
 const Article = () => {
   return (
     <div className="dark:bg-custom-blue">
-      <div className="lg:mx-12 mx-4 py-32" id="blog">
-        <div className="mb-20">
-          <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
-            My Article
-          </p>
-          <h2 className="md:text-5xl text-4xl text-headingcolor dark:text-white font-bold">
-            My Blogs
-          </h2>
+      <div className="lg:mx-12 mx-4 py-32" id="portfolio">
+        <div className="mb-20 flex flex-col sm:flex-row md:items-center justify-between gap-5">
+          <div>
+            <p className="text-xl dark:text-white text-headingcolor font-semibold mb-5">
+              My Article
+            </p>
+            <h2 className="md:text-5xl dark:text-white text-4xl text-headingcolor font-bold">
+              My Blogs
+            </h2>
+          </div>
+          <div className="flex items-center">
+            <a
+              href="#"
+              className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
+            >
+              <span className="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 dark:bg-red-500 bg-[#9D76C1] rounded-full blur-md ease"></span>
+              <span className="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease">
+                <span className="absolute bottom-0 left-0 w-24 h-24 -ml-10 dark:bg-purple-500 bg-[#5B0888] rounded-full blur-md"></span>
+                <span className="absolute bottom-0 right-0 w-24 h-24 -mr-10 dark:bg-pink-500 bg-[#713ABE] rounded-full blur-md"></span>
+              </span>
+
+              <span className="relative text-white">
+                <img
+                  src="/assets/blogging.png"
+                  alt="Dribbble Logo"
+                  className="w-8 h-8 inline-block mr-2"
+                />
+                Visit My Blogs
+              </span>
+            </a>
+          </div>
         </div>
         <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-1/3 p-2 flex flex-col flex-grow flex-shrink">
+          <div
+            className="w-full md:w-1/3 p-2 flex flex-col flex-grow flex-shrink"
+            data-aos="fade-up"
+            data-aos-offset="150"
+          >
             <div className="flex-1 dark:bg-custom-dark-blue bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
               <a
                 href="#"
@@ -65,7 +92,11 @@ const Article = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-1/3 p-2 flex flex-col flex-grow flex-shrink">
+          <div
+            className="w-full md:w-1/3 p-2 flex flex-col flex-grow flex-shrink"
+            data-aos="fade-up"
+            data-aos-offset="150"
+          >
             <div className="flex-1 bg-white dark:bg-custom-dark-blue rounded-t rounded-b-none overflow-hidden shadow-lg">
               <a
                 href="#"
@@ -112,7 +143,11 @@ const Article = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-1/3 p-2 flex flex-col flex-grow flex-shrink">
+          <div
+            className="w-full md:w-1/3 p-2 flex flex-col flex-grow flex-shrink"
+            data-aos="fade-up"
+            data-aos-offset="150"
+          >
             <div className="flex-1 dark:bg-custom-dark-blue bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
               <a
                 href="#"
@@ -174,7 +209,11 @@ const Article = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-1/2 p-2 flex flex-col flex-grow flex-shrink">
+          <div
+            className="w-full md:w-1/2 p-2 flex flex-col flex-grow flex-shrink"
+            data-aos="fade-up"
+            data-aos-offset="150"
+          >
             <div className="flex-1 dark:bg-custom-dark-blue bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
               <a
                 href="#"
@@ -266,7 +305,11 @@ const Article = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-1/2 p-2 flex flex-col flex-grow flex-shrink">
+          <div
+            className="w-full md:w-1/2 p-2 flex flex-col flex-grow flex-shrink"
+            data-aos="fade-up"
+            data-aos-offset="150"
+          >
             <div className="flex-1 flex-row dark:bg-custom-dark-blue bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
               <a
                 href="#"
@@ -326,7 +369,11 @@ const Article = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-2/3 p-2 flex flex-col flex-grow flex-shrink">
+          <div
+            className="w-full md:w-2/3 p-2 flex flex-col flex-grow flex-shrink"
+            data-aos="fade-up"
+            data-aos-offset="150"
+          >
             <div className="flex-1 dark:bg-custom-dark-blue bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
               <a
                 href="#"
@@ -392,7 +439,11 @@ const Article = () => {
             </div>
           </div>
 
-          <div className="w-full md:w-1/3 p-2 flex flex-col flex-grow flex-shrink">
+          <div
+            className="w-full md:w-1/3 p-2 flex flex-col flex-grow flex-shrink"
+            data-aos="fade-up"
+            data-aos-offset="150"
+          >
             <div className="flex-1 dark:bg-custom-dark-blue bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
               <a
                 href="#"
