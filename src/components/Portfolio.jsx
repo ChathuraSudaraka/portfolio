@@ -45,15 +45,13 @@ const Portfolio = () => {
         </div>
 
         {/* project card */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
-          data-aos="fade-up"
-          data-aos-offset="300"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="dark:shadow-lg dark:shadow-blue-500/50 shadow-xl rounded-lg dark:bg-custom-dark-blue dark:outline-slate-700 transition-transform transform hover:scale-105 hover:opacity-80"
+              className="dark:shadow-lg dark:shadow-blue-500/50 shadow-xl rounded-lg dark:bg-custom-dark-blue dark:outline-slate-700"
+              data-aos="fade-up"
+              data-aos-offset="300"
             >
               <img
                 src={project.image}
@@ -64,20 +62,48 @@ const Portfolio = () => {
                 <h3 className="text-2xl dark:text-white font-semibold mb-2 text-headingcolor">
                   {project.name}
                 </h3>
+                <div className="py-2">
+                  {project.tag1 && !project.tag1.includes("not") && (
+                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
+                      {project.tag1}
+                    </span>
+                  )}
+                  {project.tag2 && !project.tag2.includes("not") && (
+                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
+                      {project.tag2}
+                    </span>
+                  )}
+                  {project.tag3 && !project.tag3.includes("not") && (
+                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
+                      {project.tag3}
+                    </span>
+                  )}
+                  {project.tag4 && !project.tag4.includes("not") && (
+                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
+                      {project.tag4}
+                    </span>
+                  )}
+                  {project.tag5 && !project.tag5.includes("not") && (
+                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
+                      {project.tag5}
+                    </span>
+                  )}
+                </div>
+
                 <p className="text-body mb-4 dark:text-dark-white">
                   {project.description}
                 </p>
-                <a
-                  href="https://github.com/ChathuraSudaraka"
-                  className="underline underline-offset-8 dark:text-white"
+                <button
+                  onClick={() => (window.location.href = project.link)}
+                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center"
                 >
-                  View In GitHub{""}
+                  View In GitHub
                   <img
                     src="/assets/github-48.png"
-                    alt=""
-                    className="w-6 inline-block ml-3 dark:bg-white dark:border rounded-full"
+                    alt="icon"
+                    className="w-6 ml-3"
                   />
-                </a>
+                </button>
               </div>
             </div>
           ))}
