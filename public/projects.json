@@ -11,12 +11,12 @@
   },
   {
     "id": 2,
-    "name": "POS System",
+    "name": "Point Of Sale System",
     "tag1": "Java",
     "tag2": "MySQL",
     "description": "POS systems simplify sales, inventory, and customer interactions, boosting efficiency and service quality for businesses.",
     "image": "/assets/project-2.png",
-    "link": "https://github.com/ChathuraSudaraka/POS_System"
+    "link": "https://github.com/ChathuraSudaraka/Point-Of-Sale-System"
   },
   {
     "id": 3,
