@@ -16,6 +16,7 @@ import Article from "./components/blog";
 import ScrollAnimation from "./components/hooks/ScrollAnimation";
 import CircleFollowMouse from "./components/hooks/use-follow-pointer";
 
+
 function App() {
   return (
     <>
