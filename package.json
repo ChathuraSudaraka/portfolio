@@ -17,6 +17,7 @@
     "browser-image-compression": "^2.0.2",
     "drag-react": "^1.1.1",
     "framer-motion": "^10.16.4",
+    "perfect-scrollbar": "^1.5.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
