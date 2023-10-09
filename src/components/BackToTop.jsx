@@ -1,38 +1,49 @@
-import React from "react";
-import Arrow from "/assets/up-arrow.svg";
-import imageCompression from "browser-image-compression";
-
-async function handleImageUpload(event) {
-  const imageFile = event.target.files[0];
-
-  const options = {
-    maxSizeMB: 1,
-    maxWidthOrHeight: 1920,
-  };
-  try {
-    const compressedFile = await imageCompression(imageFile, options);
-    console.log(compressedFile.size / 1024 / 1024);
-  } catch (error) {
-    console.log(error);
-  }
-}
+import React, { useState, useEffect } from "react";
+import { Arrow } from "./hooks/CustomTag";
 
 const BackToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleScroll = () => {
+    if (window.scrollY > 200) {
+      // Show the button when the user scrolls down 200px
+      setIsVisible(true);
+    } else {
+      // Hide the button when the user is at the top
+      setIsVisible(false);
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: "smooth", // Add smooth scroll behavior
+      duration: 500, // Specify the duration in milliseconds (e.g., 500ms)
     });
   };
 
+  useEffect(() => {
+    // Add a scroll event listener to track the scroll position
+    window.addEventListener("scroll", handleScroll);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className="bg-slate-400">
-      <div className="fixed bottom-5 right-0 bg-white rounded-l-full shadow-lg p-1">
+      <div
+        className={`fixed ${
+          isVisible ? "bottom-5" : "-bottom-16"
+        } right-0 w-16 bg-white rounded-l-full shadow-lg p-1`}
+      >
         <button
           className={`w-12 h-12 flex items-center justify-center rounded-full border-2 dark:border-yellow-500 border-gray-600`}
           onClick={scrollToTop}
         >
-          <img src={Arrow} alt="Scroll to Top" className="w-8 h-8" />
+          <Arrow />
         </button>
       </div>
     </div>

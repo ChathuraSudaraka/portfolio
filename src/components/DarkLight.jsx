@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useThemeSwitcher from "./hooks/useThemeSwitcher";
-import Moon from "/assets/moon.svg";
-import Sun from "/assets/sun.svg";
+import { Moon, Sun } from "./hooks/CustomTag";
+// import Moon from "/assets/moon.svg";
+// import Sun from "/assets/sun.svg";
 
 const DarkLight = () => {
   const [mode, setMode] = useThemeSwitcher();
@@ -23,7 +24,7 @@ const DarkLight = () => {
 
   return (
     <div className={`bg-slate-400 ${themeTransition}`}>
-      <div className="fixed top-28 right-0 bg-white rounded-l-full shadow-lg p-1">
+      <div className="fixed top-28 right-0 w-16 bg-white rounded-l-full shadow-lg p-1">
         <button
           className={`w-12 h-12 flex items-center justify-center rounded-full border-2 ${
             mode === "dark" ? "border-yellow-500" : "border-gray-600"
