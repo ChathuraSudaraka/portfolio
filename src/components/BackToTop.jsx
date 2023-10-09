@@ -4,49 +4,40 @@ import { Arrow } from "./hooks/CustomTag";
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleScroll = () => {
-    if (window.scrollY > 200) {
-      // Show the button when the user scrolls down 200px
-      setIsVisible(true);
-    } else {
-      // Hide the button when the user is at the top
-      setIsVisible(false);
-    }
-  };
-
+  // Function to scroll to the top of the page
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Add smooth scroll behavior
-      duration: 500, // Specify the duration in milliseconds (e.g., 500ms)
+      behavior: "smooth",
     });
   };
 
+  // Show/hide the button based on scroll position
   useEffect(() => {
-    // Add a scroll event listener to track the scroll position
+    const handleScroll = () => {
+      if (window.pageYOffset > 100) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+
     window.addEventListener("scroll", handleScroll);
 
-    // Remove the event listener when the component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <div className="bg-slate-400">
-      <div
-        className={`fixed ${
-          isVisible ? "bottom-5" : "-bottom-16"
-        } right-0 w-16 bg-white rounded-l-full shadow-lg p-1`}
-      >
-        <button
-          className={`w-12 h-12 flex items-center justify-center rounded-full border-2 dark:border-yellow-500 border-gray-600`}
-          onClick={scrollToTop}
-        >
-          <Arrow />
-        </button>
-      </div>
-    </div>
+    <button
+      onClick={scrollToTop}
+      className={`${
+        isVisible ? "block" : "hidden"
+      } fixed bottom-6 right-5 bg-blue-500 hover:bg-blue-600 text-white py-2 w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 focus:outline-none focus:ring focus:ring-blue-300`}
+    >
+      <Arrow fillRule="evenodd" />
+    </button>
   );
 };
 
