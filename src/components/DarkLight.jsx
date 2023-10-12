@@ -23,7 +23,8 @@ const DarkLight = () => {
             backgroundColor: mode === "dark" ? "darkblue" : "lightblue",
             borderColor: mode === "dark" ? "darkblue" : "lightblue",
             color: mode === "dark" ? "white" : "black",
-            transition: "background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease",
+            transition:
+              "background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease",
             transform: `rotate(${rotation}deg)`, // Apply rotation here
           }}
         >
