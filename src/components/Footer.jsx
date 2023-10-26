@@ -1,5 +1,5 @@
 import DarkLight from "./DarkLight";
-import logo from "/assets/logo.png";
+import logo from "/assets/logo.webp";
 import {
   FaFacebookF,
   FaInstagram,

@@ -1,4 +1,4 @@
-import banner from "/assets/banner.png";
+import banner from "/assets/banner.webp";
 import pdf from "/assets/file/dummy.pdf";
 
 const Home = () => {

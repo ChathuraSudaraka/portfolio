@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { GitHubIcon } from "./hooks/CustomTag";
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
@@ -32,12 +33,8 @@ const Portfolio = () => {
                 <span className="absolute bottom-0 right-0 w-24 h-24 -mr-10 dark:bg-pink-500 bg-[#713ABE] rounded-full blur-md"></span>
               </span>
 
-              <span className="relative text-white">
-                <img
-                  src="/assets/github-48.png"
-                  alt="Dribbble Logo"
-                  className="w-8 h-8 inline-block mr-2"
-                />
+              <span className="relative text-white flex items-center">
+                <GitHubIcon className="w-8 h-8 inline-block mr-2" />
                 Visit My GitHub
               </span>
             </a>

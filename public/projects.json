@@ -6,7 +6,7 @@
     "tag2": ".Net",
     "tag3": "MySQL",
     "description": "Streamlining libraries, our system organizes resources, simplifies borrowing, and enriches the library experience for all.",
-    "image": "/assets/project-1.png",
+    "image": "/assets/project-1.webp",
     "link": "https://github.com/ChathuraSudaraka/library-management-system"
   },
   {
@@ -15,7 +15,7 @@
     "tag1": "Java",
     "tag2": "MySQL",
     "description": "POS systems simplify sales, inventory, and customer interactions, boosting efficiency and service quality for businesses.",
-    "image": "/assets/project-2.png",
+    "image": "/assets/project-2.webp",
     "link": "https://github.com/ChathuraSudaraka/Point-Of-Sale-System"
   },
   {
@@ -25,7 +25,7 @@
     "tag2": "PHP",
     "tag3": "MySQL",
     "description": "Coming Soon.",
-    "image": "/assets/project-3.png",
+    "image": "/assets/project-3.webp",
     "link": "https://github.com/ChathuraSudaraka/ChatApp"
   }
 ]

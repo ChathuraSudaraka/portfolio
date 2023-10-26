@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import logo from "/assets/logo.png";
+import logo from "/assets/logo.webp";
 import { HiMenu } from "react-icons/hi";
 import { Link } from "react-scroll";
 
