@@ -44,7 +44,7 @@ const Article = () => {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <img
-                  src="https://www.gematsu.com/wp-content/uploads/2023/08/Delta-Force-Ann_08-18-23.jpg"
+                  src="/assets/blog/blog-1.webp"
                   className="h-64 w-full rounded-t pb-6"
                 />
                 <p className="w-full dark:text-blue-800 text-gray-600 text-xs md:text-sm px-6">
@@ -100,7 +100,7 @@ const Article = () => {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <img
-                  src="https://i.ytimg.com/vi/9m4HUt9MAzc/maxresdefault.jpg"
+                  src="/assets/blog/blog-2.webp"
                   className="h-64 w-full rounded-t pb-6"
                 />
                 <p className="w-full dark:text-blue-800 text-gray-600 text-xs md:text-sm px-6">
@@ -151,7 +151,7 @@ const Article = () => {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <img
-                  src="https://www.simplilearn.com/ice9/free_resources_article_thumb/Advantages_and_Disadvantages_of_artificial_intelligence.jpg"
+                  src="assets/blog/blog-3.webp"
                   className="h-64 w-full rounded-t pb-6"
                 />
                 <p className="w-full dark:text-blue-800 text-gray-600 text-xs md:text-sm px-6">
@@ -217,7 +217,7 @@ const Article = () => {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <img
-                  src="https://media.licdn.com/dms/image/D5612AQEcjWsXGFWXmw/article-cover_image-shrink_720_1280/0/1693838388491?e=2147483647&v=beta&t=bLS3-K-ZTFNEB8TbyTCH2nm7I9gCw8xsnu7X7eyBNUs"
+                  src="/assets/blog/blog-4.webp"
                   className="h-full w-full rounded-t pb-6"
                 />
                 <p className="w-full dark:text-blue-800 text-gray-600 text-xs md:text-sm px-6">
@@ -313,7 +313,7 @@ const Article = () => {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <img
-                  src="https://img.freepik.com/premium-photo/digital-art-selected_920634-136.jpg"
+                  src="/assets/blog/blog-5.webp"
                   className="h-full w-full rounded-t pb-6"
                 />
                 <p className="w-full dark:text-blue-800 text-gray-600 text-xs md:text-sm px-6">
@@ -377,7 +377,7 @@ const Article = () => {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <img
-                  src="https://www.travel-british-columbia.com/wp-content/uploads/2022/02/Northern-Lights-Prince-George-NBC-header.jpg"
+                  src="/assets/blog/blog-6.webp"
                   className="h-full w-full rounded-t pb-6"
                 />
                 <p className="w-full dark:text-blue-800 text-gray-600 text-xs md:text-sm px-6">
@@ -447,7 +447,7 @@ const Article = () => {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <img
-                  src="https://cloudfront-us-east-2.images.arcpublishing.com/reuters/HKXN7M4EVJJAZGLQRV2GHY6WLE.jpg"
+                  src="/assets/blog/blog-7.webp"
                   className="h-full w-full rounded-t pb-6"
                 />
                 <p className="w-full dark:text-blue-800 text-gray-600 text-xs md:text-sm px-6">

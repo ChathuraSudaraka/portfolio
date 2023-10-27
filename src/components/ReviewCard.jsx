@@ -7,38 +7,43 @@ import { motion } from "framer-motion";
 const reviews = [
   {
     id: 1,
-    name: "Anna Doe",
-    title: "Graphic Designer",
+    name: "Ashley Emmanuel",
+    title: "Manager",
     description:
-      "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
-    imageSrc: "https://mdbcdn.b-cdn.net/img/new/ecommerce/vertical/080.jpg",
-  },
-  {
-    id: 2,
-    name: "Anna Doe",
-    title: "Graphic Designer",
-    description:
-      "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1689803753214-86d52624b838?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MXx8fGVufDB8fHx8fA%3D%3D&w=1000&q=80",
+      "I hired the software engineer for a critical project, and I'm extremely satisfied with the results. The engineer demonstrated exceptional problem-solving skills and delivered high-quality code within the deadline. I highly recommend their services.",
+    imageSrc: "/assets/testimonials/testimonials-1.webp",
   },
   {
     id: 3,
-    name: "Jhone Doe",
+    name: "Robert Hines",
+    title: "Entrepreneur",
+    description:
+      "I can't express how impressed I am with the software engineer's work. They provided an innovative solution that not only met our requirements but also exceeded our expectations. Their commitment to the project and attention to detail is commendable.",
+    imageSrc: "/assets/testimonials/testimonials-2.webp",
+  },
+  {
+    id: 2,
+    name: "Emily Smith",
     title: "Graphic Designer",
     description:
-      "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1660936764409-4da65828b4f8?ixlib=rb-4.0.3&ixid=M3xwMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&w=1000&q=80",
+      "This software engineer is simply outstanding. They are not only technically skilled but also great at understanding the business context of our project. Their communication was top-notch, and they delivered a flawless solution. Highly recommended!",
+    imageSrc: "/assets/testimonials/testimonials-3.webp",
   },
   {
     id: 4,
-    name: "Jhone Doe",
-    title: "Graphic Designer",
+    name: "Daniel Russell",
+    title: "Marketing Manager",
     description:
-      "Nunc tincidunt vulputate elit. Mauris varius purus malesuada neque iaculis malesuada. Aenean gravida magna orci, non efficitur est porta id. Donec magna diam.",
-    imageSrc:
-      "https://images.unsplash.com/photo-1660936764409-4da65828b4f8?ixlib=rb-4.0.3&ixid=M3xwMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D&w=1000&q=80",
+      "Working with this software engineer was a delight. They were responsive, professional, and highly skilled. Our project was completed on time, and the final product was of exceptional quality. I wouldn't hesitate to hire them again.",
+    imageSrc: "/assets/testimonials/testimonials-4.webp",
+  },
+  {
+    id: 5,
+    name: "Lisa Kenady",
+    title: "Quality Assurance Engineer",
+    description:
+      "Our experience with this software engineer was fantastic. They not only developed excellent code but also provided clear explanations for the non-technical team members. Their patience and willingness to teach were greatly appreciated.",
+    imageSrc: "/assets/testimonials/testimonials-5.webp",
   },
   // Add more review objects as needed
 ];
@@ -99,7 +104,9 @@ const CustomerReviewsSlider = () => {
                       <h2 className="mb-2 text-2xl font-bold text-primary dark:text-primary-400">
                         {review.name}
                       </h2>
-                      <p className="mb-2 font-semibold">{review.title}</p>
+                      <p className="mb-2 font-semibold dark:text-gray-200">
+                        {review.title}
+                      </p>
                       <p className="mb-4 text-neutral-500 dark:text-neutral-300">
                         {review.description}
                       </p>
