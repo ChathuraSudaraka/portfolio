@@ -56,8 +56,8 @@ export const StrategyDirection = () => {
   return (
     <svg
       id="Layer_1_1_"
-      height="40"
-      width="40"
+      height="50"
+      width="50"
       style={{ enableBackground: "new 0 0 64 64" }}
       version="1.1"
       viewBox="0 0 64 64"
