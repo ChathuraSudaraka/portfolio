@@ -4,7 +4,7 @@ import Language from "./Language";
 
 const ProgressBar = () => {
   return (
-    <div className="bg-white dark:bg-custom-blue">
+    <div className="bg-white dark:bg-custom-blue" id="skills">
       <div className="lg:mx-12 mx-4 py-32">
         <div className="mb-20">
           <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">

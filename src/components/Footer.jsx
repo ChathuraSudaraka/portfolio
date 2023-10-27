@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import logo from "/assets/logo.webp";
 import { Link } from "react-scroll";
 import {
@@ -9,10 +9,15 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
+  
+  const [isSticky, setIsSticky] = useState(false); // Define isSticky state
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
         setIsSticky(true);
+      } else {
+        setIsSticky(false);
       }
     };
 
@@ -49,21 +54,21 @@ const Footer = () => {
           >
             Portfolio
           </Link>
-          <Link 
-          smooth={true}
-          spy={true}
-          offset={-50}
-          to="about"
-          className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
+          <Link
+            smooth={true}
+            spy={true}
+            offset={-50}
+            to="about"
+            className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
           >
             About me
           </Link>
-          <Link 
-          smooth={true}
-          spy={true}
-          offset={10}
-          to="testimonials"
-          className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
+          <Link
+            smooth={true}
+            spy={true}
+            offset={10}
+            to="testimonials"
+            className="block  hover:text-gray-400 py-2 px-4 cursor-pointer"
           >
             Testimonials
           </Link>
