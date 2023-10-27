@@ -166,7 +166,7 @@ const Navbar = () => {
               activeClass="active"
               smooth={true}
               spy={true}
-              offset={-100}
+              offset={10}
               to="skills"
               className="block hover:text-gray-400 py-2"
             >
@@ -176,7 +176,7 @@ const Navbar = () => {
               activeClass="active"
               smooth={true}
               spy={true}
-              offset={-100}
+              offset={-50}
               to="about"
               className="block hover:text-gray-400 py-2"
             >
@@ -186,7 +186,7 @@ const Navbar = () => {
               activeClass="active"
               smooth={true}
               spy={true}
-              offset={-100}
+              offset={10}
               to="experience"
               className="block hover:text-gray-400 py-2"
             >
@@ -196,7 +196,7 @@ const Navbar = () => {
               activeClass="active"
               smooth={true}
               spy={true}
-              offset={-100}
+              offset={10}
               to="education"
               className="block hover:text-gray-400 py-2"
             >
@@ -206,7 +206,7 @@ const Navbar = () => {
               activeClass="active"
               smooth={true}
               spy={true}
-              offset={-100}
+              offset={10}
               to="portfolio"
               className="block hover:text-gray-400 py-2"
             >
@@ -216,7 +216,7 @@ const Navbar = () => {
               activeClass="active"
               smooth={true}
               spy={true}
-              offset={-100}
+              offset={10}
               to="blog"
               className="block hover:text-gray-400 py-2"
             >
