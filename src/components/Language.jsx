@@ -1,13 +1,15 @@
 import React from "react";
+import { Csharp, HTML, Java, Javascript, PHP, Python } from "./hooks/CustomTag";
 
 const Language = () => {
   // Define your coding language skills and their respective percentages here
   const skills = [
-    { name: "JavaScript", percent: 85 },
-    { name: "Python", percent: 70 },
-    { name: "Java", percent: 60 },
-    { name: "PHP", percent: 80 },
-    { name: "HTML/CSS", percent: 99 },
+    { name: "JavaScript", percent: 85, image: <Javascript /> },
+    { name: "Python", percent: 70, image: <Python /> },
+    { name: "Java", percent: 60, image: <Java /> },
+    { name: "C#", percent: 56, image: <Csharp /> },
+    { name: "PHP", percent: 80, image: <PHP /> },
+    { name: "HTML/CSS", percent: 99, image: <HTML /> },
     // Add more skills as needed
   ];
 
@@ -24,10 +26,13 @@ const Language = () => {
             data-aos="fade-up"
             data-aos-offset="150"
           >
-            <div className="mb-4">
+            <div className="mb-4 flex flex-col items-center">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                 {skill.name}
               </h2>
+              <div className="w-14 h-14 mt-2 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 flex items-center justify-center">
+                {skill.image}
+              </div>
             </div>
             <div className="relative h-28 w-28 mx-auto">
               <svg

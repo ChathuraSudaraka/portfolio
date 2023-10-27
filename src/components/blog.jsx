@@ -1,5 +1,5 @@
 import React from "react";
-import { BlogIcon, GitHubIcon } from "./hooks/CustomTag";
+import { BlogIcon } from "./hooks/CustomTag";
 
 const Article = () => {
   return (

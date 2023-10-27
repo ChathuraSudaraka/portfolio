@@ -55,9 +55,16 @@ const Footer = () => {
           </a>
         </div>
       </div>
-      <div className="mt-5 flex flex-col dark:text-white md:flex-row justify-between gap-8">
-        <p className="hover:text-slate-400">Chathuraoriginal2005@gmail.com</p>
-        <p className="hover:text-slate-400">0705321516</p>
+      <div className="mt-5 flex flex-col dark:text-white md:flex-row justify-between gap-5">
+        <a
+          href="mailto:chathuraoriginal2005@gmail.com"
+          className="hover:text-slate-400"
+        >
+          chathuraoriginal2005@gmail.com
+        </a>
+        <a href="tel:+94705321516" className="hover:text-slate-400">
+          070 532 1516
+        </a>
       </div>
     </div>
   );

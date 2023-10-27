@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { GitHubIcon } from "./hooks/CustomTag";
+import { GitHubIcon, SmallGitHubIcon } from "./hooks/CustomTag";
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
@@ -95,11 +95,7 @@ const Portfolio = () => {
                   className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center"
                 >
                   View In GitHub
-                  <img
-                    src="/assets/github-48.png"
-                    alt="icon"
-                    className="w-6 ml-3"
-                  />
+                  <SmallGitHubIcon />
                 </button>
               </div>
             </div>
