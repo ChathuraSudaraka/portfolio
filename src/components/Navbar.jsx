@@ -45,7 +45,7 @@ const Navbar = () => {
               spy={true}
               offset={-100}
               to="home"
-              className="block text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
+              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
             >
               Home
             </Link>

@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Navbar Active Button color */
+.active {
+  /* Add whatever CSS style will make your link look active. The example below (in my case) */
+  @apply bg-primary rounded-xl;
+}
+
+.primary {
+  color: black; /* Replace with your desired primary color */
+  /* Add other styles for your primary color here */
+}
+
+.active {
+  @apply primary; /* Apply the primary color class to the active link */
+  /* Add any other styles you want for the active link */
+}
