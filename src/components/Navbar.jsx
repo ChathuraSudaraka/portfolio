@@ -4,6 +4,44 @@ import logo from "/assets/logo.webp";
 import { HiMenu } from "react-icons/hi";
 import { Link } from "react-scroll";
 
+const buttons = [
+  {
+    text: "Home",
+    to: "home",
+    offset: -100,
+  },
+  {
+    text: "Skills",
+    to: "skills",
+    offset: 10,
+  },
+  {
+    text: "About me",
+    to: "about",
+    offset: -50,
+  },
+  {
+    text: "Experience",
+    to: "experience",
+    offset: 10,
+  },
+  {
+    text: "Education",
+    to: "education",
+    offset: 10,
+  },
+  {
+    text: "Portfolio",
+    to: "portfolio",
+    offset: 10,
+  },
+  {
+    text: "Blogs",
+    to: "blog",
+    offset: 10,
+  },
+];
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
@@ -37,81 +75,24 @@ const Navbar = () => {
             <img src={logo} alt="" className="h-10" />
           </div>
 
-          {/* htmlFor larger device */}
+          {/* Navigation buttons for larger devices */}
           <div className="lg:flex items-center gap-3 hidden text-body">
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={-100}
-              to="home"
-              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
-            >
-              Home
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="skills"
-              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
-            >
-              Skills
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={-50}
-              to="about"
-              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
-            >
-              About me
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="experience"
-              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
-            >
-              Experience
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="education"
-              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
-            >
-              Education
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="portfolio"
-              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
-            >
-              Portfolio
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="blog"
-              className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
-            >
-              Blogs
-            </Link>
+            {buttons.map((button, index) => (
+              <Link
+                key={index}
+                activeClass="active"
+                smooth={true}
+                spy={true}
+                offset={button.offset}
+                to={button.to}
+                className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
+              >
+                {button.text}
+              </Link>
+            ))}
           </div>
 
-          {/* contact me btn */}
+          {/* Contact me button for larger devices */}
           <div className="lg:block hidden">
             <a
               href="tel:+94705321516"
@@ -140,7 +121,7 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* btn htmlFor small devices */}
+          {/* Menu button for small devices */}
           <button
             onClick={toggleMenu}
             className="lg:hidden dark:text-white text-body text-3xl"
@@ -149,79 +130,22 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile menu */}
+        {/* Mobile menu for small devices */}
         {isMenuOpen && (
           <div className="mt-4 bg-body p-4 rounded-lg text-white">
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={-100}
-              to="home"
-              className="block hover:text-gray-400 py-2"
-            >
-              Home
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="skills"
-              className="block hover:text-gray-400 py-2"
-            >
-              Skills
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={-50}
-              to="about"
-              className="block hover:text-gray-400 py-2"
-            >
-              About me
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="experience"
-              className="block hover:text-gray-400 py-2"
-            >
-              Experience
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="education"
-              className="block hover:text-gray-400 py-2"
-            >
-              Education
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="portfolio"
-              className="block hover:text-gray-400 py-2"
-            >
-              Portfolio
-            </Link>
-            <Link
-              activeClass="active"
-              smooth={true}
-              spy={true}
-              offset={10}
-              to="blog"
-              className="block hover:text-gray-400 py-2"
-            >
-              Blogs
-            </Link>
+            {buttons.map((button, index) => (
+              <Link
+                key={index}
+                activeClass="active"
+                smooth={true}
+                spy={true}
+                offset={button.offset}
+                to={button.to}
+                className="block hover:text-gray-400 py-2"
+              >
+                {button.text}
+              </Link>
+            ))}
           </div>
         )}
       </nav>
