@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<PortfolioApp />} />
-        <Route path="blog" element={<BlogApp />} />
+        <Route path="/blog" element={<BlogApp />} />
       </Routes>
       
       {/* This library files need to every Pages */}
