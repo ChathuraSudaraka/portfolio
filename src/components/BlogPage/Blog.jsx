@@ -1,6 +1,6 @@
 import React from "react";
 
-const Blog = () => {
+const BlogPost = () => {
   const blogPosts = [
     { id: 1, title: "Post 1", content: "Content of Post 1" },
     { id: 2, title: "Post 2", content: "Content of Post 2" },
@@ -20,4 +20,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default BlogPost;

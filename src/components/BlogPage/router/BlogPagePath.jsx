@@ -1,14 +1,15 @@
-// import Navbar from "../Layout/Navbar";
-// import Footer from "../Layout/Footer";
-import Blog from "../Blog";
+import React from "react";
+import BlogNavbar from "../Layout/BlogNavbar";
+import BlogFooter from "../Layout/BlogFooter";
+import BlogPost from "../Blog";
 
 function BlogApp() {
   return (
-    <>
-      {/* <Navbar /> */}
-      <Blog />
-      {/* <Footer /> */}
-    </>
+    <div>
+      <BlogNavbar />
+      <BlogPost />
+      <BlogFooter />
+    </div>
   );
 }
 

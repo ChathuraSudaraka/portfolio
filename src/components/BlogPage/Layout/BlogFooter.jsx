@@ -8,7 +8,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
-const Footer = () => {
+const BlogFooter = () => {
   const [isSticky, setIsSticky] = useState(false); // Define isSticky state
 
   useEffect(() => {
@@ -111,4 +111,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default BlogFooter;

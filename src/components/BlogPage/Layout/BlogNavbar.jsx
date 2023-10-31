@@ -42,7 +42,7 @@ const buttons = [
   },
 ];
 
-const Navbar = () => {
+const BlogNavbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
@@ -153,4 +153,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default BlogNavbar;

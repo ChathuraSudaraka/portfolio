@@ -13,7 +13,7 @@ import Article from "../blog";
 
 function PortfolioApp() {
   return (
-    <>
+    <div>
       <Navbar />
       <Home />
       <Skills />
@@ -26,7 +26,7 @@ function PortfolioApp() {
       <Testimonial />
       <Contact />
       <Footer />
-    </>
+    </div>
   );
 }
 
