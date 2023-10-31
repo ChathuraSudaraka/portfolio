@@ -8,7 +8,7 @@ const Blog = () => {
   ];
 
   return (
-    <div>
+    <div className='pt-44'>
       <h1>Posts</h1>
       {blogPosts.map(post => (
         <div key={post.id}>
