@@ -55,7 +55,7 @@ const Skills = () => {
           {skills.map((skill) => (
             <div
               key={skill.id}
-              className="bg-bgShade shadow-lg dark:bg-custom-dark-blue dark:outline-slate-700 dark:text-dark-white p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300 hover:bg-sky-500 hover:shadow-blue-500/50 "
+              className="bg-bgShade border border-bgShade dark:border-border-color shadow-lg dark:bg-custom-dark-blue dark:text-dark-white p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300"
               data-aos="fade-zoom-in"
               data-aos-offset="300"
             >

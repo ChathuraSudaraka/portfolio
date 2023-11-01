@@ -46,7 +46,7 @@ const Portfolio = () => {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="dark:shadow-lg dark:shadow-blue-500/50 shadow-xl rounded-lg dark:bg-custom-dark-blue dark:outline-slate-700"
+              className="dark:shadow-lg border border-bgShade dark:border-border-color shadow-xl rounded-lg dark:bg-custom-dark-blue"
               data-aos="fade-up"
               data-aos-offset="300"
             >

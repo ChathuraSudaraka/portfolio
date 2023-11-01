@@ -3,6 +3,11 @@ import { BlogIcon } from "./hooks/CustomTag";
 import { Link } from "react-router-dom";
 
 const Article = () => {
+  // Blog page ekt move wenakota page ek load wenne yata idala nisa mek function eken page eke top eke idn load wenw
+  const scrollToTop = () => {
+    window.scrollTo(0, 0);
+  };
+  
   return (
     <div className="dark:bg-custom-blue">
       <div className="lg:mx-12 mx-4 py-32" id="blog">
@@ -17,7 +22,8 @@ const Article = () => {
           </div>
           <div className="flex items-center">
             <Link
-              to="BlogApp"
+              to="/BlogApp"
+              onClick={scrollToTop}
               className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
             >
               <span className="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 dark:bg-red-500 bg-[#9D76C1] rounded-full blur-md ease"></span>

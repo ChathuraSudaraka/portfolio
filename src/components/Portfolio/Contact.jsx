@@ -80,7 +80,7 @@ const Contact = () => {
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="bg-bgShade dark:bg-custom-dark-blue rounded-md shadow-lg px-8 pt-6 pb-8 mb-4"
+            className="bg-bgShade border border-bgShade dark:border-border-color dark:bg-custom-dark-blue rounded-md shadow-lg px-8 pt-6 pb-8 mb-4"
             data-aos="fade-up"
             data-aos-offset="300"
           >

@@ -2,20 +2,20 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="bg-bgShade dark:bg-custom-blue" id="home">
+    <div className="bg-bgShade dark:bg-blog-bg" id="home">
       <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5">
-        <div class="mx-auto max-w-3xl pt-32 text-center dark:text-white">
-          <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+        <div className="mx-auto max-w-3xl pt-32 text-center dark:text-white">
+          <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
             Understand User Flow.
-            <span class="sm:block"> Increase Conversion. </span>
+            <span className="sm:block"> Increase Conversion. </span>
           </h1>
 
-          <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+          <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
             illo tenetur fuga ducimus numquam ea!
           </p>
 
-          <div class="mt-8 flex flex-wrap justify-center gap-4">
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               to="/"
               className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"

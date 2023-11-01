@@ -99,7 +99,7 @@ const CustomerReviewsSlider = () => {
                   <div className="mb-8 md:mt-8 lg:mt-0 lg:mb-0">
                     <motion.div
                       variants={textVariants}
-                      className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-4 py-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[20px] dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-8 lg:-mr-12"
+                      className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-4 py-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[20px] border border-bgShade dark:border-border-color dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-8 lg:-mr-12"
                     >
                       <h2 className="mb-2 text-2xl font-bold text-primary dark:text-primary-400">
                         {review.name}
