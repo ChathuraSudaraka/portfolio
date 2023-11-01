@@ -13,4 +13,9 @@ export default defineConfig({
       include: "**/*.tsx",
     }),
   ],
+  build: {
+    rollupOptions: {
+      fallback: "/index.html",
+    },
+  },
 });

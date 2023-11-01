@@ -1,23 +1,55 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
-const BlogPost = () => {
-  const blogPosts = [
-    { id: 1, title: "Post 1", content: "Content of Post 1" },
-    { id: 2, title: "Post 2", content: "Content of Post 2" },
-    // Add more blog posts here
-  ];
-
+const Home = () => {
   return (
-    <div className="pt-44">
-      <h1>Posts</h1>
-      {blogPosts.map((post) => (
-        <div key={post.id}>
-          <h2>{post.title}</h2>
-          <p>{post.content}</p>
+    <div className="bg-bgShade dark:bg-custom-blue" id="home">
+      <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5">
+        <div class="mx-auto max-w-3xl pt-32 text-center dark:text-white">
+          <h1 class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
+            Understand User Flow.
+            <span class="sm:block"> Increase Conversion. </span>
+          </h1>
+
+          <p class="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
+            illo tenetur fuga ducimus numquam ea!
+          </p>
+
+          <div class="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              to="/"
+              className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
+            >
+              <span className="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 dark:bg-red-500 bg-[#9D76C1] rounded-full blur-md ease"></span>
+              <span className="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease">
+                <span className="absolute bottom-0 left-0 w-24 h-24 -ml-10 dark:bg-purple-500 bg-[#5B0888] rounded-full blur-md"></span>
+                <span className="absolute bottom-0 right-0 w-24 h-24 -mr-10 dark:bg-pink-500 bg-[#713ABE] rounded-full blur-md"></span>
+              </span>
+
+              <span className="relative text-white flex items-center">
+                Visit My Portfolio
+              </span>
+            </Link>
+
+            <Link
+              to=""
+              className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
+            >
+              <span className="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 dark:bg-red-500 bg-[#9D76C1] rounded-full blur-md ease"></span>
+              <span className="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease">
+                <span className="absolute bottom-0 left-0 w-24 h-24 -ml-10 dark:bg-purple-500 bg-[#5B0888] rounded-full blur-md"></span>
+                <span className="absolute bottom-0 right-0 w-24 h-24 -mr-10 dark:bg-pink-500 bg-[#713ABE] rounded-full blur-md"></span>
+              </span>
+
+              <span className="relative text-white flex items-center">
+                Visit My Portfolio
+              </span>
+            </Link>
+          </div>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
 
-export default BlogPost;
+export default Home;
