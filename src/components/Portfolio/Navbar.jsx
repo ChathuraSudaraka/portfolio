@@ -1,81 +1,38 @@
-/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import logo from "/assets/logo.webp";
 import { HiMenu } from "react-icons/hi";
 import { Link } from "react-scroll";
 
 const buttons = [
-  {
-    text: "Home",
-    to: "home",
-    offset: -100,
-  },
-  {
-    text: "Skills",
-    to: "skills",
-    offset: 10,
-  },
-  {
-    text: "About me",
-    to: "about",
-    offset: -50,
-  },
-  {
-    text: "Experience",
-    to: "experience",
-    offset: 10,
-  },
-  {
-    text: "Education",
-    to: "education",
-    offset: 10,
-  },
-  {
-    text: "Portfolio",
-    to: "portfolio",
-    offset: 10,
-  },
-  {
-    text: "Blogs",
-    to: "blog",
-    offset: 10,
-  },
+  { text: "Home", to: "home", offset: -100 },
+  { text: "Skills", to: "skills", offset: 10 },
+  { text: "About me", to: "about", offset: -50 },
+  { text: "Experience", to: "experience", offset: 10 },
+  { text: "Education", to: "education", offset: 10 },
+  { text: "Portfolio", to: "portfolio", offset: 10 },
+  { text: "Blogs", to: "blog", offset: 10 },
 ];
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsSticky(true);
-      }
-    };
-
+    const handleScroll = () => setIsSticky(window.scrollY > 0);
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header className="fixed top-0 left-0 right-0 lg:top-2 lg:left-10 lg:right-10 w-full lg:w-auto">
-      <nav
-        className={`py-4 md:px-12 px-4 lg:rounded-lg bg-blue-700 backdrop-filter backdrop-sepia-0 bg-opacity-10 backdrop-blur-2xl backdrop-brightness-100 backdrop-contrast-100 backdrop-grayscale-0 backdrop-hue-rotate-0 backdrop-invert-0 backdrop-opacity-100 backdrop-saturate-100 
-         lg:backdrop-filter lg:backdrop-blur-lg lg:backdrop-contrast-125 lg:backdrop-grayscale-0 lg:backdrop-hue-rotate-0 lg:backdrop-invert-0 lg:backdrop-opacity-100 lg:backdrop-saturate-100 lg:backdrop-sepia-0 lg:bg-opacity-10 lg:backdrop-brightness-100  lg:backdrop-sepia-`}
-      >
+      <nav className="py-4 md:px-12 px-4 lg:rounded-lg bg-blue-700 backdrop-filter backdrop-sepia-0 bg-opacity-10 backdrop-blur-2xl backdrop-brightness-100 backdrop-contrast-100 backdrop-grayscale-0 backdrop-hue-rotate-0 backdrop-invert-0 backdrop-opacity-100 backdrop-saturate-100 lg:backdrop-filter lg:backdrop-blur-lg lg:backdrop-contrast-125 lg:backdrop-grayscale-0 lg:backdrop-hue-rotate-0 lg:backdrop-invert-0 lg:backdrop-opacity-100 lg:backdrop-saturate-100 lg:backdrop-sepia-0 lg:bg-opacity-10 lg:backdrop-brightness-100 lg:backdrop-sepia-">
         <div className="flex items-center justify-between">
           <div className="text-white font-bold text-lg cursor-pointer">
             <img src={logo} alt="" className="h-10" />
           </div>
 
-          {/* Navigation buttons for larger devices */}
           <div className="lg:flex items-center gap-3 hidden text-body">
             {buttons.map((button, index) => (
               <Link
@@ -92,7 +49,6 @@ const Navbar = () => {
             ))}
           </div>
 
-          {/* Contact me button for larger devices */}
           <div className="lg:block hidden">
             <a
               href="tel:+94705321516"
@@ -121,7 +77,6 @@ const Navbar = () => {
             </a>
           </div>
 
-          {/* Menu button for small devices */}
           <button
             onClick={toggleMenu}
             className="lg:hidden dark:text-white text-body text-3xl"
@@ -130,7 +85,6 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile menu for small devices */}
         {isMenuOpen && (
           <div className="mt-4 bg-body p-4 rounded-lg text-white">
             {buttons.map((button, index) => (
