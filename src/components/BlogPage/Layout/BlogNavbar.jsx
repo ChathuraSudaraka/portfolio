@@ -5,12 +5,8 @@ import { Link } from "react-scroll";
 
 const buttons = [
   { text: "Home", to: "home", offset: -100 },
-  { text: "Skills", to: "skills", offset: 10 },
-  { text: "About me", to: "about", offset: -50 },
-  { text: "Experience", to: "experience", offset: 10 },
-  { text: "Education", to: "education", offset: 10 },
-  { text: "Portfolio", to: "portfolio", offset: 10 },
   { text: "Blogs", to: "blog", offset: 10 },
+  { text: "About me", to: "about", offset: -50 },
 ];
 
 const BlogNavbar = () => {
