@@ -1,29 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, Fragment } from "react";
 import logo from "/assets/logo.webp";
-import { HiMenu } from "react-icons/hi";
 import { Link } from "react-scroll";
-import Example from "../hooks/SearchModal";
+import { Dialog, Transition } from "@headlessui/react";
+import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
+import { SearchIcon } from "../../Portfolio/hooks/CustomTag";
 
-const buttons = [
-  { text: "Home", to: "home", offset: -100 },
-
-  { text: "About me", to: "about", offset: -50 },
-  { text: "Experience", to: "experience", offset: 10 },
-  { text: "Education", to: "education", offset: 10 },
-  { text: "Portfolio", to: "portfolio", offset: 10 },
-  { text: "Blogs", to: "blog", offset: 10 },
-];
+const buttons = [];
 
 const BlogNavbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false); // Initialize the modal as closed
 
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const cancelButtonRef = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => setIsSticky(window.scrollY > 0);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Function to open the modal when the search icon is clicked
+  const openModal = () => {
+    setOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setOpen(false);
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 lg:top-2 lg:left-10 lg:right-10 w-full lg:w-auto">
@@ -42,18 +39,24 @@ const BlogNavbar = () => {
                 spy={true}
                 offset={button.offset}
                 to={button.to}
-                className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
+                className="block dark:text-white dark:hover:text-primary hover-text-gray-400 py-2 px-4 cursor-pointer"
               >
                 {button.text}
               </Link>
             ))}
           </div>
 
-          <form className="flex items-center">
-            <button type="submit">
+          <button type="button" onClick={openModal}>
+            <SearchIcon className="h-6 w-6 text-white" />
+          </button>
+
+          {/* Modal */}
+          {/* Modern-style search button */}
+          <div className="lg:hidden">
+            <button type="button" onClick={openModal}>
               <svg
-                className="w-5 h-5"
-                fill="white"
+                className="w-6 h-6 text-white"
+                fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
@@ -61,39 +64,124 @@ const BlogNavbar = () => {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  strokeWidth="3"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                ></path>
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
               </svg>
-              <Example />
             </button>
-          </form>
-
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden dark:text-white text-body text-3xl"
-          >
-            <HiMenu />
-          </button>
-        </div>
-
-        {isMenuOpen && (
-          <div className="mt-4 bg-body p-4 rounded-lg text-white">
-            {buttons.map((button, index) => (
-              <Link
-                key={index}
-                activeClass="active"
-                smooth={true}
-                spy={true}
-                offset={button.offset}
-                to={button.to}
-                className="block hover:text-gray-400 py-2"
-              >
-                {button.text}
-              </Link>
-            ))}
           </div>
-        )}
+
+          {/* Modal */}
+          <Transition.Root show={open} as={Fragment}>
+            <Dialog
+              as="div"
+              className="fixed inset-0 z-10"
+              initialFocus={cancelButtonRef}
+              onClose={closeModal}
+            >
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="fixed inset-0 bg-black bg-opacity-60 transition-opacity" />
+              </Transition.Child>
+
+              <div className="fixed inset-0 z-10 flex items-center justify-center">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="relative bg-white rounded-lg w-full max-w-md p-4">
+                    <div className="text-center">
+                      <Dialog.Title
+                        as="h3"
+                        className="text-lg font-medium text-gray-900"
+                      >
+                        Search
+                      </Dialog.Title>
+                    </div>
+                    <div className="mt-4">
+                      <div className="relative">
+                        <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                          <svg
+                            class="fill-current text-gray-500 w-6 h-6"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              class="heroicon-ui"
+                              d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z"
+                            />
+                          </svg>
+                        </span>
+                        <input
+                          type="text"
+                          className="block w-full pl-10 py-2 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring focus:ring-blue-400 border rounded-md"
+                          placeholder="Search..."
+                        />
+                      </div>
+                    </div>
+                    <div className="mt-6">
+                      {/* Search results */}
+                      <div className="bg-white rounded-md border border-gray-300 shadow">
+                        <div className="p-2">
+                          <div className="flex items-center cursor-pointer hover:bg-blue-100 p-2 rounded-md my-2">
+                            <div className="bg-gray-400 w-2 h-2 rounded-full m-2"></div>
+                            <div className="flex-grow font-medium">
+                              React Native
+                            </div>
+                            <div className="text-sm font-normal text-gray-500">
+                              Blog
+                            </div>
+                          </div>
+                          <div className="flex items-center cursor-pointer hover:bg-blue-100 p-2 rounded-md my-2">
+                            <div className="bg-green-400 w-2 h-2 rounded-full m-2"></div>
+                            <div className="flex-grow font-medium">
+                              Bootstrap 5
+                            </div>
+                            <div className="text-sm font-normal text-gray-500">
+                              Article
+                            </div>
+                          </div>
+                          <div className="flex items-center cursor-pointer hover:bg-blue-100 p-2 rounded-md my-2">
+                            <div className="bg-gray-400 w-2 h-2 rounded-full m-2"></div>
+                            <div className="flex-grow font-medium">
+                              Tailwind CSS
+                            </div>
+                            <div className="text-sm font-normal text-gray-500">
+                              Article
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="mt-4 flex justify-end">
+                      <button
+                        type="button"
+                        className="px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 rounded-md"
+                        onClick={closeModal}
+                        ref={cancelButtonRef}
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </Dialog>
+          </Transition.Root>
+          {/* End of Modal */}
+        </div>
       </nav>
     </header>
   );
