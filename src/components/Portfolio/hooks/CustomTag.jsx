@@ -168,8 +168,8 @@ export const SearchIcon = () => {
       xmlns="http://www.w3.org/2000/svg"
       x="0px"
       y="0px"
-      width="35"
-      height="35"
+      width="25"
+      height="25"
       viewBox="0 0 50 50"
       fill="#fff"
     >

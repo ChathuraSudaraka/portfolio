@@ -2,7 +2,6 @@ import React, { useState, useRef, Fragment } from "react";
 import logo from "/assets/logo.webp";
 import { Link } from "react-scroll";
 import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 import { SearchIcon } from "../../Portfolio/hooks/CustomTag";
 
 const buttons = [];
@@ -46,28 +45,9 @@ const BlogNavbar = () => {
             ))}
           </div>
 
-          <button type="button" onClick={openModal}>
-            <SearchIcon className="h-6 w-6 text-white" />
-          </button>
-
-          {/* Modal */}
-          {/* Modern-style search button */}
-          <div className="lg:hidden">
+          <div className="dark:bg-blog-component-bg bg-primary border-border-color dark:border rounded-xl h-10 w-10 flex items-center justify-center">
             <button type="button" onClick={openModal}>
-              <svg
-                className="w-6 h-6 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              <SearchIcon />
             </button>
           </div>
 
@@ -101,11 +81,11 @@ const BlogNavbar = () => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="relative bg-white rounded-lg w-full max-w-md p-4">
+                  <Dialog.Panel className="relative border border-gray-200 dark:border-border-color dark:bg-blog-component-bg bg-white rounded-lg w-full max-w-md p-4">
                     <div className="text-center">
                       <Dialog.Title
                         as="h3"
-                        className="text-lg font-medium text-gray-900"
+                        className="text-lg font-medium dark:text-white text-gray-900"
                       >
                         Search
                       </Dialog.Title>
@@ -126,39 +106,39 @@ const BlogNavbar = () => {
                         </span>
                         <input
                           type="text"
-                          className="block w-full pl-10 py-2 pr-3 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring focus:ring-blue-400 border rounded-md"
+                          className="block w-full pl-10 py-2 pr-3  dark:bg-slate-600 text-gray-900 placeholder-gray-900 focus:outline-none focus:ring focus:ring-blue-400 border dark:border-none rounded-md"
                           placeholder="Search..."
                         />
                       </div>
                     </div>
                     <div className="mt-6">
                       {/* Search results */}
-                      <div className="bg-white rounded-md border border-gray-300 shadow">
+                      <div className="bg-white dark:bg-slate-600 rounded-md border dark:border-none border-gray-300 shadow">
                         <div className="p-2">
-                          <div className="flex items-center cursor-pointer hover:bg-blue-100 p-2 rounded-md my-2">
+                          <div className="flex items-center cursor-pointer dark:hover:bg-gray-700 hover:bg-blue-100 p-2 rounded-md my-2">
                             <div className="bg-gray-400 w-2 h-2 rounded-full m-2"></div>
                             <div className="flex-grow font-medium">
                               React Native
                             </div>
-                            <div className="text-sm font-normal text-gray-500">
+                            <div className="text-sm font-normal dark:text-gray-900 text-gray-500">
                               Blog
                             </div>
                           </div>
-                          <div className="flex items-center cursor-pointer hover:bg-blue-100 p-2 rounded-md my-2">
+                          <div className="flex items-center cursor-pointer dark:hover:bg-gray-700 hover:bg-blue-100 p-2 rounded-md my-2">
                             <div className="bg-green-400 w-2 h-2 rounded-full m-2"></div>
                             <div className="flex-grow font-medium">
                               Bootstrap 5
                             </div>
-                            <div className="text-sm font-normal text-gray-500">
+                            <div className="text-sm font-normal dark:text-gray-900 text-gray-500">
                               Article
                             </div>
                           </div>
-                          <div className="flex items-center cursor-pointer hover:bg-blue-100 p-2 rounded-md my-2">
+                          <div className="flex items-center cursor-pointer dark:hover:bg-gray-700 hover:bg-blue-100 p-2 rounded-md my-2">
                             <div className="bg-gray-400 w-2 h-2 rounded-full m-2"></div>
                             <div className="flex-grow font-medium">
                               Tailwind CSS
                             </div>
-                            <div className="text-sm font-normal text-gray-500">
+                            <div className="text-sm font-normal dark:text-gray-900 text-gray-500">
                               Article
                             </div>
                           </div>
@@ -168,7 +148,7 @@ const BlogNavbar = () => {
                     <div className="mt-4 flex justify-end">
                       <button
                         type="button"
-                        className="px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 rounded-md"
+                        className="px-3 py-2 text-sm font-medium dark:text-white text-gray-900 hover:bg-gray-100 dark:hover:bg-slate-600 rounded-md"
                         onClick={closeModal}
                         ref={cancelButtonRef}
                       >
