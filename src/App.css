@@ -16,7 +16,7 @@ header {
 /* Hide scrollbar for webkit browsers */
 /* This will hide the scrollbar when not interacting with it */
 ::-webkit-scrollbar {
-  width: 8px; /* Set the width of the scrollbar */
+  width: 5px; /* Set the width of the scrollbar */
 }
 
 /* Track for webkit browsers */
