@@ -16,7 +16,7 @@ function BlogApp() {
       </Routes>
       <BlogPost />
       <Block />
-      <BlogAbout/>
+      {/* <BlogAbout/> */}
       <BlogSlider />
       <BlogFooter />
     </div>
