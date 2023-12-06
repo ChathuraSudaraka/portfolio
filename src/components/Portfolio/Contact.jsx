@@ -63,7 +63,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="dark:bg-custom-blue">
+    <div className="">
       <div className="lg:px-12 px-4">
         <div className="mb-20 text-center">
           <p className="text-xl dark:text-white text-headingcolor font-semibold mb-5">

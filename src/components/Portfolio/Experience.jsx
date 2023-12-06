@@ -47,7 +47,7 @@ const Experience = () => {
   });
 
   return (
-    <div className="dark:bg-custom-blue">
+    <div className="">
       <div className="lg:mx-12 mx-4 py-32" id="experience">
         <div className="mb-20">
           <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">

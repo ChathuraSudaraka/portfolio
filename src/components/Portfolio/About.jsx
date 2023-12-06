@@ -1,7 +1,7 @@
 import proPic from "/assets/profile.webp";
 const About = () => {
   return (
-    <div className="dark:bg-custom-blue">
+    <div className="">
       <div className="lg:mx-12 mx-4" id="about">
         <div className="flex flex-col sm:flex-row md:gap-24 gap-12 items-center justify-between">
           <div className="sm:w-1/2" data-aos="fade-right" data-aos-offset="400">

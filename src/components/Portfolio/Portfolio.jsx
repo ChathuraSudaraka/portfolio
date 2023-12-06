@@ -11,7 +11,7 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <div className="dark:bg-custom-blue">
+    <div className="">
       <div className="lg:mx-12 mx-4 py-32" id="portfolio">
         <div className="mb-20 flex flex-col sm:flex-row md:items-center justify-between gap-5">
           <div>

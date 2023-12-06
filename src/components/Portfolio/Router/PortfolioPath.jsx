@@ -13,7 +13,7 @@ import Article from "../blog";
 
 function PortfolioApp() {
   return (
-    <div>
+    <div className="bg-bgShade dark:bg-custom-blue">
       <Navbar />
       <Home />
       <Skills />

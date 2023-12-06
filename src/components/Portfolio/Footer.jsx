@@ -29,7 +29,7 @@ const Footer = () => {
   }, []);
 
   return (
-    <div className="bg-bgShade dark:bg-custom-blue py-20 md:px-12 px-4">
+    <div className="py-20 md:px-12 px-4">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-20">
         <a href="/">
           <img className="h-10" src={logo} alt="" />

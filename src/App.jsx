@@ -24,7 +24,7 @@ function App() {
       <CircleFollowMouse />
       {/* Library */}
       <ScrollAnimation />
-      <VerningIn/>
+      <VerningIn />
     </BrowserRouter>
   );
 }
