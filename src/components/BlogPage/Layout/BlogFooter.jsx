@@ -78,7 +78,9 @@ const BlogFooter = () => {
           </a>
           <FaInstagram className="cursor-pointer hover:-translate-y-3 transition-all duration-300 text-xl dark:text-white hover:text-primary" />
           <FaTwitter className="cursor-pointer hover:-translate-y-3 transition-all duration-300 text-xl dark:text-white hover:text-primary" />
-          <FaLinkedin className="cursor-pointer hover:-translate-y-3 transition-all duration-300 text-xl dark:text-white hover:text-primary" />
+          <a href="https://www.linkedin.com/in/chathura-sudaraka-45413928b">
+            <FaLinkedin className="cursor-pointer hover:-translate-y-3 transition-all duration-300 text-xl dark:text-white hover:text-primary" />
+          </a>
         </div>
       </div>
       <hr />

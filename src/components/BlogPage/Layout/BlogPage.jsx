@@ -18,11 +18,15 @@ const BlogPage = () => {
         <header className="bg-gray-800 text-white py-4">
           <div className="container mx-auto flex justify-between items-center">
             <Link to="/">
-              <button className="mr-4">Home</button>
+              <button className="ml-4 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 transition duration-300 ease-in-out">
+                Home
+              </button>
             </Link>
             <div className="flex">
               <Link to="/BlogApp">
-                <button>Blog Page</button>
+                <button className="mr-4 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 transition duration-300 ease-in-out">
+                  Blog Page
+                </button>
               </Link>
             </div>
           </div>
