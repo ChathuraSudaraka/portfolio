@@ -8,6 +8,7 @@ import DarkLight from "./components/Portfolio/DarkLight";
 import CircleFollowMouse from "./components/Portfolio/hooks/use-follow-pointer";
 import ScrollAnimation from "./components/Portfolio/hooks/ScrollAnimation";
 import VerningIn from "./components/Portfolio/Verning";
+import BlogPage from "./components/BlogPage/Layout/BlogPage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<PortfolioApp />} />
         <Route path="/BlogApp/*" element={<BlogApp />} />
+        <Route path="/blog/:id" element={<BlogPage />} />
       </Routes>
 
       {/* This library files need to every Pages */}
