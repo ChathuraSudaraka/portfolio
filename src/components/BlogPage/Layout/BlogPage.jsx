@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { blogs } from "./data"; // Import your array of blog data
 import BlogFooter from "./BlogFooter";
+import { NextIcon, PreviousIcon } from "../../Portfolio/hooks/CustomTag";
 
 const BlogPage = () => {
   const { id } = useParams();
@@ -15,17 +16,19 @@ const BlogPage = () => {
     <div className="contents">
       <div className="bg-white dark:bg-custom-blue min-h-screen">
         {/* Header */}
-        <header className="bg-gray-800 text-white py-4">
+        <header className="text-white py-4 fixed w-full z-10 trans">
           <div className="container mx-auto flex justify-between items-center">
             <Link to="/">
               <button className="ml-4 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 transition duration-300 ease-in-out">
                 Home
+                {/* <PreviousIcon/> */}
               </button>
             </Link>
             <div className="flex">
               <Link to="/BlogApp">
                 <button className="mr-4 px-4 py-2 rounded-lg bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 transition duration-300 ease-in-out">
                   Blog Page
+                  {/* <NextIcon/> */}
                 </button>
               </Link>
             </div>

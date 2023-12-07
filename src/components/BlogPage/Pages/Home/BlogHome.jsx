@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <div className="bg-bgShade dark:bg-blog-bg" id="home">
-      <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5">
+    <div className="" id="home">
+      <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-32 gap-5">
         <div className="mx-auto max-w-3xl pt-32 text-center dark:text-white">
           <h1 className="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl">
             Understand User Flow.
