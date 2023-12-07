@@ -15,7 +15,7 @@ const About = () => {
               My Expertise
             </h2>
             <p
-              className="mt-8 md:pr-8 mb-8 dark:text-white"
+              className="mt-8 md:pr-8 mb-8 dark:text-white text-justify"
               data-aos="fade-up"
               data-aos-offset="400"
             >

@@ -1,5 +1,4 @@
 // Article.js
-
 import React from "react";
 import { BlogIcon } from "./hooks/CustomTag";
 import { Link } from "react-router-dom";
@@ -66,7 +65,21 @@ const Article = () => {
                     {blog.title}
                   </div>
                   <p className="text-gray-800 dark:text-gray-300 font-serif text-base px-6 mb-5 line-clamp-4">
-                    {blog.content}
+                    {Array.from({ length: 20 }, (_, index) => (
+                      <p key={index} className="mb-4">
+                        {blog[`content${index + 1}`]}
+                      </p>
+                    ))}
+                    {Array.from({ length: 20 }, (_, index) => (
+                      <ul key={index} className="list-item-animation">
+                        {blog[`listItem${index + 1}`]}
+                      </ul>
+                    ))}
+                    {Array.from({ length: 20 }, (_, index) => (
+                      <ul key={index} className="list-item-animation">
+                        {blog[`topic${index + 1}`]}
+                      </ul>
+                    ))}
                   </p>
                 </div>
                 <Link
@@ -74,7 +87,7 @@ const Article = () => {
                   to={`/blog/${blog.id}`}
                   className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 ml-6 mb-5 px-4 rounded-lg inline-flex items-center"
                 >
-                  View In GitHub
+                  Read More
                 </Link>
               </div>
               <hr className="w-48 h-1 mx-auto bg-gray-400 border-0 rounded dark:bg-gray-700" />

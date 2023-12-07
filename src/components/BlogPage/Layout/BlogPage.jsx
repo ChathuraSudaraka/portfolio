@@ -50,9 +50,27 @@ const BlogPage = () => {
               <h1 className="dark:text-primary mt-2 mb-16 text-2xl font-bold tracking-tight md:text-3xl xl:text-4xl">
                 {blog.title}
               </h1>
-              <p className="mt-4 text-gray-700 text-justify dark:text-gray-300 font-serif">
-                {blog.content}
-              </p>
+              <div className="mt-4 text-gray-700 text-justify dark:text-gray-300 font-serif">
+                {Array.from({ length: 20 }, (_, index) => (
+                  <p key={index} className="mb-4">
+                    {blog[`content${index + 1}`]}
+                  </p>
+                ))}
+              </div>
+              <div className="mt-8 text-gray-700 text-justify dark:text-gray-300 font-serif">
+                {Array.from({ length: 20 }, (_, index) => (
+                  <ul key={index} className="list-item-animation">
+                    {blog[`listItem${index + 1}`]}
+                  </ul>
+                ))}
+              </div>
+              <div className="mt-8 text-gray-700 text-justify dark:text-gray-300 font-serif">
+                {Array.from({ length: 20 }, (_, index) => (
+                  <ul key={index} className="list-item-animation">
+                    {blog[`topic${index + 1}`]}
+                  </ul>
+                ))}
+              </div>
             </div>
             <hr className="w-48 h-1 mx-auto bg-gray-400 border-0 rounded dark:bg-gray-700" />
             <div className="flex-none mt-auto border border-black dark:border-border-color dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-lg bg-[hsla(0,0%,100%,0.55)] rounded-b-lg rounded-t-none overflow-hidden  p-6">
