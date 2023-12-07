@@ -26,7 +26,7 @@ export const BlogPageData = [
       "· Land, sea, and air combat: Engage in dynamic battles across various terrains, utilizing a wide range of vehicles and equipment.",
     listItem4:
       "· Two-way offense and defense: Plan your strategies and execute coordinated attacks, but be prepared to adapt to the enemy's counter-offensives.",
-    listItem4:
+    listItem5:
       "· Extensive customization: Personalize your Operator's appearance and loadout to reflect your individual preferences and tactical needs.",
     authorAvatar: "http://i.pravatar.cc/301",
     date: "October 15, 2023",
