@@ -32,7 +32,7 @@ const Home = () => {
             </Link>
 
             <Link
-              to=""
+              to="/NotePad"
               className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
             >
               <span className="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 dark:bg-red-500 bg-[#9D76C1] rounded-full blur-md ease"></span>
@@ -42,7 +42,7 @@ const Home = () => {
               </span>
 
               <span className="relative text-white flex items-center">
-                Visit My Portfolio
+                Write a Article
               </span>
             </Link>
           </div>
