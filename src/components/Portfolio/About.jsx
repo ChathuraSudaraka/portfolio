@@ -12,7 +12,7 @@ const About = () => {
               My Skills
             </p>
             <h2 className="md:text-5xl text-4xl text-headingcolor dark:text-white font-bold">
-              My Expertise
+              My About
             </h2>
             <p
               className="mt-8 md:pr-8 mb-8 dark:text-white text-justify"
