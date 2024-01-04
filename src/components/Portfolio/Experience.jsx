@@ -60,7 +60,7 @@ const Experience = () => {
 
         <div
           ref={ref}
-          className="rounded-md shadow-lg pb-8 border border-bgShade dark:border-border-color dark:bg-custom-dark-blue bg-bgShade mx-auto relative"
+          className="rounded-md shadow-lg pb-8 border border-bgShade dark:border-border-color dark:bg-custom-dark-blue bg-bgcom mx-auto relative"
           data-aos="fade-up"
           data-aos-offset="150"
         >

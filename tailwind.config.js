@@ -7,7 +7,8 @@ export default {
       colors: {
         primary: "#5E3BEE",
         headingcolor: "#282938",
-        bgShade: "#F5FCFF",
+        bgShade: "#F5FCFA",
+        bgcom: "#F5FCFF",
         dribble: "#E62872",
         body: "#1C1E53",
         "custom-blue": "#080f1f",

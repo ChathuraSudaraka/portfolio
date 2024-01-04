@@ -49,7 +49,7 @@ const Article = () => {
               data-aos="fade-up"
               data-aos-offset="150"
             >
-              <div className="flex-1 dark:bg-custom-dark-blue border border-bgShade dark:border-border-color bg-white rounded-t-lg rounded-b-none overflow-hidden shadow-lg">
+              <div className="flex-1 dark:bg-custom-dark-blue bg-bgcom border border-bgShade dark:border-border-color rounded-t-lg rounded-b-none overflow-hidden shadow-lg">
                 <div // Use the dynamic blog ID in the URL
                   className="flex flex-wrap no-underline hover:no-underline"
                 >

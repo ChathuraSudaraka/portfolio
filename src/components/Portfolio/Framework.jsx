@@ -36,7 +36,7 @@ const Framework = () => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="bg-bgShade border border-bgShade dark:border-border-color dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center relative"
+            className="bg-bgcom border border-bgShade dark:border-border-color dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center relative"
             data-aos="fade-up"
             data-aos-offset="150"
           >
