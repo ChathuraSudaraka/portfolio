@@ -15,7 +15,7 @@ const Pagination = ({ pageCount, onPageChange, currentPage }) => {
       onPageChange={onPageChange}
       forcePage={currentPage} // Set the active page manually
       renderOnZeroPageCount={null}
-      containerClassName={"flex justify-center my-4"}
+      containerClassName={"flex justify-end my-4 pt-5"}
       pageClassName={"mx-2 flex items-center"} // Set flex on each page item
       pageLinkClassName={
         "px-3 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-300 ease-in-out"
