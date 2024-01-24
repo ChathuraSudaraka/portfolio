@@ -99,5 +99,53 @@ export const BlogPageData = [
     date: "October 15, 2023",
     imageSrc: "/assets/blog/blog-6.webp",
   },
+  {
+    id: 7,
+    category: "Nature",
+    title: "Seeing the Northern Lights in Norway: A Magical Experience.",
+    content1:
+      "The Northern Lights, also known as the aurora borealis, are a truly magical sight to behold. They are a natural light display that is caused by the interaction of charged particles from the sun with the Earth's atmosphere. Norway is one of the best places in the world to see the Northern Lights. The country's high latitude and long winter nights provide ideal conditions for viewing this natural wonder. If you are lucky enough to see the Northern Lights in Norway, you will experience a truly unforgettable sight.",
+    content2:
+      " The Northern Lights are a reminder of the beauty and wonder of the natural world. To see the Northern Lights in Norway, it is important to check the aurora forecast before you go. This will help you to know when and where the Northern Lights are most likely to be seen. It is also important to dress warmly, as the Northern Lights are often seen at night, and the temperatures can be very cold. If you are patient and willing to go away from city lights, you will be rewarded with a truly magical sight. The Northern Lights are a truly unforgettable experience, and they are a must-see for any visitor to Norway.",
+    authorAvatar: "http://i.pravatar.cc/301",
+    date: "October 15, 2023",
+    imageSrc: "/assets/blog/blog-6.webp",
+  },
+  {
+    id: 8,
+    category: "Nature",
+    title: "Seeing the Northern Lights in Norway: A Magical Experience.",
+    content1:
+      "The Northern Lights, also known as the aurora borealis, are a truly magical sight to behold. They are a natural light display that is caused by the interaction of charged particles from the sun with the Earth's atmosphere. Norway is one of the best places in the world to see the Northern Lights. The country's high latitude and long winter nights provide ideal conditions for viewing this natural wonder. If you are lucky enough to see the Northern Lights in Norway, you will experience a truly unforgettable sight.",
+    content2:
+      " The Northern Lights are a reminder of the beauty and wonder of the natural world. To see the Northern Lights in Norway, it is important to check the aurora forecast before you go. This will help you to know when and where the Northern Lights are most likely to be seen. It is also important to dress warmly, as the Northern Lights are often seen at night, and the temperatures can be very cold. If you are patient and willing to go away from city lights, you will be rewarded with a truly magical sight. The Northern Lights are a truly unforgettable experience, and they are a must-see for any visitor to Norway.",
+    authorAvatar: "http://i.pravatar.cc/301",
+    date: "October 15, 2023",
+    imageSrc: "/assets/blog/blog-6.webp",
+  },
+  {
+    id: 9,
+    category: "Nature",
+    title: "Seeing the Northern Lights in Norway: A Magical Experience.",
+    content1:
+      "The Northern Lights, also known as the aurora borealis, are a truly magical sight to behold. They are a natural light display that is caused by the interaction of charged particles from the sun with the Earth's atmosphere. Norway is one of the best places in the world to see the Northern Lights. The country's high latitude and long winter nights provide ideal conditions for viewing this natural wonder. If you are lucky enough to see the Northern Lights in Norway, you will experience a truly unforgettable sight.",
+    content2:
+      " The Northern Lights are a reminder of the beauty and wonder of the natural world. To see the Northern Lights in Norway, it is important to check the aurora forecast before you go. This will help you to know when and where the Northern Lights are most likely to be seen. It is also important to dress warmly, as the Northern Lights are often seen at night, and the temperatures can be very cold. If you are patient and willing to go away from city lights, you will be rewarded with a truly magical sight. The Northern Lights are a truly unforgettable experience, and they are a must-see for any visitor to Norway.",
+    authorAvatar: "http://i.pravatar.cc/301",
+    date: "October 15, 2023",
+    imageSrc: "/assets/blog/blog-6.webp",
+  },
+  {
+    id: 10,
+    category: "Nature",
+    title: "Seeing the Northern Lights in Norway: A Magical Experience.",
+    content1:
+      "The Northern Lights, also known as the aurora borealis, are a truly magical sight to behold. They are a natural light display that is caused by the interaction of charged particles from the sun with the Earth's atmosphere. Norway is one of the best places in the world to see the Northern Lights. The country's high latitude and long winter nights provide ideal conditions for viewing this natural wonder. If you are lucky enough to see the Northern Lights in Norway, you will experience a truly unforgettable sight.",
+    content2:
+      " The Northern Lights are a reminder of the beauty and wonder of the natural world. To see the Northern Lights in Norway, it is important to check the aurora forecast before you go. This will help you to know when and where the Northern Lights are most likely to be seen. It is also important to dress warmly, as the Northern Lights are often seen at night, and the temperatures can be very cold. If you are patient and willing to go away from city lights, you will be rewarded with a truly magical sight. The Northern Lights are a truly unforgettable experience, and they are a must-see for any visitor to Norway.",
+    authorAvatar: "http://i.pravatar.cc/301",
+    date: "October 15, 2023",
+    imageSrc: "/assets/blog/blog-6.webp",
+  },
   // ... Add more blogs as needed
 ];

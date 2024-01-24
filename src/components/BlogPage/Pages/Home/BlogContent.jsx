@@ -1,11 +1,64 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { BlogPageData } from "../../Layout/BlogPageData";
+import Pagination from "../../Layout/Pagination";
+import Category from "./Category";
 
 function BlogSlider() {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
+
+  const itemsPerPage = 4;
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  useEffect(() => {
+    // Retrieve currentPage and selectedCategory from local storage
+    const savedPage = localStorage.getItem("currentPage");
+    const savedCategory = localStorage.getItem("selectedCategory");
+
+    // If savedPage and savedCategory exist, update the state
+    if (
+      savedPage !== null &&
+      parseInt(savedPage, 10) < totalPageCount &&
+      savedCategory !== null
+    ) {
+      setCurrentPage(parseInt(savedPage, 10));
+      setSelectedCategory(savedCategory);
+    }
+  }, []); // Empty dependency array ensures this runs only once on mount
+
+  useEffect(() => {
+    // Save currentPage and selectedCategory to local storage whenever they change
+    localStorage.setItem("currentPage", currentPage.toString());
+    localStorage.setItem("selectedCategory", selectedCategory);
+  }, [currentPage, selectedCategory]);
+
+  const totalPageCount = Math.ceil(BlogPageData.length / itemsPerPage);
+
+  const offset = currentPage * itemsPerPage;
+  const paginatedBlogs = BlogPageData.slice(offset, offset + itemsPerPage);
+
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected);
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    setCurrentPage(1); // Reset page when changing category
+  };
+
+  const categories = [
+    "All",
+    "Technology",
+    "Entertainment",
+    "Travel",
+    "Food",
+    "Fashion",
+    "Sports",
+    "Nature",
+  ];
 
   return (
     <section>
@@ -19,8 +72,12 @@ function BlogSlider() {
             needs of your audience early and often.
           </p>
         </div>
+        <Category
+          categories={categories}
+          onSelectCategory={handleCategoryChange}
+        />
         <div className="grid gap-8 lg:grid-cols-2">
-          {BlogPageData.map((blog) => (
+          {paginatedBlogs.map((blog) => (
             <article
               key={blog.id}
               className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-blog-component-bg dark:border-border-color overflow-hidden"
@@ -38,7 +95,7 @@ function BlogSlider() {
                   <span className="text-sm">{blog.date}</span>
                 </div>
                 <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a>{blog.title}</a>
+                  <Link>{blog.title}</Link>
                 </h2>
                 <p className="mb-5 font-light text-gray-500 dark:text-gray-400 line-clamp-4">
                   {Array.from({ length: 20 }, (_, index) => (
@@ -47,7 +104,6 @@ function BlogSlider() {
                     </span>
                   ))}
                 </p>
-
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-4">
                     <img
@@ -80,6 +136,7 @@ function BlogSlider() {
             </article>
           ))}
         </div>
+        <Pagination pageCount={totalPageCount} onPageChange={handlePageChange} />
       </div>
     </section>
   );
