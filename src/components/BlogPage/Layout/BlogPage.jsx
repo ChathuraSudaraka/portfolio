@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { blogs } from "./data"; // Import your array of blog data
+import { blogs } from "./data";
 import BlogFooter from "./BlogFooter";
 import { NextIcon, PreviousIcon } from "../../Portfolio/hooks/CustomTag";
 
@@ -9,7 +9,20 @@ const BlogPage = () => {
   const blog = blogs.find((blog) => blog.id === parseInt(id));
 
   if (!blog) {
-    return <div>Blog not found</div>;
+    return (
+      <div class="bg-gray-100 h-screen flex items-center justify-center">
+        <div class="max-w-md bg-white p-8 rounded-md shadow-md">
+          <h2 class="text-3xl font-bold text-gray-800 mb-4">Blog Not Found</h2>
+          <p class="text-gray-600 mb-4">
+            Sorry, the blog you are looking for could not be found. Please check
+            the URL or try again later.
+          </p>
+          <a href="/BlogApp" class="text-blue-500 hover:underline">
+            Go to Home
+          </a>
+        </div>
+      </div>
+    );
   }
 
   return (

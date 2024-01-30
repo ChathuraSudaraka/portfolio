@@ -1,64 +1,25 @@
-import React, { useState, useEffect } from "react";
+// BlogCard.jsx
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { BlogPageData } from "../../Layout/BlogPageData";
 import Pagination from "../../Layout/Pagination";
+import { blogs } from "../../Layout/data";
 import Category from "./Category";
 
-function BlogSlider() {
+function BlogCard() {
   const scrollToTop = () => {
     window.scrollTo(0, 0);
   };
 
-  const itemsPerPage = 4;
-  const [currentPage, setCurrentPage] = useState(1);
+  const [filteredBlogs, setFilteredBlogs] = useState(blogs);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  useEffect(() => {
-    // Retrieve currentPage and selectedCategory from local storage
-    const savedPage = localStorage.getItem("currentPage");
-    const savedCategory = localStorage.getItem("selectedCategory");
-
-    // If savedPage and savedCategory exist, update the state
-    if (
-      savedPage !== null &&
-      parseInt(savedPage, 10) < totalPageCount &&
-      savedCategory !== null
-    ) {
-      setCurrentPage(parseInt(savedPage, 10));
-      setSelectedCategory(savedCategory);
+  const onFilterBlogsByCategory = (category) => {
+    if (category === "All") {
+      setFilteredBlogs(blogs);
+    } else {
+      setFilteredBlogs(blogs.filter((blog) => blog.category === category));
     }
-  }, []); // Empty dependency array ensures this runs only once on mount
-
-  useEffect(() => {
-    // Save currentPage and selectedCategory to local storage whenever they change
-    localStorage.setItem("currentPage", currentPage.toString());
-    localStorage.setItem("selectedCategory", selectedCategory);
-  }, [currentPage, selectedCategory]);
-
-  const totalPageCount = Math.ceil(BlogPageData.length / itemsPerPage);
-
-  const offset = currentPage * itemsPerPage;
-  const paginatedBlogs = BlogPageData.slice(offset, offset + itemsPerPage);
-
-  const handlePageChange = ({ selected }) => {
-    setCurrentPage(selected);
   };
-
-  const handleCategoryChange = (category) => {
-    setSelectedCategory(category);
-    setCurrentPage(1); // Reset page when changing category
-  };
-
-  const categories = [
-    "All",
-    "Technology",
-    "Entertainment",
-    "Travel",
-    "Food",
-    "Fashion",
-    "Sports",
-    "Nature",
-  ];
 
   return (
     <section>
@@ -72,74 +33,84 @@ function BlogSlider() {
             needs of your audience early and often.
           </p>
         </div>
+
         <Category
-          categories={categories}
-          onSelectCategory={handleCategoryChange}
+          categories={Array.from(new Set(blogs.map((blog) => blog.category)))}
+          onFilterBlogsByCategory={onFilterBlogsByCategory}
+          selectedCategory={selectedCategory}
         />
-        <div className="grid gap-8 lg:grid-cols-2">
-          {paginatedBlogs.map((blog) => (
-            <article
-              key={blog.id}
-              className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-blog-component-bg dark:border-border-color overflow-hidden"
-            >
-              <img
-                src={blog.imageSrc}
-                alt=""
-                className="rounded-t-lg h-72 w-full"
-              />
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-5 text-gray-500">
-                  <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800 uppercase">
-                    {blog.category}
-                  </span>
-                  <span className="text-sm">{blog.date}</span>
-                </div>
-                <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <Link>{blog.title}</Link>
-                </h2>
-                <p className="mb-5 font-light text-gray-500 dark:text-gray-400 line-clamp-4">
-                  {Array.from({ length: 20 }, (_, index) => (
-                    <span key={index} className="mb-4 block">
-                      {blog[`content${index + 1}`]}
-                    </span>
-                  ))}
-                </p>
-                <div className="flex justify-between items-center">
-                  <div className="flex items-center space-x-4">
-                    <img
-                      className="w-7 h-7 rounded-full"
-                      src={blog.authorAvatar}
-                      alt={`Avatar of Author ${blog.id}`}
-                    />
+
+        <Pagination
+          items={filteredBlogs}
+          itemsPerPage={4} // Adjust as needed
+          renderItem={(currentItems) => (
+            <div className="grid gap-8 lg:grid-cols-2">
+              {currentItems.map((blog) => (
+                <article
+                  key={blog.id}
+                  className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-blog-component-bg dark:border-border-color overflow-hidden"
+                >
+                  <img
+                    src={blog.imageSrc}
+                    alt=""
+                    className="rounded-t-lg h-72 w-full"
+                  />
+                  <div className="p-6">
+                    <div className="flex justify-between items-center mb-5 text-gray-500">
+                      <span className="bg-primary-100 text-primary-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-primary-200 dark:text-primary-800 uppercase">
+                        {blog.category}
+                      </span>
+                      <span className="text-sm">{blog.date}</span>
+                    </div>
+                    <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                      <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
+                    </h2>
+                    <p className="mb-5 font-light text-gray-500 dark:text-gray-400 line-clamp-4">
+                      {Array.from({ length: 20 }, (_, index) => (
+                        <span key={index} className="mb-4 block">
+                          {blog[`content${index + 1}`]}
+                        </span>
+                      ))}
+                    </p>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center space-x-4">
+                        <img
+                          className="w-7 h-7 rounded-full"
+                          src={blog.authorAvatar}
+                          alt={`Avatar of Author ${blog.id}`}
+                        />
+                      </div>
+                      <Link
+                        onClick={scrollToTop}
+                        to={`/blog/${blog.id}`}
+                        className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
+                      >
+                        Read more
+                        <svg
+                          className="ml-2 w-4 h-4"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                            clipRule="evenodd"
+                          ></path>
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
-                  <Link
-                    onClick={scrollToTop}
-                    to={`/blog/${blog.id}`}
-                    className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
-                  >
-                    Read more
-                    <svg
-                      className="ml-2 w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                  </Link>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        <Pagination pageCount={totalPageCount} onPageChange={handlePageChange} />
+                </article>
+              ))}
+            </div>
+          )}
+          containerClassName="containerClassName" // Optional class for styling
+          pageLinkClassName="flex items-center "
+        />
       </div>
     </section>
   );
 }
 
-export default BlogSlider;
+export default BlogCard;

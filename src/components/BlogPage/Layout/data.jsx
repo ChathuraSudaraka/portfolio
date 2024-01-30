@@ -1,9 +1,8 @@
 // data.js
-
 export const blogs = [
   {
     id: 1,
-    category: "entertainment",
+    category: "Entertainment",
     title: "Delta Force: Hawk Ops.",
     content1:
       "Prepare for a return to the battlefield as the iconic Delta Force franchise makes a triumphant comeback with Hawk Ops, a next-generation tactical shooter set in the year 2035. This highly anticipated title promises to deliver an immersive and challenging experience for veterans and newcomers alike, pushing the boundaries of the genre with its cutting-edge technology and innovative gameplay.",
@@ -34,7 +33,7 @@ export const blogs = [
   },
   {
     id: 2,
-    category: "TECHNOLOGY",
+    category: "Technology",
     title: "Bun JS.",
     content1:
       "Bun JS is a new JavaScript runtime that is designed to be fast, efficient, and easy to use. It is based on the V8 engine, but it has been optimized for performance and memory usage. Bun JS can be used to create a variety of applications, including games, web servers, and machine learning models. It is a good choice for applications that require high performance and efficiency. Bun JS has a number of advantages over other JavaScript runtimes, such as Node.js and Deno. It is faster, more efficient with memory, and easier to use. If you are looking for a fast, efficient, and easy-to-use JavaScript runtime, then Bun JS is a good option to consider.",
@@ -44,7 +43,7 @@ export const blogs = [
   },
   {
     id: 3,
-    category: "TECHNOLOGY",
+    category: "Technology",
     title: "AI Advances Rapidly, with New Applications Emerging.",
     content1:
       "AI is rapidly developing and is being used in new and exciting ways. Here are some examples of the latest AI updates: OpenAI's DALL-E 2 can generate realistic and creative images from text descriptions. Google AI's PaLM is a large language model that can generate text, translate languages, and answer questions in an informative way. DeepMind's AlphaFold can predict the structure of proteins with high accuracy.",
@@ -56,8 +55,8 @@ export const blogs = [
   },
   {
     id: 4,
-    category: "TECHNOLOGY",
-    title: "Technology Driving Innovation in Education.",
+    category: "Technology",
+    title: "TechnologyTechnology Driving Innovation in Education.",
     content1:
       "Technology is transforming education in many ways. From personalized learning to blended learning and the use of new educational resources and platforms, technology is making education more accessible and effective for all students. One of the most exciting ways that technology is being used in education is through personalized learning.",
     content2:
@@ -76,7 +75,7 @@ export const blogs = [
   },
   {
     id: 5,
-    category: "TECHNOLOGY",
+    category: "Technology",
     title:
       "Image generator AI is a new AI technology that can democratize visual content creation.",
     content1:
@@ -89,6 +88,42 @@ export const blogs = [
   },
   {
     id: 6,
+    category: "Nature",
+    title: "Seeing the Northern Lights in Norway: A Magical Experience.",
+    content1:
+      "The Northern Lights, also known as the aurora borealis, are a truly magical sight to behold. They are a natural light display that is caused by the interaction of charged particles from the sun with the Earth's atmosphere. Norway is one of the best places in the world to see the Northern Lights. The country's high latitude and long winter nights provide ideal conditions for viewing this natural wonder. If you are lucky enough to see the Northern Lights in Norway, you will experience a truly unforgettable sight.",
+    content2:
+      " The Northern Lights are a reminder of the beauty and wonder of the natural world. To see the Northern Lights in Norway, it is important to check the aurora forecast before you go. This will help you to know when and where the Northern Lights are most likely to be seen. It is also important to dress warmly, as the Northern Lights are often seen at night, and the temperatures can be very cold. If you are patient and willing to go away from city lights, you will be rewarded with a truly magical sight. The Northern Lights are a truly unforgettable experience, and they are a must-see for any visitor to Norway.",
+    authorAvatar: "http://i.pravatar.cc/301",
+    date: "October 15, 2023",
+    imageSrc: "/assets/blog/blog-6.webp",
+  },
+  {
+    id: 7,
+    category: "Nature",
+    title: "Seeing the Northern Lights in Norway: A Magical Experience.",
+    content1:
+      "The Northern Lights, also known as the aurora borealis, are a truly magical sight to behold. They are a natural light display that is caused by the interaction of charged particles from the sun with the Earth's atmosphere. Norway is one of the best places in the world to see the Northern Lights. The country's high latitude and long winter nights provide ideal conditions for viewing this natural wonder. If you are lucky enough to see the Northern Lights in Norway, you will experience a truly unforgettable sight.",
+    content2:
+      " The Northern Lights are a reminder of the beauty and wonder of the natural world. To see the Northern Lights in Norway, it is important to check the aurora forecast before you go. This will help you to know when and where the Northern Lights are most likely to be seen. It is also important to dress warmly, as the Northern Lights are often seen at night, and the temperatures can be very cold. If you are patient and willing to go away from city lights, you will be rewarded with a truly magical sight. The Northern Lights are a truly unforgettable experience, and they are a must-see for any visitor to Norway.",
+    authorAvatar: "http://i.pravatar.cc/301",
+    date: "October 15, 2023",
+    imageSrc: "/assets/blog/blog-6.webp",
+  },
+  {
+    id: 8,
+    category: "Nature",
+    title: "Seeing the Northern Lights in Norway: A Magical Experience.",
+    content1:
+      "The Northern Lights, also known as the aurora borealis, are a truly magical sight to behold. They are a natural light display that is caused by the interaction of charged particles from the sun with the Earth's atmosphere. Norway is one of the best places in the world to see the Northern Lights. The country's high latitude and long winter nights provide ideal conditions for viewing this natural wonder. If you are lucky enough to see the Northern Lights in Norway, you will experience a truly unforgettable sight.",
+    content2:
+      " The Northern Lights are a reminder of the beauty and wonder of the natural world. To see the Northern Lights in Norway, it is important to check the aurora forecast before you go. This will help you to know when and where the Northern Lights are most likely to be seen. It is also important to dress warmly, as the Northern Lights are often seen at night, and the temperatures can be very cold. If you are patient and willing to go away from city lights, you will be rewarded with a truly magical sight. The Northern Lights are a truly unforgettable experience, and they are a must-see for any visitor to Norway.",
+    authorAvatar: "http://i.pravatar.cc/301",
+    date: "October 15, 2023",
+    imageSrc: "/assets/blog/blog-6.webp",
+  },
+  {
+    id: 9,
     category: "Nature",
     title: "Seeing the Northern Lights in Norway: A Magical Experience.",
     content1:

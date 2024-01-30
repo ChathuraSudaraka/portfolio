@@ -1,33 +1,48 @@
-// Pagination.jsx
-import React from "react";
+import React, { useState } from "react";
 import ReactPaginate from "react-paginate";
 
-const Pagination = ({ pageCount, onPageChange, currentPage }) => {
+const Pagination = ({
+  items,
+  itemsPerPage,
+  renderItem,
+  containerClassName,
+  pageLinkClassName,
+}) => {
+  const [itemOffset, setItemOffset] = useState(0);
+  const [itemStart, setItemStart] = useState(1);
+
+  const endOffset = itemOffset + itemsPerPage;
+  const currentItems = items.slice(itemOffset, endOffset);
+  const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length;
+    setItemOffset(newOffset);
+    setItemStart(newOffset);
+  };
+
   return (
-    <ReactPaginate
-      previousLabel={"Previous"}
-      nextLabel={"Next"}
-      breakLabel={"..."}
-      breakClassName={"break-me"}
-      pageCount={pageCount}
-      marginPagesDisplayed={2}
-      pageRangeDisplayed={5}
-      onPageChange={onPageChange}
-      forcePage={currentPage} // Set the active page manually
-      renderOnZeroPageCount={null}
-      containerClassName={"flex justify-end my-4 pt-5"}
-      pageClassName={"mx-2 flex items-center"} // Set flex on each page item
-      pageLinkClassName={
-        "px-3 py-2 rounded-md border border-gray-300 text-gray-600 hover:bg-gray-100 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue transition duration-300 ease-in-out"
-      }
-      activeClassName={"bg-blue-500 rounded text-white"}
-      previousClassName={
-        "px-3 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue transition duration-300 ease-in-out"
-      }
-      nextClassName={
-        "px-3 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue transition duration-300 ease-in-out"
-      }
-    />
+    <div className="container mx-auto px-4">
+      <div className={containerClassName}>{renderItem(currentItems)}</div>
+      <div className="flex items-center justify-between mt-8">
+        <p className="ml-4 text-sm justify-start text-gray-600 hidden sm:block">
+          Showing {itemStart} to {endOffset} of {items.length} items
+        </p>
+        <ReactPaginate
+          previousLabel="Previous"
+          nextLabel="Next"
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
+          pageCount={pageCount}
+          pageLinkClassName={`px-4 py-2 font-medium rounded-md hover:bg-gray-100 hover:text-primary-600 ${pageLinkClassName}`}
+          containerClassName="flex items-center justify-center"
+          activeClassName="bg:bgShade text-primary" // Set active button styling here
+          previousClassName="px-4 py-2 text-gray-700 font-medium rounded-md hover:bg-gray-100 focus:outline-none focus:border-primary-500 hover:text-primary-600"
+          nextClassName="px-4 py-2 text-gray-700 font-medium rounded-md hover:bg-gray-100 focus:outline-none focus:border-primary-500 hover:text-primary-600"
+        />
+      </div>
+    </div>
   );
 };
 

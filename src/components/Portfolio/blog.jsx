@@ -41,8 +41,8 @@ const Article = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 ">
+          {blogs.slice(0, 6).map((blog) => (
             <div
               key={blog.id}
               className="flex flex-col flex-grow"
