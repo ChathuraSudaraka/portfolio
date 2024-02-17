@@ -41,6 +41,20 @@ const buttonData = [
   // Add more buttons as needed
 ];
 
+const fontData = [
+  { name: "Arial", value: "Arial, sans-serif" },
+  { name: "Times New Roman", value: "Times New Roman, serif" },
+  { name: "Courier New", value: "Courier New, monospace" },
+  // Add more fonts as needed
+];
+
+const fontSizes = [
+  { name: "Small", value: "small" },
+  { name: "Medium", value: "medium" },
+  { name: "Large", value: "large" },
+  // Add more fonts as needed
+];
+
 const Tiptap = () => {
   const [editorContent, setEditorContent] = useState(() => {
     const storedContent = localStorage.getItem("editorContent");
@@ -69,22 +83,10 @@ const Tiptap = () => {
   return (
     <div className="min-h-screen dark:bg-blog-bg p-4 pb-7 flex flex-col">
       <div className="flex items-center space-x-2 mb-4">
-        {buttonData.map((button, index) => (
-          <button
-            key={index}
-            onClick={() => editor.chain().focus()[button.command]().run()}
-            disabled={!editor.can().chain().focus()[button.command]().run()}
-            className={`editor-button ${
-              editor.isActive(button.command) ||
-              editor.isActive(`${button.command}WithMarks`)
-                ? "is-active"
-                : ""
-            }`}
-          >
-            <i className="material-icons">{button.icon}</i>
-          </button>
-        ))}
-
+        {/* FontSelect */}
+        <FontSelect editor={editor} fonts={fontData} />
+        {/* Font Size Select */}
+        <FontSizeSelect editor={editor} fontSizes={fontSizes} />
         {/* AlignButton Start */}
         <AlignButton
           editor={editor}
@@ -106,8 +108,23 @@ const Tiptap = () => {
           alignment="justify"
           icon="format_align_justify"
         />
+        {/* AlignButton End */}
+        {buttonData.map((button, index) => (
+          <button
+            key={index}
+            onClick={() => editor.chain().focus()[button.command]().run()}
+            disabled={!editor.can().chain().focus()[button.command]().run()}
+            className={`editor-button ${
+              editor.isActive(button.command) ||
+              editor.isActive(`${button.command}WithMarks`)
+                ? "is-active"
+                : ""
+            }`}
+          >
+            <i className="material-icons">{button.icon}</i>
+          </button>
+        ))}
       </div>
-      {/* AlignButton End */}
 
       <div className="border border-black dark:border-border-color rounded-lg pl-4  pr-4 bg-white dark:bg-gray-400 focus:outline-none flex-grow">
         <div className="prose dark:prose-dark max-w-none">
@@ -120,6 +137,7 @@ const Tiptap = () => {
 
 export default Tiptap;
 
+// Align Button Component
 export const AlignButton = ({ editor, alignment, icon }) => {
   if (!editor || !editor.can || !editor.chain) {
     return null;
@@ -135,5 +153,63 @@ export const AlignButton = ({ editor, alignment, icon }) => {
     >
       <i className="material-icons">{icon}</i>
     </button>
+  );
+};
+
+// Font Select Component
+export const FontSelect = ({ editor, fonts }) => {
+  if (!editor || !editor.can || !editor.chain) {
+    return null;
+  }
+
+  const handleChange = (selectedFont) => {
+    editor.chain().focus().setFontFamily(selectedFont).run();
+  };
+
+  return (
+    <div className="font-select-container">
+      <select
+        className="font-select"
+        onChange={(e) => handleChange(e.target.value)}
+        value={editor.isActive({ fontFamily: fonts.map((font) => font.value) })}
+      >
+        {fonts.map((font) => (
+          <option key={font.value} value={font.value}>
+            {font.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
+// Font Size Select Component
+export const FontSizeSelect = ({ editor, fontSizes }) => {
+  if (!editor || !editor.can || !editor.chain) {
+    return null;
+  }
+
+  const selectedSize = editor.isActive({
+    fontSize: fontSizes.map((size) => size.value),
+  });
+
+  const handleChange = (selectedValue) => {
+    editor.chain().focus().setFontSize(selectedValue).run();
+  };
+
+  return (
+    <div className="font-size-select-container">
+      <select
+        className="font-select"
+        onChange={(e) => handleChange(e.target.value)}
+        value={selectedSize ? selectedSize.fontSize : ""}
+      >
+        {fontSizes.map((size) => (
+          <option key={size.value} value={size.value}>
+            {size.name}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 };

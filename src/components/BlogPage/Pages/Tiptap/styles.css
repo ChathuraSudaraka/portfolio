@@ -92,3 +92,31 @@ hr {
 .ProseMirror-focused {
   outline: none;
 }
+
+/* styles.css */
+
+.font-select-container {
+  position: relative;
+  width: 150px; /* Adjust width as needed */
+}
+
+.font-select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #45a049;
+  border-radius: 4px;
+  background-color: #45a049;
+  font-size: 14px;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+}
+
+.font-select:hover {
+  border-color: #45a049;
+}
+
+.font-select:focus {
+  border-color: #45a049;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.7);
+}
