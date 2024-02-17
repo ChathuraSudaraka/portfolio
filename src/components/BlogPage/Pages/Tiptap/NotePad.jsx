@@ -1,4 +1,5 @@
-// src/Tiptap.jsx
+import "../Tiptap/styles.css";
+
 import { useState, useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -11,7 +12,7 @@ import OrderedList from "@tiptap/extension-ordered-list";
 import TextAlign from "@tiptap/extension-text-align";
 import CodeBlock from "@tiptap/extension-code-block";
 import Highlight from "@tiptap/extension-highlight";
-import "../Tiptap/styles.css";
+import FontSize from "tiptap-extension-font-size";
 
 const extensions = [
   Color,
@@ -22,6 +23,7 @@ const extensions = [
   OrderedList,
   CodeBlock,
   Highlight,
+  FontSize,
   TextAlign.configure({ types: ["heading", "paragraph"] }), // Specify the allowed node types
 ].map((extension) => (extension.name ? extension.configure() : extension));
 
@@ -49,9 +51,20 @@ const fontData = [
 ];
 
 const fontSizes = [
-  { name: "Small", value: "small" },
-  { name: "Medium", value: "medium" },
-  { name: "Large", value: "large" },
+  { name: "10pt", value: "10pt" },
+  { name: "12pt", value: "12pt" },
+  { name: "14pt", value: "14pt" },
+  { name: "16pt", value: "16pt" },
+  { name: "18pt", value: "18pt" },
+  { name: "20pt", value: "20pt" },
+  { name: "22pt", value: "22pt" },
+  { name: "24pt", value: "24pt" },
+  { name: "26pt", value: "26pt" },
+  { name: "28pt", value: "28pt" },
+  { name: "30pt", value: "30pt" },
+  { name: "32pt", value: "32pt" },
+  { name: "34pt", value: "34pt" },
+  { name: "36pt", value: "36pt" },
   // Add more fonts as needed
 ];
 
@@ -194,13 +207,19 @@ export const FontSizeSelect = ({ editor, fontSizes }) => {
   });
 
   const handleChange = (selectedValue) => {
-    editor.chain().focus().setFontSize(selectedValue).run();
+    if (selectedValue) {
+      editor.chain().focus().setFontSize(selectedValue).run();
+    } else {
+      // If no size is selected, you might want to handle this case accordingly
+      // For example, you can unset the font size.
+      editor.chain().focus().unsetFontSize().run();
+    }
   };
 
   return (
-    <div className="font-size-select-container">
+    <div className="font-select-container">
       <select
-        className="font-select"
+        className="font-select" // Correct class name here
         onChange={(e) => handleChange(e.target.value)}
         value={selectedSize ? selectedSize.fontSize : ""}
       >
