@@ -105,7 +105,7 @@ function BlogCard() {
               ))}
             </div>
           )}
-          containerClassName="containerClassName" // Optional class for styling
+          containerClassName="containerClassName"
           pageLinkClassName="flex items-center "
         />
       </div>

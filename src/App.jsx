@@ -9,7 +9,7 @@ import CircleFollowMouse from "./components/Portfolio/hooks/use-follow-pointer";
 import ScrollAnimation from "./components/Portfolio/hooks/ScrollAnimation";
 import VerningIn from "./components/Portfolio/Verning";
 import BlogPage from "./components/BlogPage/Layout/BlogPage";
-import NotePad from "./components/BlogPage/Pages/About/NotePad";
+import NotePad from "./components/BlogPage/Pages/Tiptap/NotePad";
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
         <Route path="/" element={<PortfolioApp />} />
         <Route path="/BlogApp/*" element={<BlogApp />} />
         <Route path="/blog/:id" element={<BlogPage />} />
+        {/* <Route path="/NotePad/*" element={<NotePad />} /> */}
         <Route path="/NotePad/*" element={<NotePad />} />
       </Routes>
 
