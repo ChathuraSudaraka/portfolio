@@ -56,7 +56,7 @@ const Tiptap = () => {
   }
 
   return (
-    <div className="mx-auto h-fit dark:bg-blog-bg p-4 pb-7">
+    <div className="min-h-screen dark:bg-blog-bg p-4 pb-7 flex flex-col">
       <div className="flex items-center space-x-2 mb-4">
         {buttonData.map((button, index) => (
           <button
@@ -75,8 +75,10 @@ const Tiptap = () => {
         ))}
       </div>
 
-      <div className="border border-black dark:border-border-color rounded-lg p-4 bg-white dark:bg-gray-400 focus:outline-none">
-        <EditorContent editor={editor} />
+      <div className="border border-black dark:border-border-color rounded-lg pl-4 bg-white dark:bg-gray-400 focus:outline-none flex-grow">
+        <div className="prose dark:prose-dark max-w-none">
+          <EditorContent editor={editor} />
+        </div>
       </div>
     </div>
   );
