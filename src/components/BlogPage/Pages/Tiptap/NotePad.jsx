@@ -65,10 +65,10 @@ const fontSizes = [
 ];
 
 const Tiptap = () => {
-  const [editorContent, setEditorContent] = useState(() => {
-    const storedContent = localStorage.getItem("editorContent");
-    return storedContent ? storedContent : content;
-  });
+  const storedContent = localStorage.getItem("editorContent");
+  const initialContent = storedContent ? storedContent : "<p>Write a Blog</p>";
+
+  const [editorContent, setEditorContent] = useState(initialContent);
 
   const editor = useEditor({
     extensions,
