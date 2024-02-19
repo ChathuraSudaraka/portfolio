@@ -1,5 +1,4 @@
 import "../Tiptap/styles.css";
-
 import { useState, useEffect } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
@@ -24,7 +23,7 @@ const extensions = [
   CodeBlock,
   Highlight,
   FontSize,
-  TextAlign.configure({ types: ["heading", "paragraph"] }), // Specify the allowed node types
+  TextAlign.configure({ types: ["heading", "paragraph"] }),
 ].map((extension) => (extension.name ? extension.configure() : extension));
 
 const buttonData = [
@@ -40,14 +39,12 @@ const buttonData = [
   { command: "undo", icon: "undo" },
   { command: "redo", icon: "redo" },
   { command: "toggleBlockquote", icon: "format_quote" },
-  // Add more buttons as needed
 ];
 
 const fontData = [
   { name: "Arial", value: "Arial, sans-serif" },
   { name: "Times New Roman", value: "Times New Roman, serif" },
   { name: "Courier New", value: "Courier New, monospace" },
-  // Add more fonts as needed
 ];
 
 const fontSizes = [
@@ -65,7 +62,6 @@ const fontSizes = [
   { name: "32pt", value: "32pt" },
   { name: "34pt", value: "34pt" },
   { name: "36pt", value: "36pt" },
-  // Add more fonts as needed
 ];
 
 const Tiptap = () => {
@@ -94,13 +90,13 @@ const Tiptap = () => {
   }
 
   return (
-    <div className="min-h-screen dark:bg-blog-bg p-4 pb-7 flex flex-col">
-      <div className="flex items-center space-x-2 mb-4">
-        {/* FontSelect */}
+    <div className="dark:bg-blog-bg p-4 pb-7">
+      <div className="pb-4">
+        {/* FontSelect and FontSizeSelect */}
         <FontSelect editor={editor} fonts={fontData} />
-        {/* Font Size Select */}
         <FontSizeSelect editor={editor} fontSizes={fontSizes} />
-        {/* AlignButton Start */}
+
+        {/* AlignButtons */}
         <AlignButton
           editor={editor}
           alignment="left"
@@ -121,7 +117,8 @@ const Tiptap = () => {
           alignment="justify"
           icon="format_align_justify"
         />
-        {/* AlignButton End */}
+
+        {/* ToggleButtons in a single row */}
         {buttonData.map((button, index) => (
           <button
             key={index}
@@ -139,7 +136,7 @@ const Tiptap = () => {
         ))}
       </div>
 
-      <div className="border border-black dark:border-border-color rounded-lg pl-4  pr-4 bg-white dark:bg-gray-400 focus:outline-none flex-grow">
+      <div className="min-h-screen border border-black dark:border-border-color rounded-lg p-4 bg-white dark:bg-gray-400 focus:outline-none flex-grow">
         <div className="prose dark:prose-dark max-w-none">
           <EditorContent editor={editor} />
         </div>
@@ -180,19 +177,17 @@ export const FontSelect = ({ editor, fonts }) => {
   };
 
   return (
-    <div className="font-select-container">
-      <select
-        className="font-select"
-        onChange={(e) => handleChange(e.target.value)}
-        value={editor.isActive({ fontFamily: fonts.map((font) => font.value) })}
-      >
-        {fonts.map((font) => (
-          <option key={font.value} value={font.value}>
-            {font.name}
-          </option>
-        ))}
-      </select>
-    </div>
+    <select
+      className="font-select"
+      onChange={(e) => handleChange(e.target.value)}
+      value={editor.isActive({ fontFamily: fonts.map((font) => font.value) })}
+    >
+      {fonts.map((font) => (
+        <option key={font.value} value={font.value}>
+          {font.name}
+        </option>
+      ))}
+    </select>
   );
 };
 
@@ -217,18 +212,16 @@ export const FontSizeSelect = ({ editor, fontSizes }) => {
   };
 
   return (
-    <div className="font-select-container">
-      <select
-        className="font-select" // Correct class name here
-        onChange={(e) => handleChange(e.target.value)}
-        value={selectedSize ? selectedSize.fontSize : ""}
-      >
-        {fontSizes.map((size) => (
-          <option key={size.value} value={size.value}>
-            {size.name}
-          </option>
-        ))}
-      </select>
-    </div>
+    <select
+      className="font-select" // Correct class name here
+      onChange={(e) => handleChange(e.target.value)}
+      value={selectedSize ? selectedSize.fontSize : ""}
+    >
+      {fontSizes.map((size) => (
+        <option key={size.value} value={size.value}>
+          {size.name}
+        </option>
+      ))}
+    </select>
   );
 };

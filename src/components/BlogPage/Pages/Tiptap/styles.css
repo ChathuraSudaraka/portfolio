@@ -65,18 +65,16 @@ hr {
   margin: 2rem 0;
 }
 
-/* Add the following styles to your existing CSS or create a new stylesheet */
-
 /* Button Styles */
-/* styles.css */
 .editor-button {
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
   color: white;
   padding: 6px 6px;
-  text-align: center;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  font-size: 0px;
   text-decoration: none;
   display: inline-block;
-  font-size: 0px;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
@@ -93,23 +91,20 @@ hr {
   outline: none;
 }
 
-/* styles.css */
-
-.font-select-container {
-  position: relative;
-  width: 150px; /* Adjust width as needed */
-}
-
+/* Select styles.css */
 .font-select {
-  width: 100%;
-  padding: 8px;
+  width: 77px;
+  padding-top: 14px;
+  padding-left: 4px;
+  margin-right: 5px;
+  display: inline-block;
+  background-color: #45a049;
   border: 1px solid #45a049;
   border-radius: 4px;
-  background-color: #45a049;
   font-size: 14px;
   cursor: pointer;
   appearance: none;
-  outline: none;
+  transition: background-color 0.3s ease;
 }
 
 .font-select:hover {
