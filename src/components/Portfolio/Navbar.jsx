@@ -1,110 +1,63 @@
 import React, { useState, useEffect } from "react";
 import logo from "/assets/logo.webp";
-import { HiMenu } from "react-icons/hi";
-import { Link } from "react-scroll";
+import { FloatingNav } from "../ui/floating-navbar";
+import {
+  IconBackpack,
+  IconBallpen,
+  IconFolders,
+  IconHome,
+  IconUser,
+  IconUserStar,
+  IconUxCircle,
+} from "@tabler/icons-react";
 
-const buttons = [
-  { text: "Home", to: "home", offset: -100 },
-  { text: "Skills", to: "skills", offset: 10 },
-  { text: "About me", to: "about", offset: -50 },
-  { text: "Experience", to: "experience", offset: 10 },
-  { text: "Education", to: "education", offset: 10 },
-  { text: "Portfolio", to: "portfolio", offset: 10 },
-  { text: "Blogs", to: "blog", offset: 10 },
+const navItems = [
+  {
+    text: "Home",
+    to: "home",
+    offset: -100,
+    icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    text: "Skills",
+    to: "skills",
+    offset: 10,
+    icon: <IconUserStar className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    text: "About me",
+    to: "about",
+    offset: -50,
+    icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    text: "Experience",
+    to: "experience",
+    offset: 10,
+    icon: <IconUxCircle className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    text: "Education",
+    to: "education",
+    offset: 10,
+    icon: <IconBackpack className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    text: "Portfolio",
+    to: "portfolio",
+    offset: 10,
+    icon: <IconFolders className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
+  {
+    text: "Blogs",
+    to: "blog",
+    offset: 10,
+    icon: <IconBallpen className="h-4 w-4 text-neutral-500 dark:text-white" />,
+  },
 ];
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSticky, setIsSticky] = useState(false);
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  useEffect(() => {
-    const handleScroll = () => setIsSticky(window.scrollY > 0);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  return (
-    <header className="fixed top-0 left-0 right-0 lg:top-2 lg:left-10 lg:right-10 w-full lg:w-auto">
-      <nav className="py-4 md:px-12 px-4 lg:rounded-lg bg-blue-700 backdrop-filter backdrop-sepia-0 bg-opacity-10 backdrop-blur-2xl backdrop-brightness-100 backdrop-contrast-100 backdrop-grayscale-0 backdrop-hue-rotate-0 backdrop-invert-0 backdrop-opacity-100 backdrop-saturate-100 lg:backdrop-filter lg:backdrop-blur-lg lg:backdrop-contrast-125 lg:backdrop-grayscale-0 lg:backdrop-hue-rotate-0 lg:backdrop-invert-0 lg:backdrop-opacity-100 lg:backdrop-saturate-100 lg:backdrop-sepia-0 lg:bg-opacity-10 lg:backdrop-brightness-100 lg:backdrop-sepia-">
-        <div className="flex items-center justify-between">
-          <div className="text-white font-bold text-lg cursor-pointer">
-            <img src={logo} alt="" className="h-10" />
-          </div>
-
-          <div className="lg:flex items-center gap-3 hidden text-body">
-            {buttons.map((button, index) => (
-              <Link
-                key={index}
-                activeClass="active"
-                smooth={true}
-                spy={true}
-                offset={button.offset}
-                to={button.to}
-                className="block dark:text-white dark:hover:text-primary hover:text-gray-400 py-2 px-4 cursor-pointer"
-              >
-                {button.text}
-              </Link>
-            ))}
-          </div>
-
-          <div className="lg:block hidden">
-            <a
-              href="tel:+94705321516"
-              className="relative inline-flex items-center justify-center p-4 px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-lg shadow-md group"
-            >
-              <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  ></path>
-                </svg>
-              </span>
-              <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">
-                Contact Me
-              </span>
-              <span className="relative invisible">Contact Me</span>
-            </a>
-          </div>
-
-          <button
-            onClick={toggleMenu}
-            className="lg:hidden dark:text-white text-body text-3xl"
-          >
-            <HiMenu />
-          </button>
-        </div>
-
-        {isMenuOpen && (
-          <div className="mt-4 bg-body p-4 rounded-lg text-white">
-            {buttons.map((button, index) => (
-              <Link
-                key={index}
-                activeClass="active"
-                smooth={true}
-                spy={true}
-                offset={button.offset}
-                to={button.to}
-                className="block hover:text-gray-400 py-2"
-              >
-                {button.text}
-              </Link>
-            ))}
-          </div>
-        )}
-      </nav>
-    </header>
-  );
+  return <FloatingNav navItems={navItems} />;
 };
 
 export default Navbar;
