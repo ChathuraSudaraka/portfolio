@@ -2,7 +2,7 @@ import React from 'react';
 
 const VerningIn = () => {
   return (
-    <div className="fixed bottom-0 left-0 right-0 text-center">
+    <div className="fixed z-10 bottom-0 left-0 right-0 text-center">
       <div className="bg-yellow-400 p-2 shadow-lg inline-flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

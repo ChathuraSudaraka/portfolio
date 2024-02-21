@@ -5,6 +5,7 @@ import {
   StrategyDirection,
   UIUX,
 } from "./hooks/CustomTag";
+import { Meteors } from "../ui/meteors";
 
 const skills = [
   {
@@ -37,36 +38,45 @@ const skills = [
   },
 ];
 
+export const SkillCard = ({ skill }) => {
+  return (
+    <div className="relative max-w-md mx-auto p-6 overflow-hidden bg-rounded-xl bg-bgcom border rounded-lg border-bgShade dark:border-border-color shadow-lg dark:bg-custom-dark-blue dark:text-dark-white">
+      {/* Meteor effect */}
+      <Meteors number={15} />
+
+      {/* Content: Image, Text, etc. */}
+      <div key={skill.id} className="relative z-20">
+        <div className="w-14 h-14 p-3 bg-white rounded-lg shadow-md mb-7 transition-transform transform hover:scale-110 flex items-center justify-center">
+          {skill.image}
+        </div>
+        <h3 className="text-2xl font-bold mb-4">{skill.name}</h3>
+        <p className="text-justify">{skill.description}</p>
+      </div>
+    </div>
+  );
+};
+
 const Skills = () => {
   return (
-    <div className="">
-      <div className="lg:mx-12 mx-4 py-32" id="skills">
-        <div className="mb-20">
-          <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
-            My Skills
-          </p>
-          <h2 className="md:text-5xl text-4xl text-headingcolor dark:text-white font-bold">
-            My Expertise
-          </h2>
-        </div>
+    <div className="lg:mx-12 mx-4 py-32" id="skills">
+      <div className="mb-20">
+        <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
+          My Skills
+        </p>
+        <h2 className="md:text-5xl text-4xl text-headingcolor dark:text-white font-bold">
+          My Expertise
+        </h2>
+      </div>
 
-        {/* skill cards */}
-        <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8">
-          {skills.map((skill) => (
-            <div
-              key={skill.id}
-              className="bg-bgcom border border-bgShade dark:border-border-color shadow-lg dark:bg-custom-dark-blue dark:text-dark-white p-8 rounded-lg cursor-pointer hover:-translate-y-5 transition-all duration-300"
-              data-aos="fade-zoom-in"
-              data-aos-offset="300"
-            >
-              <div className="w-14 h-14 p-3 bg-white rounded-lg shadow-md mb-7 transition-transform transform hover:scale-110 flex items-center justify-center">
-                {skill.image}
-              </div>
-              <h3 className="text-2xl font-bold mb-4">{skill.name}</h3>
-              <p>{skill.description}</p>
-            </div>
-          ))}
-        </div>
+      {/* Skill cards grid */}
+      <div
+        data-aos="fade-zoom-in"
+        data-aos-offset="300"
+        className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
+      >
+        {skills.map((skill) => (
+          <SkillCard key={skill.id} skill={skill} />
+        ))}
       </div>
     </div>
   );

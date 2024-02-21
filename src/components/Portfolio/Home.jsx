@@ -1,3 +1,4 @@
+import { BackgroundBeams } from "../ui/background-beams";
 import banner from "/assets/banner.webp";
 import pdf from "/assets/file/dummy.pdf";
 
@@ -8,13 +9,13 @@ const Home = () => {
 
   return (
     <div className="" id="home">
-      <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5">
-        <div className="md:w-1/2 w-full" data-aos="fade-right">
+      <div className="lg:px-12 px-4 flex flex-col md:flex-row-reverse items-center justify-between py-24 gap-5 relative antialiased">
+        <div className="md:w-1/2 w-full z-10" data-aos="fade-right">
           <img src={banner} alt="" className="w-full" />
         </div>
         {/* left side */}
         <div
-          className="md:w-1/2 w-full mt-5"
+          className="md:w-1/2 w-full mt-5 z-10"
           data-aria-owns="fade-left"
           data-aos="fade-up"
           data-aos-offset="300"
@@ -35,6 +36,7 @@ const Home = () => {
           </button>
         </div>
         {/* rigth side */}
+        <BackgroundBeams />
       </div>
     </div>
   );

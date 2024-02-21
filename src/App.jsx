@@ -7,7 +7,7 @@ import BackToTop from "./components/Portfolio/BackToTop";
 import DarkLight from "./components/Portfolio/DarkLight";
 import CircleFollowMouse from "./components/Portfolio/hooks/use-follow-pointer";
 import ScrollAnimation from "./components/Portfolio/hooks/ScrollAnimation";
-import VerningIn from "./components/Portfolio/Verning";
+import VerningIn from "./components/Portfolio/Werning";
 import BlogPage from "./components/BlogPage/Layout/BlogPage";
 import NotePad from "./components/BlogPage/Pages/Tiptap/NotePad";
 
