@@ -42,7 +42,7 @@ export const SkillCard = ({ skill }) => {
   return (
     <div className="relative max-w-md mx-auto p-6 overflow-hidden bg-rounded-xl bg-bgcom border rounded-lg border-bgShade dark:border-border-color shadow-lg dark:bg-custom-dark-blue dark:text-dark-white">
       {/* Meteor effect */}
-      <Meteors number={15} />
+      <Meteors number={10} />
 
       {/* Content: Image, Text, etc. */}
       <div key={skill.id} className="relative z-20">
