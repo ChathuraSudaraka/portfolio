@@ -40,7 +40,11 @@ const skills = [
 
 export const SkillCard = ({ skill }) => {
   return (
-    <div className="relative max-w-md mx-auto p-6 overflow-hidden bg-rounded-xl bg-bgcom border rounded-lg border-bgShade dark:border-border-color shadow-lg dark:bg-custom-dark-blue dark:text-dark-white">
+    <div
+      data-aos="fade-zoom-in"
+      data-aos-offset="300"
+      className="relative mx-auto p-6 overflow-hidden bg-rounded-xl bg-bgcom border rounded-lg border-bgShade dark:border-border-color shadow-lg dark:bg-custom-dark-blue dark:text-dark-white"
+    >
       {/* Meteor effect */}
       <Meteors number={10} />
 
@@ -69,11 +73,7 @@ const Skills = () => {
       </div>
 
       {/* Skill cards grid */}
-      <div
-        data-aos="fade-zoom-in"
-        data-aos-offset="300"
-        className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-8"
-      >
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
         {skills.map((skill) => (
           <SkillCard key={skill.id} skill={skill} />
         ))}

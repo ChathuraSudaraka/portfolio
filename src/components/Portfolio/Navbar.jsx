@@ -57,7 +57,7 @@ const navItems = [
 ];
 
 const Navbar = () => {
-  return <FloatingNav navItems={navItems} />;
+  return <FloatingNav navItems={navItems} logo={logo} />;
 };
 
 export default Navbar;

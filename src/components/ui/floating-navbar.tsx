@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import { cn } from "../utils/cn";
 import { Link as ScrollLink } from "react-scroll";
+import logo from "/assets/logo.webp";
 
 export const FloatingNav = ({
   navItems,
@@ -51,6 +52,9 @@ export const FloatingNav = ({
           className
         )}
       >
+        <div className="text-white font-bold text-lg cursor-pointer">
+          <img src={logo} alt="logo" className="h-8 mr-10" />
+        </div>
         {navItems.map((navItem, id) => (
           <ScrollLink
             key={`link-${id}`}
@@ -67,13 +71,33 @@ export const FloatingNav = ({
             <span className="hidden sm:block text-sm">{navItem.text}</span>
           </ScrollLink>
         ))}
-        <a
-          href="tel:+94705321516"
-          className="border text-sm sm:block hidden font-medium relative border-neutral-200 dark:border-white/[0.2] text-black dark:text-white px-4 py-2 ml-2 rounded-full"
-        >
-          <span>Contact me</span>
-          <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent h-px" />
-        </a>
+        <div className="ml-10 lg:block hidden">
+          <a
+            href="tel:+94705321516"
+            className="relative inline-flex items-center justify-center p-4 px-4 py-2 overflow-hidden font-medium text-indigo-600 transition duration-300 ease-out border-2 border-purple-500 rounded-full shadow-md group"
+          >
+            <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-purple-500 group-hover:translate-x-0 ease">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
+            </span>
+            <span className="absolute flex items-center justify-center w-full h-full text-purple-500 transition-all duration-300 transform group-hover:translate-x-full ease">
+              Contact Me
+            </span>
+            <span className="relative invisible">Contact Me</span>
+          </a>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

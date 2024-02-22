@@ -1,5 +1,6 @@
 import React from "react";
 import { Csharp, HTML, Java, Javascript, PHP, Python } from "./hooks/CustomTag";
+import { Meteors } from "../ui/meteors";
 
 const Language = () => {
   // Define your coding language skills and their respective percentages here
@@ -22,10 +23,12 @@ const Language = () => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="bg-bgcom border border-bgShade dark:border-border-color dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center"
+            className="relative overflow-hidden bg-bgcom border border-bgShade dark:border-border-color dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center"
             data-aos="fade-up"
             data-aos-offset="150"
           >
+           {/* Meteor effect */}
+      <Meteors number={10} />
             <div className="mb-4 flex flex-col items-center">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                 {skill.name}

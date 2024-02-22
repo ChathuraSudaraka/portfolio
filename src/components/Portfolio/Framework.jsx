@@ -1,5 +1,6 @@
 import React from "react";
 import { Bootstrap, Laravel, ReactNative, Tailwind } from "./hooks/CustomTag";
+import { Meteors } from "../ui/meteors";
 
 const Framework = () => {
   // Define your coding language skills and their respective percentages here
@@ -36,10 +37,12 @@ const Framework = () => {
         {skills.map((skill, index) => (
           <div
             key={index}
-            className="bg-bgcom border border-bgShade dark:border-border-color dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center relative"
+            className="realative overflow-hidden bg-bgcom border border-bgShade dark:border-border-color dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center relative"
             data-aos="fade-up"
             data-aos-offset="150"
           >
+            {/* Metro Animation */}
+            <Meteors />
             <div className="mb-4 flex flex-col items-center">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                 {skill.name}
