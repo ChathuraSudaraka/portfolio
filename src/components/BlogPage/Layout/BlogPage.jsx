@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { blogs } from "./data";
 import BlogFooter from "./BlogFooter";
 import { NextIcon, PreviousIcon } from "../../Portfolio/hooks/CustomTag";
+import CommentArea from "../Pages/Comment-Area/CommentArea";
 
 const BlogPage = () => {
   const { id } = useParams();
@@ -27,7 +28,7 @@ const BlogPage = () => {
 
   return (
     <div className="contents">
-      <div className="bg-white dark:bg-custom-blue min-h-screen">
+      <div className="bg-bgShade dark:bg-custom-blue min-h-screen">
         {/* Header */}
         <header className="text-white py-4 fixed w-full z-10 trans">
           <div className="container mx-auto flex justify-between items-center">
@@ -57,7 +58,7 @@ const BlogPage = () => {
           />
         </div>
 
-        <div className="w-100 mx-auto px-6 sm:max-w-2xl md:max-w-3xl md:px-12 lg:max-w-5xl xl:max-w-7xl xl:px-32 py-10">
+        <div className="w-100 mx-auto px-4 sm:max-w-2xl md:max-w-3xl md:px-12 lg:max-w-7xl xl:max-w-[1600px] xl:px-62 py-10">
           <div className="text-base">
             <div className="block rounded-t-lg border border-black dark:border-border-color bg-[hsla(0,0%,100%,0.55)] px-6 py-12 dark:bg-[hsla(0,0%,5%,0.55)] dark:shadow-lg md:py-16 md:px-12 mt-[-170px] backdrop-blur-[30px]">
               <h1 className="dark:text-primary font-bold tracking-tight">
@@ -103,6 +104,7 @@ const BlogPage = () => {
             </div>
           </div>
         </div>
+        <CommentArea />
       </div>
       <BlogFooter />
     </div>

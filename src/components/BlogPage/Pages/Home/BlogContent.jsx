@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Pagination from "../../Layout/Pagination";
 import { blogs } from "../../Layout/data";
 import Category from "./Category";
+import { CardContainer, CardItem } from "../../../ui/3d-card";
 
 function BlogCard() {
   const scrollToTop = () => {
@@ -46,7 +47,7 @@ function BlogCard() {
           renderItem={(currentItems) => (
             <div className="grid gap-8 lg:grid-cols-2">
               {currentItems.map((blog) => (
-                <article
+                <CardContainer
                   key={blog.id}
                   className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-blog-component-bg dark:border-border-color overflow-hidden"
                 >
@@ -62,16 +63,23 @@ function BlogCard() {
                       </span>
                       <span className="text-sm">{blog.date}</span>
                     </div>
-                    <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                    <CardItem
+                      translateZ="50"
+                      className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                    >
                       <Link to={`/blog/${blog.id}`}>{blog.title}</Link>
-                    </h2>
-                    <p className="mb-5 font-light text-gray-500 dark:text-gray-400 line-clamp-4">
+                    </CardItem>
+                    <CardItem
+                      as="p"
+                      translateZ="60"
+                      className="mb-5 font-light text-gray-500 dark:text-gray-400 line-clamp-4"
+                    >
                       {Array.from({ length: 20 }, (_, index) => (
                         <span key={index} className="mb-4 block">
                           {blog[`content${index + 1}`]}
                         </span>
                       ))}
-                    </p>
+                    </CardItem>
                     <div className="flex justify-between items-center">
                       <div className="flex items-center space-x-4">
                         <img
@@ -101,7 +109,7 @@ function BlogCard() {
                       </Link>
                     </div>
                   </div>
-                </article>
+                </CardContainer>
               ))}
             </div>
           )}

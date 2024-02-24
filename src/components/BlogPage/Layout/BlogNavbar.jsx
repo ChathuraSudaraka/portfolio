@@ -61,7 +61,7 @@ const BlogNavbar = () => {
         )}
       >
         <div className="text-white font-bold text-lg cursor-pointer">
-          <img src={logo} alt="logo" className="h-8 mr-32" />
+          <img src={logo} alt="logo" className="h-8 mr-36" />
         </div>
         {navItems.map((navItem, id) => (
           <ScrollLink

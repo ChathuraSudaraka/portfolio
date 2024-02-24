@@ -66,19 +66,19 @@ const Article = () => {
                   </div>
                   <p className="text-gray-800 dark:text-gray-300 font-serif text-base px-6 mb-5 line-clamp-4">
                     {Array.from({ length: 20 }, (_, index) => (
-                      <p key={index} className="mb-4">
+                      <span key={index} className="mb-4">
                         {blog[`content${index + 1}`]}
-                      </p>
+                      </span>
                     ))}
                     {Array.from({ length: 20 }, (_, index) => (
-                      <ul key={index} className="list-item-animation">
+                      <span key={index} className="list-item-animation">
                         {blog[`listItem${index + 1}`]}
-                      </ul>
+                      </span>
                     ))}
                     {Array.from({ length: 20 }, (_, index) => (
-                      <ul key={index} className="list-item-animation">
+                      <span key={index} className="list-item-animation">
                         {blog[`topic${index + 1}`]}
-                      </ul>
+                      </span>
                     ))}
                   </p>
                 </div>

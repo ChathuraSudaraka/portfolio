@@ -52,7 +52,7 @@ export const FloatingNav = ({
           className
         )}
       >
-        <div className="text-white font-bold text-lg cursor-pointer">
+        <div className="text-white font-bold text-lg cursor-pointer sm:block hidden">
           <img src={logo} alt="logo" className="h-8 mr-10" />
         </div>
         {navItems.map((navItem, id) => (
