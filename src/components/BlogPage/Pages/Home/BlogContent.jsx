@@ -84,7 +84,7 @@ function BlogCard() {
                       <div className="flex items-center space-x-4">
                         <img
                           className="w-7 h-7 rounded-full"
-                          src={blog.authorAvatar}
+                          src="/assets/icon.png"
                           alt={`Avatar of Author ${blog.id}`}
                         />
                       </div>

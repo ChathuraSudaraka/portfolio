@@ -96,7 +96,7 @@ const Article = () => {
                   <img
                     className="w-8 h-8 rounded-full mr-4 avatar"
                     data-tippy-content="Author Name"
-                    src={blog.authorAvatar}
+                    src="/assets/icon.png"
                     alt={`Avatar of Author ${blog.id}`}
                   />
                   <p className="text-gray-600 dark:text-white text-xs md:text-sm">
