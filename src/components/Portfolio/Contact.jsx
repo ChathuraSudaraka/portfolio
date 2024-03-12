@@ -33,7 +33,7 @@ const Contact = () => {
 
   const form = useRef();
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
 
     // Validate the form before sending the email
@@ -42,24 +42,36 @@ const Contact = () => {
       return; // Do not proceed if validation fails
     }
 
-    // The rest of your email sending code
-    emailjs
-      .sendForm(
-        "service_978fyjb",
-        "template_eh2ys5b",
-        form.current,
-        "oYjbDhVtBo6EdZ-2E"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setIsSuccess(true); // Set success state to true
+    try {
+      const response = await fetch("http://localhost:8080/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-    e.target.reset();
+        body: JSON.stringify({
+          to: "chathuraoriginal2005@gmail.com",
+          subject: "Contact Form Submission",
+          text: `
+            First Name: ${form.current.elements.first_name.value}
+            Last Name: ${form.current.elements.last_name.value}
+            Email: ${form.current.elements.user_email.value}
+            Comment: ${form.current.elements.message.value}
+          `,
+        }),
+      });
+
+      if (response.ok) {
+        const result = await response.text();
+        console.log("Email sent successfully:", result);
+        setIsSuccess(true);
+      } else {
+        console.error("Failed to send email:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+    } finally {
+      e.target.reset();
+    }
   };
 
   return (
