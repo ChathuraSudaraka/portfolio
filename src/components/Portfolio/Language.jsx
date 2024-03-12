@@ -27,8 +27,8 @@ const Language = () => {
             data-aos="fade-up"
             data-aos-offset="150"
           >
-           {/* Meteor effect */}
-      <Meteors number={10} />
+            {/* Meteor effect */}
+            <Meteors number={10} />
             <div className="mb-4 flex flex-col items-center">
               <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
                 {skill.name}

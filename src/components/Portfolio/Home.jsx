@@ -1,4 +1,4 @@
-import { BackgroundBeams } from "../ui/background-beams";
+// import { BackgroundBeams } from "../ui/background-beams";
 import banner from "/assets/banner.webp";
 import pdf from "/assets/file/dummy.pdf";
 
@@ -36,7 +36,7 @@ const Home = () => {
           </button>
         </div>
         {/* rigth side */}
-        <BackgroundBeams />
+        {/* <BackgroundBeams /> */}
       </div>
     </div>
   );
