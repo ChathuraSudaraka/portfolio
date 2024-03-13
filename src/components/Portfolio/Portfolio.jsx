@@ -87,7 +87,7 @@ const Portfolio = () => {
                   )}
                 </div>
 
-                <p className="text-body mb-4 dark:text-dark-white">
+                <p className="text-body mb-4 dark:text-dark-white text-justify">
                   {project.description}
                 </p>
                 <button

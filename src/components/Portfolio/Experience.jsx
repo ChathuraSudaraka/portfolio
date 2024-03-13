@@ -33,7 +33,9 @@ const Details = ({
         <span className="capitalize font-medium dark:text-dark-white text-black/75">
           {time} | {address}
         </span>
-        <p className="font-medium w-full dark:text-gray-300">{work}</p>
+        <p className="font-medium w-full dark:text-gray-300 text-justify">
+          {work}
+        </p>
       </div>
     </li>
   );

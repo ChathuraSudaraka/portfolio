@@ -17,7 +17,9 @@ const Details = ({ type, place, time, info }) => {
         <span className="capitalize font-medium text-black/75 dark:text-dark-white">
           {time} | {place}
         </span>
-        <p className="font-medium w-full dark:text-gray-300">{info}</p>
+        <p className="font-medium w-full dark:text-gray-300 text-justify">
+          {info}
+        </p>
       </div>
     </li>
   );

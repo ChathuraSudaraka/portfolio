@@ -94,7 +94,7 @@ const BlogPage = () => {
               <div className="flex items-center justify-between">
                 <img
                   className="w-8 h-8 rounded-full mr-4"
-                  src={blog.authorAvatar}
+                  src="/assets/icon.png"
                   alt={`Avatar of Author ${blog.id}`}
                 />
                 <p className="text-sm text-gray-600 dark:text-white">

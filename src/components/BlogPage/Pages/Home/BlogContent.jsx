@@ -45,7 +45,7 @@ function BlogCard() {
           items={filteredBlogs}
           itemsPerPage={4} // Adjust as needed
           renderItem={(currentItems) => (
-            <div className="grid gap-8 lg:grid-cols-2">
+            <div className="grid gap-8 lg:grid-cols-2 -mx-5">
               {currentItems.map((blog) => (
                 <CardContainer
                   key={blog.id}

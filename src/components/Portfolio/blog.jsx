@@ -64,7 +64,7 @@ const Article = () => {
                   <div className="w-full font-bold text-xl dark:text-white text-gray-900 px-6">
                     {blog.title}
                   </div>
-                  <p className="text-gray-800 dark:text-gray-300 font-serif text-base px-6 mb-5 line-clamp-4">
+                  <p className="text-gray-800 dark:text-gray-300 font-serif text-base px-6 mb-5 line-clamp-4 text-justify">
                     {Array.from({ length: 20 }, (_, index) => (
                       <span key={index} className="mb-4">
                         {blog[`content${index + 1}`]}
