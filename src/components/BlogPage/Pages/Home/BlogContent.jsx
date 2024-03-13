@@ -72,7 +72,7 @@ function BlogCard() {
                     <CardItem
                       as="p"
                       translateZ="60"
-                      className="mb-5 font-light text-gray-500 dark:text-gray-400 line-clamp-4"
+                      className="mb-5 font-light text-gray-500 dark:text-gray-400 line-clamp-4 text-justify"
                     >
                       {Array.from({ length: 20 }, (_, index) => (
                         <span key={index} className="mb-4 block">

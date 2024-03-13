@@ -11,12 +11,22 @@ import {
 } from "framer-motion";
 import { cn } from "../../utils/cn";
 import { IconSearch } from "@tabler/icons-react";
+import { blogs } from "./data";
+import { Link } from "react-router-dom";
 
 const BlogNavbar = () => {
   const { scrollYProgress } = useScroll();
   const [visible, setVisible] = useState(true);
   const [open, setOpen] = useState(false);
   const cancelButtonRef = useRef(null);
+  // Search Modal
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filter Blog on search Term
+  const filteredBlogs = blogs.filter((blog) => {
+    const searchString = `${blog.category.toLowerCase()} ${blog.title.toLowerCase()}`;
+    return searchString.includes(searchTerm.toLowerCase());
+  });
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
     if (typeof current === "number") {
@@ -38,6 +48,7 @@ const BlogNavbar = () => {
   // Function to close the modal
   const closeModal = () => {
     setOpen(false);
+    setSearchTerm(""); // Reset search term
   };
 
   const navItems = [];
@@ -113,7 +124,7 @@ const BlogNavbar = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="relative border border-gray-200 dark:border-border-color dark:bg-blog-component-bg bg-white rounded-lg w-full max-w-md p-4">
+                <Dialog.Panel className="relative border border-gray-200 dark:border-border-color dark:bg-blog-component-bg bg-white rounded-lg w-full max-w-2xl p-4">
                   <div className="text-center">
                     <Dialog.Title
                       as="h3"
@@ -140,40 +151,28 @@ const BlogNavbar = () => {
                         type="text"
                         className="block w-full pl-10 py-2 pr-3  dark:bg-slate-600 text-gray-900 placeholder-gray-900 focus:outline-none focus:ring focus:ring-blue-400 border dark:border-none rounded-md"
                         placeholder="Search..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
                       />
                     </div>
                   </div>
                   <div className="mt-6">
                     {/* Search results */}
-                    <div className="bg-white dark:bg-slate-600 rounded-md border dark:border-none border-gray-300 shadow">
+                    <div className="bg-white dark:bg-slate-600 rounded-md border dark:border-none border-gray-300 shadow overflow-y-auto max-h-60">
                       <div className="p-2">
-                        <div className="flex items-center cursor-pointer dark:hover:bg-gray-700 hover:bg-blue-100 p-2 rounded-md my-2">
-                          <div className="bg-gray-400 w-2 h-2 rounded-full m-2"></div>
-                          <div className="flex-grow font-medium">
-                            React Native
-                          </div>
-                          <div className="text-sm font-normal dark:text-gray-900 text-gray-500">
-                            Blog
-                          </div>
-                        </div>
-                        <div className="flex items-center cursor-pointer dark:hover:bg-gray-700 hover:bg-blue-100 p-2 rounded-md my-2">
-                          <div className="bg-green-400 w-2 h-2 rounded-full m-2"></div>
-                          <div className="flex-grow font-medium">
-                            Bootstrap 5
-                          </div>
-                          <div className="text-sm font-normal dark:text-gray-900 text-gray-500">
-                            Article
-                          </div>
-                        </div>
-                        <div className="flex items-center cursor-pointer dark:hover:bg-gray-700 hover:bg-blue-100 p-2 rounded-md my-2">
-                          <div className="bg-gray-400 w-2 h-2 rounded-full m-2"></div>
-                          <div className="flex-grow font-medium">
-                            Tailwind CSS
-                          </div>
-                          <div className="text-sm font-normal dark:text-gray-900 text-gray-500">
-                            Article
-                          </div>
-                        </div>
+                        {filteredBlogs.slice(0, 5).map((blog) => (
+                          <Link key={blog.id} to={`/blog/${blog.id}`}>
+                            <div className="flex items-center cursor-pointer dark:hover:bg-gray-700 hover:bg-blue-100 p-2 rounded-md my-2">
+                              <div className="bg-gray-400 w-2 h-2 rounded-full m-2"></div>
+                              <div className="flex-grow font-medium">
+                                {blog.title}
+                              </div>
+                              <div className="text-sm font-normal dark:text-gray-900 text-gray-500">
+                                {blog.category}
+                              </div>
+                            </div>
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -199,12 +198,3 @@ const BlogNavbar = () => {
 };
 
 export default BlogNavbar;
-
-// export const Modal = ({ closeModal, open }) => {
-//   const cancelButtonRef = useRef(null);
-
-//   return (
-//     /* Modal */
-
-//   );
-// };
