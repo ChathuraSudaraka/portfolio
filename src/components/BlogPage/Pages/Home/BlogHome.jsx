@@ -13,7 +13,7 @@ const Home = () => {
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
             illo tenetur fuga ducimus numquam ea!
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
+          {/* <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               to="/"
               className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
@@ -41,7 +41,7 @@ const Home = () => {
                 Write a Article
               </span>
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

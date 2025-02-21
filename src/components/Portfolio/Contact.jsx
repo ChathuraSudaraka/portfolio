@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 
 const Contact = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -98,14 +100,14 @@ const Contact = () => {
           >
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="mb-1">
-                <label
+                <Label
                   className="block dark:text-white text-gray-700 text-sm font-bold mb-2"
                   htmlFor="first-name"
                 >
                   First Name
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 dark:bg-gray-200 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                </Label>
+                <Input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="first-name"
                   name="first_name"
                   type="text"
@@ -113,15 +115,15 @@ const Contact = () => {
                   autoComplete="given-name" // Add this line
                 />
               </div>
-              <div className="mb-1">
-                <label
+              <div className="mb-5">
+                <Label
                   className="block dark:text-white text-gray-700 text-sm font-bold mb-2"
                   htmlFor="last-name"
                 >
                   Last Name
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 dark:bg-gray-200 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                </Label>
+                <Input
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                   id="last-name"
                   name="last_name"
                   type="text"
@@ -130,15 +132,15 @@ const Contact = () => {
                 />
               </div>
             </div>
-            <div className="mb-1">
-              <label
+            <div className="mb-5">
+              <Label
                 className="block dark:text-white text-gray-700 text-sm font-bold mb-2"
                 htmlFor="email"
               >
                 Email
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 dark:bg-gray-200 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              </Label>
+              <Input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
                 type="text"
                 name="user_email"
@@ -147,14 +149,14 @@ const Contact = () => {
               />
             </div>
             <div className="mb-6">
-              <label
+              <Label
                 className="block dark:text-white text-gray-700 text-sm font-bold mb-2"
                 htmlFor="comment"
               >
                 Comment
-              </label>
-              <textarea
-                className="shadow appearance-none border rounded w-full py-2 px-3 dark:bg-gray-200 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              </Label>
+              <Input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="comment"
                 name="message"
                 placeholder="Write your comment here..."
@@ -163,8 +165,12 @@ const Contact = () => {
               />
             </div>
             <div className="flex items-center justify-between">
-              <button className="btn-primary bg-blue-900" type="submit">
-                Submit
+              <button
+                className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 px-3 text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
+                type="submit"
+              >
+                Sign up &rarr;
+                <BottomGradient />
               </button>
             </div>
             <div className="error text-red-500"></div>
@@ -177,6 +183,15 @@ const Contact = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+const BottomGradient = () => {
+  return (
+    <>
+      <span className="group-hover/btn:opacity-100 block transition duration-500 opacity-0 absolute h-px w-full -bottom-px inset-x-0 bg-gradient-to-r from-transparent via-cyan-500 to-transparent" />
+      <span className="group-hover/btn:opacity-100 blur-sm block transition duration-500 opacity-0 absolute h-px w-1/2 mx-auto -bottom-px inset-x-10 bg-gradient-to-r from-transparent via-indigo-500 to-transparent" />
+    </>
   );
 };
 

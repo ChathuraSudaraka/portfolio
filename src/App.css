@@ -21,7 +21,7 @@ header {
 
 /* Track for webkit browsers */
 ::-webkit-scrollbar-track {
-  background: transparent; /* Set the background color of the track */
+  background: black; /* Set the background color of the track */
 }
 
 /* Handle for webkit browsers */

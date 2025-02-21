@@ -13,10 +13,15 @@ export default {
   theme: {
     extend: {
       animation: {
+        move: "move 5s linear infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
         "meteor-effect": "meteor 5s linear infinite",
       },
       keyframes: {
+        move: {
+          "0%": { transform: "translateX(-200px)" },
+          "100%": { transform: "translateX(200px)" },
+        },
         spotlight: {
           "0%": {
             opacity: 0,
@@ -44,7 +49,7 @@ export default {
         dribble: "#E62872",
         body: "#1C1E53",
         "custom-blue": "#080f1f",
-        "custom-dark-blue": "#19203a",
+        "custom-dark-blue": "#000000",
         "dark-white": "#8a9fb1",
         "blog-bg": "#111827",
         "blog-component-bg": "#1f2937",

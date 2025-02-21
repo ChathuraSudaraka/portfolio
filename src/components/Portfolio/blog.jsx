@@ -2,7 +2,7 @@
 import React from "react";
 import { BlogIcon } from "./hooks/CustomTag";
 import { Link } from "react-router-dom";
-import { blogs } from "../../components/BlogPage/Layout/data";
+import { blogs } from "../BlogPage/data";
 
 const Article = () => {
   const scrollToTop = () => {
@@ -54,7 +54,7 @@ const Article = () => {
                   className="flex flex-wrap no-underline hover:no-underline"
                 >
                   <img
-                    src={blog.imageSrc}
+                    src={blog.image}
                     className="h-64 w-full rounded-t pb-6"
                     alt={`Blog ${blog.id} Image`}
                   />

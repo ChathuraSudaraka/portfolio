@@ -1,63 +1,47 @@
-import React, { useState, useEffect } from "react";
-import logo from "/assets/logo.webp";
-import { FloatingNav } from "../ui/floating-navbar";
+import React from "react";
 import {
-  IconBackpack,
-  IconBallpen,
-  IconFolders,
+  IconBrandGithub,
+  IconBrandX,
+  IconExchange,
   IconHome,
-  IconUser,
-  IconUserStar,
-  IconUxCircle,
+  IconNewSection,
+  IconTerminal2,
 } from "@tabler/icons-react";
-
-const navItems = [
-  {
-    text: "Home",
-    to: "home",
-    offset: -100,
-    icon: <IconHome className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    text: "Skills",
-    to: "skills",
-    offset: 10,
-    icon: <IconUserStar className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    text: "About me",
-    to: "about",
-    offset: -50,
-    icon: <IconUser className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    text: "Experience",
-    to: "experience",
-    offset: 10,
-    icon: <IconUxCircle className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    text: "Education",
-    to: "education",
-    offset: 10,
-    icon: <IconBackpack className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    text: "Portfolio",
-    to: "portfolio",
-    offset: 10,
-    icon: <IconFolders className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-  {
-    text: "Blogs",
-    to: "blog",
-    offset: 10,
-    icon: <IconBallpen className="h-4 w-4 text-neutral-500 dark:text-white" />,
-  },
-];
+import { FloatingDock } from "../ui/floating-dock";
 
 const Navbar = () => {
-  return <FloatingNav navItems={navItems} logo={logo} />;
+  const links = [
+    {
+      title: "Home",
+      icon: (
+        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/",
+    },
+    {
+      title: "Components",
+      icon: (
+        <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/work",
+    },
+    {
+      title: "Products",
+      icon: (
+        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+      ),
+      href: "/BlogApp/*",
+    },
+  ];
+  return (
+    <div className="fixed z-20 top-10 left-0 right-0 flex items-center justify-center w-full">
+      <FloatingDock
+        // only for demo, remove for production
+        // mobileClassName="translate-y-20"
+        items={links}
+      />
+    </div>
+  );
 };
 
 export default Navbar;

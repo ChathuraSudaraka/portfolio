@@ -1,10 +1,10 @@
 // BlogCard.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Pagination from "../../Layout/Pagination";
-import { blogs } from "../../Layout/data";
 import Category from "./Category";
 import { CardContainer, CardItem } from "../../../ui/3d-card";
+import Pagination from "../../Pagination";
+import { blogs } from "../../data";
 
 function BlogCard() {
   const scrollToTop = () => {
@@ -52,7 +52,7 @@ function BlogCard() {
                   className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-blog-component-bg dark:border-border-color overflow-hidden"
                 >
                   <img
-                    src={blog.imageSrc}
+                    src={blog.image}
                     alt=""
                     className="rounded-t-lg h-72 w-full"
                   />
@@ -76,7 +76,7 @@ function BlogCard() {
                     >
                       {Array.from({ length: 20 }, (_, index) => (
                         <span key={index} className="mb-4 block">
-                          {blog[`content${index + 1}`]}
+                          {blog.description}
                         </span>
                       ))}
                     </CardItem>

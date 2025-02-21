@@ -24,7 +24,7 @@ const Language = () => {
           <div
             key={index}
             className="relative overflow-hidden bg-bgcom border border-bgShade dark:border-border-color dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center"
-            data-aos="fade-up"
+            data-aos="zoom-in-down"
             data-aos-offset="150"
           >
             {/* Meteor effect */}

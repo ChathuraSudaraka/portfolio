@@ -1,22 +1,19 @@
 import { useState } from "react";
 
-import "./Styles/AddComment.scss";
-
 const AddComment = ({ buttonValue, addComments, replyingTo }) => {
-  const replyingToUser = replyingTo ? `@${replyingTo}, ` : "";
   const [comment, setComment] = useState("");
+  const replyingToUser = replyingTo ? `@${replyingTo} ` : "";
 
   const clickHandler = () => {
-    if (comment === "" || comment === " ") return;
+    if (comment.trim() === "") return;
 
     const newComment = {
-      id: Math.floor(Math.random() * 100) + 5,
-      content: replyingToUser + comment,
+      content: comment,
       createdAt: new Date(),
-      score: 0,
-      username: "chathura",
-      currentUser: true,
-      replies: [],
+      username: "You", // Replace with actual user data
+      userAvatar: "/default-avatar.jpg", // Replace with actual user avatar
+      likes: 0,
+      replies: []
     };
 
     addComments(newComment);
@@ -24,23 +21,38 @@ const AddComment = ({ buttonValue, addComments, replyingTo }) => {
   };
 
   return (
-    <div className="add-comment lg:w-[1420px] dark:bg-custom-dark-blue border border-black dark:border-border-color">
-      <div className="profile-pic"></div>
+    <div className="bg-white dark:bg-gray-800/90 rounded-lg shadow-sm">
       <textarea
-        className="comment-input dark:bg-custom-dark-blue dark:text-slate-300"
-        placeholder="Add a comment"
-        value={replyingToUser + comment}
-        onChange={(e) => {
-          setComment(
-            e.target.value.replace(replyingTo ? `@${replyingTo}, ` : "", "")
-          );
-        }}
+        className="w-full min-h-[100px] p-4 text-gray-700 dark:text-gray-300 bg-transparent
+                   border border-gray-200 dark:border-gray-700 rounded-t-lg 
+                   resize-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+        placeholder={replyingTo ? `Reply to ${replyingTo}...` : "What are your thoughts?"}
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
       />
-      <div className="send-btn-container">
-        <div className="profile-pic"></div>
-        <button className="add-btn" onClick={clickHandler}>
-          {buttonValue}
-        </button>
+      <div className="flex items-center justify-between p-4 border-t border-gray-200 dark:border-gray-700">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+          <span className="text-sm text-gray-500">Commenting as Guest</span>
+        </div>
+        <div className="flex gap-2">
+          {replyingTo && (
+            <button
+              onClick={() => addComments(null)}
+              className="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800"
+            >
+              Cancel
+            </button>
+          )}
+          <button
+            onClick={clickHandler}
+            disabled={!comment.trim()}
+            className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg
+                     hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {buttonValue}
+          </button>
+        </div>
       </div>
     </div>
   );
