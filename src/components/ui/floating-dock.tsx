@@ -3,7 +3,7 @@
  * Desktop navbar is better positioned at the bottom
  * Mobile navbar is better positioned at bottom right.
  **/
-import { cn } from "../utils/cn";
+import { cn } from "../../utils/cn";
 import {
   AnimatePresence,
   MotionValue,

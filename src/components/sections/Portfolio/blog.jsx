@@ -1,8 +1,8 @@
 // Article.js
 import React from "react";
-import { BlogIcon } from "./hooks/CustomTag";
+import { BlogIcon } from "../../../hooks/CustomTag";
 import { Link } from "react-router-dom";
-import { blogs } from "../BlogPage/data";
+import { blogs } from "../../../context/data";
 
 const Article = () => {
   const scrollToTop = () => {
@@ -23,7 +23,7 @@ const Article = () => {
           </div>
           <div className="flex items-center">
             <Link
-              to="/BlogApp"
+              to="/blog"
               onClick={scrollToTop}
               className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
             >

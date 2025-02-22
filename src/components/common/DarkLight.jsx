@@ -1,6 +1,6 @@
 import React from "react";
-import useThemeSwitcher from "./hooks/useThemeSwitcher";
-import { Moon, Sun } from "./hooks/CustomTag";
+import useThemeSwitcher from "../../hooks/useThemeSwitcher";
+import { Moon, Sun } from "../../hooks/CustomTag";
 import { motion } from "framer-motion";
 
 const DarkLight = () => {

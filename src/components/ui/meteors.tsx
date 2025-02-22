@@ -1,5 +1,5 @@
-import { cn } from "../utils/cn";
 import clsx from "clsx";
+import { cn } from "../../utils/cn";
 import React from "react";
 
 export const Meteors = ({

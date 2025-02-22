@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { GitHubIcon, SmallGitHubIcon } from "./hooks/CustomTag";
+import { GitHubIcon, SmallGitHubIcon } from "../../../hooks/CustomTag";
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch("projects.json")
+    fetch("/projects.json")
       .then((res) => res.json())
-      .then((data) => setProjects(data));
+      .then((data) => setProjects(data))
+      .catch((error) => console.error("Error loading projects:", error));
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 import React from "react";
-import { Csharp, HTML, Java, Javascript, PHP, Python } from "./hooks/CustomTag";
-import { Meteors } from "../ui/meteors";
+import { Csharp, HTML, Java, Javascript, PHP, Python } from "../../../hooks/CustomTag";
+import { Meteors } from "../../ui/meteors";
 
 const Language = () => {
   // Define your coding language skills and their respective percentages here

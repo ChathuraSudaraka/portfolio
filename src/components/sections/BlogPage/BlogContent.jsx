@@ -1,10 +1,11 @@
 // BlogCard.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Category from "./Category";
-import { CardContainer, CardItem } from "../../../ui/3d-card";
-import Pagination from "../../Pagination";
-import { blogs } from "../../data";
+import { CardContainer, CardItem } from "../../ui/3d-card";
+import Pagination from "../../common/Pagination";
+import { blogs } from "../../../context/data";
+import SearchBar from "../../sections/BlogPage/SearchBar";
 
 function BlogCard() {
   const scrollToTop = () => {
@@ -13,18 +14,36 @@ function BlogCard() {
 
   const [filteredBlogs, setFilteredBlogs] = useState(blogs);
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const onFilterBlogsByCategory = (category) => {
-    if (category === "All") {
-      setFilteredBlogs(blogs);
-    } else {
-      setFilteredBlogs(blogs.filter((blog) => blog.category === category));
+  useEffect(() => {
+    filterBlogs();
+  }, [selectedCategory, searchQuery]);
+
+  const filterBlogs = () => {
+    let filtered = blogs;
+
+    // Category filter
+    if (selectedCategory !== "All") {
+      filtered = filtered.filter((blog) => blog.category === selectedCategory);
     }
+
+    // Search filter
+    if (searchQuery) {
+      filtered = filtered.filter(
+        (blog) =>
+          blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          blog.description.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredBlogs(filtered);
   };
 
   return (
-    <section>
+    <section className="min-h-screen">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+        {/* Header */}
         <div className="mx-auto max-w-screen-sm text-center lg:mb-16 mb-8">
           <h2 className="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
             Our Blog
@@ -35,21 +54,37 @@ function BlogCard() {
           </p>
         </div>
 
+        {/* Search Bar */}
+        <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+
+        {/* Category Filter */}
         <Category
-          categories={Array.from(new Set(blogs.map((blog) => blog.category)))}
-          onFilterBlogsByCategory={onFilterBlogsByCategory}
+          categories={["All", ...new Set(blogs.map((blog) => blog.category))]}
+          onFilterBlogsByCategory={(category) => setSelectedCategory(category)}
           selectedCategory={selectedCategory}
         />
 
+        {/* No Results Message */}
+        {filteredBlogs.length === 0 && (
+          <div className="text-center py-10">
+            <p className="text-gray-500 dark:text-gray-400">
+              No blogs found matching your criteria.
+            </p>
+          </div>
+        )}
+
+        {/* Blog Grid */}
         <Pagination
           items={filteredBlogs}
-          itemsPerPage={4} // Adjust as needed
+          itemsPerPage={4}
           renderItem={(currentItems) => (
-            <div className="grid gap-8 lg:grid-cols-2 -mx-5">
+            <div className="grid gap-8 lg:grid-cols-2">
               {currentItems.map((blog) => (
                 <CardContainer
                   key={blog.id}
-                  className="bg-white rounded-lg border border-gray-200 shadow-md dark:bg-blog-component-bg dark:border-border-color overflow-hidden"
+                  className="group hover:shadow-xl transition-shadow duration-300
+                    bg-white rounded-lg border border-gray-200 shadow-md 
+                    dark:bg-blog-component-bg dark:border-border-color overflow-hidden"
                 >
                   <img
                     src={blog.image}
@@ -113,8 +148,8 @@ function BlogCard() {
               ))}
             </div>
           )}
-          containerClassName="containerClassName"
-          pageLinkClassName="flex items-center "
+          containerClassName="mt-8"
+          pageLinkClassName="hover:text-primary-500 transition-colors duration-200"
         />
       </div>
     </section>

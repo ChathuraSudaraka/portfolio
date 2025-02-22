@@ -1,16 +1,16 @@
 import React from "react";
 import "./App.css";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import BackToTop from "./components/Portfolio/BackToTop";
-import DarkLight from "./components/Portfolio/DarkLight";
-import CircleFollowMouse from "./components/Portfolio/hooks/use-follow-pointer";
-import ScrollAnimation from "./components/Portfolio/hooks/ScrollAnimation";
-import NotePad from "./components/BlogPage/Pages/Tiptap/NotePad";
 import Home from "./Pages/home";
-import BlogPage from "./Pages/blog";
-import BlogData from "./components/BlogPage/BlogPage";
-import Work from "./Pages/work";
-import NotFound from "./components/NotFound";
+import BlogPage from "./Pages/Blog";
+import Work from "./Pages/Work";
+import NotePad from "./components/sections/BlogPage/Tiptap/NotePad";
+import NotFound from "./Pages/NotFound";
+import BlogData from "./Pages/BlogPage";
+import DarkLight from "./components/common/DarkLight";
+import ScrollAnimation from "./hooks/ScrollAnimation";
+import BackToTop from "./components/common/BackToTop";
+import CircleFollowMouse from "./hooks/use-follow-pointer";
 
 function App() {
   return (
@@ -24,13 +24,10 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {/* This Component files need to every Pages */}
-      {/* Buttons */}
       <BackToTop />
       <DarkLight />
-      <CircleFollowMouse />
-      {/* Component */}
       <ScrollAnimation />
+      <CircleFollowMouse />
     </BrowserRouter>
   );
 }

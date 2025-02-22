@@ -1,7 +1,7 @@
 // import { BackgroundBeams } from "../ui/background-beams";
-import { Cover } from "../ui/cover";
-import { Highlight } from "../ui/hero-highlight";
-import { HoverBorderGradient } from "../ui/hover-border-gradient";
+import { Cover } from "../../ui/cover";
+import { Highlight } from "../../ui/hero-highlight";
+import { HoverBorderGradient } from "../../ui/hover-border-gradient";
 import banner from "/assets/banner.webp";
 import pdf from "/assets/file/dummy.pdf";
 import { MdDownloadForOffline } from "react-icons/md";

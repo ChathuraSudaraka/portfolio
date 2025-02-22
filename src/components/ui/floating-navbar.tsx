@@ -7,7 +7,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
-import { cn } from "../utils/cn";
+import { cn } from "../../utils/cn"; 
 import { Link as ScrollLink } from "react-scroll";
 import logo from "/assets/logo.webp";
 

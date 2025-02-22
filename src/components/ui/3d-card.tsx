@@ -8,7 +8,7 @@ import React, {
   useRef,
   useEffect,
 } from "react";
-import { cn } from "../utils/cn";
+import { cn } from "../../utils/cn";
 
 const MouseEnterContext = createContext<
   [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined

@@ -1,6 +1,6 @@
 import React from "react";
-import Layout from "../Layouts/Layout";
-import { TimelineDemo } from "../components/Portfolio/Work";
+import Layout from "../components/Layouts/Layout";
+import { TimelineDemo } from "../components/sections/Portfolio/Work";
 
 function Work() {
   return (

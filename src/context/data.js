@@ -128,7 +128,7 @@ Key Topics:
 - Best practices for error handling and caching
     `,
     category: "React",
-    image: "https://images.unsplash.com/photo-1593642634311-18fda28b0bdf?ixlib=rb-4.0.3",
+    image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3",
     author: {
       name: "Alice Brown",
       avatar: "/alice-avatar.jpg",

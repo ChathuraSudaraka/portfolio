@@ -1,4 +1,4 @@
-import { TracingBeam } from "../components/ui/tracing-beam";
+import { TracingBeam } from "../ui/tracing-beam";
 
 const BlogLayout = ({ children }) => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { HoverBorderGradient } from "./ui/hover-border-gradient";
+import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
 
 const NotFound = () => {
   return (

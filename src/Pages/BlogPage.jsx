@@ -1,9 +1,9 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
-import { blogs, comments as initialComments } from "./data";
+import { blogs, comments as initialComments } from "../context/data";
 import { useParams, Navigate } from "react-router-dom";
-import BlogLayout from "../../Layouts/BlogLayout";
-import AddComment from "./Pages/Comment-Area/AddComment";
+import BlogLayout from "../components/Layouts/BlogLayout";
+import AddComment from "../components/common/AddComment";
 import { motion } from "framer-motion";
 import {
   FaTwitter,
@@ -35,7 +35,7 @@ class ErrorBoundary extends React.Component {
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4">Something went wrong.</h2>
             <button
-              onClick={() => (window.location.href = "/BlogApp")}
+              onClick={() => (window.location.href = "/blog")}
               className="text-blue-500 hover:underline"
             >
               Return to Blog List
