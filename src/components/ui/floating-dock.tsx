@@ -4,7 +4,6 @@
  * Mobile navbar is better positioned at bottom right.
  **/
 import { cn } from "../utils/cn";
-import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import {
   AnimatePresence,
   MotionValue,
@@ -13,6 +12,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
+import React from "react";
 import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -43,7 +43,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto flex h-16 gap-4 items-end  rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
+        "mx-auto flex h-20 gap-6 items-end rounded-3xl bg-white/10 dark:bg-neutral-950/30 backdrop-blur-xl px-6 pb-4 shadow-lg border border-white/20 dark:border-neutral-800/50",
         className
       )}
     >
@@ -73,14 +73,14 @@ function IconContainer({
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
+  let widthTransform = useTransform(distance, [-150, 0, 150], [45, 90, 45]);
+  let heightTransform = useTransform(distance, [-150, 0, 150], [45, 90, 45]);
 
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
+  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [24, 44, 24]);
   let heightTransformIcon = useTransform(
     distance,
     [-150, 0, 150],
-    [20, 40, 20]
+    [24, 44, 24]
   );
 
   let width = useSpring(widthTransform, {
@@ -114,7 +114,7 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
+        className="aspect-square rounded-2xl bg-white/20 dark:bg-neutral-800/50 hover:bg-white/30 dark:hover:bg-neutral-700/50 backdrop-blur-md flex items-center justify-center relative shadow-lg border border-white/30 dark:border-neutral-700/50 transition-colors"
       >
         <AnimatePresence>
           {hovered && (
@@ -122,7 +122,7 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -bottom-10 w-fit text-xs"
+              className="px-3 py-1.5 whitespace-pre rounded-lg bg-white/20 dark:bg-neutral-900/80 backdrop-blur-md border border-white/30 dark:border-neutral-800 text-neutral-800 dark:text-white absolute left-1/2 -translate-x-1/2 -bottom-12 w-fit text-sm font-medium shadow-xl"
             >
               {title}
             </motion.div>

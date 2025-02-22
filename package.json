@@ -73,7 +73,7 @@
     "react-syntax-highlighter": "^15.6.1",
     "slick-carousel": "^1.8.1",
     "swiper": "^10.2.0",
-    "tailwind-merge": "^2.5.4",
+    "tailwind-merge": "^2.6.0",
     "three": "^0.170.0",
     "tiptap-commands": "^1.17.1",
     "tiptap-extension-font-size": "^1.2.0"
