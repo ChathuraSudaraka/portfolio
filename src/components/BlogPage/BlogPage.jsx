@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { blogs, comments as initialComments } from "./data";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import BlogLayout from "../../Layouts/BlogLayout";
 import AddComment from "./Pages/Comment-Area/AddComment";
 import { motion } from "framer-motion";
@@ -181,25 +181,7 @@ const BlogData = () => {
     : blogs;
 
   if (!blog) {
-    return (
-      <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4 sm:px-6">
-        <div className="w-full max-w-md bg-white p-6 sm:p-8 rounded-lg shadow-md">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-3 sm:mb-4">
-            Blog Not Found
-          </h2>
-          <p className="text-gray-600 text-sm sm:text-base mb-4">
-            Sorry, the blog you are looking for could not be found. Please check
-            the URL or try again later.
-          </p>
-          <a
-            href="/BlogApp"
-            className="text-blue-500 hover:underline text-sm sm:text-base inline-block"
-          >
-            Go to Home
-          </a>
-        </div>
-      </div>
-    );
+    return <Navigate to="/404" replace />;
   }
 
   return (

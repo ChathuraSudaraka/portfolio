@@ -30,11 +30,16 @@ const BackToTop = () => {
           }}
           onClick={scrollToTop}
           title="Scroll to top"
-          className="fixed bottom-8 right-8 p-3 bg-gradient-to-r from-blue-500 to-blue-600 
-                     text-white rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] 
-                     backdrop-blur-[2px] border border-white/10
-                     hover:shadow-[0_8px_30px_rgba(59,130,246,0.5)]
-                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+          className="fixed bottom-20 md:bottom-4 right-4 p-3 
+                     bg-gray-100/70 dark:bg-gray-800/50
+                     text-gray-600 dark:text-gray-200
+                     rounded-full shadow-lg backdrop-blur-sm
+                     border border-gray-200/50 dark:border-gray-700/30
+                     hover:bg-gray-200/80 dark:hover:bg-gray-700/60
+                     hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)]
+                     dark:hover:shadow-[0_8px_30px_rgba(0,0,0,0.2)]
+                     focus:outline-none focus:ring-2 
+                     focus:ring-gray-300 dark:focus:ring-gray-500
                      group"
         >
           <motion.div
@@ -46,7 +51,7 @@ const BackToTop = () => {
               ease: "easeInOut"
             }}
           >
-            <FiArrowUp className="w-6 h-6 group-hover:stroke-2" />
+            <FiArrowUp className="w-5 h-5 group-hover:stroke-2" />
           </motion.div>
         </motion.button>
       )}

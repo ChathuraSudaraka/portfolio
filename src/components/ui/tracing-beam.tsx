@@ -94,15 +94,15 @@ export const TracingBeam = ({
           <motion.path
             d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
             fill="none"
-            stroke="#5A6678"
-            strokeOpacity="0.16"
+            stroke="#9CA3AF"
+            strokeOpacity="0.24"
             transition={{ duration: 10 }}
           ></motion.path>
           <motion.path
             d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
             fill="none"
             stroke="url(#gradient)"
-            strokeWidth="1.25"
+            strokeWidth="2"
             className="motion-reduce:hidden"
             transition={{ duration: 10 }}
           ></motion.path>
@@ -115,10 +115,10 @@ export const TracingBeam = ({
               y1={y1}
               y2={y2}
             >
-              <stop stopColor="#1E90FF" stopOpacity="0"></stop>
-              <stop stopColor="#1E90FF"></stop>
-              <stop offset="0.325" stopColor="#6A5ACD"></stop>
-              <stop offset="1" stopColor="#9370DB" stopOpacity="0"></stop>
+              <stop stopColor="#60A5FA" stopOpacity="0"></stop>
+              <stop stopColor="#3B82F6"></stop>
+              <stop offset="0.325" stopColor="#8B5CF6"></stop>
+              <stop offset="1" stopColor="#EC4899" stopOpacity="0"></stop>
             </motion.linearGradient>
           </defs>
         </svg>

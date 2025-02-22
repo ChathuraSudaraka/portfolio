@@ -25,7 +25,12 @@ export const FloatingDock = ({
 }) => {
   return (
     <>
-      <FloatingDockDesktop items={items} className={desktopClassName} />
+      <div className="hidden md:block">
+        <FloatingDockDesktop items={items} className={desktopClassName} />
+      </div>
+      <div className="block md:hidden">
+        <FloatingDockMobile items={items} />
+      </div>
     </>
   );
 };
@@ -50,6 +55,26 @@ const FloatingDockDesktop = ({
       {items.map((item) => (
         <IconContainer mouseX={mouseX} key={item.title} {...item} />
       ))}
+    </motion.div>
+  );
+};
+
+const FloatingDockMobile = ({
+  items,
+}: {
+  items: { title: string; icon: React.ReactNode; href: string }[];
+}) => {
+  return (
+    <motion.div
+      initial={{ y: 100 }}
+      animate={{ y: 0 }}
+      className="fixed bottom-4 left-4 -translate-x-1/2 bg-white/10 dark:bg-neutral-950/30 backdrop-blur-xl rounded-full border border-white/20 dark:border-neutral-800/50 shadow-lg px-3"
+    >
+      <div className="flex items-center justify-center gap-1">
+        {items.map((item) => (
+          <MobileIcon key={item.title} {...item} />
+        ))}
+      </div>
     </motion.div>
   );
 };
@@ -134,6 +159,55 @@ function IconContainer({
         >
           {icon}
         </motion.div>
+      </motion.div>
+    </Link>
+  );
+}
+
+function MobileIcon({
+  title,
+  icon,
+  href,
+}: {
+  title: string;
+  icon: React.ReactNode;
+  href: string;
+}) {
+  const [pressed, setPressed] = useState(false);
+
+  return (
+    <Link to={href}>
+      <motion.div
+         whileTap={{ scale: 0.85 }}
+         onTapStart={() => setPressed(true)}
+         onTap={() => setPressed(false)}
+         onTapCancel={() => setPressed(false)}
+         className={cn(
+          "relative flex items-center justify-center w-10 h-10 my-2",
+          "rounded-full",
+          "hover:bg-white/20 dark:hover:bg-neutral-800/50",
+          "active:bg-white/30 dark:active:bg-neutral-700/50",
+          "transition-colors"
+        )}
+      >
+        <motion.div 
+          className="w-5 h-5"
+          animate={{ scale: pressed ? 0.85 : 1 }}
+        >
+          {icon}
+        </motion.div>
+        <AnimatePresence>
+          {pressed && (
+            <motion.div
+              initial={{ opacity: 0, y: 4 }}
+              animate={{ opacity: 1, y: -32 }}
+              exit={{ opacity: 0, y: 4 }}
+              className="absolute px-2 py-1 text-[10px] font-medium rounded-md bg-black/80 text-white backdrop-blur-md border border-white/10 shadow-xl whitespace-nowrap"
+            >
+              {title}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.div>
     </Link>
   );

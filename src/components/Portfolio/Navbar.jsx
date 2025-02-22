@@ -1,8 +1,5 @@
 import React from "react";
 import {
-  IconBrandGithub,
-  IconBrandX,
-  IconExchange,
   IconHome,
   IconNewSection,
   IconTerminal2,
@@ -30,16 +27,12 @@ const Navbar = () => {
       icon: (
         <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
-      href: "/BlogApp/*",
+      href: "/blog",
     },
   ];
   return (
-    <div className="fixed z-20 top-10 left-0 right-0 flex items-center justify-center w-full">
-      <FloatingDock
-        // only for demo, remove for production
-        // mobileClassName="translate-y-20"
-        items={links}
-      />
+    <div className="fixed z-20 md:top-10 left-0 right-0 flex items-center justify-center w-full">
+      <FloatingDock items={links} />
     </div>
   );
 };

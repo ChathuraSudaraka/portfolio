@@ -10,6 +10,93 @@ export function TimelineDemo() {
           <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
             I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
           </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
+          <p className="text-neutral-800 dark:text-neutral-200 text-xs md:text-sm font-normal mb-4">
+            I began my programming journey in 2022, exploring fundamentals in JavaScript and Python.
+          </p>
         </div>
       ),
     },
