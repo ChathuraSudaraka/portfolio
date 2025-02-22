@@ -16,18 +16,37 @@ export const TracingBeam = ({
   className?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
   const contentRef = useRef<HTMLDivElement>(null);
   const [svgHeight, setSvgHeight] = useState(0);
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end end"],
+  });
+
   useEffect(() => {
+    const updateHeight = () => {
+      if (contentRef.current) {
+        const height = contentRef.current.scrollHeight;
+        setSvgHeight(height);
+      }
+    };
+
+    // Initial height calculation
+    updateHeight();
+
+    // Set up resize observer to handle dynamic content changes
+    const resizeObserver = new ResizeObserver(updateHeight);
     if (contentRef.current) {
-      setSvgHeight(contentRef.current.offsetHeight);
+      resizeObserver.observe(contentRef.current);
     }
+
+    // Clean up
+    return () => {
+      if (contentRef.current) {
+        resizeObserver.unobserve(contentRef.current);
+      }
+    };
   }, []);
 
   const y1 = useSpring(
@@ -42,9 +61,9 @@ export const TracingBeam = ({
   return (
     <motion.div
       ref={ref}
-      className={cn("relative w-full h-full", className)} // hidden on mobile, shown on md+
+      className={cn("relative w-full max-w-full", className)}
     >
-      <div className="absolute left-5 hidden md:block top-3">
+      <div className="absolute -left-4 md:left-8 top-3">
         <motion.div
           transition={{ duration: 0.2, delay: 0.5 }}
           animate={{
@@ -70,6 +89,7 @@ export const TracingBeam = ({
           height={svgHeight}
           className="ml-2 block"
           aria-hidden="true"
+          preserveAspectRatio="none"
         >
           <motion.path
             d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
@@ -103,7 +123,9 @@ export const TracingBeam = ({
           </defs>
         </svg>
       </div>
-      <div ref={contentRef}>{children}</div>
+      <div ref={contentRef} className="w-full">
+        {children}
+      </div>
     </motion.div>
   );
 };

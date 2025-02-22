@@ -1,36 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import useThemeSwitcher from "./hooks/useThemeSwitcher";
 import { Moon, Sun } from "./hooks/CustomTag";
+import { motion } from "framer-motion";
 
 const DarkLight = () => {
   const [mode, setMode] = useThemeSwitcher();
-  const [themeTransition, setThemeTransition] = useState("");
-  const [rotation, setRotation] = useState(0);
 
-  const toggleTheme = () => {
-    setThemeTransition("transition-all duration-500");
-    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-    setRotation((prevRotation) => prevRotation + 360); // Rotate by 360 degrees
-  };
+  const toggleTheme = () => setMode(prevMode => (prevMode === "light" ? "dark" : "light"));
 
   return (
-    <div className={`bg-slate-400 ${themeTransition}`}>
-      <div className="fixed z-10 top-28 right-0 w-16 bg-white rounded-l-full shadow-lg p-1">
-        <button
-          className={`w-12 h-12 flex items-center justify-center rounded-full border-2 hover:bg-opacity-50`}
-          onClick={toggleTheme}
-          style={{
-            backgroundColor: mode === "dark" ? "darkblue" : "lightblue",
-            borderColor: mode === "dark" ? "darkblue" : "lightblue",
-            color: mode === "dark" ? "white" : "black",
-            transition:
-              "background-color 0.5s ease, border-color 0.5s ease, color 0.5s ease",
-            transform: `rotate(${rotation}deg)`, // Apply rotation here
-          }}
-        >
-          {mode === "dark" ? <Moon /> : <Sun />}
-        </button>
-      </div>
+    // Container remains unchanged or adjust as needed
+    <div className="fixed z-10 top-28 right-0 w-16">
+      <motion.button
+        onClick={toggleTheme}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9, rotate: 360 }}
+        transition={{ type: "spring", stiffness: 300 }}
+        className="w-12 h-12 flex items-center justify-center rounded-full shadow-lg focus:outline-none"
+        style={{
+          backgroundColor: mode === "dark" ? "darkblue" : "lightblue",
+          border: `2px solid ${mode === "dark" ? "darkblue" : "lightblue"}`,
+          color: mode === "dark" ? "white" : "black",
+        }}
+      >
+        {mode === "dark" ? <Moon /> : <Sun />}
+      </motion.button>
     </div>
   );
 };

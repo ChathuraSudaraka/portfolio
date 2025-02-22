@@ -154,7 +154,7 @@ export const comments = [
     id: 1,
     blogId: 1,
     username: "Sarah Miller",
-    userAvatar: "/avatars/sarah.jpg",
+    // userAvatar: "/avatars/sarah.jpg",
     content: "This is exactly what I needed! The explanation of components is very clear. Would love to see more about hooks in the future.",
     createdAt: "2024-01-16T10:30:00",
     likes: 15,
@@ -162,7 +162,7 @@ export const comments = [
       {
         id: 101,
         username: "John Doe",
-        userAvatar: "/author-avatar.jpg",
+        // userAvatar: "/author-avatar.jpg",
         content: "Thanks Sarah! I'm planning a detailed article about hooks next week.",
         createdAt: "2024-01-16T11:00:00",
         likes: 5
@@ -173,7 +173,7 @@ export const comments = [
     id: 2,
     blogId: 1,
     username: "Mike Chen",
-    userAvatar: "/avatars/mike.jpg",
+    // userAvatar: "/avatars/mike.jpg",
     content: "Great introduction to React! The code examples are particularly helpful. One question: what are your thoughts on using class components vs. functional components?",
     createdAt: "2024-01-16T15:45:00",
     likes: 8,

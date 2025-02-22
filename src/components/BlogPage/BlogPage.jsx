@@ -5,7 +5,12 @@ import { useParams } from "react-router-dom";
 import BlogLayout from "../../Layouts/BlogLayout";
 import AddComment from "./Pages/Comment-Area/AddComment";
 import { motion } from "framer-motion";
-import { FaTwitter, FaLinkedin, FaFacebook } from "react-icons/fa";
+import {
+  FaTwitter,
+  FaLinkedin,
+  FaFacebook,
+  FaUserCircle,
+} from "react-icons/fa";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import { FiEdit2, FiTrash2, FiMessageSquare } from "react-icons/fi";
 import ReactMarkdown from "react-markdown";
@@ -213,35 +218,28 @@ const BlogData = () => {
                 {readingTime} min read
               </span>
             </div>
-
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
               {blog.title}
             </h1>
-
             {/* Tags */}
             <div className="flex flex-wrap gap-2">
               {tags.map((tag, index) => (
                 <button
                   key={index}
                   onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                  className={`px-4 py-1 rounded-full text-sm font-semibold transition-colors cursor-pointer ${activeTag === tag
-                    ? "bg-black text-white"
-                    : "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100"
-                    }`}
+                  className={`px-4 py-1 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
+                    activeTag === tag
+                      ? "bg-black text-white"
+                      : "bg-gray-100 text-gray-900 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100"
+                  }`}
                 >
                   #{tag}
                 </button>
               ))}
             </div>
-
-            {/* Author Info - keep existing structure, just update colors */}
             <div className="flex items-center space-x-4">
-              <img
-                src="/author-avatar.jpg"
-                alt="Author"
-                className="w-12 h-12 rounded-full"
-              />
+              <FaUserCircle className="w-12 h-12 text-gray-900 dark:text-white" />
               <div>
                 <h3 className="font-medium text-gray-900 dark:text-white">
                   John Doe
@@ -253,7 +251,6 @@ const BlogData = () => {
             </div>
           </div>
         </header>
-
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Article Content */}
@@ -362,7 +359,10 @@ const BlogData = () => {
 
               {/* Comment Form */}
               <div className="mb-8">
-                <AddComment buttonValue="Post Comment" addComments={addComment} />
+                <AddComment
+                  buttonValue="Post Comment"
+                  addComments={addComment}
+                />
               </div>
 
               {/* Comments List */}
@@ -375,11 +375,15 @@ const BlogData = () => {
                     className="bg-white dark:bg-gray-800/90 rounded-lg p-6 shadow-sm"
                   >
                     <div className="flex items-start gap-4">
-                      <img
-                        src={comment.userAvatar || "/default-avatar.jpg"}
-                        alt={comment.username}
-                        className="w-10 h-10 rounded-full mt-1 ring-2 ring-gray-100 dark:ring-gray-700"
-                      />
+                      {comment.userAvatar ? (
+                        <img
+                          src={comment.userAvatar}
+                          alt={comment.username}
+                          className="w-10 h-10 rounded-full mt-1 ring-2 ring-gray-100 dark:ring-gray-700"
+                        />
+                      ) : (
+                        <FaUserCircle className="w-10 h-10 rounded-full mt-1 ring-2 ring-gray-100 dark:ring-gray-700" />
+                      )}
                       <div className="flex-1">
                         <div className="flex items-center justify-between mb-2">
                           <div>
@@ -481,11 +485,15 @@ const BlogData = () => {
                                 key={reply.id}
                                 className="flex items-start gap-4"
                               >
-                                <img
-                                  src={reply.userAvatar || "https://e7.pngegg.com/pngimages/505/761/png-clipart-login-computer-icons-avatar-icon-monochrome-black.png"}
-                                  alt={reply.username}
-                                  className="w-8 h-8 rounded-full mt-1 ring-2 ring-gray-100 dark:ring-gray-700"
-                                />
+                                {reply.userAvatar ? (
+                                  <img
+                                    src={reply.userAvatar}
+                                    alt={reply.username}
+                                    className="w-8 h-8 rounded-full mt-1 ring-2 ring-gray-100 dark:ring-gray-700"
+                                  />
+                                ) : (
+                                  <FaUserCircle className="w-8 h-8 text-gray-900 dark:text-white" />
+                                )}
                                 <div className="flex-1">
                                   <div className="flex items-center justify-between mb-2">
                                     <div>
@@ -501,7 +509,9 @@ const BlogData = () => {
                                     <button
                                       className="text-sm text-gray-500 hover:text-blue-500 
                                                dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
-                                      onClick={() => handleLikeComment(reply.id)}
+                                      onClick={() =>
+                                        handleLikeComment(reply.id)
+                                      }
                                     >
                                       ♥ {reply.likes}
                                     </button>
