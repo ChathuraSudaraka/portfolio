@@ -1,25 +1,55 @@
 import React from "react";
+import { motion } from "framer-motion";
 import Framework from "./Framework";
 import Language from "./Language";
 
 const CodingSkills = () => {
   return (
-    <section className="relative py-20" id="skills">
+    <section className="relative py-20 overflow-hidden" id="skills">
       <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-xl text-primary font-semibold mb-5">
-            Technical Expertise
-          </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-headingcolor dark:text-white mb-4">
-            My Coding Skills
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            A showcase of my programming languages and frameworks proficiency
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            {/* Make badge more responsive */}
+            <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4">
+              <span className="relative flex h-2 w-2 sm:h-3 sm:w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-full w-full bg-primary"></span>
+              </span>
+              <p className="text-xs sm:text-sm font-medium text-primary whitespace-nowrap">
+                Technical Stack
+              </p>
+            </div>
+            
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-headingcolor dark:text-white mb-4">
+              My Coding <span className="text-primary">Skills</span>
+            </h1>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              A showcase of my programming languages and frameworks proficiency
+            </p>
+          </motion.div>
         </div>
-        
-        <Language />
-        <Framework />
+
+        {/* Skills sections with simple animations */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Language />
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <Framework />
+        </motion.div>
       </div>
     </section>
   );

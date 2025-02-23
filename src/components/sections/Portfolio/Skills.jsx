@@ -2,37 +2,57 @@
 import { animate, motion } from "framer-motion";
 import React, { useEffect } from "react";
 import { cn } from "../../../utils/cn";
-import { SiReact, SiNodedotjs, SiSpring, SiDocker, SiJavascript, SiTypescript, SiPostgresql, SiAwslambda, SiNextdotjs, SiTailwindcss, SiMongodb, SiPrisma, SiGit, SiGithub, SiAmazonaws, SiVercel } from "react-icons/si";
+import {
+  SiReact,
+  SiNodedotjs,
+  SiSpring,
+  SiDocker,
+  SiJavascript,
+  SiTypescript,
+  SiPostgresql,
+  SiAwslambda,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiMongodb,
+  SiPrisma,
+  SiGit,
+  SiGithub,
+  SiAmazonaws,
+  SiVercel,
+} from "react-icons/si";
 
 const TechStack = [
   {
     id: 1,
     title: "Frontend Development",
-    description: "Building modern web applications with React, Next.js, and TypeScript",
+    description:
+      "Building modern web applications with React, Next.js, and TypeScript",
     icon: SiReact,
-    iconColor: "text-blue-500"
+    iconColor: "text-blue-500",
   },
   {
     id: 2,
     title: "Backend Engineering",
-    description: "Creating robust APIs and services with Node.js and Spring Boot",
+    description:
+      "Creating robust APIs and services with Node.js and Spring Boot",
     icon: SiNodedotjs,
-    iconColor: "text-green-500"
+    iconColor: "text-green-500",
   },
   {
     id: 3,
     title: "Cloud & DevOps",
     description: "Deploying and managing applications on AWS with Docker",
     icon: SiAwslambda,
-    iconColor: "text-yellow-500"
+    iconColor: "text-yellow-500",
   },
   {
     id: 4,
     title: "Database Design",
-    description: "Designing efficient database structures with PostgreSQL and MongoDB",
+    description:
+      "Designing efficient database structures with PostgreSQL and MongoDB",
     icon: SiPostgresql,
-    iconColor: "text-blue-400"
-  }
+    iconColor: "text-blue-400",
+  },
 ];
 
 const Card = ({ className, children, skill }) => {
@@ -46,10 +66,12 @@ const Card = ({ className, children, skill }) => {
       )}
     >
       <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div className="absolute inset-0">
         <Sparkles />
       </div>
-      <div className="relative p-8 flex flex-col"> {/* Increased padding */}
+      <div className="relative p-8 flex flex-col">
+        {" "}
+        {/* Increased padding */}
         <div className="w-16 h-16 rounded-xl flex items-center justify-center bg-gray-50 dark:bg-gray-900 group-hover:scale-110 transition-transform duration-300">
           {/* Increased icon size */}
           <motion.div
@@ -59,14 +81,14 @@ const Card = ({ className, children, skill }) => {
             {children}
           </motion.div>
         </div>
-        <motion.h3 
+        <motion.h3
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="text-2xl font-semibold text-headingcolor dark:text-white mt-6" // Increased text size and spacing
         >
           {skill.title}
         </motion.h3>
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.1 }}
@@ -82,9 +104,16 @@ const Card = ({ className, children, skill }) => {
 
 export function Skills() {
   return (
-    <div className="relative min-h-screen" id="skills">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="mx-auto">
+    <div className="relative min-h-screen bg-white dark:bg-black" id="skills">
+      {/* Background Elements - Match Home */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)]" />
+      <div className="absolute top-0 right-0 h-96 w-96 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 h-96 w-96 bg-violet-500/10 rounded-full blur-3xl" />
+
+      <div className="container mx-auto px-4 py-32 relative">
+        <div className="max-w-7xl mx-auto">
+          {" "}
+          {/* Increased max width */}
           {/* Header Section */}
           <div className="text-center mb-20">
             <motion.div
@@ -105,24 +134,26 @@ export function Skills() {
               </h2>
             </motion.div>
           </div>
-
           {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16"> {/* Changed to 2 columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+            {" "}
+            {/* Changed to 2 columns */}
             {TechStack.map((skill, index) => (
               <motion.div
                 key={skill.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 whileHover={{ scale: 1.02 }}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   delay: index * 0.1,
                   type: "spring",
                   stiffness: 200,
                 }}
               >
                 <Card skill={skill}>
-                  <skill.icon className={cn("h-10 w-10", skill.iconColor)} /> {/* Increased icon size */}
+                  <skill.icon className={cn("h-10 w-10", skill.iconColor)} />{" "}
+                  {/* Increased icon size */}
                 </Card>
               </motion.div>
             ))}
@@ -152,6 +183,7 @@ const Sparkles = () => {
             duration: random() * 2 + 4,
             repeat: Infinity,
             ease: "linear",
+            repeatType: "loop",
           }}
           style={{
             position: "absolute",
