@@ -1,25 +1,29 @@
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import ReviewCard from './ReviewCard';
+import ReviewSlider from './ReviewCard';
 
 const Testimonial = () => {
   return (
-    <div className="lg:px-12 px-4 py-32" id='testimonials'>
-      <div className="mb-20">
-        <p className="text-xl dark:text-white text-headingcolor font-semibold mb-5">
-          Clients Feedback
-        </p>
-        <h2 className="md:text-5xl text-4xl dark:text-white text-headingcolor font-bold">
-          Customer testimonials
-        </h2>
-      </div>
+    <section className="relative min-h-screen" id="testimonial">
+      <div className="container px-4 py-20 relative">
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-3 py-2 rounded-full mb-4">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
+            </span>
+            <p className="text-sm font-medium text-primary">Client Reviews</p>
+          </div>
+          
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Customer <span className="text-primary">Testimonials</span>
+          </h2>
+        </div>
 
-      {/* reviews */}
-      <div>
-           <ReviewCard/>
+        <ReviewSlider />
       </div>
-    </div>
+    </section>
   );
 };
 

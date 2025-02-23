@@ -1,8 +1,6 @@
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from "react-icons/bs";
 
 const reviews = [
   {
@@ -48,112 +46,244 @@ const reviews = [
   // Add more review objects as needed
 ];
 
-const CustomerReviewsSlider = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    arrows: true, // Show the left/right navigation buttons by default
-    responsive: [
-      {
-        breakpoint: 768, // Set a breakpoint suitable for mobile screens
-        settings: {
-          arrows: false, // Hide the left/right navigation buttons on mobile screens
-          dots: true,
-          autoplay: true,
-          autoplaySpeed: 4000,
-          pauseOnHover: true,
-        },
-      },
-    ],
+// Add this helper function instead of importing wrap from popmotion
+const wrap = (min, max, v) => {
+  const rangeSize = max - min;
+  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
+
+const ReviewSlider = () => {
+  const [[page, direction], setPage] = useState([0, 0]);
+  const reviewIndex = wrap(0, reviews.length, page);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Auto-play functionality
+  useEffect(() => {
+    let autoPlayInterval;
+
+    if (isAutoPlaying) {
+      autoPlayInterval = setInterval(() => {
+        paginate(1);
+      }, 5000); // Change slide every 5 seconds
+    }
+
+    return () => {
+      if (autoPlayInterval) {
+        clearInterval(autoPlayInterval);
+      }
+    };
+  }, [isAutoPlaying, page]);
+
+  // Pause auto-play on hover
+  const handleMouseEnter = () => setIsAutoPlaying(false);
+  const handleMouseLeave = () => setIsAutoPlaying(true);
+
+  const paginate = (newDirection) => {
+    setPage([page + newDirection, newDirection]);
   };
 
   const slideVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+    enter: (direction) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+      rotateY: direction > 0 ? 45 : -45,
+      scale: 0.8
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      rotateY: 0,
+      scale: 1
+    },
+    exit: (direction) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+      rotateY: direction < 0 ? 45 : -45,
+      scale: 0.8
+    })
   };
 
-  const textVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.2 } },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5, delay: 0.4 } },
+  const swipeConfidenceThreshold = 10000;
+  const swipePower = (offset, velocity) => {
+    return Math.abs(offset) * velocity;
   };
 
   return (
-    <Slider {...settings}>
-      {reviews.map((review) => (
-        <motion.div
-          key={review.id}
-          initial="hidden"
-          animate="visible"
-          variants={slideVariants}
-          className="container mx-auto md:px-6"
+    <div 
+      className="relative overflow-hidden pb-2"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      {/* Updated Navigation Buttons */}
+      <div className="absolute top-1/2 -translate-y-1/2 left-4 z-20">
+        <motion.button
+          whileHover={{ scale: 1.1, x: -5 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => paginate(-1)}
+          className="text-black dark:text-white"
         >
-          <section className="text-center lg:text-left">
-            <div className="py-8 md:py-12 md:px-6">
-              <div className="container mx-auto xl:px-32">
-                <div className="grid items-center lg:grid-cols-2">
-                  <div className="mb-8 md:mt-8 lg:mt-0 lg:mb-0">
-                    <motion.div
-                      variants={textVariants}
-                      className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-4 py-6 md:py-8 shadow-lg backdrop-blur-[20px] border border-bgShade dark:border-border-color dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-8 lg:-mr-12"
-                    >
-                      <h2 className="mb-2 text-xl md:text-2xl font-bold text-primary dark:text-primary-400">
-                        {review.name}
-                      </h2>
-                      <p className="mb-2 text-sm md:text-base font-semibold dark:text-gray-200">
-                        {review.title}
-                      </p>
-                      <p className="mb-4 text-sm md:text-base text-neutral-500 dark:text-neutral-300 leading-relaxed">
-                        {review.description}
-                      </p>
-                      <ul className="flex justify-center lg:justify-start gap-1">
-                        {[...Array(5)].map((_, index) => (
-                          <li key={index}>
-                            <svg
+          <BsArrowLeftCircleFill className="w-8 h-8 transition-all duration-300 group-hover:text-white" />
+        </motion.button>
+      </div>
+      <div className="absolute top-1/2 -translate-y-1/2 right-4 z-20">
+        <motion.button
+          whileHover={{ scale: 1.1, x: 5 }}
+          whileTap={{ scale: 0.9 }}
+          onClick={() => paginate(1)}
+          className="text-black dark:text-white"
+        >
+          <BsArrowRightCircleFill className="w-8 h-8 transition-all duration-300 group-hover:text-white" />
+        </motion.button>
+      </div>
+
+      {/* Slider Content with perspective transform */}
+      <AnimatePresence initial={false} custom={direction} mode="wait">
+        <motion.div
+          key={page}
+          custom={direction}
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 200, damping: 30 },
+            opacity: { duration: 0.5 },
+            rotateY: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
+            scale: { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
+          }}
+          drag="x"
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={1}
+          onDragEnd={(e, { offset, velocity }) => {
+            const swipe = swipePower(offset.x, velocity.x);
+            if (swipe < -swipeConfidenceThreshold) {
+              paginate(1);
+            } else if (swipe > swipeConfidenceThreshold) {
+              paginate(-1);
+            }
+          }}
+          className="w-full"
+        >
+          <div className="container mx-auto px-4 py-12">
+            <section className="text-center lg:text-left">
+              <div className="py-12 md:px-6">
+                <div className="container mx-auto xl:px-32">
+                  <div className="grid items-center lg:grid-cols-2">
+                    {/* Content Side */}
+                    <div className="mb-12 lg:mb-0">
+                      <motion.div className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] dark:bg-[hsla(0,0%,5%,0.7)] px-6 py-12 shadow-lg backdrop-blur-xl border border-gray-200/50 dark:border-gray-800/50 md:px-12 lg:-mr-14">
+                        {/* Rating Stars */}
+                        <div className="flex justify-center lg:justify-start gap-1 mb-4">
+                          {[...Array(5)].map((_, i) => (
+                            <motion.svg
+                              key={i}
+                              initial={{ opacity: 0, scale: 0 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              transition={{ delay: i * 0.1 }}
+                              className="w-6 h-6 text-primary"
                               xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 96 960 960"
-                              className="w-4 text-primary dark:text-primary-400"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
                             >
-                              <path
-                                fill="currentColor"
-                                d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                              />
-                            </svg>
-                          </li>
-                        ))}
-                      </ul>
-                    </motion.div>
-                  </div>
-                  <motion.div
-                    variants={imageVariants}
-                    className="md:mb-8 lg:mb-0"
-                  >
-                    <div className="relative">
-                      <div className="w-24 h-24 mx-auto md:w-auto md:h-auto lg:rotate-[6deg] lg:max-w-md">
-                        <img
-                          src={review.imageSrc}
-                          className="w-full h-full rounded-full md:rounded-lg object-cover shadow-lg border-2 border-primary/20 md:border-0"
-                          alt={`${review.name}'s testimonial`}
-                        />
-                      </div>
+                              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                            </motion.svg>
+                          ))}
+                        </div>
+
+                        <h2 className="mb-4 text-2xl md:text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                          {reviews[reviewIndex].name}
+                        </h2>
+                        <p className="mb-4 text-lg font-medium text-gray-600 dark:text-gray-300">
+                          {reviews[reviewIndex].title}
+                        </p>
+                        <p className="mb-0 text-gray-500 dark:text-gray-400 leading-relaxed">
+                          "{reviews[reviewIndex].description}"
+                        </p>
+                      </motion.div>
                     </div>
-                  </motion.div>
+
+                    {/* Image Side with Fixed Border - Updated */}
+                    <div className="lg:mb-0">
+                      <motion.div 
+                        className="relative"
+                        animate={{ rotate: 4 }}
+                        whileHover={{ rotate: 0, scale: 1.02 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        {/* Updated Image Container without rotating border */}
+                        <div className="relative h-[400px] md:h-[600px]">
+                          {/* Static decorative border */}
+                          <div className="absolute -inset-4 border-2 border-dashed border-primary/20 rounded-xl -z-10 transform -rotate-2" />
+                          
+                          {/* Main content container */}
+                          <div className="relative h-full rounded-xl overflow-hidden">
+                            {/* Glow effect */}
+                            <div className="absolute -inset-2 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-xl blur-2xl" />
+                            
+                            {/* Image wrapper */}
+                            <div className="relative h-full rounded-xl overflow-hidden border-8 border-white dark:border-gray-800">
+                              <motion.img
+                                src={reviews[reviewIndex].imageSrc}
+                                alt={`${reviews[reviewIndex].name}'s testimonial`}
+                                className="w-full h-full object-cover"
+                                initial={{ scale: 1.2 }}
+                                animate={{ scale: 1 }}
+                                transition={{ duration: 0.5 }}
+                              />
+
+                              {/* Gradient overlay */}
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
         </motion.div>
-      ))}
-    </Slider>
+      </AnimatePresence>
+
+      {/* Progress Dots with animation */}
+      <div className="flex justify-center gap-3 mt-8">
+        {reviews.map((_, index) => (
+          <motion.button
+            key={index}
+            onClick={() => setPage([index, index - reviewIndex])}
+            className="group relative h-3"
+          >
+            <motion.div
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === reviewIndex
+                  ? "bg-gradient-to-r from-primary to-secondary scale-125"
+                  : "bg-gray-300 dark:bg-gray-700"
+              }`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+            />
+            <motion.div
+              className="absolute inset-0 -z-10 blur-sm bg-gradient-to-r from-primary to-secondary rounded-full opacity-0 group-hover:opacity-50 transition-opacity duration-300"
+            />
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Add CSS for perspective */}
+      <style jsx global>{`
+        @keyframes shine {
+          from { transform: translateX(-100%); }
+          to { transform: translateX(100%); }
+        }
+        .hover\:shine:hover::after {
+          animation: shine 1s ease-in-out;
+        }
+      `}</style>
+    </div>
   );
 };
 
-export default CustomerReviewsSlider;
+export default ReviewSlider;
