@@ -30,7 +30,7 @@ const BackToTop = () => {
           }}
           onClick={scrollToTop}
           title="Scroll to top"
-          className="fixed bottom-20 md:bottom-4 right-4 p-3 
+          className="fixed bottom-4 right-4 p-3 
                      bg-gray-100/70 dark:bg-gray-800/50
                      text-gray-600 dark:text-gray-200
                      rounded-full shadow-lg backdrop-blur-sm

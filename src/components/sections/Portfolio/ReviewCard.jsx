@@ -62,6 +62,10 @@ const CustomerReviewsSlider = () => {
         breakpoint: 768, // Set a breakpoint suitable for mobile screens
         settings: {
           arrows: false, // Hide the left/right navigation buttons on mobile screens
+          dots: true,
+          autoplay: true,
+          autoplaySpeed: 4000,
+          pauseOnHover: true,
         },
       },
     ],
@@ -93,108 +97,53 @@ const CustomerReviewsSlider = () => {
           className="container mx-auto md:px-6"
         >
           <section className="text-center lg:text-left">
-            <div className="py-12 md:px-6 md:px-12">
+            <div className="py-8 md:py-12 md:px-6 md:px-12">
               <div className="container mx-auto xl:px-32">
                 <div className="flex grid items-center lg:grid-cols-2">
                   <div className="mb-8 md:mt-8 lg:mt-0 lg:mb-0">
                     <motion.div
                       variants={textVariants}
-                      className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-4 py-8 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] backdrop-blur-[20px] border border-bgShade dark:border-border-color dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-8 lg:-mr-12"
+                      className="relative z-[1] block rounded-lg bg-[hsla(0,0%,100%,0.55)] px-4 py-6 md:py-8 shadow-lg backdrop-blur-[20px] border border-bgShade dark:border-border-color dark:bg-[hsla(0,0%,5%,0.7)] dark:shadow-black/20 md:px-8 lg:-mr-12"
                     >
-                      <h2 className="mb-2 text-2xl font-bold text-primary dark:text-primary-400">
+                      <h2 className="mb-2 text-xl md:text-2xl font-bold text-primary dark:text-primary-400">
                         {review.name}
                       </h2>
-                      <p className="mb-2 font-semibold dark:text-gray-200">
+                      <p className="mb-2 text-sm md:text-base font-semibold dark:text-gray-200">
                         {review.title}
                       </p>
-                      <p className="mb-4 text-neutral-500 dark:text-neutral-300">
+                      <p className="mb-4 text-sm md:text-base text-neutral-500 dark:text-neutral-300 leading-relaxed">
                         {review.description}
                       </p>
-                      <ul className="flex justify-center lg:justify-start">
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
-                        <li>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 96 960 960"
-                            className="w-4 text-primary dark:text-primary-400"
-                          >
-                            <path
-                              fill="currentColor"
-                              d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
-                            />
-                          </svg>
-                        </li>
-                        {/* Add other list items */}
+                      <ul className="flex justify-center lg:justify-start gap-1">
+                        {[...Array(5)].map((_, index) => (
+                          <li key={index}>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 96 960 960"
+                              className="w-4 text-primary dark:text-primary-400"
+                            >
+                              <path
+                                fill="currentColor"
+                                d="m233 976 65-281L80 506l288-25 112-265 112 265 288 25-218 189 65 281-247-149-247 149Z"
+                              />
+                            </svg>
+                          </li>
+                        ))}
                       </ul>
                     </motion.div>
                   </div>
                   <motion.div
                     variants={imageVariants}
-                    className={`md:mb-8 lg:mb-0 ${
-                      window.innerWidth <= 768
-                        ? "mobile-image flex justify-center items-center"
-                        : ""
-                    }`}
+                    className="md:mb-8 lg:mb-0"
                   >
-                    <div
-                      className={`w-16 h-16 lg:w-auto lg:h-auto rounded-full shadow-lg dark:shadow-black/20 ${
-                        window.innerWidth <= 768
-                          ? "mobile-circular-image"
-                          : "lg:rotate-[6deg] lg:max-w-md"
-                      }`}
-                    >
-                      <img
-                        src={review.imageSrc}
-                        className="w-full h-full rounded-lg object-cover"
-                        alt="image"
-                      />
+                    <div className="relative">
+                      <div className="w-24 h-24 mx-auto md:w-auto md:h-auto lg:rotate-[6deg] lg:max-w-md">
+                        <img
+                          src={review.imageSrc}
+                          className="w-full h-full rounded-full md:rounded-lg object-cover shadow-lg border-2 border-primary/20 md:border-0"
+                          alt={`${review.name}'s testimonial`}
+                        />
+                      </div>
                     </div>
                   </motion.div>
                 </div>
