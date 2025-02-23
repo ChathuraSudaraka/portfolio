@@ -147,7 +147,7 @@ const Framework = () => {
   ];
 
   return (
-    <div className="py-12">
+    <div className="">
       <div className="text-center mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

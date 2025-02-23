@@ -5,8 +5,8 @@ import Language from "./Language";
 
 const CodingSkills = () => {
   return (
-    <section className="relative py-20 overflow-hidden" id="skills">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <section className="relative min-h-screen" id="skills">
+      <div className="container px-4 py-20 relative">
         {/* Header */}
         <div className="text-center mb-16">
           <motion.div
@@ -24,7 +24,7 @@ const CodingSkills = () => {
                 Technical Stack
               </p>
             </div>
-            
+
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-headingcolor dark:text-white mb-4">
               My Coding <span className="text-primary">Skills</span>
             </h1>

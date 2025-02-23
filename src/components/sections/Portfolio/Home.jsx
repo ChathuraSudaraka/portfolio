@@ -12,8 +12,8 @@ const Home = () => {
   };
 
   return (
-    <section className="relative py-20" id="home">
-      <div className="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative min-h-screen" id="home">
+      <div className="container px-4 py-20 relative">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-x-20">
           {/* Left Content */}
           <div className="flex-1 space-y-8">

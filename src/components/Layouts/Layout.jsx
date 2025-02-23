@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
       <div className="fixed bottom-0 left-0 h-[500px] w-[500px] bg-violet-500/10 rounded-full blur-3xl" />
       
       {/* Content wrapper */}
-      <div className="relative container mx-auto">
+      <div className="relative container max-w-7xl mx-auto">
         <Navbar />
         {children}
         <Footer />

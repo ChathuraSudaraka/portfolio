@@ -93,54 +93,49 @@ const Card = ({ className, children, skill }) => {
 export function Skills() {
   return (
     <div className="relative min-h-screen" id="skills">
-      <div className="container mx-auto px-4 py-32 relative">
-        <div className="max-w-7xl mx-auto">
-          {" "}
-          {/* Increased max width */}
-          {/* Header Section */}
-          <div className="text-center mb-20">
+      <div className="container px-4 py-20 relative">
+        {/* Header Section */}
+        <div className="text-center mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="space-y-4"
+          >
+            <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+              </span>
+              <p className="text-sm font-medium text-primary">My Skills</p>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-headingcolor dark:text-white">
+              Technical <span className="text-primary">Expertise</span>
+            </h2>
+          </motion.div>
+        </div>
+        {/* Skills Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
+          {/* Changed to 2 columns */}
+          {TechStack.map((skill, index) => (
             <motion.div
+              key={skill.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-4"
+              whileHover={{ scale: 1.02 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 200,
+              }}
             >
-              <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
-                </span>
-                <p className="text-sm font-medium text-primary">My Skills</p>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-headingcolor dark:text-white">
-                Technical <span className="text-primary">Expertise</span>
-              </h2>
+              <Card skill={skill}>
+                <skill.icon className={cn("h-10 w-10", skill.iconColor)} />{" "}
+                {/* Increased icon size */}
+              </Card>
             </motion.div>
-          </div>
-          {/* Skills Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
-            {" "}
-            {/* Changed to 2 columns */}
-            {TechStack.map((skill, index) => (
-              <motion.div
-                key={skill.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ scale: 1.02 }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                  type: "spring",
-                  stiffness: 200,
-                }}
-              >
-                <Card skill={skill}>
-                  <skill.icon className={cn("h-10 w-10", skill.iconColor)} />{" "}
-                  {/* Increased icon size */}
-                </Card>
-              </motion.div>
-            ))}
-          </div>
+          ))}
         </div>
       </div>
     </div>
