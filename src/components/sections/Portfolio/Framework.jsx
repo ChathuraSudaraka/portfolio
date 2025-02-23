@@ -200,7 +200,7 @@ const Framework = () => {
                       </div>
                     </motion.div>
 
-                    <h3 className="text-base font-medium text-white">
+                    <h3 className="text-base font-medium text-gray-900 dark:text-white"> {/* Updated text color */}
                       {framework.name}
                     </h3>
                   </div>
