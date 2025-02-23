@@ -10,7 +10,7 @@ const Sparkles = () => {
   
   return (
     <div className="absolute inset-0">
-      {[...Array(12)].map((_, i) => (
+      {[...Array(6)].map((_, i) => (
         <motion.span
           key={`star-${i}`}
           animate={{

@@ -4,6 +4,134 @@ import { FaBootstrap, FaLaravel, FaReact, FaVuejs } from "react-icons/fa";
 import { SiTailwindcss, SiNextdotjs, SiExpress, SiSpringboot, SiDjango, SiDotnet } from "react-icons/si";
 import { PinContainer } from "../../ui/3d-pin";
 
+const Sparkles = () => {
+  const randomMove = () => Math.random() * 2 - 1;
+  const randomOpacity = () => Math.random();
+  const random = () => Math.random();
+  
+  return (
+    <div className="absolute inset-0">
+      {[...Array(6)].map((_, i) => (
+        <motion.span
+          key={`star-${i}`}
+          animate={{
+            top: `calc(${random() * 100}% + ${randomMove()}px)`,
+            left: `calc(${random() * 100}% + ${randomMove()}px)`,
+            opacity: randomOpacity(),
+            scale: [1, 1.2, 0],
+          }}
+          transition={{
+            duration: random() * 2 + 4,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop",
+          }}
+          style={{
+            position: "absolute",
+            top: `${random() * 100}%`,
+            left: `${random() * 100}%`,
+            width: `2px`,
+            height: `2px`,
+            borderRadius: "50%",
+            zIndex: 1,
+          }}
+          className="inline-block bg-primary dark:bg-primary"
+        />
+      ))}
+    </div>
+  );
+};
+
+const MobileFrameworkCard = ({ framework, index }) => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5,
+        ease: "easeOut"
+      }
+    })
+  };
+
+  const iconVariants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: { 
+      scale: 1, 
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20
+      }
+    },
+    hover: { 
+      scale: 1.2,
+      rotate: 360,
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      custom={index}
+      whileHover={{ y: -5 }}
+    >
+      <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-3xl border border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-xl transition-all duration-300 p-6 overflow-hidden">
+        {/* Sparkles effect */}
+        <div className="absolute inset-0">
+          <Sparkles />
+        </div>
+        
+        {/* Hover gradient */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        <div className="relative z-10 flex items-center gap-4">
+          <motion.div
+            variants={iconVariants}
+            initial="hidden"
+            whileInView="visible"
+            whileHover="hover"
+            className="relative"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-xl blur-xl" />
+            <div className="relative w-14 h-14 flex items-center justify-center bg-white dark:bg-gray-900 rounded-xl shadow-lg">
+              <framework.icon className="w-7 h-7" style={{ color: framework.color }} />
+            </div>
+          </motion.div>
+          
+          <div className="flex-1">
+            <motion.h3 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="text-base font-semibold text-gray-900 dark:text-white"
+            >
+              {framework.name}
+            </motion.h3>
+            <motion.span 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+              className="inline-block px-2.5 py-1 text-xs font-medium text-secondary bg-secondary/10 dark:bg-secondary/20 rounded-full mt-1"
+            >
+              {framework.category}
+            </motion.span>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
 const Framework = () => {
   const frameworks = [
     { name: "React", icon: FaReact, color: "#61DAFB", category: "Frontend" },
@@ -20,7 +148,6 @@ const Framework = () => {
 
   return (
     <div className="py-12">
-      {/* Added Framework Header */}
       <div className="text-center mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -43,7 +170,7 @@ const Framework = () => {
         </motion.div>
       </div>
 
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="hidden md:flex md:flex-wrap md:justify-center md:gap-6">
         {frameworks.map((framework, index) => (
           <motion.div
             key={index}
@@ -82,6 +209,23 @@ const Framework = () => {
             </PinContainer>
           </motion.div>
         ))}
+      </div>
+
+      <div className="md:hidden">
+        <motion.div 
+          className="grid grid-cols-1 gap-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {frameworks.map((framework, index) => (
+            <MobileFrameworkCard 
+              key={framework.name} 
+              framework={framework} 
+              index={index}
+            />
+          ))}
+        </motion.div>
       </div>
     </div>
   );
