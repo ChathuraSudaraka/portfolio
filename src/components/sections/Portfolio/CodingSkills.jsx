@@ -2,11 +2,11 @@ import React from "react";
 import Framework from "./Framework";
 import Language from "./Language";
 
-const ProgressBar = () => {
+const CodingSkills = () => {
   return (
-    <div className="" id="skills">
-      <div className="lg:mx-12 mx-4 py-32">
-        <div className="mb-20">
+    <section className="py-20" id="skills">
+      <div className="lg:mx-12 mx-4">
+        <div className="text-center mb-16">
           <p className="text-xl text-headingcolor dark:text-white font-semibold mb-5">
             My Skills
           </p>
@@ -17,8 +17,8 @@ const ProgressBar = () => {
         <Language />
         <Framework />
       </div>
-    </div>
+    </section>
   );
 };
 
-export default ProgressBar;
+export default CodingSkills;

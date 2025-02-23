@@ -1,7 +1,7 @@
 import React from "react";
 import useThemeSwitcher from "../../hooks/useThemeSwitcher";
-import { Moon, Sun } from "../../hooks/CustomTag";
 import { motion } from "framer-motion";
+import { FaMoon, FaSun } from "react-icons/fa";
 
 const DarkLight = () => {
   const [mode, setMode] = useThemeSwitcher();
@@ -21,7 +21,7 @@ const DarkLight = () => {
             : "bg-white/80 text-teal-500 border-2 border-teal-500 shadow-teal-500/30"
           }`}
       >
-        {mode === "dark" ? <Moon /> : <Sun />}
+        {mode === "dark" ? <FaMoon className="w-6 h-6" /> : <FaSun className="w-6 h-6" />}
       </motion.button>
     </div>
   );

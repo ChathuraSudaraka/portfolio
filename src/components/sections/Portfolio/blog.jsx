@@ -1,8 +1,8 @@
 // Article.js
 import React from "react";
-import { BlogIcon } from "../../../hooks/CustomTag";
 import { Link } from "react-router-dom";
 import { blogs } from "../../../context/data";
+import { FaBlog } from "react-icons/fa";
 
 const Article = () => {
   const scrollToTop = () => {
@@ -34,7 +34,7 @@ const Article = () => {
               </span>
 
               <span className="relative text-white flex items-center">
-                <BlogIcon className="w-8 h-8 inline-block mr-2" />
+                <FaBlog className="w-8 h-8 inline-block mr-2" />
                 Visit My Blogs
               </span>
             </Link>
@@ -50,9 +50,7 @@ const Article = () => {
               data-aos-offset="150"
             >
               <div className="flex-1 dark:bg-custom-dark-blue bg-bgcom border border-bgShade dark:border-border-color rounded-t-lg rounded-b-none overflow-hidden shadow-lg">
-                <div // Use the dynamic blog ID in the URL
-                  className="flex flex-wrap no-underline hover:no-underline"
-                >
+                <div className="flex flex-wrap no-underline hover:no-underline">
                   <img
                     src={blog.image}
                     className="h-64 w-full rounded-t pb-6"

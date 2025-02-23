@@ -1,31 +1,27 @@
 import React from "react";
-import {
-  IconHome,
-  IconNewSection,
-  IconTerminal2,
-} from "@tabler/icons-react";
 import { FloatingDock } from "../ui/floating-dock";
+import { FaHome, FaRegNewspaper, FaProjectDiagram } from "react-icons/fa";
 
 const Navbar = () => {
   const links = [
     {
       title: "Home",
       icon: (
-        <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <FaHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "/",
     },
     {
-      title: "Components",
+      title: "Projects",
       icon: (
-        <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <FaProjectDiagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "/work",
     },
     {
-      title: "Products",
+      title: "Blog",
       icon: (
-        <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <FaRegNewspaper className="h-full w-full text-neutral-500 dark:text-neutral-300" />
       ),
       href: "/blog",
     },

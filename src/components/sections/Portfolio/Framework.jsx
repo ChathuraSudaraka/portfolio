@@ -1,55 +1,37 @@
 import React from "react";
 import { FaBootstrap, FaLaravel, FaReact } from "react-icons/fa";
-import { SiTailwindcss } from "react-icons/si";
+import { SiTailwindcss, SiNextdotjs, SiExpress } from "react-icons/si";
+import { motion } from "framer-motion";
 
 const Framework = () => {
-  // Define your coding language skills and their respective percentages here
-  const skills = [
-    {
-      name: "Laravel",
-      image: <FaLaravel />,
-    },
-    {
-      name: "ReactNative",
-      image: <FaReact />,
-    },
-    {
-      name: "Tailwind css",
-      image: <SiTailwindcss />,
-    },
-    {
-      name: "Bootstrap",
-      image: <FaBootstrap />,
-    },
-    {
-      name: "Bootstrap",
-      image: <FaBootstrap />,
-    },
-    // Add more skills as needed
+  const frameworks = [
+    { name: "Laravel", icon: <FaLaravel className="text-4xl" /> },
+    { name: "React", icon: <FaReact className="text-4xl" /> },
+    { name: "Next.js", icon: <SiNextdotjs className="text-4xl" /> },
+    { name: "Tailwind", icon: <SiTailwindcss className="text-4xl" /> },
+    { name: "Express", icon: <SiExpress className="text-4xl" /> },
+    { name: "Bootstrap", icon: <FaBootstrap className="text-4xl" /> },
   ];
 
   return (
-    <div> 
-      <h1 className="py-20 text-3xl md:text-3xl text-center font-bold text-headingcolor dark:text-white">
-        Framework
-      </h1>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-8">
-        {skills.map((skill, index) => (
-          <div
+    <div>
+      <h2 className="text-3xl font-bold text-center mb-12 text-headingcolor dark:text-white">
+        Frameworks & Libraries
+      </h2>
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        {frameworks.map((framework, index) => (
+          <motion.div
             key={index}
-            className="relative overflow-hidden bg-bgcom border border-bgShade dark:border-border-color dark:bg-custom-dark-blue shadow-lg rounded-lg p-6 text-center"
-            data-aos="zoom-in-down"
-            data-aos-offset="150"
+            initial={{ opacity: 0, scale: 0.5 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, delay: index * 0.1 }}
+            className="bg-bgcom dark:bg-custom-dark-blue border border-bgShade dark:border-border-color rounded-xl p-6 flex flex-col items-center justify-center"
           >
-            <div className="mb-4 flex flex-col items-center">
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200">
-                {skill.name}
-              </h2>
-              <div className="w-14 h-14 mt-2 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 flex items-center justify-center">
-                {skill.image}
-              </div>
+            <div className="mb-4 w-14 h-14 bg-white rounded-lg shadow-md transition-transform transform hover:scale-110 flex items-center justify-center">
+              {framework.icon}
             </div>
-          </div>
+            <h3 className="text-lg font-medium text-headingcolor dark:text-white">{framework.name}</h3>
+          </motion.div>
         ))}
       </div>
     </div>

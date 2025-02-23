@@ -1,6 +1,6 @@
 import Home from "../components/sections/Portfolio/Home";
 import Skills from "../components/sections/Portfolio/Skills";
-import ProgressBar from "../components/sections/Portfolio/CodingSkills";
+import CodingSkills from "../components/sections/Portfolio/CodingSkills";
 import About from "../components/sections/Portfolio/About";
 import Experience from "../components/sections/Portfolio/Experience";
 import Education from "../components/sections/Portfolio/Education";
@@ -15,7 +15,7 @@ function index() {
     <Layout>
       <Home />
       <Skills />
-      <ProgressBar />
+      <CodingSkills />
       <About />
       <Experience />
       <Education />
