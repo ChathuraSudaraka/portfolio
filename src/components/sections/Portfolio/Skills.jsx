@@ -1,24 +1,12 @@
 "use client";
-import { animate, motion } from "framer-motion";
-import React, { useEffect } from "react";
+import { motion } from "framer-motion";
+import React from "react";
 import { cn } from "../../../utils/cn";
 import {
   SiReact,
   SiNodedotjs,
-  SiSpring,
-  SiDocker,
-  SiJavascript,
-  SiTypescript,
   SiPostgresql,
   SiAwslambda,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiMongodb,
-  SiPrisma,
-  SiGit,
-  SiGithub,
-  SiAmazonaws,
-  SiVercel,
 } from "react-icons/si";
 
 const TechStack = [
@@ -104,12 +92,7 @@ const Card = ({ className, children, skill }) => {
 
 export function Skills() {
   return (
-    <div className="relative min-h-screen bg-white dark:bg-black" id="skills">
-      {/* Background Elements - Match Home */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)]" />
-      <div className="absolute top-0 right-0 h-96 w-96 bg-primary/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 h-96 w-96 bg-violet-500/10 rounded-full blur-3xl" />
-
+    <div className="relative min-h-screen" id="skills">
       <div className="container mx-auto px-4 py-32 relative">
         <div className="max-w-7xl mx-auto">
           {" "}
@@ -194,7 +177,7 @@ const Sparkles = () => {
             borderRadius: "50%",
             zIndex: 1,
           }}
-          className="inline-block bg-black dark:bg-white"
+          className="inline-block bg-primary dark:bg-primary"
         ></motion.span>
       ))}
     </div>

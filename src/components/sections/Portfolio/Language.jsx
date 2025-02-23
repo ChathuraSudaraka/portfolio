@@ -34,7 +34,7 @@ const Sparkles = () => {
             borderRadius: "50%",
             zIndex: 1,
           }}
-          className="inline-block bg-primary/30 dark:bg-white/20"
+          className="inline-block bg-primary dark:bg-primary"
         />
       ))}
     </div>
@@ -109,7 +109,7 @@ const Language = () => {
             custom={index}
             whileHover={{ y: -5 }}
           >
-            <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-3xl border border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-xl transition-all duration-300 p-6 overflow-hidden">
+            <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-3xl border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 p-6 overflow-hidden">
               {/* Always visible Sparkles */}
               <div className="absolute inset-0">
                 <Sparkles />
