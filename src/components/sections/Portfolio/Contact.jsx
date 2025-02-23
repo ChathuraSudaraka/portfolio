@@ -75,9 +75,9 @@ const Contact = () => {
         toastOptions={{
           duration: 5000,
           style: {
-            background: "#ffffff",
-            color: "#000000",
-            border: "1px solid #e5e7eb",
+            background: document.documentElement.classList.contains("dark") ? "#1f2937" : "#ffffff",
+            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : "#000000",
+            border: document.documentElement.classList.contains("dark") ? "1px solid #374151" : "1px solid #e5e7eb",
             borderRadius: "8px",
           },
         }}
