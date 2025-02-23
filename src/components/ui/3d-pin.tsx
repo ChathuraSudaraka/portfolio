@@ -3,6 +3,34 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../utils/cn";
 
+const WaveEffect = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {[...Array(3)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute inset-0"
+          style={{
+            border: '2px solid rgba(var(--primary-rgb), 0.2)',
+            borderRadius: '1rem',
+            scale: 1 + (i * 0.1)
+          }}
+          animate={{
+            opacity: [0.1, 0.5, 0.1],
+            scale: [1 + (i * 0.1), 1.2 + (i * 0.1), 1 + (i * 0.1)],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            delay: i * 0.3,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
 export const PinContainer = ({
   children,
   title,
@@ -44,7 +72,8 @@ export const PinContainer = ({
           style={{ transform: transform }}
           className="absolute left-1/2 p-2 top-1/2 flex justify-start items-start rounded-2xl shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-gray-50/80 dark:bg-black border border-gray-200/50 dark:border-white/[0.1] group-hover/pin:border-gray-300/50 dark:group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden w-[calc(100%-1rem)]"
         >
-          <div className={cn("relative w-full", className)}>{children}</div>
+          <WaveEffect />
+          <div className={cn("relative z-10 w-full", className)}>{children}</div>
         </div>
       </div>
       <PinPerspective title={title} href={href} />
@@ -60,7 +89,12 @@ export const PinPerspective = ({
   href?: string;
 }) => {
   return (
-    <motion.div className="pointer-events-none w-96 h-56 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 transition duration-500">
+    <motion.div 
+      className="pointer-events-none w-96 h-56 flex items-center justify-center opacity-0 group-hover/pin:opacity-100 transition-opacity duration-500"
+      initial={{ scale: 0.95 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+    >
       <div className="w-full h-full -mt-7 flex-none inset-0">
         <div className="absolute top-0 inset-x-0 flex justify-center">
           <a

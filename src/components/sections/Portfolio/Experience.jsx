@@ -59,7 +59,7 @@ const Experience = () => {
 
         {/* Timeline */}
         <div className="max-w-4xl mx-auto relative">
-          <BeamScroll color="var(--primary)">
+          <BeamScroll color="rgb(50, 117, 248)">
             <style jsx>{`
               :root {
                 --color-start: rgb(var(--primary-rgb) / 0.2);

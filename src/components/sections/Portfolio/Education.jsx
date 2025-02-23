@@ -55,7 +55,7 @@ const Education = () => {
 
         {/* Timeline */}
         <div className="max-w-4xl mx-auto relative">
-          <BeamScroll color="var(--secondary)">
+          <BeamScroll color="rgb(168, 85, 247)">
             {educations.map((edu, index) => (
               <motion.div
                 key={index}
