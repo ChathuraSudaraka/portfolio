@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
-import { GradientButton } from "../components/ui/gradient-button";
 import CatchGame from "../components/common/CatchGame";
 
 const NotFound = () => {
@@ -67,9 +66,12 @@ const NotFound = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <GradientButton onClick={handleShowGame} className="px-8 py-3">
-              Play a Game
-            </GradientButton>
+            <HoverBorderGradient
+              onClick={handleShowGame}
+              className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white"
+            >
+              Play a game
+            </HoverBorderGradient>
             <HoverBorderGradient
               as={Link}
               to="/"
@@ -82,23 +84,18 @@ const NotFound = () => {
       </motion.div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: showGame ? 1 : 0, y: showGame ? 0 : 50 }}
+        animate={{ opacity: showGame ? 1 : 0, y: showGame ? 0 : 0 }}
         className={`container relative ${!showGame ? "hidden" : ""}`}
       >
-        <div className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-16 px-4">
-          {/* Left Side - 404 Content */}
+        <div className="min-h-screen flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-16 p-4">
+          {/* Left Side - Updated 404 Content */}
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="flex-1 flex flex-col items-center justify-center h-screen"
+            className="flex-1 lg:max-w-xl w-full"
           >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-8 text-center"
-            >
+            <div className="text-center space-y-8">
               {/* Status Badge */}
               <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
                 <span className="relative flex h-3 w-3">
@@ -110,58 +107,80 @@ const NotFound = () => {
                 </p>
               </div>
 
-              {/* Main Title with enhanced gradient */}
-              <h1 className="text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-pink-500">
+              {/* Main Title */}
+              <motion.h1
+                className="text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-pink-500"
+                initial={{ scale: 0.5 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+              >
                 4<span className="text-primary">0</span>4
-              </h1>
+              </motion.h1>
 
               {/* Description */}
-              <p className="text-lg text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
+              <motion.p
+                className="text-lg text-gray-600 dark:text-gray-400 max-w-xl mx-auto"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
                 The page you're looking for doesn't exist or has been moved.
-              </p>
+              </motion.p>
 
               {/* CTA Buttons */}
               <motion.div
+                className="flex flex-wrap justify-center gap-4"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="flex flex-wrap gap-4 justify-center"
               >
-                <HoverBorderGradient
-                  as={Link}
-                  to="/"
-                  className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white"
-                  duration={2}
-                >
-                  Back to Home
-                </HoverBorderGradient>
                 <HoverBorderGradient
                   as={Link}
                   to="/blog"
                   className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white"
-                  duration={2}
-                  clockwise={false}
                 >
-                  View Blog
+                  blog
+                </HoverBorderGradient>
+                <HoverBorderGradient
+                  as={Link}
+                  to="/"
+                  className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white"
+                >
+                  Back to Home
                 </HoverBorderGradient>
               </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Right Side - Game */}
+          {/* Right Side - Game with enhanced container */}
           <motion.div
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="flex-1 flex flex-col items-center justify-center"
+            className="flex-1 lg:max-w-xl w-full"
           >
-            <div className="text-center lg:text-left mb-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                While you're here, why not play a quick game?
-              </p>
-            </div>
-            <div className="w-full bg-white/5 dark:bg-black/5 backdrop-blur-sm rounded-2xl border border-gray-200/20 dark:border-gray-800/20 p-6">
-              <CatchGame />
+            <div className="relative">
+              {/* Decorative elements */}
+              <div className="absolute -top-14 left-0 right-0 text-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-secondary/10 dark:from-primary/20 dark:to-secondary/20 px-4 py-2 rounded-full"
+                >
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-gradient-to-r from-primary to-secondary" />
+                  </span>
+                  <p className="text-sm font-medium text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
+                    Let's Play a Game
+                  </p>
+                </motion.div>
+              </div>
+
+              {/* Game container with enhanced styling */}
+              <div className="bg-white/5 dark:bg-black/5 backdrop-blur-sm rounded-3xl border border-gray-200/20 dark:border-gray-800/20 p-8 shadow-xl">
+                <CatchGame />
+              </div>
             </div>
           </motion.div>
         </div>
