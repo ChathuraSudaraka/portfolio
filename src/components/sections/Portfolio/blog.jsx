@@ -2,15 +2,148 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { blogs } from "../../../context/data";
-import { FaBlog } from "react-icons/fa";
+import { FaBlog, FaCalendar, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
-import { CardContainer, CardBody, CardItem } from "../../ui/3d-card";
 
-const Article = () => {
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
+const scrollToTop = () => {
+  window.scrollTo(0, 0);
+};
+
+const BlogCard = ({ blog, index }) => {
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: "easeOut"
+      }
+    }
   };
 
+  const imageVariants = {
+    hover: {
+      scale: 1.1,
+      transition: { duration: 0.8 }
+    }
+  };
+
+  return (
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      whileHover={{ y: -5 }}
+      className="group h-full"
+    >
+      <div className="relative bg-black/40 dark:bg-black/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-secondary/20 transition-all duration-300 h-full flex flex-col">
+        {/* Image container */}
+        <motion.div 
+          className="relative h-[220px] w-full overflow-hidden"
+          whileHover="hover"
+        >
+          <motion.div
+            variants={imageVariants}
+            className="absolute inset-0"
+          >
+            <img
+              src={blog.image}
+              alt={blog.title}
+              className="w-full h-full object-cover"
+            />
+            <motion.div 
+              className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60"
+              variants={{
+                hover: { opacity: 0.9 }
+              }}
+            />
+          </motion.div>
+
+          {/* Category badge with animation */}
+          <motion.div 
+            className="absolute top-4 left-4"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.2 }}
+          >
+            <span className="px-3 py-1 text-xs font-medium bg-black/50 backdrop-blur-sm text-white border border-white/10 rounded-full">
+              {blog.category}
+            </span>
+          </motion.div>
+        </motion.div>
+
+        {/* Content section with updated z-index */}
+        <motion.div 
+          className="flex-1 flex flex-col p-6 relative z-10"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          {/* Date */}
+          <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
+            <FaCalendar className="w-4 h-4" />
+            {blog.date}
+          </div>
+
+          {/* Title */}
+          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-secondary transition-colors">
+            {blog.title}
+          </h3>
+
+          {/* Excerpt with flex grow */}
+          <p className="text-gray-400 mb-6 line-clamp-3 flex-1">
+            {blog.content1}
+          </p>
+
+          {/* Footer with improved button handling */}
+          <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto relative z-20">
+            {/* Author section */}
+            <motion.div 
+              className="flex items-center gap-3"
+              whileHover={{ scale: 1.05 }}
+            >
+              <img
+                src="/assets/icon.png"
+                alt="Author"
+                className="w-8 h-8 rounded-full border border-white/20"
+              />
+              <span className="text-sm font-medium text-white">
+                Chathura Sudaraka
+              </span>
+            </motion.div>
+
+            {/* Read button with better interaction */}
+            <motion.div
+              className="relative z-30"
+              whileHover={{ x: 5 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  scrollToTop();
+                  window.location.href = `/blog/${blog.id}`;
+                }}
+                className="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-all duration-300 px-3 py-1 rounded-full hover:bg-secondary/10"
+              >
+                <span className="text-sm font-medium">Read</span>
+                <FaArrowRight className="w-4 h-4" />
+              </button>
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Gradient overlay with lower z-index */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 z-0" />
+      </div>
+    </motion.div>
+  );
+};
+
+const Article = () => {
   return (
     <section className="relative py-20" id="blog">
       <div className="container px-4">
@@ -44,64 +177,9 @@ const Article = () => {
         </motion.div>
 
         {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {blogs.slice(0, 6).map((blog, index) => (
-            <motion.div
-              key={blog.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-            >
-              <CardContainer>
-                <CardBody className="relative group bg-white/50 dark:bg-black/50 border border-gray-200/50 dark:border-gray-800/50 rounded-xl p-6">
-                  {/* Blog Image */}
-                  <CardItem translateZ="100" className="w-full h-48 rounded-lg overflow-hidden mb-6">
-                    <img
-                      src={blog.image}
-                      alt={blog.title}
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </CardItem>
-
-                  {/* Content */}
-                  <div className="space-y-4">
-                    <span className="text-xs font-medium text-secondary bg-secondary/10 px-2.5 py-1 rounded-full">
-                      {blog.category}
-                    </span>
-
-                    <CardItem translateZ="50" className="space-y-2">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">
-                        {blog.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 line-clamp-3">
-                        {blog.content1}
-                      </p>
-                    </CardItem>
-
-                    <CardItem translateZ="60" className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
-                        <img
-                          src="/assets/icon.png"
-                          alt="Author"
-                          className="w-8 h-8 rounded-full"
-                        />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">
-                          {blog.date}
-                        </span>
-                      </div>
-
-                      <Link
-                        to={`/blog/${blog.id}`}
-                        onClick={scrollToTop}
-                        className="text-secondary hover:text-secondary/80 transition-colors duration-200"
-                      >
-                        Read More →
-                      </Link>
-                    </CardItem>
-                  </div>
-                </CardBody>
-              </CardContainer>
-            </motion.div>
+            <BlogCard key={blog.id} blog={blog} index={index} />
           ))}
         </div>
       </div>
