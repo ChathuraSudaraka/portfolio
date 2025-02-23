@@ -39,7 +39,7 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
   
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 100%", "end center"]
+    offset: ["start 120%", "end center"]
   });
 
   const scaleY = useSpring(scrollYProgress, {
@@ -55,21 +55,42 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
 
   return (
     <div ref={ref} className="relative">
+      {/* Background track */}
+      <div className="absolute left-0 md:left-1/2 top-0 h-full">
+        <div 
+          className="absolute left-[8px] md:left-0 md:-translate-x-1/2 w-[2px] h-full"
+          style={{
+            background: `linear-gradient(180deg, 
+              transparent,
+              ${color}20,
+              ${color}20,
+              transparent
+            )`,
+            boxShadow: `0 0 10px ${color}40`
+          }}
+        />
+      </div>
+
+      {/* Animated beam */}
       <div className="absolute left-0 md:left-1/2 top-0 h-full">
         <motion.div
           style={{ scaleY }}
           className="absolute left-[8px] md:left-0 md:-translate-x-1/2 w-[3px] h-full origin-top"
         >
-          {/* Static beam */}
+          {/* Main beam */}
           <div 
             className="h-full w-full"
             style={{ 
-              background: `linear-gradient(180deg, transparent 0%, ${color} 50%, transparent 100%)`,
-              opacity: 0.5
+              background: `linear-gradient(180deg, 
+                transparent 0%, 
+                ${color} 50%, 
+                transparent 100%
+              )`,
+              boxShadow: `0 0 20px ${color}, 0 0 40px ${color}80`
             }} 
           />
           
-          {/* Moving glow effect */}
+          {/* Enhanced glow effect */}
           <motion.div
             style={{ 
               y: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
@@ -77,18 +98,24 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
             }}
             className="absolute top-0 left-0"
           >
-            {/* Glow */}
             <div 
-              className="h-24 w-full blur-sm"
+              className="h-40 w-[5px] blur-[4px]"
               style={{ 
-                background: `linear-gradient(180deg, transparent, ${color}, transparent)`,
+                background: `linear-gradient(180deg, 
+                  transparent,
+                  ${color}80,
+                  ${color},
+                  ${color}80,
+                  transparent
+                )`,
+                boxShadow: `0 0 30px ${color}`
               }} 
             />
             
-            {/* Sparkles */}
+            {/* Sparkles with increased brightness */}
             <motion.div
               style={{ opacity: glowOpacity }}
-              className="absolute top-12 left-1/2 -translate-x-1/2 text-[${color}]"
+              className="absolute top-16 left-1/2 -translate-x-1/2"
             >
               <SparkleEffect />
             </motion.div>
