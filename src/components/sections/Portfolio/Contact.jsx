@@ -1,47 +1,44 @@
 import React, { useRef, useState } from "react";
+import { validateForm } from "../../../utils/validateForm";
 import emailjs from "@emailjs/browser";
 import { Label } from "../../ui/label";
 import { Input } from "../../ui/input";
+import { Textarea } from "../../ui/textarea";
 
 const Contact = () => {
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const validate = () => {
-    const firstName = document.querySelector("#first-name");
-    const lastName = document.querySelector("#last-name");
-    const email = document.querySelector("#email");
-    const comment = document.querySelector("#comment");
-    const error = document.querySelector(".error");
-
-    let messages = [];
-    if (!firstName.value) {
-      messages.push("First Name is required");
-    }
-    if (!lastName.value) {
-      messages.push("Last Name is required");
-    }
-    if (!email.value) {
-      messages.push("Email is required");
-    }
-    if (!comment.value) {
-      messages.push("Comment is required");
-    }
-    if (messages.length > 0) {
-      error.innerText = messages.join(", ");
-      return false; // Prevent form submission if there are errors
-    }
-    return true; // Allow form submission if there are no errors
-  };
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [errors, setErrors] = useState({});
   const form = useRef();
+
+  const handleValidation = (formData) => {
+    const validationErrors = validateForm({
+      first_name: formData.get("first_name"),
+      last_name: formData.get("last_name"),
+      user_email: formData.get("user_email"),
+      message: formData.get("message"),
+    });
+
+    const errorMap = {};
+    validationErrors.forEach((error) => {
+      errorMap[error.field] = error.message;
+    });
+    setErrors(errorMap);
+
+    return validationErrors.length === 0;
+  };
 
   const sendEmail = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setIsSuccess(false);
+    setErrors({});
 
-    // Validate the form before sending the email
-    const isValid = validate();
-    if (!isValid) {
-      return; // Do not proceed if validation fails
+    const formData = new FormData(e.target);
+
+    if (!handleValidation(formData)) {
+      setIsLoading(false);
+      return;
     }
 
     try {
@@ -54,25 +51,25 @@ const Contact = () => {
           to: "chathuraoriginal2005@gmail.com",
           subject: "Contact Form Submission",
           text: `
-            First Name: ${form.current.elements.first_name.value}
-            Last Name: ${form.current.elements.last_name.value}
-            Email: ${form.current.elements.user_email.value}
-            Comment: ${form.current.elements.message.value}
+            First Name: ${formData.get("first_name")}
+            Last Name: ${formData.get("last_name")}
+            Email: ${formData.get("user_email")}
+            Comment: ${formData.get("message")}
           `,
         }),
       });
 
-      if (response.ok) {
-        const result = await response.text();
-        console.log("Email sent successfully:", result);
-        setIsSuccess(true);
-      } else {
-        console.error("Failed to send email:", response.statusText);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      setIsSuccess(true);
+      e.target.reset();
     } catch (error) {
       console.error("Error sending email:", error);
+      setErrors({ submit: "Failed to send email. Please try again later." });
     } finally {
-      e.target.reset();
+      setIsLoading(false);
     }
   };
 
@@ -107,13 +104,20 @@ const Contact = () => {
                   First Name
                 </Label>
                 <Input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                    errors.first_name ? "border-red-500" : ""
+                  }`}
                   id="first-name"
                   name="first_name"
                   type="text"
                   placeholder="First Name"
-                  autoComplete="given-name" // Add this line
+                  autoComplete="given-name"
                 />
+                {errors.first_name && (
+                  <p className="text-red-500 text-xs italic mt-1">
+                    {errors.first_name}
+                  </p>
+                )}
               </div>
               <div className="mb-5">
                 <Label
@@ -123,13 +127,20 @@ const Contact = () => {
                   Last Name
                 </Label>
                 <Input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                  className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                    errors.last_name ? "border-red-500" : ""
+                  }`}
                   id="last-name"
                   name="last_name"
                   type="text"
                   placeholder="Last Name"
-                  autoComplete="family-name" // Add this line
+                  autoComplete="family-name"
                 />
+                {errors.last_name && (
+                  <p className="text-red-500 text-xs italic mt-1">
+                    {errors.last_name}
+                  </p>
+                )}
               </div>
             </div>
             <div className="mb-5">
@@ -140,13 +151,20 @@ const Contact = () => {
                 Email
               </Label>
               <Input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.user_email ? "border-red-500" : ""
+                }`}
                 id="email"
                 type="text"
                 name="user_email"
                 placeholder="Email"
-                autoComplete="email" // Add this line
+                autoComplete="email"
               />
+              {errors.user_email && (
+                <p className="text-red-500 text-xs italic mt-1">
+                  {errors.user_email}
+                </p>
+              )}
             </div>
             <div className="mb-6">
               <Label
@@ -155,25 +173,34 @@ const Contact = () => {
               >
                 Comment
               </Label>
-              <Input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              <Textarea
+                className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                  errors.message ? "border-red-500" : ""
+                }`}
                 id="comment"
                 name="message"
                 placeholder="Write your comment here..."
-                rows={8}
-                autoComplete="off" // Add this line to disable autocomplete
+                autoComplete="off"
               />
+              {errors.message && (
+                <p className="text-red-500 text-xs italic mt-1">
+                  {errors.message}
+                </p>
+              )}
             </div>
             <div className="flex items-center justify-between">
               <button
                 className="bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 px-3 text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
                 type="submit"
+                disabled={isLoading}
               >
-                Sign up &rarr;
+                {isLoading ? "Sending..." : "Send Message"} &rarr;
                 <BottomGradient />
               </button>
             </div>
-            <div className="error text-red-500"></div>
+            {errors.submit && (
+              <div className="error text-red-500 mt-2">{errors.submit}</div>
+            )}
             {isSuccess && (
               <div className="success text-green-500 mt-2">
                 Email sent successfully!
