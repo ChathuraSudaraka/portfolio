@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { FaGithub, FaGithubSquare } from "react-icons/fa";
+import { PinContainer } from "../../ui/3d-pin";
+import { GradientButton } from "../../ui/gradient-button";
 
 const Portfolio = () => {
   const [projects, setProjects] = useState([]);
@@ -12,98 +15,98 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <div className="">
-      <div className="lg:mx-12 mx-4 py-32" id="portfolio">
-        <div className="mb-20 flex flex-col sm:flex-row md:items-center justify-between gap-5">
-          <div>
-            <p className="text-xl dark:text-white text-headingcolor font-semibold mb-5">
-              My Skills
-            </p>
-            <h2 className="md:text-5xl dark:text-white text-4xl text-headingcolor font-bold">
-              My Portfolio
-            </h2>
+    <section className="relative py-20" id="portfolio">
+      <div className="container px-4">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
+        >
+          <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-3 py-2 rounded-full mb-4">
+            <span className="relative flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
+            </span>
+            <p className="text-sm font-medium text-primary">My Projects</p>
           </div>
-          <div className="flex items-center">
-            <a
-              href="https://github.com/ChathuraSudaraka"
-              className="relative items-center justify-center inline-block p-4 px-5 py-3 overflow-hidden font-medium text-indigo-600 rounded-lg shadow-2xl group"
-            >
-              <span className="absolute top-0 left-0 w-40 h-40 -mt-10 -ml-3 transition-all duration-700 dark:bg-red-500 bg-[#9D76C1] rounded-full blur-md ease"></span>
-              <span className="absolute inset-0 w-full h-full transition duration-700 group-hover:rotate-180 ease">
-                <span className="absolute bottom-0 left-0 w-24 h-24 -ml-10 dark:bg-purple-500 bg-[#5B0888] rounded-full blur-md"></span>
-                <span className="absolute bottom-0 right-0 w-24 h-24 -mr-10 dark:bg-pink-500 bg-[#713ABE] rounded-full blur-md"></span>
-              </span>
+          
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            Featured <span className="text-primary">Work</span>
+          </h2>
 
-              <span className="relative text-white flex items-center">
-                <FaGithub className="w-8 h-8 inline-block mr-2" />
-                Visit My GitHub
-              </span>
-            </a>
-          </div>
-        </div>
+          <a
+            href="https://github.com/ChathuraSudaraka"
+            className="inline-flex items-center px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-full transition-colors duration-200"
+          >
+            <FaGithub className="w-5 h-5 mr-2" />
+            <span>View GitHub Profile</span>
+          </a>
+        </motion.div>
 
-        {/* project card */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {projects.map((project) => (
-            <div
+        {/* Project Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <motion.div
               key={project.id}
-              className="dark:shadow-lg bg-bgcom border border-bgShade dark:border-border-color shadow-xl rounded-lg dark:bg-custom-dark-blue"
-              data-aos="fade-up"
-              data-aos-offset="300"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <img
-                src={project.image}
-                alt=""
-                className="transition-transform transform hover:scale-105 hover:opacity-80 rounded-lg"
-              />
-              <div className="p-8">
-                <h3 className="text-2xl dark:text-white font-semibold mb-2 text-headingcolor">
-                  {project.name}
-                </h3>
-                <div className="py-2">
-                  {project.tag1 && !project.tag1.includes("not") && (
-                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
-                      {project.tag1}
-                    </span>
-                  )}
-                  {project.tag2 && !project.tag2.includes("not") && (
-                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
-                      {project.tag2}
-                    </span>
-                  )}
-                  {project.tag3 && !project.tag3.includes("not") && (
-                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
-                      {project.tag3}
-                    </span>
-                  )}
-                  {project.tag4 && !project.tag4.includes("not") && (
-                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
-                      {project.tag4}
-                    </span>
-                  )}
-                  {project.tag5 && !project.tag5.includes("not") && (
-                    <span className="text-xs dark:text-white bg-gray-200 dark:bg-gray-700 text-gray-700 px-2 py-1 rounded-lg mr-2">
-                      {project.tag5}
-                    </span>
-                  )}
-                </div>
+              <PinContainer title={project.name}>
+                <div className="relative group">
+                  <div className="relative bg-white/10 dark:bg-gray-900/30 backdrop-blur-md rounded-xl overflow-hidden">
+                    {/* Project Image */}
+                    <div className="relative h-48 overflow-hidden">
+                      <img 
+                        src={project.image}
+                        alt={project.name}
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                    </div>
 
-                <p className="text-body mb-4 dark:text-dark-white text-justify">
-                  {project.description}
-                </p>
-                <button
-                  onClick={() => (window.location.href = project.link)}
-                  className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center"
-                >
-                  View In GitHub
-                  <FaGithubSquare className="w-5 h-5 ml-2" />
-                </button>
-              </div>
-            </div>
+                    {/* Project Info */}
+                    <div className="p-6">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                        {project.name}
+                      </h3>
+                      
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {[project.tag1, project.tag2, project.tag3, project.tag4, project.tag5]
+                          .filter(tag => tag && !tag.includes("not"))
+                          .map((tag, i) => (
+                            <span 
+                              key={i}
+                              className="px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                      </div>
+
+                      <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+                        {project.description}
+                      </p>
+
+                      <GradientButton
+                        onClick={() => window.open(project.link, "_blank")}
+                        className="inline-flex items-center gap-2"
+                      >
+                        View Project
+                        <FaGithub className="w-4 h-4" />
+                      </GradientButton>
+                    </div>
+                  </div>
+                </div>
+              </PinContainer>
+            </motion.div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
