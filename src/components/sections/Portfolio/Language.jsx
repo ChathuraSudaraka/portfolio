@@ -5,12 +5,12 @@ import { SiCsharp } from "react-icons/si";
 
 const Language = () => {
   const skills = [
-    { name: "JavaScript", percent: 85, image: <DiJavascript /> },
-    { name: "Python", percent: 70, image: <DiPython /> },
-    { name: "Java", percent: 60, image: <DiJava /> },
-    { name: "C#", percent: 56, image: <SiCsharp /> },
-    { name: "PHP", percent: 80, image: <DiPhp /> },
-    { name: "HTML/CSS", percent: 99, image: <DiHtml5 /> },
+    { name: "JavaScript", percent: 85, image: <DiJavascript className="text-4xl" color="#F0DB4F" /> },
+    { name: "Python", percent: 70, image: <DiPython className="text-4xl" color="#306998" /> },
+    { name: "Java", percent: 60, image: <DiJava className="text-4xl" color="#B07219" /> },
+    { name: "C#", percent: 56, image: <SiCsharp className="text-4xl" color="#9B4F96" /> },
+    { name: "PHP", percent: 80, image: <DiPhp className="text-4xl" color="#777BB4" /> },
+    { name: "HTML/CSS", percent: 99, image: <DiHtml5 className="text-4xl" color="#E34F26" /> },
   ];
 
   return (

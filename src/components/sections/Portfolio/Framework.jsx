@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 
 const Framework = () => {
   const frameworks = [
-    { name: "Laravel", icon: <FaLaravel className="text-4xl" /> },
-    { name: "React", icon: <FaReact className="text-4xl" /> },
-    { name: "Next.js", icon: <SiNextdotjs className="text-4xl" /> },
-    { name: "Tailwind", icon: <SiTailwindcss className="text-4xl" /> },
-    { name: "Express", icon: <SiExpress className="text-4xl" /> },
-    { name: "Bootstrap", icon: <FaBootstrap className="text-4xl" /> },
+    { name: "Laravel", icon: <FaLaravel className="text-4xl" style={{ color: "#FF2D20" }} /> },
+    { name: "React", icon: <FaReact className="text-4xl" style={{ color: "#61DAFB" }} /> },
+    { name: "Next.js", icon: <SiNextdotjs className="text-4xl" style={{ color: "#000000" }} /> },
+    { name: "Tailwind", icon: <SiTailwindcss className="text-4xl" style={{ color: "#38B2AC" }} /> },
+    { name: "Express", icon: <SiExpress className="text-4xl" style={{ color: "#000000" }} /> },
+    { name: "Bootstrap", icon: <FaBootstrap className="text-4xl" style={{ color: "#563d7c" }} /> },
   ];
 
   return (
