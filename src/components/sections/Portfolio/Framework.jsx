@@ -20,6 +20,29 @@ const Framework = () => {
 
   return (
     <div className="py-12">
+      {/* Added Framework Header */}
+      <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="inline-flex items-center space-x-2 bg-secondary/10 dark:bg-secondary/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4">
+            <span className="relative flex h-2 w-2 sm:h-3 sm:w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-full w-full bg-secondary"></span>
+            </span>
+            <p className="text-xs sm:text-sm font-medium text-secondary whitespace-nowrap">
+              Frameworks & Tools
+            </p>
+          </div>
+          
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            Modern <span className="text-secondary">Technologies</span>
+          </h2>
+        </motion.div>
+      </div>
+
       <div className="flex flex-wrap justify-center gap-6">
         {frameworks.map((framework, index) => (
           <motion.div

@@ -25,10 +25,10 @@ export const FloatingDock = ({
 }) => {
   return (
     <>
-      <div className="hidden md:block">
+      <div className="hidden md:block z-50 relative">
         <FloatingDockDesktop items={items} className={desktopClassName} />
       </div>
-      <div className="block md:hidden">
+      <div className="block md:hidden z-50 relative">
         <FloatingDockMobile items={items} />
       </div>
     </>
