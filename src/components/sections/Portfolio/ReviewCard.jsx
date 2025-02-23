@@ -97,9 +97,9 @@ const CustomerReviewsSlider = () => {
           className="container mx-auto md:px-6"
         >
           <section className="text-center lg:text-left">
-            <div className="py-8 md:py-12 md:px-6 md:px-12">
+            <div className="py-8 md:py-12 md:px-6">
               <div className="container mx-auto xl:px-32">
-                <div className="flex grid items-center lg:grid-cols-2">
+                <div className="grid items-center lg:grid-cols-2">
                   <div className="mb-8 md:mt-8 lg:mt-0 lg:mb-0">
                     <motion.div
                       variants={textVariants}
