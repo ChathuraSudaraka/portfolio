@@ -8,7 +8,6 @@ import NotePad from "./components/sections/BlogPage/Tiptap/NotePad";
 import NotFound from "./Pages/NotFound";
 import BlogData from "./Pages/BlogPage";
 import DarkLight from "./components/common/DarkLight";
-import ScrollAnimation from "./hooks/ScrollAnimation";
 import BackToTop from "./components/common/BackToTop";
 import CircleFollowMouse from "./hooks/use-follow-pointer";
 
@@ -26,7 +25,6 @@ function App() {
 
       <BackToTop />
       <DarkLight />
-      <ScrollAnimation />
       <CircleFollowMouse />
     </BrowserRouter>
   );

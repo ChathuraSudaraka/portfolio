@@ -11,14 +11,22 @@ const scrollToTop = () => {
 
 const BlogCard = ({ blog, index }) => {
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { 
+      opacity: 0,
+      scale: 0.95,
+      filter: 'blur(10px)',
+      y: 30
+    },
     visible: {
       opacity: 1,
+      scale: 1,
+      filter: 'blur(0px)',
       y: 0,
       transition: {
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: "easeOut"
+        type: "spring",
+        duration: 1,
+        delay: index * 0.2,
+        bounce: 0.3
       }
     }
   };
@@ -35,11 +43,11 @@ const BlogCard = ({ blog, index }) => {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-50px" }}
       whileHover={{ y: -5 }}
       className="group h-full"
     >
-      <div className="relative bg-black/40 dark:bg-black/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 shadow-lg hover:shadow-secondary/20 transition-all duration-300 h-full flex flex-col">
+      <div className="relative bg-gradient-to-b from-white/80 to-white/30 dark:from-gray-900/80 dark:to-gray-900/30 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
         {/* Image container */}
         <motion.div 
           className="relative h-[220px] w-full overflow-hidden"
@@ -75,7 +83,7 @@ const BlogCard = ({ blog, index }) => {
           </motion.div>
         </motion.div>
 
-        {/* Content section with updated z-index */}
+        {/* Content section with updated colors */}
         <motion.div 
           className="flex-1 flex flex-col p-6 relative z-10"
           initial={{ opacity: 0 }}
@@ -83,23 +91,23 @@ const BlogCard = ({ blog, index }) => {
           transition={{ delay: 0.3 }}
         >
           {/* Date */}
-          <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
             <FaCalendar className="w-4 h-4" />
             {blog.date}
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-secondary transition-colors">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-secondary transition-colors">
             {blog.title}
           </h3>
 
           {/* Excerpt with flex grow */}
-          <p className="text-gray-400 mb-6 line-clamp-3 flex-1">
+          <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-1">
             {blog.content1}
           </p>
 
-          {/* Footer with improved button handling */}
-          <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto relative z-20">
+          {/* Footer with updated styling */}
+          <div className="flex items-center justify-between pt-4 border-t border-gray-200/50 dark:border-gray-700/50 mt-auto relative z-20">
             {/* Author section */}
             <motion.div 
               className="flex items-center gap-3"
@@ -108,9 +116,9 @@ const BlogCard = ({ blog, index }) => {
               <img
                 src="/assets/icon.png"
                 alt="Author"
-                className="w-8 h-8 rounded-full border border-white/20"
+                className="w-8 h-8 rounded-full border border-gray-200/50 dark:border-gray-700/50"
               />
-              <span className="text-sm font-medium text-white">
+              <span className="text-sm font-medium text-gray-900 dark:text-white">
                 Chathura Sudaraka
               </span>
             </motion.div>
@@ -136,8 +144,8 @@ const BlogCard = ({ blog, index }) => {
           </div>
         </motion.div>
 
-        {/* Gradient overlay with lower z-index */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 z-0" />
+        {/* Enhanced hover gradient */}
+        <div className="absolute inset-0 bg-gradient-to-tr from-secondary/10 via-white/5 to-transparent dark:from-secondary/20 dark:via-gray-800/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-0" />
       </div>
     </motion.div>
   );

@@ -5,14 +5,22 @@ import { GradientButton } from "../../ui/gradient-button";
 
 const ProjectCard = ({ project, index }) => {
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { 
+      opacity: 0,
+      scale: 0.95,
+      filter: 'blur(10px)',
+      y: 30
+    },
     visible: {
       opacity: 1,
+      scale: 1,
+      filter: 'blur(0px)',
       y: 0,
       transition: {
-        duration: 0.5,
-        delay: index * 0.1,
-        ease: "easeOut"
+        type: "spring",
+        duration: 1,
+        delay: index * 0.2,
+        bounce: 0.3
       }
     }
   };
@@ -29,14 +37,14 @@ const ProjectCard = ({ project, index }) => {
       variants={cardVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true }}
+      viewport={{ once: true, margin: "-50px" }}
       className="group h-full"
     >
       <motion.div 
         className="relative h-full flex flex-col"
-        whileHover={{ y: -5 }}
+        whileHover={{ y: -5, transition: { duration: 0.3 } }}
       >
-        <div className="relative bg-black/40 dark:bg-black/60 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10 h-full flex flex-col shadow-lg hover:shadow-primary/20 transition-all duration-300">
+        <div className="relative bg-gradient-to-b from-white/80 to-white/30 dark:from-gray-900/80 dark:to-gray-900/30 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 h-full flex flex-col shadow-lg hover:shadow-xl transition-all duration-300">
           {/* Image container */}
           <motion.div 
             className="relative h-[220px] w-full overflow-hidden"
@@ -82,11 +90,11 @@ const ProjectCard = ({ project, index }) => {
 
           {/* Content */}
           <div className="flex-1 flex flex-col p-6 relative z-10">
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors line-clamp-1">
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-1">
               {project.name}
             </h3>
 
-            <p className="text-gray-400 mb-6 line-clamp-3 flex-1">
+            <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-1">
               {project.description}
             </p>
 
@@ -121,7 +129,7 @@ const ProjectCard = ({ project, index }) => {
                     e.stopPropagation(); // Stop event propagation
                     window.open(project.demo, "_blank");
                   }}
-                  className="px-4 py-2.5 rounded-xl border border-white/10 hover:bg-white/5 transition-colors relative z-20"
+                  className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700/50 text-gray-900 dark:text-white transition-colors relative z-20"
                 >
                   Live Demo
                 </motion.button>
@@ -130,7 +138,7 @@ const ProjectCard = ({ project, index }) => {
           </div>
 
           {/* Enhanced hover gradient */}
-          <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 z-0" />
+          <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 via-white/5 to-transparent dark:from-primary/20 dark:via-gray-800/5 dark:to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-0" />
         </div>
       </motion.div>
     </motion.div>
