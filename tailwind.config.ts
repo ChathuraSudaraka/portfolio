@@ -16,6 +16,9 @@ export default {
         move: "move 5s linear infinite",
         spotlight: "spotlight 2s ease .75s 1 forwards",
         "meteor-effect": "meteor 5s linear infinite",
+        'gradient': 'gradient 8s linear infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'float-slow': 'float 8s ease-in-out infinite',
       },
       keyframes: {
         move: {
@@ -40,14 +43,37 @@ export default {
             opacity: 0,
           },
         },
+        gradient: {
+          '0%, 100%': {
+            'background-size': '200% 200%',
+            'background-position': 'left center'
+          },
+          '50%': {
+            'background-size': '200% 200%',
+            'background-position': 'right center'
+          }
+        },
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-10px)' }
+        },
       },
       colors: {
-        primary: "#5E3BEE",
-        headingcolor: "#282938",
-        bgShade: "#F5FCFA",
+        primary: {
+          DEFAULT: "#2563eb", // Bright blue
+          light: "#60a5fa",   // Light blue
+          dark: "#1d4ed8",    // Dark blue
+        },
+        secondary: {
+          DEFAULT: "#7c3aed", // Purple
+          light: "#a78bfa",   // Light purple
+          dark: "#5b21b6",    // Dark purple
+        },
+        headingcolor: "#1e293b", // Slate-800
+        bgShade: "#f8fafc",     // Slate-50
+        body: "#334155",        // Slate-700
         bgcom: "#F5FCFF",
         dribble: "#E62872",
-        body: "#1C1E53",
         "custom-blue": "#080f1f",
         "custom-dark-blue": "#000000",
         "dark-white": "#8a9fb1",
