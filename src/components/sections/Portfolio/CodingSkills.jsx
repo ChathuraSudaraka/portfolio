@@ -5,7 +5,7 @@ import Language from "./Language";
 
 const CodingSkills = () => {
   return (
-    <section className="relative py-12 sm:py-16 lg:py-20" id="skills">
+    <section className="relative py-12 sm:py-16 lg:py-20 overflow-x-hidden" id="skills">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 lg:mb-16">

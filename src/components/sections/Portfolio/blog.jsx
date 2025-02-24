@@ -1,23 +1,15 @@
-// Article.js
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";  // Add useNavigate import
+import { Link, useNavigate } from "react-router-dom"; // Add useNavigate import
 import { blogs } from "../../../context/data";
 import { FaBlog, FaCalendar, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const BlogCard = ({ blog, index }) => {
-  const navigate = useNavigate();  // Add useNavigate hook
-
-  // Add scroll to top function
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
+  const navigate = useNavigate(); // Add useNavigate hook
   // Update the button click handler
   const handleReadClick = (e) => {
     e.preventDefault();
-    scrollToTop();
-    navigate(`/blog/${blog.id}`);  // Use navigate instead of window.location
+    navigate(`/blog/${blog.id}`); // Use navigate instead of window.location
   };
 
   const cardVariants = {
