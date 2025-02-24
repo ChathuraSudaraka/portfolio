@@ -59,9 +59,9 @@ const Footer = () => {
   ];
 
   const legalLinks = [
-    { to: "/privacy", label: "Privacy Policy" },
-    { to: "/terms", label: "Terms of Service" },
-    { to: "/cookies", label: "Cookie Settings" }
+    { to: "/legal/privacy", label: "Privacy Policy" },
+    { to: "/legal/terms", label: "Terms of Service" },
+    { to: "/legal/cookies", label: "Cookie Settings" }
   ];
 
   // Only show navigation links on main pages

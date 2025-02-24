@@ -62,9 +62,6 @@ const CookieSettings = () => {
   return (
     <LegalLayout>
       <div className="min-h-screen bg-white dark:bg-black">
-        {/* Background Elements */}
-        <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)]" />
-
         <div className="container mx-auto px-4 py-20 relative">
           {/* Header */}
           <div className="text-center mb-12">
