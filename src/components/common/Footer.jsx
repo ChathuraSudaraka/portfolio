@@ -55,7 +55,7 @@ const Footer = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-100/50 to-gray-100/80 dark:via-gray-900/50 dark:to-gray-900/80 pointer-events-none" />
 
       {/* Newsletter Section */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

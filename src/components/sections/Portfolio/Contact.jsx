@@ -92,7 +92,7 @@ const Contact = () => {
 
   return (
     <section className="relative py-20" id="contact">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         {/* Header - Simplified animations for mobile */}
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 lg:mb-16">
           <motion.div

@@ -65,29 +65,29 @@ const Work = () => {
 
   return (
     <section className="relative min-h-screen py-20" id="work">
-      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl md:pt-20">
         {/* Header with enhanced design */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="max-w-3xl mx-auto"
+            transition={{ duration: 0.5 }}
           >
-            <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-2xl mb-6 [backdrop-filter:blur(12px)]">
-              <span className="relative flex h-3 w-3">
+            {/* Make badge more responsive */}
+            <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4">
+              <span className="relative flex h-2 w-2 sm:h-3 sm:w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
+                <span className="relative inline-flex rounded-full h-full w-full bg-primary"></span>
               </span>
-              <p className="text-sm font-medium bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent">
+              <p className="text-xs sm:text-sm font-medium text-primary whitespace-nowrap">
                 Experience
               </p>
             </div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-gray-900 via-primary to-purple-500 dark:from-white dark:via-primary dark:to-purple-400 bg-clip-text text-transparent">
-              My Professional Journey
-            </h2>
-            <p className="text-gray-600 dark:text-gray-400 text-lg">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-headingcolor dark:text-white mb-4">
+              My Professional <span className="text-primary">Journey</span>
+            </h1>
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 max-w-lg sm:max-w-xl lg:max-w-2xl mx-auto">
               A timeline of my professional growth and key achievements
             </p>
           </motion.div>
@@ -109,7 +109,7 @@ const Work = () => {
                       transition={{ duration: 0.7, delay: index * 0.2 }}
                       className="group relative"
                     >
-                      <div className="relative bg-white dark:bg-black rounded-[2rem] p-8 md:p-10 transition-all duration-500 backdrop-blur-xl border border-gray-200 dark:border-gray-800 hover:border-primary/50">
+                      <div className="relative bg-white dark:bg-black rounded-[2rem] p-4 md:p-10 transition-all duration-500 backdrop-blur-xl border border-gray-200 dark:border-gray-800 hover:border-primary/50">
                         <Sparkles />
                         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-purple-500/10 rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
