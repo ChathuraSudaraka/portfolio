@@ -245,14 +245,12 @@ const Work = () => {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mx-auto"
           >
-            <div className="inline-flex items-center space-x-2 bg-primary/10 px-3 py-1.5 rounded-full mb-4">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            <div className="inline-flex items-center space-x-2 bg-secondary/10 dark:bg-secondary/20 px-3 py-2 rounded-full mb-4">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary" />
               </span>
-              <span className="text-sm font-medium text-primary">
-                Experience
-              </span>
+              <p className="text-sm font-medium text-secondary">Experience</p>
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
