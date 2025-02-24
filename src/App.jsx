@@ -26,9 +26,9 @@ function App() {
           <Route path="/notepad/*" element={<NotePad />} />
           <Route path="/legal/*" element={
             <Routes>
-              <Route path="/cookies" element={<CookieSettings />} />
-              <Route path="/terms" element={<TermsOfService />} />
-              <Route path="/privacy" element={<PrivacyPolicy />} />
+              <Route path="/cookie-settings" element={<CookieSettings />} />
+              <Route path="/terms-of-service" element={<TermsOfService />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             </Routes>
           } />
           <Route path="*" element={<NotFound />} />

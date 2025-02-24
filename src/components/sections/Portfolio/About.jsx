@@ -92,7 +92,7 @@ const About = () => {
             >
               {/* Title */}
               <div>
-                <h3 className="text-2xl lg:text-3xl dark:text-white font-bold mb-2">
+                <h3 className="text-2xl lg:text-3xl text-gray-900 dark:text-white font-bold mb-2">
                   Professional Ethusiast
                 </h3>
                 <p className="text-primary font-medium">Software Development</p>

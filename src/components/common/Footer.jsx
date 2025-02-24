@@ -1,190 +1,167 @@
-import { useEffect, useState } from "react";
-import { FaFacebookF, FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link as ScrollLink } from "react-scroll";
-import { Link as RouterLink, useLocation } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
+import { FaGithub, FaLinkedin, FaTwitter, FaFacebookF } from "react-icons/fa";
+import { FiMail, FiPhone, FiMapPin } from "react-icons/fi";
 
 const Footer = () => {
-  const location = useLocation();
-  const [isSticky, setIsSticky] = useState(false); // Define isSticky state
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsSticky(true);
-      } else {
-        setIsSticky(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const contactInfo = [
+    {
+      icon: FiMail,
+      label: "Email",
+      value: "chathurasudaraka@eversoft.lk",
+      href: "mailto:chathurasudaraka@eversoft.lk",
+    },
+    {
+      icon: FiPhone,
+      label: "Phone",
+      value: "+94 70 532 1516",
+      href: "tel:+94705321516",
+    },
+    {
+      icon: FiMapPin,
+      label: "Location",
+      value: "Colombo, Sri Lanka",
+      href: "https://maps.google.com",
+    },
+  ];
 
   const socialLinks = [
     {
       icon: FaGithub,
       href: "https://github.com/ChathuraSudaraka",
-      label: "GitHub",
-      className: "hover:text-[#2b3137] dark:hover:text-white",
+      color: "hover:bg-[#333]",
     },
     {
       icon: FaLinkedin,
-      href: "https://www.linkedin.com/in/chathura-sudaraka-45413928b",
-      label: "LinkedIn",
-      className: "hover:text-[#0077b5]",
+      href: "https://www.linkedin.com/in/chathura-sudaraka",
+      color: "hover:bg-[#0077b5]",
     },
-    {
-      icon: FaTwitter,
-      href: "#",
-      label: "Twitter",
-      className: "hover:text-[#1DA1F2]",
-    },
+    { icon: FaTwitter, href: "#", color: "hover:bg-[#1DA1F2]" },
     {
       icon: FaFacebookF,
-      href: "https://www.facebook.com/profile.php?id=100071799326093",
-      label: "Facebook",
-      className: "hover:text-[#4267B2]",
+      href: "https://facebook.com/profile",
+      color: "hover:bg-[#4267B2]",
     },
   ];
 
-  const navigationLinks = [
-    { to: "home", label: "Home", offset: -100 },
-    { to: "portfolio", label: "Portfolio", offset: 10 },
-    { to: "about", label: "About me", offset: -50 },
-    { to: "testimonial", label: "Testimonials", offset: 10 },
-  ];
-
-  const legalLinks = [
-    { to: "/legal/privacy", label: "Privacy Policy" },
-    { to: "/legal/terms", label: "Terms of Service" },
-    { to: "/legal/cookies", label: "Cookie Settings" }
-  ];
-
-  // Only show navigation links on main pages
-  const isLegalPage = location.pathname.includes('/legal/');
-
   return (
-    <footer className="relative">
-      {/* Background with blur */}
-      <div className="absolute inset-0 bg-white/50 dark:bg-black/50 backdrop-blur-xl -z-10" />
+    <footer className="relative pt-40">
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-100/50 to-gray-100/80 dark:via-gray-900/50 dark:to-gray-900/80 pointer-events-none" />
 
-      {/* Main Footer Content */}
-      <div className="container mx-auto py-16 px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-          {/* Brand Section */}
-          <div className="space-y-4">
-            <motion.img
-              src="/assets/logo.webp"
-              alt="Logo"
-              className="h-10"
-              whileHover={{ scale: 1.05 }}
-            />
-            <p className="text-gray-600 dark:text-gray-400 max-w-xs">
-              Crafting innovative digital solutions with cutting-edge
-              technologies.
-            </p>
-
-            {/* Social Links - Updated Style */}
-            <div className="flex gap-4">
+      {/* Newsletter Section */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-xl rounded-2xl border border-gray-200 dark:border-gray-800 p-6 sm:p-8 lg:p-10 -mt-20"
+        >
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                Let's Connect and <span className="text-primary">Create</span>
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Join me in building innovative solutions and exploring new
+                opportunities.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-4 justify-start md:justify-end">
               {socialLinks.map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-2.5 rounded-lg
-                    hover:bg-gray-200 dark:hover:bg-gray-700 
-                    transition-all duration-300 ${social.className}`}
-                  whileHover={{ scale: 1.1 }}
+                  className={`p-3 rounded-xl bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-800 ${social.color} hover:text-white transition-all duration-300`}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <social.icon className="w-5 h-5 text-black dark:text-white" />
+                  <social.icon className="w-5 h-5 text-black/80 dark:text-white/80" />
                 </motion.a>
               ))}
             </div>
           </div>
+        </motion.div>
 
-          {/* Quick Links - Using ScrollLink */}
-          {!isLegalPage && (
-            <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-                Quick Links
-              </h3>
-              <ul className="space-y-2">
-                {navigationLinks.map((link, index) => (
-                  <motion.li key={index} whileHover={{ x: 5 }}>
-                    <ScrollLink
-                      to={link.to}
-                      spy={true}
-                      smooth={true}
-                      offset={link.offset}
-                      className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary cursor-pointer"
-                    >
-                      {link.label}
-                    </ScrollLink>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          )}
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-12 mt-12">
+          {/* Brand Column */}
+          <div className="space-y-4">
+            <img src="/assets/logo.webp" alt="Logo" className="h-8" />
+            <p className="text-gray-600 dark:text-gray-400 text-sm">
+              Crafting innovative digital solutions with cutting-edge
+              technologies.
+            </p>
+          </div>
+
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+              Quick Links
+            </h4>
+            <nav className="flex flex-col space-y-2">
+              {["Home", "About", "Portfolio", "Contact"].map((item, index) => (
+                <ScrollLink
+                  key={index}
+                  to={item.toLowerCase()}
+                  className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors text-sm cursor-pointer"
+                >
+                  {item}
+                </ScrollLink>
+              ))}
+            </nav>
+          </div>
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
               Contact
-            </h3>
-            <ul className="space-y-2">
-              <motion.li whileHover={{ x: 5 }}>
+            </h4>
+            <div className="space-y-3">
+              {contactInfo.map((item, index) => (
                 <a
-                  href="mailto:chathurasudaraka@eversoft.lk"
-                  className="text-gray-600 dark:text-gray-400 hover:text-primary"
+                  key={index}
+                  href={item.href}
+                  className="flex items-center gap-3 text-gray-600 dark:text-gray-400 hover:text-primary transition-colors text-sm"
                 >
-                  chathurasudaraka@eversoft.lk
+                  <item.icon className="w-4 h-4" />
+                  <span>{item.value}</span>
                 </a>
-              </motion.li>
-              <motion.li whileHover={{ x: 5 }}>
-                <a
-                  href="tel:+94705321516"
-                  className="text-gray-600 dark:text-gray-400 hover:text-primary"
-                >
-                  +94 70 532 1516
-                </a>
-              </motion.li>
-            </ul>
+              ))}
+            </div>
           </div>
 
-          {/* Legal Links - Using RouterLink */}
+          {/* Legal Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
               Legal
-            </h3>
-            <ul className="space-y-2">
-              {legalLinks.map((item, index) => (
-                <motion.li key={index} whileHover={{ x: 5 }}>
+            </h4>
+            <nav className="flex flex-col space-y-2">
+              {["Privacy Policy", "Terms of Service", "Cookie Settings"].map(
+                (item, index) => (
                   <RouterLink
-                    to={item.to}
-                    className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary"
+                    key={index}
+                    to={`/legal/${item.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="text-gray-600 dark:text-gray-400 hover:text-primary transition-colors text-sm"
                   >
-                    {item.label}
+                    {item}
                   </RouterLink>
-                </motion.li>
-              ))}
-            </ul>
+                )
+              )}
+            </nav>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-800">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-600 dark:text-gray-400">
-              Made with <span className="text-primary">❤️</span> by Chathura
-            </p>
-            <p className="text-gray-600 dark:text-gray-400">
-              © {new Date().getFullYear()} All rights reserved
+        <div className="border-t border-gray-200/50 dark:border-gray-700/50 py-6">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600 dark:text-gray-400">
+            <p>© {new Date().getFullYear()} All rights reserved.</p>
+            <p>
+              Made with <span className="text-red-500">❤️</span> by{" "}
+              <span className="text-primary">Chathura Sudaraka</span>
             </p>
           </div>
         </div>

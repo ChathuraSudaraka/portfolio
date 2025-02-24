@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  
+
   return (
     <div className="relative min-h-screen bg-white dark:bg-black">
       {/* Main background grid */}
@@ -17,11 +17,11 @@ const Layout = ({ children }) => {
       <div className="fixed bottom-0 left-0 h-[500px] w-[500px] bg-violet-500/10 rounded-full blur-3xl" />
 
       {/* Content wrapper */}
-      <div className="relative container max-w-7xl mx-auto">
+      <div className="container max-w-7xl mx-auto">
         <Navbar />
         {children}
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };

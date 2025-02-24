@@ -13,7 +13,7 @@ const ContactInfo = ({ icon: Icon, title, value, link }) => (
     href={link}
     target="_blank"
     rel="noopener noreferrer"
-    className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-white/50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-700/50 hover:border-primary/50 transition-all duration-300 group w-full"
+    className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-white/50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-800 hover:border-primary/50 transition-all duration-300 group w-full"
   >
     <div className="p-2.5 sm:p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
       <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -91,7 +91,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative py-12 sm:py-16 lg:py-24" id="contact">
+    <section className="relative py-20" id="contact">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
         {/* Header - Simplified animations for mobile */}
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 lg:mb-16">
@@ -101,14 +101,12 @@ const Contact = () => {
             transition={{ duration: 0.4 }}
             viewport={{ once: true }}
           >
-            <div className="inline-flex items-center space-x-2 bg-primary/10 px-3 py-1.5 rounded-full mb-4">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+            <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-4 py-2 rounded-full">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-primary"></span>
               </span>
-              <span className="text-sm font-medium text-primary">
-                Get in Touch
-              </span>
+              <p className="text-sm font-medium text-primary">Get in Touch</p>
             </div>
             <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
               Let's Build Something{" "}
@@ -132,7 +130,7 @@ const Contact = () => {
             className="space-y-4 sm:space-y-6"
           >
             <div className="prose prose-lg dark:prose-invert">
-              <h3 className="text-xl sm:text-2xl font-bold">
+              <h3 className="text-xl text-gray-900 dark:text-white sm:text-2xl font-bold">
                 Contact Information
               </h3>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
@@ -146,8 +144,8 @@ const Contact = () => {
               <ContactInfo
                 icon={FiMail}
                 title="Email"
-                value="hello@example.com"
-                link="mailto:hello@example.com"
+                value="chathurasudaraka@eversoft.lk"
+                link="mailto:chathurasudaraka@eversoft.lk"
               />
               <ContactInfo
                 icon={FiPhone}
@@ -164,7 +162,7 @@ const Contact = () => {
             </div>
 
             {/* Social Proof - Simplified mobile version */}
-            <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 border border-gray-200/50 dark:border-gray-700/50">
+            <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 border border-gray-200 dark:border-gray-800">
               <blockquote className="text-sm sm:text-base text-gray-600 dark:text-gray-300 italic">
                 "Looking forward to creating something amazing together!"
               </blockquote>
@@ -179,7 +177,7 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-              <div className="p-4 sm:p-6 rounded-xl bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+              <div className="p-4 sm:p-6 rounded-xl bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200 dark:border-gray-800">
                 {/* Form Grid - Improved mobile layout */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {/* Name Fields - Simplified animations */}
