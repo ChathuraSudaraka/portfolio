@@ -122,6 +122,35 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
           </motion.div>
         </motion.div>
       </div>
+      <style>
+        {`
+          .beam-scroll {
+            position: relative;
+          }
+          .beam-scroll::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: ${color};
+            opacity: 0.2;
+          }
+          .beam-scroll::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: ${color};
+            transform-origin: left;
+          }
+          @keyframes beam {
+            from { transform: scaleX(0); }
+            to { transform: scaleX(1); }
+          }
+        `}
+      </style>
       {children}
     </div>
   );

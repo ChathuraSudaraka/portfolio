@@ -273,15 +273,25 @@ const ReviewSlider = () => {
       </div>
 
       {/* Add CSS for perspective */}
-      <style jsx global>{`
-        @keyframes shine {
-          from { transform: translateX(-100%); }
-          to { transform: translateX(100%); }
-        }
-        .hover\:shine:hover::after {
-          animation: shine 1s ease-in-out;
-        }
-      `}</style>
+      <style>
+        {`
+          .swiper-pagination-bullet {
+            background: var(--swiper-pagination-bullet-inactive-color, #999);
+            opacity: var(--swiper-pagination-bullet-inactive-opacity, 0.2);
+          }
+          .swiper-pagination-bullet-active {
+            background: var(--swiper-pagination-color, var(--primary));
+            opacity: var(--swiper-pagination-bullet-opacity, 1);
+          }
+          .hover\\:shine:hover::after {
+            animation: shine 1s ease-in-out;
+          }
+          @keyframes shine {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+          }
+        `}
+      </style>
     </div>
   );
 };

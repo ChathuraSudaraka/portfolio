@@ -105,20 +105,19 @@ const ProjectCard = ({ project, index }) => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
-                <button
+                <GradientButton
+                  asChild
+                  className="w-full py-2.5 font-medium"
                   onClick={(e) => {
-                    e.stopPropagation(); // Stop event propagation
+                    e.stopPropagation();
                     window.open(project.link, "_blank");
                   }}
-                  className="w-full"
                 >
-                  <GradientButton className="w-full py-2.5 font-medium">
-                    <span className="flex items-center justify-center gap-2">
-                      View Project
-                      <FaGithub className="w-4 h-4" />
-                    </span>
-                  </GradientButton>
-                </button>
+                  <span className="flex items-center justify-center gap-2">
+                    View Project
+                    <FaGithub className="w-4 h-4" />
+                  </span>
+                </GradientButton>
               </motion.div>
 
               {project.demo && (

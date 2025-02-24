@@ -12,11 +12,14 @@ const BottomGradient = () => {
 export const GradientButton = ({ 
   children, 
   className = "", 
-  isLoading, 
+  isLoading,
+  asChild = false,
   ...props 
 }) => {
+  const Comp = asChild ? "div" : "button";
+  
   return (
-    <button
+    <Comp
       className={`
         relative cursor-pointer group/btn 
         bg-white dark:bg-gray-900
@@ -62,6 +65,6 @@ export const GradientButton = ({
         )}
       
       <BottomGradient />
-    </button>
+    </Comp>
   );
 };
