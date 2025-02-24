@@ -10,6 +10,9 @@ import BlogData from "./Pages/BlogPage";
 import DarkLight from "./components/common/DarkLight";
 import BackToTop from "./components/common/BackToTop";
 import CircleFollowMouse from "./hooks/use-follow-pointer";
+import CookieSettings from "./Pages/Legal/CookieSettings";
+import PrivacyPolicy from "./Pages/Legal/PrivacyPolicy";
+import TermsOfService from "./Pages/Legal/TermsOfService";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
         <Route path="/work" element={<Work />} />
         <Route path="/NotePad/*" element={<NotePad />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/cookies" element={<CookieSettings />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
       </Routes>
 
       <BackToTop />
