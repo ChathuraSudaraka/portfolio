@@ -6,57 +6,63 @@ const CookieSettings = () => {
   const [preferences, setPreferences] = useState({
     necessary: true,
     functional: false,
-    analytics: false
+    analytics: false,
   });
 
   const cookieTypes = [
     {
       type: "necessary",
       title: "Essential Cookies",
-      description: "Required for basic portfolio functionality like theme preferences.",
-      required: true
+      description:
+        "Required for basic portfolio functionality like theme preferences.",
+      required: true,
     },
     {
       type: "functional",
       title: "Functional Cookies",
-      description: "Enhance your experience by remembering your preferences and settings.",
+      description:
+        "Enhance your experience by remembering your preferences and settings.",
       features: [
         "Remember dark/light mode preference",
         "Save language preferences",
-        "Optimize portfolio loading"
-      ]
+        "Optimize portfolio loading",
+      ],
     },
     {
       type: "analytics",
       title: "Analytics Cookies",
-      description: "Help me understand how visitors interact with my portfolio.",
+      description:
+        "Help me understand how visitors interact with my portfolio.",
       features: [
         "Anonymous usage statistics",
         "Page view information",
-        "Portfolio section engagement"
-      ]
-    }
+        "Portfolio section engagement",
+      ],
+    },
   ];
 
   const handleToggle = (type) => {
-    if (type === 'necessary') return; // Can't toggle necessary cookies
-    setPreferences(prev => ({
+    if (type === "necessary") return; // Can't toggle necessary cookies
+    setPreferences((prev) => ({
       ...prev,
-      [type]: !prev[type]
+      [type]: !prev[type],
     }));
   };
 
   const handleSavePreferences = () => {
-    localStorage.setItem('portfolioCookiePreferences', JSON.stringify(preferences));
+    localStorage.setItem(
+      "portfolioCookiePreferences",
+      JSON.stringify(preferences)
+    );
     // Add notification or feedback
-    alert('Your preferences have been saved!');
+    alert("Your preferences have been saved!");
   };
 
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       {/* Background Elements */}
       <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] dark:bg-[linear-gradient(to_right,#ffffff12_1px,transparent_1px),linear-gradient(to_bottom,#ffffff12_1px,transparent_1px)]" />
-      
+
       <div className="container mx-auto px-4 py-20 relative">
         {/* Header */}
         <div className="text-center mb-12">
@@ -83,8 +89,8 @@ const CookieSettings = () => {
             <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
               Customize how my portfolio uses cookies to enhance your experience
             </p>
-            </motion.div>
-          </div>
+          </motion.div>
+        </div>
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -114,16 +120,24 @@ const CookieSettings = () => {
                     <input
                       type="checkbox"
                       checked={preferences[cookie.type]}
-                      onChange={() => !cookie.required && handleToggle(cookie.type)}
+                      onChange={() =>
+                        !cookie.required && handleToggle(cookie.type)
+                      }
                       disabled={cookie.required}
                       className="sr-only peer"
                     />
-                    <div className={`relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer 
-                      ${preferences[cookie.type] ? 'bg-primary' : 'bg-gray-400'}
-                      peer-disabled:bg-gray-300 peer-disabled:cursor-not-allowed`}
+                    <div
+                      className={`relative w-14 h-7 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer 
+                      ${preferences[cookie.type] ? "bg-primary" : "bg-gray-400"}
+                      primary-disabled:bg-gray-300 peer-disabled:cursor-not-allowed`}
                     >
-                      <div className={`absolute left-[4px] top-[4px] bg-white w-6 h-6 rounded-full transition-all duration-300
-                        ${preferences[cookie.type] ? 'translate-x-7' : 'translate-x-0'}`}
+                      <div
+                        className={`absolute left-[4px] top-[4px] bg-white w-5 h-5 rounded-full transition-all duration-300
+                        ${
+                          preferences[cookie.type]
+                            ? "translate-x-7"
+                            : "translate-x-0"
+                        }`}
                       />
                     </div>
                   </label>
