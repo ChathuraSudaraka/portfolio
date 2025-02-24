@@ -97,36 +97,30 @@ const ProjectCard = ({ project, index }) => {
 
             {/* Action buttons */}
             <div className="flex items-center gap-2 sm:gap-3 mt-auto relative z-20">
-              <motion.div
-                className="flex-1"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+              <GradientButton
+                asChild
+                className="w-full py-2.5 font-medium relative"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(project.link, "_blank");
+                }}
               >
-                <GradientButton
-                  asChild
-                  className="w-full py-2.5 font-medium"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    window.open(project.link, "_blank");
-                  }}
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    View Project
-                    <FaGithub className="w-4 h-4" />
-                  </span>
-                </GradientButton>
-              </motion.div>
+                <span className="flex items-center justify-center gap-2 relative z-10">
+                  View Project
+                  <FaGithub className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
+                </span>
+              </GradientButton>
 
               {project.demo && (
                 <GradientButton
                   asChild
-                  className="px-4 py-2.5 font-medium"
+                  className="w-full py-2.5 font-medium relative"
                   onClick={(e) => {
                     e.stopPropagation();
                     window.open(project.demo, "_blank");
                   }}
                 >
-                  <span className="flex items-center justify-center gap-2">
+                  <span className="flex items-center justify-center gap-2 relative">
                     Live Demo
                   </span>
                 </GradientButton>
