@@ -5,31 +5,31 @@ import { GradientButton } from "../../ui/gradient-button";
 
 const ProjectCard = ({ project, index }) => {
   const cardVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.95,
-      filter: 'blur(10px)',
-      y: 30
+      filter: "blur(10px)",
+      y: 30,
     },
     visible: {
       opacity: 1,
       scale: 1,
-      filter: 'blur(0px)',
+      filter: "blur(0px)",
       y: 0,
       transition: {
         type: "spring",
         duration: 1,
         delay: index * 0.2,
-        bounce: 0.3
-      }
-    }
+        bounce: 0.3,
+      },
+    },
   };
 
   const imageVariants = {
     hover: {
       scale: 1.1,
-      transition: { duration: 0.8 }
-    }
+      transition: { duration: 0.8 },
+    },
   };
 
   return (
@@ -40,42 +40,39 @@ const ProjectCard = ({ project, index }) => {
       viewport={{ once: true, margin: "-50px" }}
       className="group h-full"
     >
-      <motion.div 
+      <motion.div
         className="relative h-full flex flex-col"
         whileHover={{ y: -5, transition: { duration: 0.3 } }}
       >
         <div className="relative bg-gradient-to-b from-white/80 to-white/30 dark:from-gray-900/80 dark:to-gray-900/30 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 h-full flex flex-col shadow-lg hover:shadow-xl transition-all duration-300">
           {/* Image container */}
-          <motion.div 
+          <motion.div
             className="relative h-[180px] sm:h-[200px] lg:h-[220px] w-full overflow-hidden"
             whileHover="hover"
           >
-            <motion.div 
-              variants={imageVariants}
-              className="absolute inset-0"
-            >
-              <img 
+            <motion.div variants={imageVariants} className="absolute inset-0">
+              <img
                 src={project.image}
                 alt={project.name}
                 className="w-full h-full object-cover"
               />
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"
                 whileHover={{ opacity: 0.8 }}
               />
             </motion.div>
-            
+
             {/* Tags */}
-            <motion.div 
+            <motion.div
               className="absolute top-4 left-4 right-4 flex flex-wrap gap-2 z-10"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
               {[project.tag1, project.tag2, project.tag3]
-                .filter(tag => tag && !tag.includes("not"))
+                .filter((tag) => tag && !tag.includes("not"))
                 .map((tag, i) => (
-                  <motion.span 
+                  <motion.span
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -100,7 +97,7 @@ const ProjectCard = ({ project, index }) => {
 
             {/* Action buttons */}
             <div className="flex items-center gap-2 sm:gap-3 mt-auto relative z-20">
-              <motion.div 
+              <motion.div
                 className="flex-1"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -121,17 +118,18 @@ const ProjectCard = ({ project, index }) => {
               </motion.div>
 
               {project.demo && (
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <GradientButton
+                  asChild
+                  className="px-4 py-2.5 font-medium"
                   onClick={(e) => {
-                    e.stopPropagation(); // Stop event propagation
+                    e.stopPropagation();
                     window.open(project.demo, "_blank");
                   }}
-                  className="px-4 py-2.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 hover:bg-gray-100 dark:hover:bg-gray-700/50 text-gray-900 dark:text-white transition-colors relative z-20"
                 >
-                  Live Demo
-                </motion.button>
+                  <span className="flex items-center justify-center gap-2">
+                    Live Demo
+                  </span>
+                </GradientButton>
               )}
             </div>
           </div>
@@ -171,7 +169,7 @@ const Portfolio = () => {
             </span>
             <p className="text-sm font-medium text-primary">My Projects</p>
           </div>
-          
+
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Featured <span className="text-primary">Work</span>
           </h2>
