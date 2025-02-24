@@ -8,7 +8,6 @@ import { blogs } from "../../../context/data";
 import SearchBar from "../../sections/BlogPage/SearchBar";
 
 function BlogCard() {
-
   const [filteredBlogs, setFilteredBlogs] = useState(blogs);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
@@ -121,7 +120,6 @@ function BlogCard() {
                         />
                       </div>
                       <Link
-                        onClick={scrollToTop}
                         to={`/blog/${blog.id}`}
                         className="inline-flex items-center font-medium text-primary-600 dark:text-primary-500 hover:underline"
                       >

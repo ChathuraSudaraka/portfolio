@@ -1,27 +1,27 @@
 import React from "react";
 import { FloatingDock } from "../ui/floating-dock";
-import { FaHome, FaRegNewspaper, FaProjectDiagram } from "react-icons/fa";
+import { RiHome5Line, RiCodeBoxLine, RiArticleLine } from "react-icons/ri";
 
 const Navbar = () => {
   const links = [
     {
       title: "Home",
       icon: (
-        <FaHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <RiHome5Line className="h-full w-full text-gray-900 dark:text-white" />
       ),
       href: "/",
     },
     {
       title: "Projects",
       icon: (
-        <FaProjectDiagram className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <RiCodeBoxLine className="h-full w-full text-gray-900 dark:text-white" />
       ),
       href: "/work",
     },
     {
       title: "Blog",
       icon: (
-        <FaRegNewspaper className="h-full w-full text-neutral-500 dark:text-neutral-300" />
+        <RiArticleLine className="h-full w-full text-gray-900 dark:text-white" />
       ),
       href: "/blog",
     },
