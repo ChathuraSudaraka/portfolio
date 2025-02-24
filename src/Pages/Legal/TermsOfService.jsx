@@ -135,14 +135,14 @@ const TermsOfService = () => {
                 <div className="flex flex-wrap gap-4 justify-center">
                   <HoverBorderGradient
                     as={Link}
-                    to="/privacy"
+                    to="/legal/privacy"
                     className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white"
                   >
                     Privacy Policy
                   </HoverBorderGradient>
                   <HoverBorderGradient
                     as={Link}
-                    to="/cookies"
+                    to="/legal/cookies"
                     className="px-6 py-3 bg-transparent hover:bg-secondary/5 text-gray-900 dark:text-white"
                   >
                     Cookie Settings

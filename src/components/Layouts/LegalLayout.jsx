@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Footer from "../../components/common/Footer";
 
 const LegalLayout = ({ children }) => {
   useEffect(() => {
@@ -16,7 +15,6 @@ const LegalLayout = ({ children }) => {
       <div className="fixed bottom-0 left-0 h-[500px] w-[500px] bg-secondary/10 rounded-full blur-3xl" />
 
       <main className="flex-grow">{children}</main>
-      <Footer />
     </div>
   );
 };
