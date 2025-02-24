@@ -47,7 +47,7 @@ const ProjectCard = ({ project, index }) => {
         <div className="relative bg-gradient-to-b from-white/80 to-white/30 dark:from-gray-900/80 dark:to-gray-900/30 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 h-full flex flex-col shadow-lg hover:shadow-xl transition-all duration-300">
           {/* Image container */}
           <motion.div 
-            className="relative h-[220px] w-full overflow-hidden"
+            className="relative h-[180px] sm:h-[200px] lg:h-[220px] w-full overflow-hidden"
             whileHover="hover"
           >
             <motion.div 
@@ -89,17 +89,17 @@ const ProjectCard = ({ project, index }) => {
           </motion.div>
 
           {/* Content */}
-          <div className="flex-1 flex flex-col p-6 relative z-10">
-            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-primary transition-colors line-clamp-1">
+          <div className="flex-1 flex flex-col p-4 sm:p-5 lg:p-6 relative z-10">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3 group-hover:text-primary transition-colors line-clamp-1">
               {project.name}
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-1">
+            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mb-4 sm:mb-6 line-clamp-3 flex-1">
               {project.description}
             </p>
 
             {/* Action buttons */}
-            <div className="flex items-center gap-3 mt-auto relative z-20">
+            <div className="flex items-center gap-2 sm:gap-3 mt-auto relative z-20">
               <motion.div 
                 className="flex-1"
                 whileHover={{ scale: 1.02 }}
@@ -155,14 +155,14 @@ const Portfolio = () => {
   }, []);
 
   return (
-    <section className="relative py-20" id="portfolio">
-      <div className="container px-4">
+    <section className="relative py-12 sm:py-16 lg:py-20" id="portfolio">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          className="text-center mb-8 sm:mb-12 lg:mb-16"
         >
           <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-3 py-2 rounded-full mb-4">
             <span className="relative flex h-3 w-3">
@@ -172,13 +172,13 @@ const Portfolio = () => {
             <p className="text-sm font-medium text-primary">My Projects</p>
           </div>
           
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Featured <span className="text-primary">Work</span>
           </h2>
 
           <a
             href="https://github.com/ChathuraSudaraka"
-            className="inline-flex items-center px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-full transition-colors duration-200"
+            className="inline-flex items-center px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-full transition-colors duration:200"
           >
             <FaGithub className="w-5 h-5 mr-2" />
             <span>View GitHub Profile</span>
@@ -186,7 +186,7 @@ const Portfolio = () => {
         </motion.div>
 
         {/* Project Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}

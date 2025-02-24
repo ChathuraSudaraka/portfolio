@@ -84,8 +84,9 @@ const MobileFrameworkCard = ({ framework, index }) => {
       viewport={{ once: true }}
       custom={index}
       whileHover={{ y: -5 }}
+      className="p-2"
     >
-      <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-3xl border border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-xl transition-all duration-300 p-6 overflow-hidden">
+      <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-xl transition-all duration-300 p-4">
         {/* Sparkles effect */}
         <div className="absolute inset-0">
           <Sparkles />
@@ -147,8 +148,8 @@ const Framework = () => {
   ];
 
   return (
-    <div className="">
-      <div className="text-center mb-12">
+    <div className="py-8 sm:py-12">
+      <div className="text-center mb-8 sm:mb-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -170,21 +171,22 @@ const Framework = () => {
         </motion.div>
       </div>
 
-      <div className="hidden md:flex md:flex-wrap md:justify-center md:gap-6">
+      {/* Desktop/Tablet Layout */}
+      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         {frameworks.map((framework, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="w-[220px]"
+            className="w-full"
           >
             <PinContainer 
               title={framework.category}
-              containerClassName="w-full"
+              containerClassName="w-full h-full"
             >
-              <div className="relative group">
-                <div className="relative bg-white/10 dark:bg-gray-900/30 backdrop-blur-md rounded-xl p-6 min-h-[180px] flex items-center justify-center border border-gray-200/20 dark:border-gray-700/20">
+              <div className="relative group h-full">
+                <div className="relative bg-white/10 dark:bg-gray-900/30 backdrop-blur-md rounded-xl p-4 sm:p-6 h-full flex items-center justify-center border border-gray-200/20 dark:border-gray-700/20">
                   <div className="flex flex-col items-center gap-4">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
@@ -211,21 +213,15 @@ const Framework = () => {
         ))}
       </div>
 
-      <div className="md:hidden">
-        <motion.div 
-          className="grid grid-cols-1 gap-4"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
-        >
-          {frameworks.map((framework, index) => (
-            <MobileFrameworkCard 
-              key={framework.name} 
-              framework={framework} 
-              index={index}
-            />
-          ))}
-        </motion.div>
+      {/* Mobile Layout */}
+      <div className="sm:hidden space-y-4">
+        {frameworks.map((framework, index) => (
+          <MobileFrameworkCard 
+            key={framework.name} 
+            framework={framework} 
+            index={index}
+          />
+        ))}
       </div>
     </div>
   );

@@ -16,13 +16,13 @@ function index() {
       <Home />
       <Skills />
       <CodingSkills />
-      <About />
+      {/* <About /> */}
       <Experience />
       <Education />
       <Portfolio />
       <Article />
       <Testimonial />
-      <Contact />
+      {/* <Contact /> */}
     </Layout>
   );
 }
