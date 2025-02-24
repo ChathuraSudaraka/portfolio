@@ -1,32 +1,114 @@
 [
-    {
-      "id": 1,
-      "name": "Library Management System",
-      "tag1": "C#",
-      "tag2": ".Net",
-      "tag3": "MySQL",
-      "description": "Streamlining libraries, our system organizes resources, simplifies borrowing, and enriches the library experience for all.",
-      "image": "/assets/project-1.webp",
-      "link": "https://github.com/ChathuraSudaraka/library-management-system"
+  {
+    "id": 1,
+    "name": "Library Management System",
+    "tag1": "C#",
+    "tag2": ".NET Core",
+    "tag3": "MySQL",
+    "description": "A modern library management system with real-time tracking, automated notifications, and an intuitive admin dashboard. Features include QR code-based checkouts, book recommendations, and detailed analytics.",
+    "image": "/assets/project/project-1.webp",
+    "link": "https://github.com/ChathuraSudaraka/library-management-system",
+    "demo": "https://library-demo.example.com",
+    "stats": {
+      "users": "1000+",
+      "books": "50,000+",
+      "transactions": "10,000+"
     },
-    {
-      "id": 2,
-      "name": "Point Of Sale System",
-      "tag1": "Java",
-      "tag2": "MySQL",
-      "description": "POS systems simplify sales, inventory, and customer interactions, boosting efficiency and service quality for businesses.",
-      "image": "/assets/project-2.webp",
-      "link": "https://github.com/ChathuraSudaraka/Point-Of-Sale-System"
-    },
-    {
-      "id": 3,
-      "name": "Chat App",
-      "tag1": "ReactNaive",
-      "tag2": "PHP",
-      "tag3": "MySQL",
-      "description": "Coming Soon.",
-      "image": "/assets/project-3.webp",
-      "link": "https://github.com/ChathuraSudaraka/ChatApp"
+    "features": [
+      "Automated Check-in/Check-out",
+      "Book Recommendation Engine",
+      "Real-time Availability Tracking",
+      "Member Management"
+    ],
+    "technologies": {
+      "frontend": [".NET MAUI", "WPF", "Material Design"],
+      "backend": ["C#", "ASP.NET Core", "Entity Framework"],
+      "database": ["MySQL", "Redis"],
+      "tools": ["Azure DevOps", "Git"]
     }
-  ]
-  
+  },
+  {
+    "id": 2,
+    "name": "Point Of Sale System",
+    "tag1": "Java",
+    "tag2": "JavaFX",
+    "tag3": "MySQL",
+    "description": "Enterprise-grade POS system with inventory management, sales analytics, and multi-branch support. Includes features for both retail and restaurant businesses with customizable workflows.",
+    "image": "/assets/project/project-2.webp",
+    "link": "https://github.com/ChathuraSudaraka/Point-Of-Sale-System",
+    "demo": "https://pos-demo.example.com",
+    "stats": {
+      "transactions": "5000+",
+      "products": "2000+",
+      "dailyUsers": "100+"
+    },
+    "features": [
+      "Inventory Management",
+      "Sales Analytics",
+      "Employee Performance Tracking",
+      "Multi-branch Support"
+    ],
+    "technologies": {
+      "frontend": ["JavaFX", "Scene Builder", "JFoenix"],
+      "backend": ["Java", "Spring Boot"],
+      "database": ["MySQL", "MongoDB"],
+      "tools": ["Maven", "Jenkins"]
+    }
+  },
+  {
+    "id": 3,
+    "name": "Chat Application",
+    "tag1": "React Native",
+    "tag2": "Node.js",
+    "tag3": "Socket.io",
+    "description": "Real-time mobile chat application with end-to-end encryption, multimedia sharing, and group chat capabilities. Features include voice messages, location sharing, and offline support.",
+    "image": "/assets/project/project-3.webp",
+    "link": "https://github.com/ChathuraSudaraka/ChatApp",
+    "demo": "https://chat-demo.example.com",
+    "stats": {
+      "users": "500+",
+      "messages": "10,000+",
+      "groups": "100+"
+    },
+    "features": [
+      "End-to-End Encryption",
+      "Real-time Messaging",
+      "File Sharing",
+      "Voice Messages"
+    ],
+    "technologies": {
+      "frontend": ["React Native", "Redux", "Expo"],
+      "backend": ["Node.js", "Express", "Socket.io"],
+      "database": ["MongoDB", "Firebase"],
+      "tools": ["Docker", "AWS"]
+    }
+  },
+  {
+    "id": 4,
+    "name": "Student Management Portal",
+    "tag1": "PHP",
+    "tag2": "Laravel",
+    "tag3": "Vue.js",
+    "description": "Comprehensive student management system with attendance tracking, grade management, and parent portal. Includes features for online assignments and progress tracking.",
+    "image": "/assets/project/project-4.webp",
+    "link": "https://github.com/ChathuraSudaraka/student-portal",
+    "demo": "https://student-demo.example.com",
+    "stats": {
+      "students": "3000+",
+      "courses": "50+",
+      "teachers": "100+"
+    },
+    "features": [
+      "Attendance Tracking",
+      "Grade Management",
+      "Online Assignments",
+      "Parent Portal"
+    ],
+    "technologies": {
+      "frontend": ["Vue.js", "Tailwind CSS", "Alpine.js"],
+      "backend": ["PHP", "Laravel", "Livewire"],
+      "database": ["MySQL", "Redis"],
+      "tools": ["Git", "Laravel Forge"]
+    }
+  }
+]

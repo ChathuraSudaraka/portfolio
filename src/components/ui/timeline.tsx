@@ -1,11 +1,5 @@
-"use client";
-import {
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-  motion,
-} from "framer-motion";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface TimelineEntry {
   title: string;
@@ -33,57 +27,65 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <div
-      className="w-full bg-white dark:bg-neutral-950 font-sans md:px-10"
-      ref={containerRef}
-    >
-      <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
-        <h2 className="text-lg md:text-4xl mb-4 text-black dark:text-white max-w-4xl">
-          Changelog from my journey
-        </h2>
-        <p className="text-neutral-700 dark:text-neutral-300 text-sm md:text-base max-w-sm">
-          I&apos;ve been working on Aceternity for the past 2 years. Here&apos;s
-          a timeline of my journey.
-        </p>
+    <div ref={containerRef} className="relative">
+      {/* Progress line - Left aligned */}
+      <div
+        ref={ref}
+        className="absolute left-8 top-0 bottom-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-gray-200 dark:via-gray-700 to-transparent to-[99%] [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+      >
+        <motion.div
+          style={{
+            height: heightTransform,
+            opacity: opacityTransform,
+          }}
+          className="absolute inset-x-0 top-0 w-full bg-gradient-to-t from-primary via-secondary to-transparent from-[0%] via-[10%] rounded-full"
+        />
       </div>
 
-      <div ref={ref} className="relative max-w-7xl mx-auto pb-20">
-        {data.map((item, index) => (
-          <div
-            key={index}
-            className="flex justify-start pt-10 md:pt-40 md:gap-10"
-          >
-            <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-white dark:bg-black flex items-center justify-center">
-                <div className="h-4 w-4 rounded-full bg-neutral-200 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 p-2" />
+      {/* Timeline entries */}
+      <div className="space-y-16 pl-24">
+        {data.map((entry, idx) => (
+          <div key={idx} className="relative">
+            {/* Animated node - Left aligned */}
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.4 }}
+              className="absolute -left-[79px] top-8"
+            >
+              {/* Node outer ring */}
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-primary via-secondary to-primary p-[2px] rotate-0 hover:rotate-180 transition-transform duration-500">
+                <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 flex items-center justify-center">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+                  </span>
+                </div>
               </div>
-              <h3 className="hidden md:block text-xl md:pl-20 md:text-5xl font-bold text-neutral-500 dark:text-neutral-500 ">
-                {item.title}
-              </h3>
-            </div>
+            </motion.div>
 
-            <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
-                {item.title}
-              </h3>
-              {item.content}{" "}
-            </div>
+            {/* Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.3 }}
+              className="relative"
+            >
+              {/* Connector line */}
+              <div className="absolute -left-12 top-[48px] w-14 h-[2px] bg-gradient-to-r from-primary to-transparent" />
+
+              <span className="text-xl font-semibold mb-2 block bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">
+                {entry.title}
+              </span>
+              {/* Content wrapper */}
+              <div className="bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-700/50 hover:border-primary/50 transition-all duration-300">
+                {entry.content}
+              </div>
+            </motion.div>
           </div>
         ))}
-        <div
-          style={{
-            height: height + "px",
-          }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]  [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)] "
-        >
-          <motion.div
-            style={{
-              height: heightTransform,
-              opacity: opacityTransform,
-            }}
-            className="absolute inset-x-0 top-0  w-[2px] bg-gradient-to-t from-purple-500 via-blue-500 to-transparent from-[0%] via-[10%] rounded-full"
-          />
-        </div>
       </div>
     </div>
   );
