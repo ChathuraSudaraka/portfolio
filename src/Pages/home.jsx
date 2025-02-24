@@ -16,7 +16,7 @@ function index() {
       <Home />
       <Skills />
       <CodingSkills />
-      {/* <About /> */}
+      <About />
       <Experience />
       <Education />
       <Portfolio />
