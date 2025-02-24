@@ -17,21 +17,27 @@ import TermsOfService from "./Pages/Legal/TermsOfService";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:id" element={<BlogData />} />
-        <Route path="/work" element={<Work />} />
-        <Route path="/NotePad/*" element={<NotePad />} />
-        <Route path="*" element={<NotFound />} />
-        <Route path="/cookies" element={<CookieSettings />} />
-        <Route path="/terms" element={<TermsOfService />} />
-        <Route path="/privacy" element={<PrivacyPolicy />} />
-      </Routes>
+      <div className="relative">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogData />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/notepad/*" element={<NotePad />} />
+          <Route path="/legal/*" element={
+            <Routes>
+              <Route path="cookies" element={<CookieSettings />} />
+              <Route path="terms" element={<TermsOfService />} />
+              <Route path="privacy" element={<PrivacyPolicy />} />
+            </Routes>
+          } />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
 
-      <BackToTop />
-      <DarkLight />
-      <CircleFollowMouse />
+        <BackToTop />
+        <DarkLight />
+        <CircleFollowMouse />
+      </div>
     </BrowserRouter>
   );
 }
