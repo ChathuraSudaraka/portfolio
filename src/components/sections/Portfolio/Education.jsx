@@ -36,8 +36,7 @@ const Education = () => {
 
   return (
     <section className="relative py-20" id="education">
-      {/* Header */}
-      <div className="container px-4">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
