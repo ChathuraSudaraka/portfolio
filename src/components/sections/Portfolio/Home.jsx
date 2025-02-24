@@ -11,6 +11,27 @@ const Home = () => {
     window.open(pdf, "_blank");
   };
 
+  const stats = [
+    { 
+      value: "2+", 
+      label: "Years Experience",
+      icon: "⚡",
+      color: "from-yellow-500/20 to-orange-500/20"
+    },
+    { 
+      value: "15+", 
+      label: "Projects Done",
+      icon: "🚀",
+      color: "from-blue-500/20 to-purple-500/20"
+    },
+    { 
+      value: "20+", 
+      label: "Technologies",
+      icon: "💻",
+      color: "from-green-500/20 to-emerald-500/20"
+    }
+  ];
+
   return (
     <section className="relative min-h-screen" id="home">
       <div className="container px-4 py-20 relative">
@@ -88,22 +109,46 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Stats */}
+            {/* Enhanced Stats Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="grid grid-cols-3 gap-6 pt-8"
+              className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8"
             >
-              {[
-                { value: "5+", label: "Years of Experience" },
-                { value: "50+", label: "Projects Completed" },
-                { value: "20+", label: "Technologies" }
-              ].map((stat, index) => (
-                <div key={index} className="text-center space-y-1">
-                  <div className="text-3xl font-bold text-primary">{stat.value}</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">{stat.label}</div>
-                </div>
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ scale: 0.95, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="relative group"
+                >
+                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.color} blur-xl group-hover:blur-2xl transition-all duration-500`} />
+                  <div className="relative bg-white/50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm rounded-xl p-4 hover:border-primary/50 transition-colors">
+                    <div className="flex items-center gap-3 mb-2">
+                      <span className="text-2xl">{stat.icon}</span>
+                      <motion.span 
+                        className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+                        animate={{ 
+                          opacity: [1, 0.8, 1],
+                          scale: [1, 1.05, 1] 
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatType: "reverse"
+                        }}
+                      >
+                        {stat.value}
+                      </motion.span>
+                    </div>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {stat.label}
+                    </p>
+                  </div>
+                </motion.div>
               ))}
             </motion.div>
           </div>

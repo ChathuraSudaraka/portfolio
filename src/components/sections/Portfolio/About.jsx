@@ -4,11 +4,18 @@ import { HoverBorderGradient } from "../../ui/hover-border-gradient";
 import proPic from "/assets/profile.webp";
 
 const About = () => {
-  const stats = [
-    { label: "Completed Projects", value: "15+" },
-    { label: "Technologies", value: "20+" },
-    { label: "Years Experience", value: "2+" },
-    { label: "Github Repos", value: "30+" },
+  const skillCategories = [
+    {
+      title: "Other Skills",
+      skills: [
+        "UI/UX Design",
+        "Project Management",
+        "Team Collaboration",
+        "Problem Solving",
+      ],
+      icon: "🎯",
+      gradient: "from-green-500/20 to-emerald-500/20",
+    },
   ];
 
   return (
@@ -91,7 +98,6 @@ const About = () => {
                 <p className="text-primary font-medium">Software Development</p>
               </div>
 
-              {/* Description */}
               <div className="space-y-4 text-gray-600 dark:text-gray-300">
                 <p className="relative">
                   <span className="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-primary/50 to-secondary/50 rounded-full" />
@@ -113,35 +119,53 @@ const About = () => {
                   with the developer community. I believe in continuous learning
                   and staying updated with industry trends.
                 </p>
+                <p className="relative">
+                  <span className="absolute -left-4 top-0 h-full w-1 bg-gradient-to-b from-primary/50 to-secondary/50 rounded-full" />
+                  Gaming is another passion of mine - I find it both
+                  entertaining and inspiring for creative problem-solving
+                  approaches in software development.
+                </p>
               </div>
 
-              {/* New Content Below Paragraphs */}
-              
-              {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                {stats.map((stat, index) => (
+              {/* New Skills Section replacing Stats */}
+              <div className="space-y-6">
+                {skillCategories.map((category, index) => (
                   <motion.div
-                    key={stat.label}
+                    key={category.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
-                    className="group relative p-4 bg-white/50 dark:bg-gray-900/50 rounded-xl border border-gray-200/50 dark:border-gray-700/50 hover:border-primary/50 transition-all duration-300"
+                    className="relative group"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-xl opacity-0 group-hover:opacity-100 transition-all duration-300" />
-                    <motion.p 
-                      className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {stat.value}
-                    </motion.p>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {stat.label}
-                    </p>
+                    <div
+                      className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${category.gradient} opacity-0 group-hover:opacity-100 transition-all duration-300`}
+                    />
+                    <div className="relative bg-white/50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-700/50 rounded-xl p-4 hover:border-primary/50 transition-all duration-300">
+                      <div className="flex items-center gap-3 mb-3">
+                        <span className="text-2xl">{category.icon}</span>
+                        <h4 className="text-lg font-semibold text-gray-900 dark:text-white">
+                          {category.title}
+                        </h4>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill, skillIndex) => (
+                          <motion.span
+                            key={skill}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: skillIndex * 0.05 }}
+                            className="px-3 py-1 text-sm bg-white/50 dark:bg-gray-800/50 text-gray-900 dark:text-white rounded-full border border-gray-200/50 dark:border-gray-700/50"
+                          >
+                            {skill}
+                          </motion.span>
+                        ))}
+                      </div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
 
-              {/* Action Buttons with enhanced styling */}
+              {/* Action Buttons */}
               <div className="flex flex-wrap gap-4 pt-6">
                 <HoverBorderGradient className="px-6 py-3 bg-transparent hover:bg-primary/5">
                   <a
