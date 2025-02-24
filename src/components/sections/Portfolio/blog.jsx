@@ -1,11 +1,25 @@
 // Article.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";  // Add useNavigate import
 import { blogs } from "../../../context/data";
 import { FaBlog, FaCalendar, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const BlogCard = ({ blog, index }) => {
+  const navigate = useNavigate();  // Add useNavigate hook
+
+  // Add scroll to top function
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Update the button click handler
+  const handleReadClick = (e) => {
+    e.preventDefault();
+    scrollToTop();
+    navigate(`/blog/${blog.id}`);  // Use navigate instead of window.location
+  };
+
   const cardVariants = {
     hidden: {
       opacity: 0,
@@ -123,11 +137,7 @@ const BlogCard = ({ blog, index }) => {
               whileTap={{ scale: 0.95 }}
             >
               <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  scrollToTop();
-                  window.location.href = `/blog/${blog.id}`;
-                }}
+                onClick={handleReadClick}
                 className="flex items-center gap-2 text-secondary hover:text-secondary/80 transition-all duration-300 px-3 py-1 rounded-full hover:bg-secondary/10"
               >
                 <span className="text-sm font-medium">Read</span>
