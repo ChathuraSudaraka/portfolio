@@ -86,7 +86,7 @@ const MobileFrameworkCard = ({ framework, index }) => {
       whileHover={{ y: -5 }}
       className="w-full"
     >
-      <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-xl transition-all duration-300 p-3 sm:p-4">
+      <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-xl transition-all duration-300 p-5 sm:p-4">
         {/* Sparkles effect */}
         <div className="absolute inset-0">
           <Sparkles />
@@ -214,7 +214,7 @@ const Framework = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="sm:hidden space-y-3 px-4">
+      <div className="sm:hidden space-y-3">
         <div className="grid grid-cols-1 gap-3">
           {frameworks.map((framework, index) => (
             <MobileFrameworkCard 
