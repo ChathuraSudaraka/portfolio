@@ -22,7 +22,7 @@ function index() {
       <Portfolio />
       <Article />
       <Testimonial />
-      {/* <Contact /> */}
+      <Contact />
     </Layout>
   );
 }

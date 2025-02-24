@@ -84,9 +84,9 @@ const MobileFrameworkCard = ({ framework, index }) => {
       viewport={{ once: true }}
       custom={index}
       whileHover={{ y: -5 }}
-      className="p-2"
+      className="w-full"
     >
-      <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-xl transition-all duration-300 p-4">
+      <div className="relative group bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-800/50 shadow-lg hover:shadow-xl transition-all duration-300 p-3 sm:p-4">
         {/* Sparkles effect */}
         <div className="absolute inset-0">
           <Sparkles />
@@ -95,26 +95,26 @@ const MobileFrameworkCard = ({ framework, index }) => {
         {/* Hover gradient */}
         <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
-        <div className="relative z-10 flex items-center gap-4">
+        <div className="relative z-10 flex items-center gap-3">
           <motion.div
             variants={iconVariants}
             initial="hidden"
             whileInView="visible"
             whileHover="hover"
-            className="relative"
+            className="relative flex-shrink-0"
           >
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-xl blur-xl" />
-            <div className="relative w-14 h-14 flex items-center justify-center bg-white dark:bg-gray-900 rounded-xl shadow-lg">
-              <framework.icon className="w-7 h-7" style={{ color: framework.color }} />
+            <div className="relative w-12 h-12 flex items-center justify-center bg-white dark:bg-gray-900 rounded-xl shadow-lg">
+              <framework.icon className="w-6 h-6" style={{ color: framework.color }} />
             </div>
           </motion.div>
           
-          <div className="flex-1">
+          <div className="flex-1 min-w-0">
             <motion.h3 
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="text-base font-semibold text-gray-900 dark:text-white"
+              className="text-sm font-semibold text-gray-900 dark:text-white truncate"
             >
               {framework.name}
             </motion.h3>
@@ -122,7 +122,7 @@ const MobileFrameworkCard = ({ framework, index }) => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-              className="inline-block px-2.5 py-1 text-xs font-medium text-secondary bg-secondary/10 dark:bg-secondary/20 rounded-full mt-1"
+              className="inline-block px-2 py-0.5 text-xs font-medium text-secondary bg-secondary/10 dark:bg-secondary/20 rounded-full mt-1"
             >
               {framework.category}
             </motion.span>
@@ -148,8 +148,8 @@ const Framework = () => {
   ];
 
   return (
-    <div className="py-8 sm:py-12">
-      <div className="text-center mb-8 sm:mb-12">
+    <div className="py-8 sm:py-12 lg:py-16">
+      <div className="text-center mb-8 sm:mb-12 lg:mb-16 max-w-3xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -172,37 +172,37 @@ const Framework = () => {
       </div>
 
       {/* Desktop/Tablet Layout */}
-      <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+      <div className="hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-5 lg:gap-6 px-4 sm:px-6 lg:px-8">
         {frameworks.map((framework, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="w-full"
+            className="w-full h-full"
           >
             <PinContainer 
               title={framework.category}
-              containerClassName="w-full h-full"
+              containerClassName="w-full h-full min-h-[160px] md:min-h-[180px] lg:min-h-[200px]"
             >
               <div className="relative group h-full">
-                <div className="relative bg-white/10 dark:bg-gray-900/30 backdrop-blur-md rounded-xl p-4 sm:p-6 h-full flex items-center justify-center border border-gray-200/20 dark:border-gray-700/20">
-                  <div className="flex flex-col items-center gap-4">
+                <div className="relative bg-white/10 dark:bg-gray-900/30 backdrop-blur-md rounded-xl p-3 md:p-4 lg:p-5 h-full flex items-center justify-center border border-gray-200/20 dark:border-gray-700/20">
+                  <div className="flex flex-col items-center gap-3">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      className="relative"
+                      className="relative w-12 md:w-14 lg:w-16 h-12 md:h-14 lg:h-16"
                     >
                       <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-full blur-xl" />
-                      <div className="relative w-16 h-16 flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg">
+                      <div className="relative w-full h-full flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg">
                         <framework.icon 
-                          className="w-8 h-8" 
+                          className="w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8" 
                           style={{ color: framework.color }} 
                         />
                       </div>
                     </motion.div>
 
-                    <h3 className="text-base font-medium text-gray-900 dark:text-white"> {/* Updated text color */}
+                    <h3 className="text-sm md:text-base font-medium text-center text-gray-900 dark:text-white">
                       {framework.name}
                     </h3>
                   </div>
@@ -214,14 +214,16 @@ const Framework = () => {
       </div>
 
       {/* Mobile Layout */}
-      <div className="sm:hidden space-y-4">
-        {frameworks.map((framework, index) => (
-          <MobileFrameworkCard 
-            key={framework.name} 
-            framework={framework} 
-            index={index}
-          />
-        ))}
+      <div className="sm:hidden space-y-3 px-4">
+        <div className="grid grid-cols-1 gap-3">
+          {frameworks.map((framework, index) => (
+            <MobileFrameworkCard 
+              key={framework.name} 
+              framework={framework} 
+              index={index}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
