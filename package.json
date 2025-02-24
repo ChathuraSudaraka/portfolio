@@ -81,6 +81,7 @@
     "tiptap-extension-font-size": "^1.2.0"
   },
   "devDependencies": {
+    "@types/nodemailer": "^6.4.17",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-scroll": "^1.8.10",

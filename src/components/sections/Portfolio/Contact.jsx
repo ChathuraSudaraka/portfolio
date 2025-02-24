@@ -40,13 +40,14 @@ const Contact = () => {
     setErrors({});
 
     const formData = new FormData(e.target);
-    const validationErrors = validateForm({
+    const data = {
       first_name: formData.get("first_name"),
       last_name: formData.get("last_name"),
       user_email: formData.get("user_email"),
       message: formData.get("message"),
-    });
+    };
 
+    const validationErrors = validateForm(data);
     if (validationErrors.length > 0) {
       const errorMap = {};
       validationErrors.forEach((error) => {
@@ -57,32 +58,28 @@ const Contact = () => {
       return;
     }
 
-    // Use a clean loading toast
     const loadingToast = toast.loading("Sending message...");
 
     try {
+      // Update the fetch URL to the correct endpoint
       const response = await fetch("http://localhost:8080/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          first_name: formData.get("first_name"),
-          last_name: formData.get("last_name"),
-          user_email: formData.get("user_email"),
-          message: formData.get("message"),
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
 
-      if (!response.ok) throw new Error("Failed to send message");
+      const responseText = await response.text();
+      console.log("Raw response:", responseText);
+      const result = JSON.parse(responseText);
 
-      toast.success("Message sent successfully!", {
-        id: loadingToast,
-      });
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send message");
+      }
 
+      toast.success("Message sent successfully!", { id: loadingToast });
       e.target.reset();
     } catch (error) {
-      toast.error("Failed to send message. Please try again.", {
+      toast.error(error.message || "Failed to send message. Please try again.", {
         id: loadingToast,
       });
     } finally {
