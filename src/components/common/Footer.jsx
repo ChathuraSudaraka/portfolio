@@ -30,18 +30,22 @@ const Footer = () => {
     {
       icon: FaGithub,
       href: "https://github.com/ChathuraSudaraka",
-      color: "hover:bg-[#333]",
+      color: "hover:text-[#333]",
     },
     {
       icon: FaLinkedin,
       href: "https://www.linkedin.com/in/chathura-sudaraka",
-      color: "hover:bg-[#0077b5]",
+      color: "hover:text-[#0077b5]",
     },
-    { icon: FaTwitter, href: "#", color: "hover:bg-[#1DA1F2]" },
+    {
+      icon: FaTwitter,
+      href: "https://twitter.com/YourTwitterHandle",
+      color: "hover:text-[#1DA1F2]",
+    },
     {
       icon: FaFacebookF,
-      href: "https://facebook.com/profile",
-      color: "hover:bg-[#4267B2]",
+      href: "https://facebook.com/YourFacebookUsername",
+      color: "hover:text-[#4267B2]",
     },
   ];
 
@@ -75,11 +79,11 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-3 rounded-xl bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-800 ${social.color} hover:text-white transition-all duration-300`}
+                  className={`p-3 rounded-xl bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-800 text-white ${social.color} transition-all duration-300`}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <social.icon className="w-5 h-5 text-black/80 dark:text-white/80" />
+                  <social.icon className="w-5 h-5" />
                 </motion.a>
               ))}
             </div>

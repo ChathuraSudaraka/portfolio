@@ -39,7 +39,7 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
   
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end end"]
+    offset: ["start 50%", "end 100%"],
   });
 
   const scaleY = useSpring(scrollYProgress, {
