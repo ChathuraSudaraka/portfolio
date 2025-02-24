@@ -1,11 +1,33 @@
 import React, { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { toast, Toaster } from "react-hot-toast";
+import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 import { validateForm } from "../../../utils/validateForm";
 import { Label } from "../../ui/label";
 import { Input } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
 import { GradientButton } from "../../ui/gradient-button";
-import { motion } from "framer-motion";
-import { toast, Toaster } from "react-hot-toast";
+
+const ContactInfo = ({ icon: Icon, title, value, link }) => (
+  <motion.a
+    href={link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-3 p-3 sm:p-4 rounded-xl bg-white/50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-700/50 hover:border-primary/50 transition-all duration-300 group w-full"
+  >
+    <div className="p-2.5 sm:p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-colors shrink-0">
+      <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+    </div>
+    <div className="min-w-0">
+      <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+        {title}
+      </p>
+      <p className="text-sm sm:text-base text-gray-900 dark:text-white font-medium truncate">
+        {value}
+      </p>
+    </div>
+  </motion.a>
+);
 
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -69,152 +91,215 @@ const Contact = () => {
   };
 
   return (
-    <section className="relative py-16 lg:py-24" id="contact">
+    <section className="relative py-12 sm:py-16 lg:py-24" id="contact">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative">
+        {/* Header - Simplified animations for mobile */}
+        <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 lg:mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <div className="inline-flex items-center space-x-2 bg-primary/10 px-3 py-1.5 rounded-full mb-4">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-primary" />
+              </span>
+              <span className="text-sm font-medium text-primary">
+                Get in Touch
+              </span>
+            </div>
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white">
+              Let's Build Something{" "}
+              <span className="text-primary">Amazing</span>
+            </h2>
+            <p className="mt-4 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+              Have a project in mind? Let's discuss how we can work together to
+              create something great.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* Contact Grid - Improved mobile layout */}
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+          {/* Left Side - Contact Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+            className="space-y-4 sm:space-y-6"
+          >
+            <div className="prose prose-lg dark:prose-invert">
+              <h3 className="text-xl sm:text-2xl font-bold">
+                Contact Information
+              </h3>
+              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+                Feel free to reach out through any of these channels. I'm always
+                excited to connect and discuss new opportunities.
+              </p>
+            </div>
+
+            {/* Contact Info Grid - Better mobile spacing */}
+            <div className="grid gap-3 sm:gap-4">
+              <ContactInfo
+                icon={FiMail}
+                title="Email"
+                value="hello@example.com"
+                link="mailto:hello@example.com"
+              />
+              <ContactInfo
+                icon={FiPhone}
+                title="Phone"
+                value="+94 70 532 1516"
+                link="tel:+94705321516"
+              />
+              <ContactInfo
+                icon={FiMapPin}
+                title="Location"
+                value="Colombo, Sri Lanka"
+                link="https://maps.google.com"
+              />
+            </div>
+
+            {/* Social Proof - Simplified mobile version */}
+            <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 border border-gray-200/50 dark:border-gray-700/50">
+              <blockquote className="text-sm sm:text-base text-gray-600 dark:text-gray-300 italic">
+                "Looking forward to creating something amazing together!"
+              </blockquote>
+            </div>
+          </motion.div>
+
+          {/* Right Side - Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+            viewport={{ once: true }}
+          >
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+              <div className="p-4 sm:p-6 rounded-xl bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50">
+                {/* Form Grid - Improved mobile layout */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  {/* Name Fields - Simplified animations */}
+                  <div className="space-y-2">
+                    <Label htmlFor="first_name" className="text-sm font-medium">
+                      First Name
+                    </Label>
+                    <Input
+                      type="text"
+                      name="first_name"
+                      placeholder="Your First Name"
+                      className={`w-full px-3 py-2 text-sm sm:text-base rounded-lg ${
+                        errors.first_name ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.first_name && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.first_name}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="last_name" className="text-sm font-medium">
+                      Last Name
+                    </Label>
+                    <Input
+                      type="text"
+                      name="last_name"
+                      placeholder="Your Last Name"
+                      className={`w-full px-3 py-2 text-sm sm:text-base rounded-lg ${
+                        errors.last_name ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.last_name && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.last_name}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Email and Message Fields */}
+                <div className="space-y-3 sm:space-y-4 mt-3 sm:mt-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="user_email" className="text-sm font-medium">
+                      Email
+                    </Label>
+                    <Input
+                      type="email"
+                      name="user_email"
+                      placeholder="Your Email"
+                      className={`w-full px-3 py-2 text-sm sm:text-base rounded-lg ${
+                        errors.user_email ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.user_email && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.user_email}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="message" className="text-sm font-medium">
+                      Message
+                    </Label>
+                    <Textarea
+                      name="message"
+                      rows={6}
+                      placeholder="Your Message"
+                      className={`w-full px-3 py-2 text-sm sm:text-base rounded-lg min-h-[120px] sm:min-h-[150px] ${
+                        errors.message ? "border-red-500" : ""
+                      }`}
+                    />
+                    {errors.message && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Submit Button - Mobile optimized */}
+                <div className="mt-4 sm:mt-6">
+                  <GradientButton
+                    type="submit"
+                    isLoading={isLoading}
+                    className="w-full px-4 py-2.5 text-sm sm:text-base flex items-center justify-center gap-2"
+                  >
+                    <span>Send Message</span>
+                    <FiSend className="w-4 h-4" />
+                  </GradientButton>
+                </div>
+              </div>
+            </form>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Simplified toast for better mobile performance */}
       <Toaster
         position="bottom-center"
         toastOptions={{
-          className: 'text-sm sm:text-base',
+          className: "text-sm sm:text-base",
           duration: 5000,
           style: {
-            background: document.documentElement.classList.contains("dark") ? "#1f2937" : "#ffffff",
-            color: document.documentElement.classList.contains("dark") ? "#f9fafb" : "#000000",
-            border: document.documentElement.classList.contains("dark") ? "1px solid #374151" : "1px solid #e5e7eb",
+            background: document.documentElement.classList.contains("dark")
+              ? "#1f2937"
+              : "#ffffff",
+            color: document.documentElement.classList.contains("dark")
+              ? "#f9fafb"
+              : "#000000",
+            border: document.documentElement.classList.contains("dark")
+              ? "1px solid #374151"
+              : "1px solid #e5e7eb",
             borderRadius: "8px",
           },
         }}
       />
-
-      {/* Header Section */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1440px]">
-        <div className="max-w-3xl mx-auto mb-12 md:mb-16 text-center">
-          <div className="inline-flex items-center space-x-2 bg-primary/10 dark:bg-primary/20 px-3 py-2 rounded-full mb-4">
-            <span className="relative flex h-3 w-3">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-primary" />
-            </span>
-            <p className="text-sm font-medium text-primary">Get in Touch</p>
-          </div>
-
-          <h2 className="text-3xl md:text-4xl xl:text-5xl font-bold text-headingcolor dark:text-white leading-tight tracking-tight mb-4 md:mb-6">
-            Let's Build Something <span className="text-primary">Amazing</span>
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind? I'm always open to discussing new
-            opportunities and creative ideas. Drop me a message!
-          </p>
-        </div>
-
-        {/* Contact Form */}
-        <div className="max-w-2xl mx-auto">
-          <motion.form
-            ref={form}
-            onSubmit={handleSubmit}
-            className="space-y-6 md:space-y-8 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-gray-200/50 dark:border-gray-800/50"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 }}
-                className="space-y-2"
-              >
-                <Label htmlFor="first_name" className="text-sm font-medium">First Name</Label>
-                <Input
-                  type="text"
-                  name="first_name"
-                  placeholder="Your First Name"
-                  className={`w-full px-4 py-2.5 text-base rounded-xl ${
-                    errors.first_name ? "border-red-500" : ""
-                  }`}
-                />
-                {errors.first_name && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors.first_name}
-                  </p>
-                )}
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="space-y-2"
-              >
-                <Label htmlFor="last_name" className="text-sm font-medium">Last Name</Label>
-                <Input
-                  type="text"
-                  name="last_name"
-                  placeholder="Your Last Name"
-                  className={`w-full px-4 py-2.5 text-base rounded-xl ${
-                    errors.last_name ? "border-red-500" : ""
-                  }`}
-                />
-                {errors.last_name && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors.last_name}
-                  </p>
-                )}
-              </motion.div>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="space-y-2"
-            >
-              <Label htmlFor="user_email" className="text-sm font-medium">Email</Label>
-              <Input
-                type="email"
-                name="user_email"
-                placeholder="Your Email"
-                className={`w-full px-4 py-2.5 text-base rounded-xl ${
-                  errors.user_email ? "border-red-500" : ""
-                }`}
-              />
-              {errors.user_email && (
-                <p className="text-red-500 text-xs mt-1">{errors.user_email}</p>
-              )}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="space-y-2"
-            >
-              <Label htmlFor="message" className="text-sm font-medium">Message</Label>
-              <Textarea
-                name="message"
-                rows={6}
-                placeholder="Your Message"
-                className={`w-full px-4 py-2.5 text-base rounded-xl min-h-[150px] ${errors.message ? "border-red-500" : ""}`}
-              />
-              {errors.message && (
-                <p className="text-red-500 text-xs mt-1">{errors.message}</p>
-              )}
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="pt-4"
-            >
-              <GradientButton
-                type="submit"
-                isLoading={isLoading}
-                className="w-full sm:w-auto px-8 py-3 text-base font-medium"
-              >
-                Send Message
-              </GradientButton>
-            </motion.div>
-          </motion.form>
-        </div>
-      </div>
     </section>
   );
 };
