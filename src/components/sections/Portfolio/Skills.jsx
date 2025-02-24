@@ -92,8 +92,8 @@ const Card = ({ className, children, skill }) => {
 
 export function Skills() {
   return (
-    <div className="relative min-h-screen" id="skills">
-      <div className="container px-4 py-20 relative">
+    <div className="relative min-h-screen py-20" id="skills">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         {/* Header Section */}
         <div className="text-center mb-20">
           <motion.div

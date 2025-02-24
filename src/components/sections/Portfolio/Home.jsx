@@ -12,29 +12,29 @@ const Home = () => {
   };
 
   const stats = [
-    { 
-      value: "2+", 
+    {
+      value: "2+",
       label: "Years Experience",
       icon: "⚡",
-      color: "from-yellow-500/20 to-orange-500/20"
+      color: "from-yellow-500/20 to-orange-500/20",
     },
-    { 
-      value: "15+", 
+    {
+      value: "15+",
       label: "Projects Done",
       icon: "🚀",
-      color: "from-blue-500/20 to-purple-500/20"
+      color: "from-blue-500/20 to-purple-500/20",
     },
-    { 
-      value: "20+", 
+    {
+      value: "20+",
       label: "Technologies",
       icon: "💻",
-      color: "from-green-500/20 to-emerald-500/20"
-    }
+      color: "from-green-500/20 to-emerald-500/20",
+    },
   ];
 
   return (
-    <section className="relative min-h-screen" id="home">
-      <div className="container px-4 py-20 relative">
+    <section className="relative min-h-screen py-20" id="home">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         <div className="flex flex-col lg:flex-row lg:items-center lg:gap-x-20">
           {/* Left Content */}
           <div className="flex-1 space-y-8">
@@ -57,7 +57,8 @@ const Home = () => {
               {/* Main Title */}
               <div className="space-y-2">
                 <h1 className="text-4xl lg:text-6xl font-bold text-gray-900 dark:text-white">
-                  Hi, I'm <span className="text-primary">Chathura Sudaraka</span>
+                  Hi, I'm{" "}
+                  <span className="text-primary">Chathura Sudaraka</span>
                 </h1>
                 <h2 className="text-3xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-primary">
                   Full Stack Developer
@@ -66,8 +67,9 @@ const Home = () => {
 
               {/* Description */}
               <p className="text-lg text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
-                Crafting innovative digital solutions with cutting-edge technologies.
-                Specializing in full-stack development and cloud architecture.
+                Crafting innovative digital solutions with cutting-edge
+                technologies. Specializing in full-stack development and cloud
+                architecture.
               </p>
             </motion.div>
 
@@ -92,7 +94,7 @@ const Home = () => {
                 {[
                   { icon: FiGithub, href: "#", label: "GitHub" },
                   { icon: FiLinkedin, href: "#", label: "LinkedIn" },
-                  { icon: FiTwitter, href: "#", label: "Twitter" }
+                  { icon: FiTwitter, href: "#", label: "Twitter" },
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -125,20 +127,22 @@ const Home = () => {
                   whileHover={{ scale: 1.05 }}
                   className="relative group"
                 >
-                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.color} blur-xl group-hover:blur-2xl transition-all duration-500`} />
+                  <div
+                    className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${stat.color} blur-xl group-hover:blur-2xl transition-all duration-500`}
+                  />
                   <div className="relative bg-white/50 dark:bg-gray-900/50 border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm rounded-xl p-4 hover:border-primary/50 transition-colors">
                     <div className="flex items-center gap-3 mb-2">
                       <span className="text-2xl">{stat.icon}</span>
-                      <motion.span 
+                      <motion.span
                         className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
-                        animate={{ 
+                        animate={{
                           opacity: [1, 0.8, 1],
-                          scale: [1, 1.05, 1] 
+                          scale: [1, 1.05, 1],
                         }}
                         transition={{
                           duration: 2,
                           repeat: Infinity,
-                          repeatType: "reverse"
+                          repeatType: "reverse",
                         }}
                       >
                         {stat.value}
@@ -164,8 +168,8 @@ const Home = () => {
               <CardBody className="relative group/card bg-dot-primary/[0.2] border border-gray-200/50 dark:border-gray-800/50 rounded-3xl w-full lg:min-h-[600px]">
                 <CardItem translateZ="100" className="w-full h-full">
                   <div className="relative w-full h-full aspect-[3/4] overflow-hidden rounded-2xl">
-                    <img 
-                      src={banner} 
+                    <img
+                      src={banner}
                       alt="Chathura Sudaraka"
                       className="w-full h-full object-cover object-center transform group-hover/card:scale-110 transition-transform duration-500"
                     />
@@ -177,7 +181,9 @@ const Home = () => {
                   className="absolute bottom-6 left-6 right-6"
                 >
                   <div className="bg-white/65 dark:bg-black/85 border border-gray-200/50 dark:border-gray-800/50 backdrop-blur-sm rounded-xl p-6">
-                    <h3 className="text-2xl font-semibold text-primary">Full Stack Engineer</h3>
+                    <h3 className="text-2xl font-semibold text-primary">
+                      Full Stack Engineer
+                    </h3>
                     <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
                       MERN Stack • Cloud Native • DevOps
                     </p>

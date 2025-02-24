@@ -7,31 +7,31 @@ import { motion } from "framer-motion";
 
 const BlogCard = ({ blog, index }) => {
   const cardVariants = {
-    hidden: { 
+    hidden: {
       opacity: 0,
       scale: 0.95,
-      filter: 'blur(10px)',
-      y: 30
+      filter: "blur(10px)",
+      y: 30,
     },
     visible: {
       opacity: 1,
       scale: 1,
-      filter: 'blur(0px)',
+      filter: "blur(0px)",
       y: 0,
       transition: {
         type: "spring",
         duration: 1,
         delay: index * 0.2,
-        bounce: 0.3
-      }
-    }
+        bounce: 0.3,
+      },
+    },
   };
 
   const imageVariants = {
     hover: {
       scale: 1.1,
-      transition: { duration: 0.8 }
-    }
+      transition: { duration: 0.8 },
+    },
   };
 
   return (
@@ -45,29 +45,26 @@ const BlogCard = ({ blog, index }) => {
     >
       <div className="relative bg-gradient-to-b from-white/80 to-white/30 dark:from-gray-900/80 dark:to-gray-900/30 backdrop-blur-xl rounded-2xl overflow-hidden border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 h-full flex flex-col">
         {/* Image container */}
-        <motion.div 
+        <motion.div
           className="relative h-[220px] w-full overflow-hidden"
           whileHover="hover"
         >
-          <motion.div
-            variants={imageVariants}
-            className="absolute inset-0"
-          >
+          <motion.div variants={imageVariants} className="absolute inset-0">
             <img
               src={blog.image}
               alt={blog.title}
               className="w-full h-full object-cover"
             />
-            <motion.div 
+            <motion.div
               className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60"
               variants={{
-                hover: { opacity: 0.9 }
+                hover: { opacity: 0.9 },
               }}
             />
           </motion.div>
 
           {/* Category badge with animation */}
-          <motion.div 
+          <motion.div
             className="absolute top-4 left-4"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -80,7 +77,7 @@ const BlogCard = ({ blog, index }) => {
         </motion.div>
 
         {/* Content section with updated colors */}
-        <motion.div 
+        <motion.div
           className="flex-1 flex flex-col p-6 relative z-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -105,7 +102,7 @@ const BlogCard = ({ blog, index }) => {
           {/* Footer with updated styling */}
           <div className="flex items-center justify-between pt-4 border-t border-gray-200/50 dark:border-gray-700/50 mt-auto relative z-20">
             {/* Author section */}
-            <motion.div 
+            <motion.div
               className="flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
             >
@@ -150,7 +147,7 @@ const BlogCard = ({ blog, index }) => {
 const Article = () => {
   return (
     <section className="relative py-20" id="blog">
-      <div className="container px-4">
+      <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -163,9 +160,11 @@ const Article = () => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
               <span className="relative inline-flex rounded-full h-3 w-3 bg-secondary" />
             </span>
-            <p className="text-sm font-medium text-secondary">Latest Articles</p>
+            <p className="text-sm font-medium text-secondary">
+              Latest Articles
+            </p>
           </div>
-          
+
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             My <span className="text-secondary">Blog</span>
           </h2>

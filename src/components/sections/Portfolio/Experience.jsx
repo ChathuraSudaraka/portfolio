@@ -9,29 +9,33 @@ const Experience = () => {
       company: "Eversoft IT Solutions",
       duration: "2022 - Present",
       location: "Colombo, Sri Lanka",
-      description: "Leading full-stack development projects, implementing cloud solutions, and mentoring junior developers. Specialized in MERN stack applications and microservices architecture."
+      description:
+        "Leading full-stack development projects, implementing cloud solutions, and mentoring junior developers. Specialized in MERN stack applications and microservices architecture.",
     },
     {
       role: "Software Developer",
       company: "Tech Innovators",
       duration: "2021 - 2022",
       location: "Colombo, Sri Lanka",
-      description: "Developed and maintained enterprise web applications. Worked with React, Node.js, and PostgreSQL. Improved application performance by 40%."
+      description:
+        "Developed and maintained enterprise web applications. Worked with React, Node.js, and PostgreSQL. Improved application performance by 40%.",
     },
     {
       role: "Junior Developer",
       company: "Digital Solutions Ltd",
       duration: "2020 - 2021",
       location: "Galle, Sri Lanka",
-      description: "Built responsive web applications, collaborated with UI/UX team, and participated in agile development processes. Focused on frontend development with React."
+      description:
+        "Built responsive web applications, collaborated with UI/UX team, and participated in agile development processes. Focused on frontend development with React.",
     },
     {
       role: "Intern Developer",
       company: "CodeCraft Institute",
       duration: "2019 - 2020",
       location: "Colombo, Sri Lanka",
-      description: "Assisted in developing web applications, learned modern development practices, and participated in team projects using various technologies."
-    }
+      description:
+        "Assisted in developing web applications, learned modern development practices, and participated in team projects using various technologies.",
+    },
   ];
 
   return (
@@ -51,7 +55,7 @@ const Experience = () => {
             </span>
             <p className="text-sm font-medium text-primary">Work Journey</p>
           </div>
-          
+
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
             My <span className="text-primary">Experience</span>
           </h2>
@@ -66,7 +70,7 @@ const Experience = () => {
                 --color-end: rgb(var(--primary-rgb));
               }
             `}</style>
-            
+
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
@@ -79,24 +83,30 @@ const Experience = () => {
               >
                 {/* Timeline Node - refined centering */}
                 <div className="absolute left-0 md:left-1/2 top-0 z-10">
-                  <div 
-                    className="relative left-[8px] md:left-0 md:-translate-x-1/2 w-5 h-5"
-                  >
+                  <div className="relative left-[8px] md:left-0 md:-translate-x-1/2 w-5 h-5">
                     <div className="absolute inset-0 rounded-full bg-primary/20 dark:bg-primary/40 animate-ping" />
                     <div className="absolute inset-0 rounded-full bg-primary" />
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className={`md:col-span-1 ${index % 2 === 0 ? "md:col-start-1" : "md:col-start-2"}`}>
+                <div
+                  className={`md:col-span-1 ${
+                    index % 2 === 0 ? "md:col-start-1" : "md:col-start-2"
+                  }`}
+                >
                   <div className="group relative bg-white/50 dark:bg-black/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-800/50 p-6 hover:shadow-lg transition-all duration-300">
                     <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 via-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
                     <div className="relative z-10">
-                      <div className="text-xl font-bold text-primary mb-2">{exp.role}</div>
+                      <div className="text-xl font-bold text-primary mb-2">
+                        {exp.role}
+                      </div>
                       <div className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                         {exp.company} • {exp.duration} • {exp.location}
                       </div>
-                      <p className="text-gray-700 dark:text-gray-300">{exp.description}</p>
+                      <p className="text-gray-700 dark:text-gray-300">
+                        {exp.description}
+                      </p>
                     </div>
                   </div>
                 </div>
