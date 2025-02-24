@@ -27,7 +27,7 @@ const Work = () => {
   }, []);
 
   return (
-    <section className="relative py-20 lg:py-32" id="work">
+    <section className="relative min-h-screen" id="work"> {/* Modified to min-h-screen and removed padding */}
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
