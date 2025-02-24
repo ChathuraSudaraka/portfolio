@@ -5,10 +5,6 @@ import { blogs } from "../../../context/data";
 import { FaBlog, FaCalendar, FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const scrollToTop = () => {
-  window.scrollTo(0, 0);
-};
-
 const BlogCard = ({ blog, index }) => {
   const cardVariants = {
     hidden: { 
@@ -176,7 +172,6 @@ const Article = () => {
 
           <Link
             to="/blog"
-            onClick={scrollToTop}
             className="inline-flex items-center px-4 py-2 bg-secondary/10 hover:bg-secondary/20 text-secondary rounded-full transition-colors duration-200"
           >
             <FaBlog className="w-5 h-5 mr-2" />

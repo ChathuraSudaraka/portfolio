@@ -8,9 +8,6 @@ import { blogs } from "../../../context/data";
 import SearchBar from "../../sections/BlogPage/SearchBar";
 
 function BlogCard() {
-  const scrollToTop = () => {
-    window.scrollTo(0, 0);
-  };
 
   const [filteredBlogs, setFilteredBlogs] = useState(blogs);
   const [selectedCategory, setSelectedCategory] = useState("All");
