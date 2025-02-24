@@ -38,40 +38,40 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
 
   return (
     <div ref={containerRef} className="relative">
-      <div className="relative max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto pb-20">
         {data.map((item, index) => (
           <div key={index} className="flex justify-start pt-10 md:pt-40">
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs md:w-full">
-              <motion.div 
+              <motion.div
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
-                transition={{ 
+                transition={{
                   type: "spring",
                   stiffness: 200,
                   damping: 10,
-                  delay: index * 0.2 
+                  delay: index * 0.2,
                 }}
                 className="h-10 absolute left-3 md:left-3 w-10 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center cursor-pointer"
               >
-                <motion.div 
+                <motion.div
                   initial={{ scale: 0, rotate: -180 }}
                   whileInView={{ scale: 1, rotate: 0 }}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.5,
-                    boxShadow: "0 0 8px rgba(255,255,255,0.5)" 
+                    boxShadow: "0 0 8px rgba(255,255,255,0.5)",
                   }}
-                  transition={{ 
+                  transition={{
                     type: "spring",
                     stiffness: 260,
                     damping: 20,
-                    delay: (index * 0.2) + 0.1
+                    delay: index * 0.2 + 0.1,
                   }}
-                  className="h-4 w-4 rounded-full bg-white dark:bg-black border-2 border-white dark:border-black" 
+                  className="h-4 w-4 rounded-full bg-white dark:bg-black border-2 border-white dark:border-black"
                 />
               </motion.div>
-              <motion.h3 
+              <motion.h3
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.3 }}
@@ -81,13 +81,13 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               </motion.h3>
             </div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.4 }}
               className="relative pl-16 pr-0 md:pl-0 w-full"
             >
-              <motion.h3 
+              <motion.h3
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ delay: index * 0.3 }}
@@ -103,7 +103,8 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           className="absolute md:left-8 left-8 top-0 w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]"
           style={{
             height: `${height}px`,
-            maskImage: 'linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)',
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 10%, black 90%, transparent 100%)",
           }}
         >
           <motion.div
