@@ -1,6 +1,4 @@
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
 import ReviewSlider from "./ReviewCard";
 
 const Testimonial = () => {

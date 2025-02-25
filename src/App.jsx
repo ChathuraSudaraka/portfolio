@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
 import Home from "./Pages/home";
 import BlogPage from "./Pages/Blog";
-import NotePad from "./components/sections/BlogPage/Tiptap/NotePad";
+// import NotePad from "./components/sections/BlogPage/Tiptap/NotePad";
 import NotFound from "./Pages/NotFound";
 import BlogData from "./Pages/BlogPage";
 import DarkLight from "./components/common/DarkLight";
@@ -17,14 +17,14 @@ import UseToast from "./hooks/useToast";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <div className="relative">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogData />} />
           <Route path="/work" element={<Work />} />
-          <Route path="/notepad/*" element={<NotePad />} />
+          {/* <Route path="/notepad/*" element={<NotePad />} /> */}
           <Route
             path="/legal/*"
             element={
@@ -43,7 +43,7 @@ function App() {
         <UseToast />
         <CircleFollowMouse />
       </div>
-    </BrowserRouter>
+    </Router>
   );
 }
 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { toast, Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
+import axios from "axios";
 import { validateForm } from "../../../utils/validateForm";
 import { Label } from "../../ui/label";
 import { Input } from "../../ui/input";
@@ -58,42 +59,47 @@ const Contact = () => {
       return;
     }
 
-    // Show loading toast
-    const loadingToast = toast.loading("Sending message...");
+    // Use react-toastify's API correctly
+    // Show loading toast with id
+    const toastId = toast.loading("Sending message...", {
+      position: "bottom-center",
+    });
 
     try {
-      const response = await fetch("http://localhost:8080/send-email", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(data)
+      const response = await axios.post(
+        "http://localhost:8080/send-email",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+
+      // Success - dismiss loading toast and show success toast
+      toast.dismiss(toastId);
+      toast.success("Message sent successfully!", {
+        position: "bottom-center",
+        autoClose: 5000,
       });
 
-      const responseText = await response.text();
-      console.log("Raw server response:", responseText);
-      
-      let result;
-      try {
-        result = responseText ? JSON.parse(responseText) : {};
-      } catch (e) {
-        console.error("Failed to parse response as JSON:", responseText);
-        throw new Error("Invalid response from server");
-      }
-      
-      if (!response.ok) {
-        const errorMessage = result?.error || result?.details || "Failed to send message";
-        throw new Error(errorMessage);
-      }
-
-      // Success
-      toast.success("Message sent successfully!", { id: loadingToast });
       e.target.reset();
     } catch (error) {
       console.error("Form submission error:", error);
-      toast.error(error.message || "Failed to send message. Please try again.", {
-        id: loadingToast,
+
+      // Error - dismiss loading toast and show error toast
+      toast.dismiss(toastId);
+
+      const errorMessage =
+        error.response?.data?.error ||
+        error.response?.data?.details ||
+        error.message ||
+        "Failed to send message";
+
+      toast.error(errorMessage, {
+        position: "bottom-center",
+        autoClose: 5000,
       });
     } finally {
       setIsLoading(false);
@@ -287,22 +293,6 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
-      
-      {/* Toast notifications */}
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          duration: 5000,
-          style: {
-            background: document.documentElement.classList.contains("dark")
-              ? "#1f2937"
-              : "#ffffff",
-            color: document.documentElement.classList.contains("dark")
-              ? "#f9fafb"
-              : "#000000",
-          },
-        }}
-      />
     </section>
   );
 };

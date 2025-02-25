@@ -1,25 +1,47 @@
-import { Toaster } from "react-hot-toast";
+import { useState, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UseToast = () => {
+  const [isDarkTheme, setIsDarkTheme] = useState(
+    document.documentElement.classList.contains("dark")
+  );
+  
+  useEffect(() => {
+    // Set up observer for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === "attributes" &&
+          mutation.attributeName === "class"
+        ) {
+          setIsDarkTheme(document.documentElement.classList.contains("dark"));
+        }
+      });
+    });
+    
+    // Start observing
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    
+    // Clean up observer on unmount
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <Toaster
+    <ToastContainer
       position="bottom-center"
-      toastOptions={{
-        className: "text-sm sm:text-base",
-        duration: 5000,
-        style: {
-          background: document.documentElement.classList.contains("dark")
-            ? "#1f2937"
-            : "#ffffff",
-          color: document.documentElement.classList.contains("dark")
-            ? "#f9fafb"
-            : "#000000",
-          border: document.documentElement.classList.contains("dark")
-            ? "1px solid #374151"
-            : "1px solid #e5e7eb",
-          borderRadius: "8px",
-        },
-      }}
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme={isDarkTheme ? "dark" : "light"}
     />
   );
 };
