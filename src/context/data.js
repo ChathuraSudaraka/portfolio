@@ -12,7 +12,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
       "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3",
     author: {
       name: "John Doe",
-      avatar: "/author-avatar.jpg",
+      avatar: "/assets/avatars/author-avatar.jpg",
       role: "Senior React Developer",
       bio: "10+ years of experience in frontend development. Passionate about teaching and web technologies.",
     },
@@ -39,7 +39,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
       "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3",
     author: {
       name: "Jane Smith",
-      avatar: "/jane-avatar.jpg",
+      avatar: "/assets/avatars/jane-avatar.jpg",
       role: "TypeScript Expert",
     },
     date: "2024-01-20",
@@ -70,7 +70,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
       "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3",
     author: {
       name: "Mike Johnson",
-      avatar: "/mike-avatar.jpg",
+      avatar: "/assets/avatars/mike-avatar.jpg",
       role: "Backend Developer",
     },
     date: "2024-01-25",
@@ -101,7 +101,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
       "https://images.unsplash.com/photo-1627398242454-45a1465c2479?ixlib=rb-4.0.3",
     author: {
       name: "Sarah Wilson",
-      avatar: "/sarah-avatar.jpg",
+      avatar: "/assets/avatars/sarah-avatar.jpg",
       role: "Frontend Designer",
     },
     date: "2024-01-30",
@@ -139,7 +139,7 @@ Key Topics:
       "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3",
     author: {
       name: "Alice Brown",
-      avatar: "/alice-avatar.jpg",
+      avatar: "/assets/avatars/sarah-avatar.jpg",
       role: "Full-Stack Developer",
       bio: "Expert in building scalable web applications with a passion for GraphQL and modern JavaScript.",
     },

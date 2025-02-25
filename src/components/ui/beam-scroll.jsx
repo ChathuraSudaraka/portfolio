@@ -1,11 +1,6 @@
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 
-interface BeamScrollProps {
-  children: React.ReactNode;
-  color?: string;
-}
-
 const SparkleEffect = () => {
   return (
     <div className="absolute w-full">
@@ -14,8 +9,8 @@ const SparkleEffect = () => {
           key={i}
           className="absolute w-1 h-1 rounded-full"
           style={{
-            left: `${(i * 5) - 10}px`,
-            background: 'currentColor',
+            left: `${i * 5 - 10}px`,
+            background: "currentColor",
           }}
           animate={{
             scale: [0, 1, 0],
@@ -34,9 +29,9 @@ const SparkleEffect = () => {
   );
 };
 
-export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => {
-  const ref = useRef<HTMLDivElement>(null);
-  
+const BeamScroll = ({ children, color = "#3275F8" }) => {
+  const ref = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start 50%", "end 100%"],
@@ -45,19 +40,16 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
-  const glowOpacity = useTransform(scrollYProgress, 
-    [0, 0.5, 1], 
-    [0, 1, 0]
-  );
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
 
   return (
     <div ref={ref} className="relative">
       {/* Background track */}
       <div className="absolute left-0 md:left-1/2 top-0 h-full">
-        <div 
+        <div
           className="absolute left-[8px] md:left-0 md:-translate-x-1/2 w-[2px] h-full"
           style={{
             background: `linear-gradient(180deg, 
@@ -66,7 +58,7 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
               ${color}20,
               transparent
             )`,
-            boxShadow: `0 0 10px ${color}40`
+            boxShadow: `0 0 10px ${color}40`,
           }}
         />
       </div>
@@ -78,29 +70,29 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
           className="absolute left-[8px] md:left-0 md:-translate-x-1/2 w-[3px] h-full origin-top"
         >
           {/* Main beam */}
-          <div 
+          <div
             className="h-full w-full"
-            style={{ 
+            style={{
               background: `linear-gradient(180deg, 
                 transparent 0%, 
                 ${color} 50%, 
                 transparent 100%
               )`,
-              boxShadow: `0 0 20px ${color}, 0 0 40px ${color}80`
-            }} 
+              boxShadow: `0 0 20px ${color}, 0 0 40px ${color}80`,
+            }}
           />
-          
+
           {/* Enhanced glow effect */}
           <motion.div
-            style={{ 
+            style={{
               y: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
               opacity: glowOpacity,
             }}
             className="absolute top-0 left-0"
           >
-            <div 
+            <div
               className="h-40 w-[5px] blur-[4px]"
-              style={{ 
+              style={{
                 background: `linear-gradient(180deg, 
                   transparent,
                   ${color}80,
@@ -108,10 +100,10 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
                   ${color}80,
                   transparent
                 )`,
-                boxShadow: `0 0 30px ${color}`
-              }} 
+                boxShadow: `0 0 30px ${color}`,
+              }}
             />
-            
+
             {/* Sparkles with increased brightness */}
             <motion.div
               style={{ opacity: glowOpacity }}
@@ -122,36 +114,9 @@ export const BeamScroll = ({ children, color = "#3275F8" }: BeamScrollProps) => 
           </motion.div>
         </motion.div>
       </div>
-      <style>
-        {`
-          .beam-scroll {
-            position: relative;
-          }
-          .beam-scroll::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: ${color};
-            opacity: 0.2;
-          }
-          .beam-scroll::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: ${color};
-            transform-origin: left;
-          }
-          @keyframes beam {
-            from { transform: scaleX(0); }
-            to { transform: scaleX(1); }
-          }
-        `}
-      </style>
       {children}
     </div>
   );
 };
+
+export default BeamScroll;

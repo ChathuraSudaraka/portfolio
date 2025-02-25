@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { BeamScroll } from "../../ui/beam-scroll";
+// Update the import statement
+import BeamScroll from "../../ui/beam-scroll";
 
 const Experience = () => {
   const experiences = [
@@ -63,13 +64,6 @@ const Experience = () => {
         {/* Timeline */}
         <div className="max-w-4xl mx-auto relative">
           <BeamScroll color="rgb(50, 117, 248)">
-            <style jsx>{`
-              :root {
-                --color-start: rgb(var(--primary-rgb) / 0.2);
-                --color-end: rgb(var(--primary-rgb));
-              }
-            `}</style>
-
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}

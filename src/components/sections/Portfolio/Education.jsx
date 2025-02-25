@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { BeamScroll } from "../../ui/beam-scroll";
+import BeamScroll from "../../ui/beam-scroll";
 
 const Education = () => {
   const educations = [

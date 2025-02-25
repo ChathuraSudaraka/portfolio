@@ -8,7 +8,7 @@ const Pagination = ({
   itemsPerPage,
   renderItem,
   containerClassName,
-  scrollToTopId
+  scrollToTopId,
 }) => {
   const [itemOffset, setItemOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(0);
@@ -19,38 +19,46 @@ const Pagination = ({
   useEffect(() => {
     setCurrentPage(0);
     setItemOffset(0);
-    
+
     const newPageCount = Math.max(1, Math.ceil(items.length / itemsPerPage));
     setPageCount(newPageCount);
-    
+
     updateCurrentItems(0);
   }, [items, itemsPerPage]);
 
-  const updateCurrentItems = useCallback((offset) => {
-    const endOffset = Math.min(offset + itemsPerPage, items.length);
-    setCurrentItems(items.slice(offset, endOffset));
-  }, [items, itemsPerPage]);
+  const updateCurrentItems = useCallback(
+    (offset) => {
+      const endOffset = Math.min(offset + itemsPerPage, items.length);
+      setCurrentItems(items.slice(offset, endOffset));
+    },
+    [items, itemsPerPage]
+  );
 
-  const handlePageClick = useCallback((event) => {
-    const newOffset = Math.min(
-      event.selected * itemsPerPage,
-      Math.max(0, items.length - 1)
-    );
-    
-    setItemOffset(newOffset);
-    setCurrentPage(event.selected);
-    updateCurrentItems(newOffset);
-    
-    setTimeout(() => {
-      const element = document.getElementById(scrollToTopId || 'latest-posts');
-      if (element) {
-        element.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }, 100);
-  }, [items, itemsPerPage, updateCurrentItems, scrollToTopId]);
+  const handlePageClick = useCallback(
+    (event) => {
+      const newOffset = Math.min(
+        event.selected * itemsPerPage,
+        Math.max(0, items.length - 1)
+      );
+
+      setItemOffset(newOffset);
+      setCurrentPage(event.selected);
+      updateCurrentItems(newOffset);
+
+      setTimeout(() => {
+        const element = document.getElementById(
+          scrollToTopId || "latest-posts"
+        );
+        if (element) {
+          element.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 100);
+    },
+    [items, itemsPerPage, updateCurrentItems, scrollToTopId]
+  );
 
   // Calculate display range
   const startItem = items.length === 0 ? 0 : itemOffset + 1;
@@ -76,26 +84,26 @@ const Pagination = ({
       {pageCount > 1 && items.length > 0 && (
         <div className="mt-16 flex flex-col items-center">
           {/* Status bar */}
-          <motion.div 
+          <motion.div
             className="mb-8 w-full max-w-md bg-gradient-to-r from-primary/10 via-primary/5 to-secondary/10 dark:from-primary/20 dark:via-primary/10 dark:to-secondary/20 backdrop-blur-sm p-1 rounded-full overflow-hidden flex items-center"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
           >
             {/* Progress indicator */}
-            <div 
+            <div
               className="h-1 bg-gradient-to-r from-primary to-secondary rounded-full"
-              style={{ 
-                width: `${(currentPage + 1) / pageCount * 100}%`,
-                transition: 'width 0.5s ease'
+              style={{
+                width: `${((currentPage + 1) / pageCount) * 100}%`,
+                transition: "width 0.5s ease",
               }}
             ></div>
           </motion.div>
-          
+
           {/* Main pagination controls */}
           <div className="flex flex-col sm:flex-row items-center gap-6">
             {/* Info badge */}
-            <motion.div 
+            <motion.div
               className="text-sm bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 px-4 py-2 rounded-full flex items-center gap-2"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -103,12 +111,15 @@ const Pagination = ({
             >
               <FiGrid className="text-primary" />
               <span className="text-gray-600 dark:text-gray-300">
-                <b className="text-primary">{startItem}-{endItem}</b> of <b className="text-primary">{items.length}</b>
+                <b className="text-primary">
+                  {startItem}-{endItem}
+                </b>{" "}
+                of <b className="text-primary">{items.length}</b>
               </span>
             </motion.div>
-            
+
             {/* Pagination buttons */}
-            <motion.div 
+            <motion.div
               className="flex items-center gap-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -137,7 +148,7 @@ const Pagination = ({
           </div>
         </div>
       )}
-      
+
       {/* Styles */}
       <style jsx="true">{`
         /* Page buttons */
@@ -158,19 +169,23 @@ const Pagination = ({
 
         /* Active page */
         .active-page .page-btn {
-          background: linear-gradient(to bottom right, var(--color-primary), var(--color-secondary));
+          background: linear-gradient(
+            to bottom right,
+            var(--color-primary),
+            var(--color-secondary)
+          );
           color: white;
           font-weight: 600;
           transform: scale(1.1);
           box-shadow: 0 3px 10px rgba(var(--color-primary-rgb), 0.3);
         }
-        
+
         /* Hover effects */
         .page-btn:hover:not(.active-page .page-btn) {
           border-color: var(--color-primary);
           transform: translateY(-2px);
         }
-        
+
         /* Navigation buttons */
         .nav-btn {
           display: flex;
@@ -185,35 +200,39 @@ const Pagination = ({
           border: 1px solid rgba(var(--color-primary-rgb), 0.2);
           transition: all 0.2s ease;
         }
-        
+
         .nav-btn:hover:not(.disabled .nav-btn) {
-          background: linear-gradient(to right, rgba(var(--color-primary-rgb), 0.05), rgba(var(--color-secondary-rgb), 0.05));
+          background: linear-gradient(
+            to right,
+            rgba(var(--color-primary-rgb), 0.05),
+            rgba(var(--color-secondary-rgb), 0.05)
+          );
           border-color: var(--color-primary);
         }
-        
+
         /* Disabled state */
         .disabled .nav-btn {
           opacity: 0.5;
           cursor: not-allowed;
         }
-        
+
         /* Dark mode adjustments */
         html.dark .page-btn {
           background-color: rgba(var(--color-primary-rgb), 0.15);
           color: var(--color-text-dark);
         }
-        
+
         html.dark .nav-btn {
           background-color: #1f2937;
           color: var(--color-text-dark);
           border-color: rgba(var(--color-primary-rgb), 0.3);
         }
-        
+
         html.dark .active-page .page-btn {
           color: white;
           box-shadow: 0 3px 10px rgba(var(--color-primary-rgb), 0.5);
         }
-        
+
         /* Responsive adjustments */
         @media (max-width: 640px) {
           .page-btn {
@@ -221,18 +240,18 @@ const Pagination = ({
             height: 32px;
             font-size: 0.875rem;
           }
-          
+
           .nav-btn {
             padding: 0 12px;
             height: 32px;
             font-size: 0.875rem;
           }
-          
+
           .break-item {
             display: none;
           }
         }
-        
+
         /* CSS Variables */
         :root {
           --color-primary: rgb(79, 70, 229);
