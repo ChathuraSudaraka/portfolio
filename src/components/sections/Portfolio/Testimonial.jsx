@@ -1,4 +1,3 @@
-// Import Swiper styles
 import ReviewSlider from "./ReviewCard";
 
 const Testimonial = () => {

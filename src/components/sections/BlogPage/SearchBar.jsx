@@ -4,11 +4,11 @@ import { PlaceholdersAndVanishInput } from "../../ui/placeholders-and-vanish-inp
 
 const SearchBar = ({ searchQuery, setSearchQuery }) => {
   const placeholders = [
-    "What's the first rule of Fight Club?",
-    "Who is Tyler Durden?",
-    "Where is Andrew Laeddis Hiding?",
-    "Write a Javascript method to reverse a string",
-    "How to assemble your own PC?",
+    "Search for tech tutorials...",
+    "Looking for coding tips?",
+    "Find articles about web development",
+    "Search for React tutorials",
+    "Explore programming concepts",
   ];
 
   const handleChange = (e) => {
