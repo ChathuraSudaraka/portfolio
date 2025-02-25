@@ -1,13 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { GradientButton } from "../../components/ui/gradient-button";
 import LegalLayout from "../../components/Layouts/LegalLayout";
+import { toast } from "react-toastify";
 
 const CookieSettings = () => {
-  const [preferences, setPreferences] = useState({
-    necessary: true,
-    functional: false,
-    analytics: false,
+  // Load preferences from localStorage on initial load
+  const [preferences, setPreferences] = useState(() => {
+    const savedPreferences = localStorage.getItem("portfolioCookiePreferences");
+    return savedPreferences
+      ? JSON.parse(savedPreferences)
+      : {
+          necessary: true,
+          functional: false,
+          analytics: false,
+        };
   });
 
   const cookieTypes = [
@@ -44,10 +51,20 @@ const CookieSettings = () => {
 
   const handleToggle = (type) => {
     if (type === "necessary") return; // Can't toggle necessary cookies
-    setPreferences((prev) => ({
-      ...prev,
-      [type]: !prev[type],
-    }));
+    setPreferences((prev) => {
+      const newPreferences = {
+        ...prev,
+        [type]: !prev[type],
+      };
+
+      // Save to localStorage immediately on toggle
+      localStorage.setItem(
+        "portfolioCookiePreferences",
+        JSON.stringify(newPreferences)
+      );
+
+      return newPreferences;
+    });
   };
 
   const handleSavePreferences = () => {
@@ -55,9 +72,43 @@ const CookieSettings = () => {
       "portfolioCookiePreferences",
       JSON.stringify(preferences)
     );
-    // Add notification or feedback
-    alert("Your preferences have been saved!");
+
+    // Show success toast notification
+    toast.success("Your preferences have been saved!", {
+      position: "bottom-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      icon: "🍪",
+    });
+
+    // Trigger an event that the app can listen to for updating cookie behavior
+    window.dispatchEvent(new Event("cookiePreferencesUpdated"));
   };
+
+  // Detect changes in dark/light mode for toast styling
+  useEffect(() => {
+    const handleThemeChange = () => {
+      // This will ensure toasts match the current theme
+      const isDarkMode = document.documentElement.classList.contains("dark");
+      document.documentElement.setAttribute(
+        "data-theme",
+        isDarkMode ? "dark" : "light"
+      );
+    };
+
+    // Set initial theme
+    handleThemeChange();
+
+    // Listen for theme changes
+    window.addEventListener("themeChanged", handleThemeChange);
+
+    return () => {
+      window.removeEventListener("themeChanged", handleThemeChange);
+    };
+  }, []);
 
   return (
     <LegalLayout>
