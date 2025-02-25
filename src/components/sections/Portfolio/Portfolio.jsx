@@ -52,7 +52,7 @@ const ProjectCard = ({ project, index }) => {
           >
             <motion.div variants={imageVariants} className="absolute inset-0">
               <img
-                src={project.image || "/assets/placeholder.jpg"}
+                src={project.image || "/assets/project/project-placeholder.jpg"}
                 alt={project.name}
                 className="w-full h-full object-cover"
                 onError={(e) => {

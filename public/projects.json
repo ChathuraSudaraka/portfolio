@@ -118,7 +118,7 @@
     "tag2": "Next.js",
     "tag3": "Stripe",
     "description": "Full-featured e-commerce platform with product catalog, shopping cart, payment processing, and order management. Includes features for discount codes, product recommendations, and customer reviews.",
-    "image": "/assets/project/project-5.webp",
+    "image": "https://via.placeholder.com/800x600?text=E-Commerce+Platform",
     "link": "https://github.com/ChathuraSudaraka/ecommerce-platform",
     "demo": "https://ecommerce-demo.example.com",
     "stats": {
@@ -146,7 +146,7 @@
     "tag2": "Django",
     "tag3": "PostgreSQL",
     "description": "Integrated healthcare management system for clinics and hospitals, featuring patient records, appointment scheduling, billing, and prescription management. Includes telemedicine capabilities and medical imaging integration.",
-    "image": "/assets/project/project-6.webp",
+    "image": "https://via.placeholder.com/800x600?text=Healthcare+System",
     "link": "https://github.com/ChathuraSudaraka/healthcare-management",
     "demo": "https://healthcare-demo.example.com",
     "stats": {
@@ -174,7 +174,7 @@
     "tag2": "Raspberry Pi",
     "tag3": "MQTT",
     "description": "Comprehensive smart home automation system controlling lighting, climate, security, and entertainment. Features voice control, mobile app interface, energy monitoring, and automated routines based on user behavior.",
-    "image": "/assets/project/project-7.webp",
+    "image": "https://via.placeholder.com/800x600?text=Smart+Home",
     "link": "https://github.com/ChathuraSudaraka/smart-home",
     "demo": "https://smart-home-demo.example.com",
     "stats": {
@@ -202,7 +202,7 @@
     "tag2": "TypeScript",
     "tag3": "D3.js",
     "description": "Advanced financial analytics platform with real-time market data, portfolio management, risk assessment, and predictive analytics. Features interactive visualizations, customizable dashboards, and automated reporting.",
-    "image": "/assets/project/project-8.webp",
+    "image": "https://via.placeholder.com/800x600?text=Financial+Analytics+Dashboard",
     "link": "https://github.com/ChathuraSudaraka/finance-analytics",
     "demo": "https://finance-demo.example.com",
     "stats": {
@@ -230,7 +230,7 @@
     "tag2": "TensorFlow",
     "tag3": "React",
     "description": "Content generation platform using artificial intelligence to create articles, marketing copy, and social media posts. Features customizable tone, style, length adjustments, and multiple language support.",
-    "image": "/assets/project/project-9.webp",
+    "image": "https://via.placeholder.com/800x600?text=AI-Powered+Content+Generator",
     "link": "https://github.com/ChathuraSudaraka/ai-content-generator",
     "demo": "https://ai-content-demo.example.com",
     "stats": {
@@ -258,7 +258,7 @@
     "tag2": "Spring Boot",
     "tag3": "Blockchain",
     "description": "End-to-end supply chain management system with blockchain-based tracking, inventory optimization, demand forecasting, and vendor management. Features real-time tracking, quality control, and compliance management.",
-    "image": "/assets/project/project-10.webp",
+    "image": "https://via.placeholder.com/800x600?text=Supply+Chain+Management+System",
     "link": "https://github.com/ChathuraSudaraka/supply-chain",
     "demo": "https://supply-chain-demo.example.com",
     "stats": {
@@ -286,7 +286,7 @@
     "tag2": "WebRTC",
     "tag3": "Firebase",
     "description": "Comprehensive virtual event platform for conferences, webinars, and workshops. Features include live streaming, interactive sessions, networking rooms, virtual exhibitor booths, and detailed analytics.",
-    "image": "/assets/project/project-11.webp",
+    "image": "https://via.placeholder.com/800x600?text=Virtual+Event+Platform",
     "link": "https://github.com/ChathuraSudaraka/virtual-events",
     "demo": "https://virtual-events-demo.example.com",
     "stats": {
@@ -314,7 +314,7 @@
     "tag2": "Google Maps",
     "tag3": "AWS",
     "description": "Comprehensive fleet management solution for tracking vehicles, optimizing routes, monitoring driver behavior, and managing maintenance schedules. Features include real-time GPS tracking, fuel efficiency monitoring, and predictive maintenance.",
-    "image": "/assets/project/project-12.webp",
+    "image": "https://via.placeholder.com/800x600?text=Fleet+Management+System",
     "link": "https://github.com/ChathuraSudaraka/fleet-management",
     "demo": "https://fleet-demo.example.com",
     "stats": {
@@ -342,7 +342,7 @@
     "tag2": "Kotlin",
     "tag3": "Machine Learning",
     "description": "Interactive language learning application with speech recognition, personalized lesson plans, and gamified progress tracking. Features include conversational practice, cultural context lessons, and adaptive learning algorithms.",
-    "image": "/assets/project/project-13.webp",
+    "image": "https://via.placeholder.com/800x600?text=Language+Learning+App",
     "link": "https://github.com/ChathuraSudaraka/language-learning",
     "demo": "https://language-app-demo.example.com",
     "stats": {
@@ -370,7 +370,7 @@
     "tag2": "Node.js",
     "tag3": "GIS",
     "description": "Comprehensive real estate management platform for property listings, tenant management, maintenance requests, and financial reporting. Features include virtual tours, document management, and integration with payment processors.",
-    "image": "/assets/project/project-14.webp",
+    "image": "https://via.placeholder.com/800x600?text=Real+Estate+Management+Platform",
     "link": "https://github.com/ChathuraSudaraka/real-estate-platform",
     "demo": "https://realestate-demo.example.com",
     "stats": {
@@ -398,7 +398,7 @@
     "tag2": "GraphQL",
     "tag3": "Machine Learning",
     "description": "Comprehensive fitness tracking application with workout plans, nutrition logging, progress tracking, and social features. Includes AI-powered form correction, personalized recommendations, and wearable device integration.",
-    "image": "/assets/project/project-15.webp",
+    "image": "https://via.placeholder.com/800x600?text=Fitness+Tracking+Application",
     "link": "https://github.com/ChathuraSudaraka/fitness-tracker",
     "demo": "https://fitness-demo.example.com",
     "stats": {
@@ -426,7 +426,7 @@
     "tag2": "Unity",
     "tag3": "iOS/Android",
     "description": "Innovative shopping application using augmented reality to allow users to visualize products in their own space before purchasing. Features include virtual try-on for clothing, furniture placement, and detailed product visualization.",
-    "image": "/assets/project/project-16.webp",
+    "image": "https://via.placeholder.com/800x600?text=Augmented+Reality+Shopping+Experience",
     "link": "https://github.com/ChathuraSudaraka/ar-shopping",
     "demo": "https://ar-shopping-demo.example.com",
     "stats": {
@@ -454,7 +454,7 @@
     "tag2": "React",
     "tag3": "AWS",
     "description": "Enterprise-grade digital asset management system with automated metadata extraction, version control, rights management, and advanced search capabilities. Features content distribution, workflow automation, and analytics.",
-    "image": "/assets/project/project-17.webp",
+    "image": "https://via.placeholder.com/800x600?text=Digital+Asset+Management+System",
     "link": "https://github.com/ChathuraSudaraka/asset-management",
     "demo": "https://dam-demo.example.com",
     "stats": {
@@ -482,7 +482,7 @@
     "tag2": "Express",
     "tag3": "MongoDB",
     "description": "All-in-one restaurant management system with table reservations, ordering, kitchen display, inventory management, and analytics. Features include online ordering, loyalty programs, and staff management.",
-    "image": "/assets/project/project-18.webp",
+    "image": "https://via.placeholder.com/800x600?text=Restaurant+Management+System",
     "link": "https://github.com/ChathuraSudaraka/restaurant-management",
     "demo": "https://restaurant-demo.example.com",
     "stats": {
@@ -510,7 +510,7 @@
     "tag2": "Python",
     "tag3": "Data Science",
     "description": "IoT-based environmental monitoring system for air quality, water quality, noise levels, and weather conditions. Features include real-time alerts, historical data analysis, and predictive modeling for environmental trends.",
-    "image": "/assets/project/project-19.webp",
+    "image": "https://via.placeholder.com/800x600?text=Environmental+Monitoring+System",
     "link": "https://github.com/ChathuraSudaraka/environmental-monitoring",
     "demo": "https://environment-demo.example.com",
     "stats": {
@@ -538,7 +538,7 @@
     "tag2": "TypeScript",
     "tag3": "Firebase",
     "description": "Cross-platform productivity suite with task management, note-taking, time tracking, and document collaboration. Features include offline support, cross-device synchronization, and third-party integrations.",
-    "image": "/assets/project/project-20.webp",
+    "image": "https://via.placeholder.com/800x600?text=Productivity+Suite",
     "link": "https://github.com/ChathuraSudaraka/productivity-suite",
     "demo": "https://productivity-demo.example.com",
     "stats": {
