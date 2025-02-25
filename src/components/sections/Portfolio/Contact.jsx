@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { toast, Toaster } from "react-hot-toast";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
@@ -32,7 +32,6 @@ const ContactInfo = ({ icon: Icon, title, value, link }) => (
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
-  const form = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -47,6 +46,7 @@ const Contact = () => {
       message: formData.get("message"),
     };
 
+    // Client-side validation
     const validationErrors = validateForm(data);
     if (validationErrors.length > 0) {
       const errorMap = {};
@@ -58,27 +58,40 @@ const Contact = () => {
       return;
     }
 
+    // Show loading toast
     const loadingToast = toast.loading("Sending message...");
 
     try {
-      // Update the fetch URL to the correct endpoint
       const response = await fetch("http://localhost:8080/send-email", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
       });
 
       const responseText = await response.text();
-      console.log("Raw response:", responseText);
-      const result = JSON.parse(responseText);
-
+      console.log("Raw server response:", responseText);
+      
+      let result;
+      try {
+        result = responseText ? JSON.parse(responseText) : {};
+      } catch (e) {
+        console.error("Failed to parse response as JSON:", responseText);
+        throw new Error("Invalid response from server");
+      }
+      
       if (!response.ok) {
-        throw new Error(result.error || "Failed to send message");
+        const errorMessage = result?.error || result?.details || "Failed to send message";
+        throw new Error(errorMessage);
       }
 
+      // Success
       toast.success("Message sent successfully!", { id: loadingToast });
       e.target.reset();
     } catch (error) {
+      console.error("Form submission error:", error);
       toast.error(error.message || "Failed to send message. Please try again.", {
         id: loadingToast,
       });
@@ -274,12 +287,11 @@ const Contact = () => {
           </motion.div>
         </div>
       </div>
-
-      {/* Simplified toast for better mobile performance */}
+      
+      {/* Toast notifications */}
       <Toaster
         position="bottom-center"
         toastOptions={{
-          className: "text-sm sm:text-base",
           duration: 5000,
           style: {
             background: document.documentElement.classList.contains("dark")
@@ -288,10 +300,6 @@ const Contact = () => {
             color: document.documentElement.classList.contains("dark")
               ? "#f9fafb"
               : "#000000",
-            border: document.documentElement.classList.contains("dark")
-              ? "1px solid #374151"
-              : "1px solid #e5e7eb",
-            borderRadius: "8px",
           },
         }}
       />

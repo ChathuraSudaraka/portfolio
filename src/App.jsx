@@ -13,6 +13,7 @@ import CookieSettings from "./Pages/Legal/CookieSettings";
 import PrivacyPolicy from "./Pages/Legal/PrivacyPolicy";
 import TermsOfService from "./Pages/Legal/TermsOfService";
 import Work from "./Pages/work";
+import UseToast from "./hooks/useToast";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
 
         <BackToTop />
         <DarkLight />
+        <UseToast />
         <CircleFollowMouse />
       </div>
     </BrowserRouter>
