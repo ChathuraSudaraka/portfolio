@@ -114,14 +114,14 @@ const PrivacyPolicy = () => {
               >
                 <HoverBorderGradient
                   as={Link}
-                  to="/legal/terms"
+                  to="/legal/terms-of-service"
                   className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white"
                 >
                   Terms of Service
                 </HoverBorderGradient>
                 <HoverBorderGradient
                   as={Link}
-                  to="/legal/cookies"
+                  to="/legal/cookie-settings"
                   className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white"
                 >
                   Cookie Settings
