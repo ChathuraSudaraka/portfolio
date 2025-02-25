@@ -74,7 +74,7 @@ const FloatingDockMobile = ({
                   className="h-11 w-11 ml-0.5 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center shadow-md"
                   onClick={() => setOpen(false)}
                 >
-                  <div className="h-4 w-4">{item.icon}</div>
+                  <div className="w-4 h-4">{item.icon}</div>
                 </Link>
               </motion.div>
             ))}
@@ -90,9 +90,9 @@ const FloatingDockMobile = ({
           transition={{ duration: 0.2 }}
         >
           <FiNavigation2
-            className="h-5 w-5 text-neutral-500 dark:text-neutral-400" 
-            style={{ 
-              strokeWidth: 2.5
+            className="h-5 w-5 text-neutral-500 dark:text-neutral-400"
+            style={{
+              strokeWidth: 2.5,
             }}
           />
         </motion.div>
@@ -114,7 +114,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "flex h-16 gap-4 items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3",
+        "flex h-16 gap-4 items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 border border-gray-200 dark:border-gray-800 px-4 pb-3",
         className
       )}
     >
@@ -185,7 +185,7 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="aspect-square rounded-2xl bg-white/20 dark:bg-neutral-800/50 hover:bg-white/30 dark:hover:bg-neutral-700/50 backdrop-blur-md flex items-center justify-center relative shadow-lg border border-white/30 dark:border-neutral-700/50 transition-colors"
+        className="aspect-square rounded-2xl bg-white/20 dark:bg-neutral-800/50 hover:bg-white/30 dark:hover:bg-neutral-700/50 backdrop-blur-md flex items-center justify-center relative shadow-lg border border-gray-200 dark:border-gray-800 transition-colors"
       >
         <AnimatePresence>
           {hovered && (
