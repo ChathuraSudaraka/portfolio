@@ -209,7 +209,7 @@ const BlogCard = ({ blog }) => {
     id = "",
     title = "Untitled Article",
     description = "No description available",
-    image = "https://via.placeholder.com/800x450?text=No+Image",
+    image = "/assets/project/project-placeholder.jpg",
     category = "Uncategorized",
     author = {},
   } = blog;

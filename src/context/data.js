@@ -158,13 +158,15 @@ Key Topics:
   {
     id: 6,
     title: "Understanding React Hooks: useState and useEffect",
-    description: "Dive deep into React's most commonly used hooks. This comprehensive guide explains how useState and useEffect work under the hood, with practical examples and performance considerations. Learn best practices for managing component state and side effects in your React applications.",
+    description:
+      "Dive deep into React's most commonly used hooks. This comprehensive guide explains how useState and useEffect work under the hood, with practical examples and performance considerations. Learn best practices for managing component state and side effects in your React applications.",
     category: "React",
-    image: "https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Frontend Developer"
+      role: "Frontend Developer",
     },
     date: "March 15, 2024",
     tags: ["React", "Hooks", "Frontend", "JavaScript"],
@@ -173,19 +175,21 @@ Key Topics:
       { title: "Introduction to Hooks", id: "intro" },
       { title: "useState Deep Dive", id: "use-state" },
       { title: "useEffect Patterns", id: "use-effect" },
-      { title: "Custom Hooks", id: "custom-hooks" }
-    ]
+      { title: "Custom Hooks", id: "custom-hooks" },
+    ],
   },
   {
     id: 7,
     title: "Building Microservices with Docker and Kubernetes",
-    description: "Learn how to design, deploy, and scale microservices using Docker containers and Kubernetes orchestration. This tutorial walks through creating a resilient microservice architecture, setting up CI/CD pipelines, and implementing service discovery, load balancing, and fault tolerance.",
+    description:
+      "Learn how to design, deploy, and scale microservices using Docker containers and Kubernetes orchestration. This tutorial walks through creating a resilient microservice architecture, setting up CI/CD pipelines, and implementing service discovery, load balancing, and fault tolerance.",
     category: "DevOps",
-    image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "DevOps Engineer"
+      role: "DevOps Engineer",
     },
     date: "February 28, 2024",
     tags: ["Docker", "Kubernetes", "Microservices", "DevOps"],
@@ -194,19 +198,21 @@ Key Topics:
       { title: "Microservice Architecture", id: "architecture" },
       { title: "Docker Containerization", id: "docker" },
       { title: "Kubernetes Orchestration", id: "kubernetes" },
-      { title: "CI/CD Implementation", id: "cicd" }
-    ]
+      { title: "CI/CD Implementation", id: "cicd" },
+    ],
   },
   {
     id: 8,
     title: "Next.js 14: The Future of React Applications",
-    description: "Explore the latest features in Next.js 14 including Server Components, Streaming, and the new App Router. Learn how these features can significantly improve your application's performance and developer experience. This guide includes migration strategies and real-world examples.",
+    description:
+      "Explore the latest features in Next.js 14 including Server Components, Streaming, and the new App Router. Learn how these features can significantly improve your application's performance and developer experience. This guide includes migration strategies and real-world examples.",
     category: "React",
-    image: "https://images.unsplash.com/photo-1614064642618-85c2ada3b833?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1614064642618-85c2ada3b833?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Full Stack Developer"
+      role: "Full Stack Developer",
     },
     date: "April 5, 2024",
     tags: ["Next.js", "React", "Server Components", "Performance"],
@@ -215,19 +221,21 @@ Key Topics:
       { title: "Introduction to Next.js 14", id: "intro" },
       { title: "Server Components", id: "server-components" },
       { title: "App Router", id: "app-router" },
-      { title: "Migration Guide", id: "migration" }
-    ]
+      { title: "Migration Guide", id: "migration" },
+    ],
   },
   {
     id: 9,
     title: "Modern CSS Techniques and Best Practices",
-    description: "Discover the latest CSS techniques that are transforming web design in 2024. From container queries and subgrid to scroll-driven animations and :has() selectors, this article covers cutting-edge features and how to use them responsibly with progressive enhancement.",
+    description:
+      "Discover the latest CSS techniques that are transforming web design in 2024. From container queries and subgrid to scroll-driven animations and :has() selectors, this article covers cutting-edge features and how to use them responsibly with progressive enhancement.",
     category: "CSS",
-    image: "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "UI Developer"
+      role: "UI Developer",
     },
     date: "January 22, 2024",
     tags: ["CSS", "Web Design", "Frontend", "UI"],
@@ -236,19 +244,21 @@ Key Topics:
       { title: "Modern CSS Features", id: "modern-features" },
       { title: "Container Queries", id: "container-queries" },
       { title: "CSS Custom Properties", id: "custom-properties" },
-      { title: "Animation Techniques", id: "animations" }
-    ]
+      { title: "Animation Techniques", id: "animations" },
+    ],
   },
   {
     id: 10,
     title: "Securing Your Node.js Applications",
-    description: "Learn essential security practices for Node.js applications to protect against common vulnerabilities like XSS, CSRF, injection attacks, and more. This guide covers authentication, authorization, data validation, dependency management, and secure coding patterns to keep your applications safe.",
+    description:
+      "Learn essential security practices for Node.js applications to protect against common vulnerabilities like XSS, CSRF, injection attacks, and more. This guide covers authentication, authorization, data validation, dependency management, and secure coding patterns to keep your applications safe.",
     category: "Backend",
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Security Specialist"
+      role: "Security Specialist",
     },
     date: "March 10, 2024",
     tags: ["Node.js", "Security", "Backend", "JavaScript"],
@@ -257,19 +267,21 @@ Key Topics:
       { title: "Common Vulnerabilities", id: "vulnerabilities" },
       { title: "Authentication & Authorization", id: "auth" },
       { title: "Data Validation", id: "validation" },
-      { title: "Dependency Management", id: "dependencies" }
-    ]
+      { title: "Dependency Management", id: "dependencies" },
+    ],
   },
   {
     id: 11,
     title: "State Management in React: Beyond Redux",
-    description: "Explore modern state management solutions for React applications and alternatives to Redux. This article compares Context API, Zustand, Recoil, Jotai, and other libraries to help you choose the right tool for your specific use cases and project requirements.",
+    description:
+      "Explore modern state management solutions for React applications and alternatives to Redux. This article compares Context API, Zustand, Recoil, Jotai, and other libraries to help you choose the right tool for your specific use cases and project requirements.",
     category: "React",
-    image: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Frontend Developer"
+      role: "Frontend Developer",
     },
     date: "February 15, 2024",
     tags: ["React", "State Management", "Frontend", "JavaScript"],
@@ -278,19 +290,21 @@ Key Topics:
       { title: "The State Management Landscape", id: "landscape" },
       { title: "Context API Deep Dive", id: "context-api" },
       { title: "Modern State Libraries", id: "libraries" },
-      { title: "Making the Right Choice", id: "decision-making" }
-    ]
+      { title: "Making the Right Choice", id: "decision-making" },
+    ],
   },
   {
     id: 12,
     title: "Building Progressive Web Apps in 2024",
-    description: "Learn how to create modern Progressive Web Apps (PWAs) that deliver native-like experiences on the web. This guide covers service workers, web app manifests, offline capabilities, push notifications, and testing strategies to ensure your PWA performs well across devices and networks.",
+    description:
+      "Learn how to create modern Progressive Web Apps (PWAs) that deliver native-like experiences on the web. This guide covers service workers, web app manifests, offline capabilities, push notifications, and testing strategies to ensure your PWA performs well across devices and networks.",
     category: "Web Development",
-    image: "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Mobile Web Specialist"
+      role: "Mobile Web Specialist",
     },
     date: "April 2, 2024",
     tags: ["PWA", "Web Development", "Mobile", "Performance"],
@@ -299,19 +313,21 @@ Key Topics:
       { title: "PWA Fundamentals", id: "fundamentals" },
       { title: "Service Workers", id: "service-workers" },
       { title: "Offline Capabilities", id: "offline" },
-      { title: "Push Notifications", id: "notifications" }
-    ]
+      { title: "Push Notifications", id: "notifications" },
+    ],
   },
   {
     id: 13,
     title: "Introduction to Web3 Development with Ethereum",
-    description: "Start your journey into Web3 development with this beginner-friendly guide to Ethereum and decentralized applications. Learn about smart contracts, blockchain fundamentals, and how to build your first dApp using Solidity, Ethers.js, and React.",
+    description:
+      "Start your journey into Web3 development with this beginner-friendly guide to Ethereum and decentralized applications. Learn about smart contracts, blockchain fundamentals, and how to build your first dApp using Solidity, Ethers.js, and React.",
     category: "Blockchain",
-    image: "https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Blockchain Developer"
+      role: "Blockchain Developer",
     },
     date: "March 20, 2024",
     tags: ["Blockchain", "Web3", "Ethereum", "Smart Contracts"],
@@ -320,19 +336,21 @@ Key Topics:
       { title: "Web3 Fundamentals", id: "fundamentals" },
       { title: "Smart Contract Basics", id: "smart-contracts" },
       { title: "Building a Simple dApp", id: "dapp" },
-      { title: "Testing and Deployment", id: "deployment" }
-    ]
+      { title: "Testing and Deployment", id: "deployment" },
+    ],
   },
   {
     id: 14,
     title: "Machine Learning for JavaScript Developers",
-    description: "Explore machine learning concepts and applications using JavaScript and browser-based ML frameworks. This tutorial demonstrates how to implement classification, regression, neural networks, and natural language processing directly in the browser using TensorFlow.js and other libraries.",
+    description:
+      "Explore machine learning concepts and applications using JavaScript and browser-based ML frameworks. This tutorial demonstrates how to implement classification, regression, neural networks, and natural language processing directly in the browser using TensorFlow.js and other libraries.",
     category: "Machine Learning",
-    image: "https://images.unsplash.com/photo-1515879128891-3b5e36a85492?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1515879128891-3b5e36a85492?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "AI Engineer"
+      role: "AI Engineer",
     },
     date: "January 30, 2024",
     tags: ["Machine Learning", "JavaScript", "TensorFlow.js", "AI"],
@@ -341,19 +359,21 @@ Key Topics:
       { title: "ML in the Browser", id: "browser-ml" },
       { title: "TensorFlow.js Basics", id: "tensorflow" },
       { title: "Building a Classifier", id: "classifier" },
-      { title: "Natural Language Processing", id: "nlp" }
-    ]
+      { title: "Natural Language Processing", id: "nlp" },
+    ],
   },
   {
     id: 15,
     title: "Optimizing React Application Performance",
-    description: "Master techniques for optimizing your React application's performance. This in-depth guide covers profiling, memoization, code splitting, virtualizing long lists, lazy loading, and other strategies to create lightning-fast React applications that provide excellent user experiences.",
+    description:
+      "Master techniques for optimizing your React application's performance. This in-depth guide covers profiling, memoization, code splitting, virtualizing long lists, lazy loading, and other strategies to create lightning-fast React applications that provide excellent user experiences.",
     category: "React",
-    image: "https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1602992708529-c9fdb12905c9?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Performance Engineer"
+      role: "Performance Engineer",
     },
     date: "February 10, 2024",
     tags: ["React", "Performance", "Optimization", "Frontend"],
@@ -362,19 +382,21 @@ Key Topics:
       { title: "Performance Metrics", id: "metrics" },
       { title: "Profiling React Apps", id: "profiling" },
       { title: "Memoization Techniques", id: "memoization" },
-      { title: "Code Splitting Strategies", id: "code-splitting" }
-    ]
+      { title: "Code Splitting Strategies", id: "code-splitting" },
+    ],
   },
   {
     id: 16,
     title: "Cloud-Native Application Development with AWS",
-    description: "Learn how to architect and build cloud-native applications using AWS services. This comprehensive guide covers serverless computing with Lambda, container orchestration with ECS/EKS, database options, event-driven architectures, and best practices for scalable and resilient cloud applications.",
+    description:
+      "Learn how to architect and build cloud-native applications using AWS services. This comprehensive guide covers serverless computing with Lambda, container orchestration with ECS/EKS, database options, event-driven architectures, and best practices for scalable and resilient cloud applications.",
     category: "Cloud Computing",
-    image: "https://images.unsplash.com/photo-1603695762547-fba8b88ac8ad?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1603695762547-fba8b88ac8ad?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Cloud Architect"
+      role: "Cloud Architect",
     },
     date: "March 5, 2024",
     tags: ["AWS", "Cloud", "Serverless", "Microservices"],
@@ -383,19 +405,21 @@ Key Topics:
       { title: "Cloud-Native Principles", id: "principles" },
       { title: "Serverless with Lambda", id: "lambda" },
       { title: "Container Orchestration", id: "containers" },
-      { title: "Event-Driven Architecture", id: "event-driven" }
-    ]
+      { title: "Event-Driven Architecture", id: "event-driven" },
+    ],
   },
   {
     id: 17,
     title: "Accessible Web Design: WCAG 2.2 Compliance",
-    description: "Ensure your web applications are accessible to everyone by implementing WCAG 2.2 guidelines. This practical guide covers semantic HTML, keyboard navigation, ARIA attributes, color contrast, focus management, and testing tools to create inclusive user experiences and meet legal requirements.",
+    description:
+      "Ensure your web applications are accessible to everyone by implementing WCAG 2.2 guidelines. This practical guide covers semantic HTML, keyboard navigation, ARIA attributes, color contrast, focus management, and testing tools to create inclusive user experiences and meet legal requirements.",
     category: "UI/UX Design",
-    image: "https://images.unsplash.com/photo-1586776977607-310e9c725c37?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1586776977607-310e9c725c37?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Accessibility Specialist"
+      role: "Accessibility Specialist",
     },
     date: "January 15, 2024",
     tags: ["Accessibility", "WCAG", "UI/UX", "HTML"],
@@ -404,19 +428,21 @@ Key Topics:
       { title: "WCAG 2.2 Overview", id: "wcag" },
       { title: "Semantic HTML", id: "semantic" },
       { title: "Keyboard Navigation", id: "keyboard" },
-      { title: "Testing Accessibility", id: "testing" }
-    ]
+      { title: "Testing Accessibility", id: "testing" },
+    ],
   },
   {
     id: 18,
     title: "Modern Authentication with OAuth 2.0 and OIDC",
-    description: "Implement secure authentication and authorization in your web applications using OAuth 2.0 and OpenID Connect. This tutorial explains different grant types, token handling, securing SPAs, mobile apps, and backend services, as well as common security pitfalls to avoid.",
+    description:
+      "Implement secure authentication and authorization in your web applications using OAuth 2.0 and OpenID Connect. This tutorial explains different grant types, token handling, securing SPAs, mobile apps, and backend services, as well as common security pitfalls to avoid.",
     category: "Security",
-    image: "https://images.unsplash.com/photo-1562813733-b31f1996b1f5?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1562813733-b31f1996b1f5?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Security Engineer"
+      role: "Security Engineer",
     },
     date: "February 20, 2024",
     tags: ["Authentication", "OAuth", "OIDC", "Security"],
@@ -425,19 +451,21 @@ Key Topics:
       { title: "OAuth 2.0 Fundamentals", id: "oauth" },
       { title: "OpenID Connect", id: "oidc" },
       { title: "Implementation Strategies", id: "implementation" },
-      { title: "Security Best Practices", id: "best-practices" }
-    ]
+      { title: "Security Best Practices", id: "best-practices" },
+    ],
   },
   {
     id: 19,
     title: "Building Mobile Apps with React Native in 2024",
-    description: "Discover the latest best practices for developing cross-platform mobile applications with React Native. This guide covers the new architecture, Fabric renderer, TurboModules, project setup, navigation patterns, state management, and optimizing performance across iOS and Android platforms.",
+    description:
+      "Discover the latest best practices for developing cross-platform mobile applications with React Native. This guide covers the new architecture, Fabric renderer, TurboModules, project setup, navigation patterns, state management, and optimizing performance across iOS and Android platforms.",
     category: "Mobile Development",
-    image: "https://images.unsplash.com/photo-1526045612212-70caf35c14df?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1526045612212-70caf35c14df?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "Mobile Developer"
+      role: "Mobile Developer",
     },
     date: "March 25, 2024",
     tags: ["React Native", "Mobile", "iOS", "Android"],
@@ -446,19 +474,21 @@ Key Topics:
       { title: "React Native in 2024", id: "rn-2024" },
       { title: "Project Architecture", id: "architecture" },
       { title: "Navigation Patterns", id: "navigation" },
-      { title: "Performance Optimization", id: "performance" }
-    ]
+      { title: "Performance Optimization", id: "performance" },
+    ],
   },
   {
     id: 20,
     title: "Functional Programming Patterns in JavaScript",
-    description: "Master functional programming concepts and patterns to write cleaner, more maintainable JavaScript code. This in-depth guide covers pure functions, immutability, function composition, higher-order functions, currying, and practical applications of functional techniques in modern JavaScript development.",
+    description:
+      "Master functional programming concepts and patterns to write cleaner, more maintainable JavaScript code. This in-depth guide covers pure functions, immutability, function composition, higher-order functions, currying, and practical applications of functional techniques in modern JavaScript development.",
     category: "JavaScript",
-    image: "https://images.unsplash.com/photo-1555066931-bf19f8fd1085?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1555066931-bf19f8fd1085?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "JavaScript Developer"
+      role: "JavaScript Developer",
     },
     date: "April 10, 2024",
     tags: ["JavaScript", "Functional Programming", "Web Development"],
@@ -467,19 +497,21 @@ Key Topics:
       { title: "Functional Principles", id: "principles" },
       { title: "Pure Functions", id: "pure-functions" },
       { title: "Function Composition", id: "composition" },
-      { title: "Practical Applications", id: "applications" }
-    ]
+      { title: "Practical Applications", id: "applications" },
+    ],
   },
   {
     id: 21,
     title: "Testing React Applications: A Comprehensive Guide",
-    description: "Learn how to implement a robust testing strategy for your React applications using Jest, React Testing Library, and Cypress. This guide covers unit testing, component testing, integration testing, end-to-end testing, and setting up continuous integration for your test suite.",
+    description:
+      "Learn how to implement a robust testing strategy for your React applications using Jest, React Testing Library, and Cypress. This guide covers unit testing, component testing, integration testing, end-to-end testing, and setting up continuous integration for your test suite.",
     category: "React",
-    image: "https://images.unsplash.com/photo-1591696331111-ef9586a5b17a?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1591696331111-ef9586a5b17a?ixlib=rb-4.0.3",
     author: {
       name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "QA Engineer"
+      role: "QA Engineer",
     },
     date: "March 15, 2024",
     tags: ["Testing", "React", "Jest", "Cypress"],
@@ -488,19 +520,21 @@ Key Topics:
       { title: "Testing Strategy", id: "strategy" },
       { title: "Component Testing", id: "component-testing" },
       { title: "Integration Tests", id: "integration" },
-      { title: "End-to-End Testing", id: "e2e" }
-    ]
+      { title: "End-to-End Testing", id: "e2e" },
+    ],
   },
   {
     id: 22,
     title: "Introduction to TypeScript Generics",
-    description: "Master TypeScript generics to write more flexible and reusable code. This tutorial explains how generics work, common patterns and use cases, constraints, utility types, and advanced techniques that will help you leverage the full power of TypeScript's type system in your applications.",
+    description:
+      "Master TypeScript generics to write more flexible and reusable code. This tutorial explains how generics work, common patterns and use cases, constraints, utility types, and advanced techniques that will help you leverage the full power of TypeScript's type system in your applications.",
     category: "TypeScript",
-    image: "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?ixlib=rb-4.0.3",
+    image:
+      "https://images.unsplash.com/photo-1629904853716-f0bc54eea481?ixlib=rb-4.0.3",
     author: {
-      name: "Chathura Sudaraka", 
+      name: "Chathura Sudaraka",
       avatar: "/assets/icon.png",
-      role: "TypeScript Developer"
+      role: "TypeScript Developer",
     },
     date: "February 5, 2024",
     tags: ["TypeScript", "Generics", "Programming", "Web Development"],
@@ -509,9 +543,9 @@ Key Topics:
       { title: "Understanding Generics", id: "basics" },
       { title: "Generic Constraints", id: "constraints" },
       { title: "Utility Types", id: "utility-types" },
-      { title: "Real-World Examples", id: "examples" }
-    ]
-  }
+      { title: "Real-World Examples", id: "examples" },
+    ],
+  },
 ];
 
 export const comments = [
@@ -563,7 +597,8 @@ export const comments = [
     blogId: 6,
     username: "Alex Johnson",
     userAvatar: "",
-    content: "This hooks explanation finally made useEffect click for me. The dependency array section was particularly helpful.",
+    content:
+      "This hooks explanation finally made useEffect click for me. The dependency array section was particularly helpful.",
     createdAt: "2024-03-16T14:20:00",
     likes: 12,
     replies: [
@@ -571,7 +606,8 @@ export const comments = [
         id: 102,
         username: "Chathura Sudaraka",
         userAvatar: "/assets/icon.png",
-        content: "Glad it helped, Alex! Understanding the dependency array is definitely a key part of working with hooks effectively.",
+        content:
+          "Glad it helped, Alex! Understanding the dependency array is definitely a key part of working with hooks effectively.",
         createdAt: "2024-03-16T15:30:00",
         likes: 3,
       },
@@ -582,7 +618,8 @@ export const comments = [
     blogId: 8,
     username: "Priya Patel",
     userAvatar: "",
-    content: "Great overview of Next.js 14! I'm excited to try out the new Server Components in my current project. Do you have any tips for migrating from Pages Router?",
+    content:
+      "Great overview of Next.js 14! I'm excited to try out the new Server Components in my current project. Do you have any tips for migrating from Pages Router?",
     createdAt: "2024-04-06T09:45:00",
     likes: 8,
     replies: [],
@@ -592,7 +629,8 @@ export const comments = [
     blogId: 15,
     username: "David Rodriguez",
     userAvatar: "",
-    content: "The section on React.memo and useMemo was excellent. I implemented these techniques and saw a significant performance improvement in my application with large lists.",
+    content:
+      "The section on React.memo and useMemo was excellent. I implemented these techniques and saw a significant performance improvement in my application with large lists.",
     createdAt: "2024-02-12T11:10:00",
     likes: 15,
     replies: [
@@ -600,7 +638,8 @@ export const comments = [
         id: 103,
         username: "Chathura Sudaraka",
         userAvatar: "/assets/icon.png",
-        content: "That's awesome to hear, David! Memoization is indeed a game-changer for performance-critical components.",
+        content:
+          "That's awesome to hear, David! Memoization is indeed a game-changer for performance-critical components.",
         createdAt: "2024-02-12T13:25:00",
         likes: 7,
       },
@@ -623,5 +662,5 @@ export const categories = [
   "Machine Learning",
   "Cloud Computing",
   "UI/UX Design",
-  "Security"
+  "Security",
 ];

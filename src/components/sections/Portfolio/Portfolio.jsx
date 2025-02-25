@@ -52,9 +52,14 @@ const ProjectCard = ({ project, index }) => {
           >
             <motion.div variants={imageVariants} className="absolute inset-0">
               <img
-                src={project.image}
+                src={project.image || "/assets/placeholder.jpg"}
                 alt={project.name}
                 className="w-full h-full object-cover"
+                onError={(e) => {
+                  console.log(`Image failed to load: ${project.image}`);
+                  e.target.src = "/assets/project/project-placeholder.jpg";
+                  e.target.onerror = null;
+                }}
               />
               <motion.div
                 className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60"

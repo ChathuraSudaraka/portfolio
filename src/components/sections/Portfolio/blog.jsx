@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const BlogCard = ({ blog, index }) => {
   const navigate = useNavigate();
-  
+
   const handleReadClick = (e) => {
     e.preventDefault();
     navigate(`/blog/${blog.id}`);
@@ -19,7 +19,7 @@ const BlogCard = ({ blog, index }) => {
     date = "No date",
     content1 = "No content available",
     category = "Uncategorized",
-    author = {} // Provide a default empty object for author
+    author = {}, // Provide a default empty object for author
   } = blog || {};
 
   const cardVariants = {
@@ -67,12 +67,13 @@ const BlogCard = ({ blog, index }) => {
         >
           <motion.div variants={imageVariants} className="absolute inset-0">
             <img
-              src={image}
+              src={image || "/assets/project-placeholder.jpg"}
               alt={title}
               className="w-full h-full object-cover"
               onError={(e) => {
+                console.log(`Image failed to load: ${image}`);
+                e.target.src = "/assets/project/project-placeholder.jpg";
                 e.target.onerror = null;
-                e.target.src = "/assets/placeholder.jpg";
               }}
             />
             <motion.div
@@ -167,7 +168,7 @@ const BlogCard = ({ blog, index }) => {
 const Article = () => {
   // Make sure we have blog entries to display
   const displayBlogs = blogs && blogs.length > 0 ? blogs.slice(0, 6) : [];
-  
+
   return (
     <section className="relative py-20" id="blog">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
@@ -211,7 +212,9 @@ const Article = () => {
         ) : (
           <div className="text-center py-10 bg-white/50 dark:bg-gray-800/50 rounded-lg">
             <FaUser className="w-10 h-10 mx-auto text-gray-400 mb-3" />
-            <p className="text-gray-600 dark:text-gray-300">No blog posts available yet.</p>
+            <p className="text-gray-600 dark:text-gray-300">
+              No blog posts available yet.
+            </p>
           </div>
         )}
       </div>

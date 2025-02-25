@@ -134,9 +134,21 @@ const Work = () => {
                           <div className="lg:col-span-2 relative rounded-2xl overflow-hidden group/image">
                             <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 opacity-0 group-hover/image:opacity-100 transition-opacity duration-500 z-10" />
                             <motion.img
-                              src={project.image}
+                              src={
+                                project.image ||
+                                "/assets/project/project-placeholder.jpg"
+                              }
                               alt={project.name}
                               className="w-full h-full object-cover aspect-video rounded-2xl transform group-hover/image:scale-105 transition-transform duration-700"
+                              onError={(e) => {
+                                console.log(
+                                  `Image failed to load: ${project.image}`
+                                );
+                                e.target.src =
+                                  "/assets/project/project-placeholder.jpg";
+                                e.target.onerror = null;
+                              }}
+                              loading="lazy"
                             />
 
                             {/* Tags with floating effect */}
