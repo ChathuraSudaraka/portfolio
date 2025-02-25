@@ -167,7 +167,7 @@ const About = () => {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4 pt-6">
-                <HoverBorderGradient className="px-6 py-3 bg-transparent hover:bg-primary/5">
+                <HoverBorderGradient className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white">
                   <a
                     href="https://wa.me/+94705321516"
                     target="_blank"

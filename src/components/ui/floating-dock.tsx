@@ -28,7 +28,7 @@ export const FloatingDock = ({
           <FloatingDockDesktop items={items} className={desktopClassName} />
         </div>
       </div>
-      <div className="fixed left-4 bottom-4 md:hidden z-50">
+      <div className="fixed left-4 bottom-6 md:hidden z-50">
         <FloatingDockMobile items={items} className={mobileClassName} />
       </div>
     </>
