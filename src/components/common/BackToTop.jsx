@@ -26,11 +26,11 @@ const BackToTop = () => {
             duration: 0.3,
             type: "spring",
             stiffness: 260,
-            damping: 20
+            damping: 20,
           }}
           onClick={scrollToTop}
           title="Scroll to top"
-          className="fixed bottom-4 right-4 p-3 
+          className="fixed bottom-4 right-4 h-12 w-12
                      bg-gray-100/70 dark:bg-gray-800/50
                      text-gray-600 dark:text-gray-200
                      rounded-full shadow-lg backdrop-blur-sm
@@ -48,8 +48,9 @@ const BackToTop = () => {
               duration: 1.5,
               repeat: Infinity,
               repeatType: "reverse",
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
+            className="flex items-center justify-center h-full"
           >
             <FiArrowUp className="w-5 h-5 group-hover:stroke-2" />
           </motion.div>

@@ -28,7 +28,7 @@ export const FloatingDock = ({
           <FloatingDockDesktop items={items} className={desktopClassName} />
         </div>
       </div>
-      <div className="block md:hidden">
+      <div className="fixed left-4 bottom-4 md:hidden z-50">
         <FloatingDockMobile items={items} className={mobileClassName} />
       </div>
     </>
@@ -44,12 +44,12 @@ const FloatingDockMobile = ({
 }) => {
   const [open, setOpen] = useState(false);
   return (
-    <div className={cn("relative block md:hidden", className)}>
+    <div className={cn("relative", className)}>
       <AnimatePresence>
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2"
+            className="absolute bottom-full mb-2 flex flex-col items-center gap-2"
           >
             {items.map((item, idx) => (
               <motion.div
@@ -71,7 +71,8 @@ const FloatingDockMobile = ({
                 <Link
                   to={item.href}
                   key={item.title}
-                  className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
+                  className="h-11 w-11 ml-0.5 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center shadow-md"
+                  onClick={() => setOpen(false)}
                 >
                   <div className="h-4 w-4">{item.icon}</div>
                 </Link>
@@ -82,9 +83,19 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+        className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center shadow-lg border border-gray-200 dark:border-gray-700"
       >
-        <FiNavigation2 className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+        <motion.div
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          <FiNavigation2
+            className="h-5 w-5 text-neutral-500 dark:text-neutral-400" 
+            style={{ 
+              strokeWidth: 2.5
+            }}
+          />
+        </motion.div>
       </button>
     </div>
   );
