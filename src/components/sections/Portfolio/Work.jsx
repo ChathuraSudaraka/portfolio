@@ -55,7 +55,23 @@ const Work = () => {
           },
           {
             year: "2023",
-            projects: data.slice(2),
+            projects: data.slice(2, 6),
+          },
+          {
+            year: "2022",
+            projects: data.slice(6, 10),
+          },
+          {
+            year: "2021",
+            projects: data.slice(10, 14),
+          },
+          {
+            year: "2020",
+            projects: data.slice(14, 18),
+          },
+          {
+            year: "2019",
+            projects: data.slice(18, 20),
           },
         ];
         setProjectsData(timelineData);
@@ -100,13 +116,13 @@ const Work = () => {
               title: year.year,
               content: (
                 <div className="space-y-16">
-                  {year.projects.map((project, index) => (
+                  {year.projects.map((project) => (
                     <motion.div
                       key={project.id}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
-                      transition={{ duration: 0.7, delay: index * 0.2 }}
+                      transition={{ duration: 0.7, delay: 0.2 }}
                       className="group relative"
                     >
                       <div className="relative bg-white dark:bg-black rounded-[2rem] p-4 md:p-10 transition-all duration-500 backdrop-blur-xl border border-gray-200 dark:border-gray-800 hover:border-primary/50">
