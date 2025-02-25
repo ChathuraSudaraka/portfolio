@@ -15,7 +15,7 @@ const BlogCard = ({ blog, index }) => {
   // Fix: Destructure properties with safe defaults, including author
   const {
     title = "Untitled Blog",
-    image = "/assets/placeholder.jpg",
+    image = "/assets/project/project-placeholder.jpg",
     date = "No date",
     content1 = "No content available",
     category = "Uncategorized",
@@ -67,7 +67,7 @@ const BlogCard = ({ blog, index }) => {
         >
           <motion.div variants={imageVariants} className="absolute inset-0">
             <img
-              src={image || "/assets/project-placeholder.jpg"}
+              src={image}
               alt={title}
               className="w-full h-full object-cover"
               onError={(e) => {

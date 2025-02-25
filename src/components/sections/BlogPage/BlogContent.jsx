@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import {
-  FiArrowRight,
-  FiCalendar,
-  FiRefreshCcw,
-  FiTag,
-  FiUser,
-} from "react-icons/fi";
+import { FiArrowRight, FiCalendar, FiRefreshCcw, FiTag } from "react-icons/fi";
 import Category from "./Category";
 import { CardContainer, CardItem } from "../../ui/3d-card";
 import Pagination from "../../common/Pagination";
@@ -234,8 +228,7 @@ const BlogCard = ({ blog }) => {
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             onError={(e) => {
               e.target.onerror = null;
-              e.target.src =
-                "https://via.placeholder.com/800x450?text=Error+Loading+Image";
+              e.target.src = "/assets/project/project-placeholder.jpg";
             }}
           />
           {/* Overlay gradient */}

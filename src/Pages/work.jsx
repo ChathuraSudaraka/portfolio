@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../components/Layouts/Layout";
-import WorkFlow from "../components/sections/Portfolio/Work";
+import WorkFlow from "../components/sections/Portfolio/WorkFlow";
 
 function Work() {
   return (

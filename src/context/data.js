@@ -9,7 +9,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
     `,
     category: "React",
     image:
-      "https://images.unsplash.com/photo-1633356122544-f134324a6cee?ixlib=rb-4.0.3",
+      "",
     author: {
       name: "John Doe",
       avatar: "/assets/avatars/author-avatar.jpg",

@@ -40,7 +40,7 @@ const Sparkles = () => {
   );
 };
 
-const Work = () => {
+const WorkFlow = () => {
   const [projectsData, setProjectsData] = useState([]);
 
   useEffect(() => {
@@ -249,4 +249,4 @@ const Work = () => {
   );
 };
 
-export default Work;
+export default WorkFlow;
