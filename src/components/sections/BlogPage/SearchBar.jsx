@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { PlaceholdersAndVanishInput } from "../../ui/placeholders-and-vanish-input";
 
-const SearchBar = () => {
+const SearchBar = ({ searchQuery, setSearchQuery }) => {
   const placeholders = [
     "What's the first rule of Fight Club?",
     "Who is Tyler Durden?",
@@ -12,12 +12,12 @@ const SearchBar = () => {
   ];
 
   const handleChange = (e) => {
-    console.log(e.target.value);
+    setSearchQuery(e.target.value);
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("submitted");
+    console.log("Search submitted:", searchQuery);
   };
 
   return (
@@ -25,11 +25,11 @@ const SearchBar = () => {
       className="relative"
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        type: "spring", 
-        stiffness: 100, 
+      transition={{
+        type: "spring",
+        stiffness: 100,
         damping: 15,
-        duration: 0.5 
+        duration: 0.5,
       }}
       whileHover={{ scale: 1.01 }}
     >

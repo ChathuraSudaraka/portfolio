@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiArrowRight, FiCalendar, FiTag, FiUser } from "react-icons/fi";
+import {
+  FiArrowRight,
+  FiCalendar,
+  FiRefreshCcw,
+  FiTag,
+  FiUser,
+} from "react-icons/fi";
 import Category from "./Category";
 import { CardContainer, CardItem } from "../../ui/3d-card";
 import Pagination from "../../common/Pagination";
 import { blogs } from "../../../context/data";
-import SearchBar from "../../sections/BlogPage/SearchBar";
+import SearchBar from "../BlogPage/SearchBar";
 
 const BlogContent = () => {
   // Initialize with all blogs instead of empty array to prevent flash of no content
@@ -17,9 +23,14 @@ const BlogContent = () => {
 
   // Extract unique categories once
   const uniqueCategories = React.useMemo(() => {
-    return ["All", ...Array.from(new Set(blogs.map(blog => blog.category).filter(Boolean)))];
+    return [
+      "All",
+      ...Array.from(
+        new Set(blogs.map((blog) => blog.category).filter(Boolean))
+      ),
+    ];
   }, []);
-  
+
   // Filter blogs whenever category or search query changes
   useEffect(() => {
     // Small delay to allow for smooth transitions
@@ -27,30 +38,38 @@ const BlogContent = () => {
       const filtered = filterBlogs();
       setFilteredBlogs(filtered);
       setIsLoaded(true);
+
+      // Debug info
+      console.log(
+        `Found ${filtered.length} blogs matching category: "${selectedCategory}" and query: "${searchQuery}"`
+      );
     }, 100);
-    
+
     return () => clearTimeout(timer);
   }, [selectedCategory, searchQuery]);
 
   const filterBlogs = () => {
     let filtered = [...blogs]; // Create a fresh copy
-    
+
     // Apply category filter if not "All"
     if (selectedCategory && selectedCategory !== "All") {
-      filtered = filtered.filter(blog => 
-        blog?.category && blog.category.toLowerCase() === selectedCategory.toLowerCase()
+      filtered = filtered.filter(
+        (blog) =>
+          blog?.category &&
+          blog.category.toLowerCase() === selectedCategory.toLowerCase()
       );
     }
-    
+
     // Apply search filter if query exists
     if (searchQuery && searchQuery.trim() !== "") {
       const query = searchQuery.toLowerCase().trim();
-      filtered = filtered.filter(blog =>
-        (blog?.title && blog.title.toLowerCase().includes(query)) ||
-        (blog?.description && blog.description.toLowerCase().includes(query))
+      filtered = filtered.filter(
+        (blog) =>
+          (blog?.title && blog.title.toLowerCase().includes(query)) ||
+          (blog?.description && blog.description.toLowerCase().includes(query))
       );
     }
-    
+
     return filtered;
   };
 
@@ -94,8 +113,8 @@ const BlogContent = () => {
 
         {/* Search and filter tools */}
         <div className="mb-10 space-y-6">
-          {/* Enhanced SearchBar */}
-          <div className="max-w-lg mx-auto">
+          {/* Enhanced SearchBar with proper prop passing */}
+          <div className="max-w-xl mx-auto">
             <SearchBar
               searchQuery={searchQuery}
               setSearchQuery={setSearchQuery}
@@ -125,8 +144,8 @@ const BlogContent = () => {
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
             </div>
           )}
-          
-          {/* No Results Message */}
+
+          {/* /* No Results Message */}
           {isLoaded && filteredBlogs.length === 0 && (
             <motion.div
               className="text-center py-16 my-8 bg-white/50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700"
@@ -137,10 +156,20 @@ const BlogContent = () => {
               <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">
                 No matching articles
               </h3>
-              <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto">
-                No blogs found matching your criteria. Try adjusting your filters
-                or search query.
+              <p className="text-gray-500 dark:text-gray-400 max-w-md mx-auto mb-6">
+                No blogs found matching your criteria. Try adjusting your
+                filters or search query.
               </p>
+              <button
+                onClick={() => {
+                  setSelectedCategory("All");
+                  setSearchQuery("");
+                }}
+                className="inline-flex items-center px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg"
+              >
+                <FiRefreshCcw className="text-lg mr-2" />
+                Reset Filters
+              </button>
             </motion.div>
           )}
 
@@ -174,24 +203,24 @@ const BlogContent = () => {
 // BlogCard component with improved error handling
 const BlogCard = ({ blog }) => {
   if (!blog) return null;
-  
+
   // Safely extract properties with fallbacks
-  const { 
-    id = "", 
+  const {
+    id = "",
     title = "Untitled Article",
     description = "No description available",
     image = "https://via.placeholder.com/800x450?text=No+Image",
     category = "Uncategorized",
     author = {},
   } = blog;
-  
+
   const displayDate = blog.date || blog.publishDate || "No date";
-  
+
   return (
-    <motion.div 
+    <motion.div
       variants={{
         hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 }
+        show: { opacity: 1, y: 0 },
       }}
       className="h-full"
     >
@@ -204,19 +233,20 @@ const BlogCard = ({ blog }) => {
             alt={title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
             onError={(e) => {
-              e.target.onerror = null; 
-              e.target.src = "https://via.placeholder.com/800x450?text=Error+Loading+Image";
+              e.target.onerror = null;
+              e.target.src =
+                "https://via.placeholder.com/800x450?text=Error+Loading+Image";
             }}
           />
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-          
+
           {/* Category badge */}
           <span className="absolute top-4 left-4 bg-primary/90 text-white text-xs font-medium px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-primary/20">
             {category}
           </span>
         </div>
-        
+
         {/* Content area */}
         <div className="flex flex-col flex-grow p-5 sm:p-6">
           {/* Date */}
@@ -224,7 +254,7 @@ const BlogCard = ({ blog }) => {
             <FiCalendar className="w-4 h-4 mr-2 text-primary/70" />
             <span className="text-sm">{displayDate}</span>
           </div>
-          
+
           {/* Title */}
           <CardItem
             as={Link}
@@ -234,7 +264,7 @@ const BlogCard = ({ blog }) => {
           >
             {title}
           </CardItem>
-          
+
           {/* Description */}
           <CardItem
             as="div"
@@ -245,7 +275,7 @@ const BlogCard = ({ blog }) => {
               {description}
             </p>
           </CardItem>
-          
+
           {/* Footer */}
           <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50 flex justify-between items-center">
             {/* Author */}
@@ -256,7 +286,7 @@ const BlogCard = ({ blog }) => {
                   src={author?.avatar || "/assets/icon.png"}
                   alt={author?.name || "Author"}
                   onError={(e) => {
-                    e.target.onerror = null; 
+                    e.target.onerror = null;
                     e.target.src = "/assets/icon.png";
                   }}
                 />
@@ -266,7 +296,7 @@ const BlogCard = ({ blog }) => {
                 {author?.name || "Chathura Sudaraka"}
               </span>
             </div>
-            
+
             {/* Read more link */}
             <CardItem
               as={Link}
