@@ -9,27 +9,28 @@ const Navbar = () => {
       icon: (
         <RiHome5Line className="h-full w-full text-gray-900 dark:text-white" />
       ),
-      href: "/",
+      href: "/", // Changed from 'to' to 'href'
     },
     {
       title: "Projects",
       icon: (
         <RiCodeBoxLine className="h-full w-full text-gray-900 dark:text-white" />
       ),
-      href: "/work",
+      href: "/work", // Changed from 'to' to 'href'
     },
     {
       title: "Blog",
       icon: (
         <RiArticleLine className="h-full w-full text-gray-900 dark:text-white" />
       ),
-      href: "/blog",
+      href: "/blog", // Changed from 'to' to 'href'
     },
   ];
   return (
-    <div className="fixed z-50 md:top-10 left-0 right-0 flex items-center justify-center w-full">
-      <FloatingDock items={links} />
-    </div>
+    <FloatingDock
+      mobileClassName="translate-y-20" // only for demo, remove for production
+      items={links}
+    />
   );
 };
 
