@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { toast } from "react-toastify";
 import { FiMail, FiPhone, FiMapPin, FiSend } from "react-icons/fi";
 import axios from "axios";
 import { validateForm } from "../../../utils/validateForm";
@@ -8,6 +7,7 @@ import { Label } from "../../ui/label";
 import { Input } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
 import { GradientButton } from "../../ui/gradient-button";
+import { useCustomToast } from "../../../hooks/useToast";
 
 const ContactInfo = ({ icon: Icon, title, value, link }) => (
   <motion.a
@@ -33,6 +33,7 @@ const ContactInfo = ({ icon: Icon, title, value, link }) => (
 const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const { showToast, isDarkTheme } = useCustomToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,11 +60,8 @@ const Contact = () => {
       return;
     }
 
-    // Use react-toastify's API correctly
-    // Show loading toast with id
-    const toastId = toast.loading("Sending message...", {
-      position: "bottom-center",
-    });
+    // Use the custom toast
+    const toastId = showToast.loading("Sending message...");
 
     try {
       const response = await axios.post(
@@ -77,19 +75,13 @@ const Contact = () => {
         }
       );
 
-      // Success - dismiss loading toast and show success toast
-      toast.dismiss(toastId);
-      toast.success("Message sent successfully!", {
-        position: "bottom-center",
-        autoClose: 5000,
-      });
+      // Success
+      showToast.dismiss(toastId);
+      showToast.success("Message sent successfully!");
 
       e.target.reset();
     } catch (error) {
       console.error("Form submission error:", error);
-
-      // Error - dismiss loading toast and show error toast
-      toast.dismiss(toastId);
 
       const errorMessage =
         error.response?.data?.error ||
@@ -97,10 +89,8 @@ const Contact = () => {
         error.message ||
         "Failed to send message";
 
-      toast.error(errorMessage, {
-        position: "bottom-center",
-        autoClose: 5000,
-      });
+      showToast.dismiss(toastId);
+      showToast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }

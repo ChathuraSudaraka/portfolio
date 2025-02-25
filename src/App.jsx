@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Home from "./Pages/home";
 import BlogPage from "./Pages/Blog";
 // import NotePad from "./components/sections/BlogPage/Tiptap/NotePad";
@@ -17,7 +17,7 @@ import UseToast from "./hooks/useToast";
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <div className="relative">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -43,7 +43,7 @@ function App() {
         <UseToast />
         <CircleFollowMouse />
       </div>
-    </Router>
+    </BrowserRouter>
   );
 }
 
