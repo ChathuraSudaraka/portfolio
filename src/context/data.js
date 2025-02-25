@@ -16,7 +16,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
       role: "Senior React Developer",
       bio: "10+ years of experience in frontend development. Passionate about teaching and web technologies.",
     },
-    publishDate: "2024-01-15",
+    date: "2024-01-15",
     tags: ["React", "JavaScript", "Web Development", "Frontend"],
     readTime: 8,
     sections: [
@@ -42,7 +42,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
       avatar: "/jane-avatar.jpg",
       role: "TypeScript Expert",
     },
-    publishDate: "2024-01-20",
+    date: "2024-01-20",
     tags: ["TypeScript", "React", "JavaScript", "Web Development"],
     readTime: 12,
     sections: [
@@ -73,7 +73,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
       avatar: "/mike-avatar.jpg",
       role: "Backend Developer",
     },
-    publishDate: "2024-01-25",
+    date: "2024-01-25",
     tags: ["Node.js", "Express", "API", "Backend"],
     readTime: 15,
     sections: [
@@ -104,7 +104,7 @@ Prerequisites: Basic knowledge of HTML, CSS, and JavaScript.
       avatar: "/sarah-avatar.jpg",
       role: "Frontend Designer",
     },
-    publishDate: "2024-01-30",
+    date: "2024-01-30",
     tags: ["CSS", "Web Design", "Frontend", "Responsive Design"],
     readTime: 10,
     sections: [
@@ -143,7 +143,7 @@ Key Topics:
       role: "Full-Stack Developer",
       bio: "Expert in building scalable web applications with a passion for GraphQL and modern JavaScript.",
     },
-    publishDate: "2024-02-10",
+    date: "2024-02-10",
     tags: ["GraphQL", "React", "API", "Web Development"],
     readTime: 10,
     sections: [

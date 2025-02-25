@@ -263,7 +263,7 @@ const BlogCard = ({ blog }) => {
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></span>
               </div>
               <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300 truncate max-w-[100px]">
-                {author?.name || "Chathura"}
+                {author?.name || "Chathura Sudaraka"}
               </span>
             </div>
             

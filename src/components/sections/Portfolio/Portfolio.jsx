@@ -179,7 +179,7 @@ const Portfolio = () => {
 
         {/* Project Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {projectsslice(0, 6).map((project, index) => (
+          {projects.slice(0, 6).map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>

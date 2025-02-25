@@ -1,16 +1,26 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; // Add useNavigate import
+import { Link, useNavigate } from "react-router-dom";
 import { blogs } from "../../../context/data";
-import { FaBlog, FaCalendar, FaArrowRight } from "react-icons/fa";
+import { FaBlog, FaCalendar, FaArrowRight, FaUser } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const BlogCard = ({ blog, index }) => {
-  const navigate = useNavigate(); // Add useNavigate hook
-  // Update the button click handler
+  const navigate = useNavigate();
+  
   const handleReadClick = (e) => {
     e.preventDefault();
-    navigate(`/blog/${blog.id}`); // Use navigate instead of window.location
+    navigate(`/blog/${blog.id}`);
   };
+
+  // Fix: Destructure properties with safe defaults, including author
+  const {
+    title = "Untitled Blog",
+    image = "/assets/placeholder.jpg",
+    date = "No date",
+    content1 = "No content available",
+    category = "Uncategorized",
+    author = {} // Provide a default empty object for author
+  } = blog || {};
 
   const cardVariants = {
     hidden: {
@@ -57,9 +67,13 @@ const BlogCard = ({ blog, index }) => {
         >
           <motion.div variants={imageVariants} className="absolute inset-0">
             <img
-              src={blog.image}
-              alt={blog.title}
+              src={image}
+              alt={title}
               className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "/assets/placeholder.jpg";
+              }}
             />
             <motion.div
               className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/60"
@@ -77,7 +91,7 @@ const BlogCard = ({ blog, index }) => {
             transition={{ delay: 0.2 }}
           >
             <span className="px-3 py-1 text-xs font-medium bg-black/50 backdrop-blur-sm text-white border border-white/10 rounded-full">
-              {blog.category}
+              {category}
             </span>
           </motion.div>
         </motion.div>
@@ -92,35 +106,39 @@ const BlogCard = ({ blog, index }) => {
           {/* Date */}
           <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
             <FaCalendar className="w-4 h-4" />
-            {blog.date}
+            {date}
           </div>
 
           {/* Title */}
           <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 line-clamp-2 group-hover:text-secondary transition-colors">
-            {blog.title}
+            {title}
           </h3>
 
           {/* Excerpt with flex grow */}
           <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-1">
-            {blog.content1}
+            {content1}
           </p>
 
           {/* Footer with updated styling */}
           <div className="flex items-center justify-between pt-4 border-t border-gray-200/50 dark:border-gray-700/50 mt-auto relative z-20">
-            {/* Author section */}
-            <motion.div
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-            >
-              <img
-                src="/assets/icon.png"
-                alt="Author"
-                className="w-8 h-8 rounded-full border border-gray-200/50 dark:border-gray-700/50"
-              />
-              <span className="text-sm font-medium text-gray-900 dark:text-white">
-                Chathura Sudaraka
+            {/* Author section - Fixed to avoid undefined error */}
+            <div className="flex items-center">
+              <div className="relative">
+                <img
+                  className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800 object-cover"
+                  src={author?.avatar || "/assets/icon.png"}
+                  alt={author?.name || "Author"}
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "/assets/icon.png";
+                  }}
+                />
+                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></span>
+              </div>
+              <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300 truncate max-w-[100px]">
+                {author?.name || "Chathura Sudaraka"}
               </span>
-            </motion.div>
+            </div>
 
             {/* Read button with better interaction */}
             <motion.div
@@ -147,6 +165,9 @@ const BlogCard = ({ blog, index }) => {
 };
 
 const Article = () => {
+  // Make sure we have blog entries to display
+  const displayBlogs = blogs && blogs.length > 0 ? blogs.slice(0, 6) : [];
+  
   return (
     <section className="relative py-20" id="blog">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
@@ -180,12 +201,19 @@ const Article = () => {
           </Link>
         </motion.div>
 
-        {/* Blog Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {blogs.slice(0, 6).map((blog, index) => (
-            <BlogCard key={blog.id} blog={blog} index={index} />
-          ))}
-        </div>
+        {/* Blog Grid with error handling */}
+        {displayBlogs.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {displayBlogs.map((blog, index) => (
+              <BlogCard key={blog?.id || index} blog={blog} index={index} />
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-10 bg-white/50 dark:bg-gray-800/50 rounded-lg">
+            <FaUser className="w-10 h-10 mx-auto text-gray-400 mb-3" />
+            <p className="text-gray-600 dark:text-gray-300">No blog posts available yet.</p>
+          </div>
+        )}
       </div>
     </section>
   );
