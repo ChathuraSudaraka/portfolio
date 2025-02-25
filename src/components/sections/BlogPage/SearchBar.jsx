@@ -1,39 +1,44 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FiSearch, FiX } from 'react-icons/fi';
+import React from "react";
+import { motion } from "framer-motion";
+import { PlaceholdersAndVanishInput } from "../../ui/placeholders-and-vanish-input";
 
-const SearchBar = ({ searchQuery, setSearchQuery }) => {
+const SearchBar = () => {
+  const placeholders = [
+    "What's the first rule of Fight Club?",
+    "Who is Tyler Durden?",
+    "Where is Andrew Laeddis Hiding?",
+    "Write a Javascript method to reverse a string",
+    "How to assemble your own PC?",
+  ];
+
+  const handleChange = (e) => {
+    console.log(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
+
   return (
-    <motion.div 
+    <motion.div
       className="relative"
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ 
+        type: "spring", 
+        stiffness: 100, 
+        damping: 15,
+        duration: 0.5 
+      }}
+      whileHover={{ scale: 1.01 }}
     >
       <div className="relative">
-        <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none">
-          <FiSearch className="w-5 h-5 text-gray-400 dark:text-gray-500" />
-        </div>
-        <input
-          type="text"
-          id="search"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="w-full p-3 pl-12 text-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl
-                   text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-primary/50 focus:border-primary
-                   transition-all duration-300 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none"
-          placeholder="Search for articles..."
+        <PlaceholdersAndVanishInput
+          placeholders={placeholders}
+          onChange={handleChange}
+          onSubmit={onSubmit}
         />
-        {searchQuery && (
-          <button
-            type="button"
-            className="absolute inset-y-0 right-0 flex items-center pr-4"
-            onClick={() => setSearchQuery('')}
-            aria-label="Clear search"
-          >
-            <FiX className="w-4 h-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors" />
-          </button>
-        )}
       </div>
     </motion.div>
   );
