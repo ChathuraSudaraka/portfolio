@@ -163,7 +163,7 @@ const Category = ({
         </div>
       )}
 
-      <style jsx>{`
+      <style jsx="true">{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
         }

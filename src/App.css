@@ -13,82 +13,38 @@ header {
   @apply px-8 py-4 bg-primary text-xl text-white rounded hover:bg-body hover:text-white transition-all duration-300;
 }
 
-/* Hide scrollbar for webkit browsers */
-/* This will hide the scrollbar when not interacting with it */
+/* Modern Scrollbar Styling */
 ::-webkit-scrollbar {
-  width: 5px; /* Set the width of the scrollbar */
+  width: 8px;
+  height: 8px;
 }
 
-/* Track for webkit browsers */
 ::-webkit-scrollbar-track {
-  background: black; /* Set the background color of the track */
+  background: #f1f1f1;
 }
 
-/* Handle for webkit browsers */
 ::-webkit-scrollbar-thumb {
-  background: #888; /* Set the background color of the thumb */
-  border-radius: 4px; /* Round the corners of the thumb */
+  background: #888;
+  border-radius: 4px;
 }
 
-/* When hovering over the scrollbar */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* Change the thumb color on hover */
+  background: #555;
 }
 
-/* Scrollbar corner (between vertical and horizontal scrollbar) */
-::-webkit-scrollbar-corner {
-  background: #f1f1f1; /* Set the background color of the corner */
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
 }
 
 .active {
-  color: peru;
-}
-
-/* Enhanced Pagination Styles */
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-}
-
-/* Pagination button animation */
-.pagination-button {
-  transition: all 0.3s ease;
-}
-
-.pagination-button:hover {
-  transform: translateY(-2px);
-}
-
-/* Active pagination style */
-.active .pagination-button {
-  background: linear-gradient(to right, var(--color-primary), var(--color-primary-dark));
-  color: white;
-  border-color: transparent;
-  box-shadow: 0 4px 14px rgba(var(--color-primary-rgb), 0.25);
-}
-
-/* Pagination hover effects */
-.page-link:hover {
-  border-color: var(--color-primary);
-}
-
-/* Add these to your existing CSS variables */
-:root {
-  --color-primary-rgb: 91, 33, 182; /* Convert your primary color to RGB format */
-}
-
-/* Dark mode adjustments for pagination */
-.dark .pagination-container .page-link {
-  background-color: rgba(31, 41, 55, 0.5);
-  border-color: rgba(55, 65, 81, 0.5);
-}
-
-.dark .pagination-container .page-link:hover {
-  background-color: rgba(91, 33, 182, 0.2);
-}
-
-.dark .active .pagination-button {
-  box-shadow: 0 4px 14px rgba(var(--color-primary-rgb), 0.4);
+  color: var(--color-primary, #2563eb);
 }
