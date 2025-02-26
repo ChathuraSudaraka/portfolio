@@ -1,11 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  useTransform,
-  useScroll,
-  useSpring,
-} from "framer-motion";
+import { motion, useTransform, useScroll, useSpring } from "framer-motion";
 import { cn } from "../../utils/cn";
 
 export const TracingBeam = ({
@@ -77,8 +72,10 @@ export const TracingBeam = ({
           <motion.div
             transition={{ duration: 0.2, delay: 0.5 }}
             animate={{
-              backgroundColor: scrollYProgress.get() > 0 ? "white" : "var(--teal-500)",
-              borderColor: scrollYProgress.get() > 0 ? "white" : "var(--teal-700)",
+              backgroundColor:
+                scrollYProgress.get() > 0 ? "white" : "var(--teal-500)",
+              borderColor:
+                scrollYProgress.get() > 0 ? "white" : "var(--teal-700)",
             }}
             className="h-2 w-2 rounded-full border border-neutral-300 bg-white"
           />

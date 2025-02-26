@@ -192,7 +192,7 @@ const WorkFlow = () => {
                                     href={project.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`p-3 rounded-xl bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-800 text-white hover:text-primary transition-all duration-300`}
+                                    className={`p-3 rounded-xl bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-800 text-black dark:text-white hover:text-primary transition-all duration-300`}
                                   >
                                     <FiGithub className="w-5 h-5" />
                                   </motion.a>
@@ -203,7 +203,7 @@ const WorkFlow = () => {
                                       href={project.demo}
                                       target="_blank"
                                       rel="noopener noreferrer"
-                                      className={`p-3 rounded-xl bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-800 text-white hover:text-primary transition-all duration-300`}
+                                      className={`p-3 rounded-xl bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-800 text-black dark:text-white hover:text-primary transition-all duration-300`}
                                     >
                                       <FiExternalLink className="w-5 h-5" />
                                     </motion.a>
