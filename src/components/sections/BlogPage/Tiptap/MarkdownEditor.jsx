@@ -4,6 +4,8 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkGfm from "remark-gfm";
 import { motion } from "framer-motion";
+import { BsStars } from "react-icons/bs"; // Add this import for the AI icon
+import MarkdownAIHelper from "./MarkdownAIHelper"; // Import the new AI helper we'll create
 
 // Import the same icons as Notepad for consistency
 const MarkdownEditor = ({ initialValue = "", onUpdate }) => {
@@ -257,6 +259,12 @@ const MarkdownEditor = ({ initialValue = "", onUpdate }) => {
           >
             <span className="material-icons">code</span>
           </button>
+          
+          {/* Divider before AI Helper */}
+          <div className="h-6 w-px mx-1 bg-gray-300 dark:bg-gray-600"></div>
+          
+          {/* AI Helper button */}
+          <MarkdownAIHelper textareaRef={textareaRef} setMarkdown={setMarkdown} />
         </div>
 
         {/* Preview Toggle */}
@@ -298,31 +306,32 @@ const MarkdownEditor = ({ initialValue = "", onUpdate }) => {
             className="tiptap ProseMirror p-4 h-[400px] overflow-auto bg-white dark:bg-gray-900"
             ref={previewRef}
           >
-            <ReactMarkdown
-              className="prose prose-sm sm:prose max-w-none dark:prose-invert"
-              remarkPlugins={[remarkGfm]}
-              components={{
-                code({node, inline, className, children, ...props}) {
-                  const match = /language-(\w+)/.exec(className || '')
-                  return !inline && match ? (
-                    <SyntaxHighlighter
-                      style={vscDarkPlus}
-                      language={match[1]}
-                      PreTag="div"
-                      {...props}
-                    >
-                      {String(children).replace(/\n$/, '')}
-                    </SyntaxHighlighter>
-                  ) : (
-                    <code className={className} {...props}>
-                      {children}
-                    </code>
-                  )
-                }
-              }}
-            >
-              {markdown}
-            </ReactMarkdown>
+            <div className="prose prose-sm sm:prose max-w-none dark:prose-invert">
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  code({node, inline, className, children, ...props}) {
+                    const match = /language-(\w+)/.exec(className || '')
+                    return !inline && match ? (
+                      <SyntaxHighlighter
+                        style={vscDarkPlus}
+                        language={match[1]}
+                        PreTag="div"
+                        {...props}
+                      >
+                        {String(children).replace(/\n$/, '')}
+                      </SyntaxHighlighter>
+                    ) : (
+                      <code className={className} {...props}>
+                        {children}
+                      </code>
+                    )
+                  }
+                }}
+              >
+                {markdown}
+              </ReactMarkdown>
+            </div>
           </motion.div>
         )}
       </div>
