@@ -644,3 +644,147 @@ hr {
     padding: 1.25rem 1.5rem;
   }
 }
+
+/* Add these styles at the end of your existing file */
+
+/* Markdown Editor Styles */
+.markdown-editor-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.markdown-content-container {
+  flex: 1;
+  display: flex;
+}
+
+#markdown-textarea {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+.markdown-preview {
+  word-break: break-word;
+}
+
+/* Markdown Preview Styling */
+.markdown-preview h1 {
+  font-size: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.markdown-preview h2 {
+  font-size: 1.5rem;
+  margin-top: 1.4rem;
+  margin-bottom: 0.8rem;
+  font-weight: 600;
+}
+
+.markdown-preview h3 {
+  font-size: 1.25rem;
+  margin-top: 1.3rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.markdown-preview h4, 
+.markdown-preview h5, 
+.markdown-preview h6 {
+  font-size: 1rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+
+.markdown-preview p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.markdown-preview ul, 
+.markdown-preview ol {
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-preview ul {
+  list-style-type: disc;
+}
+
+.markdown-preview ol {
+  list-style-type: decimal;
+}
+
+.markdown-preview li {
+  margin-bottom: 0.25rem;
+}
+
+.markdown-preview a {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.markdown-preview blockquote {
+  border-left: 4px solid var(--primary-color);
+  padding-left: 1rem;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: var(--blockquote-color);
+}
+
+.markdown-preview img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.markdown-preview code {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.dark .markdown-preview code {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.markdown-preview pre {
+  background-color: #282c34;
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.markdown-preview table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.markdown-preview th,
+.markdown-preview td {
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+}
+
+.markdown-preview th {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark .markdown-preview th {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Ensure proper spacing for the whole container */
+.editor-toggle-container {
+  margin-bottom: 1.5rem;
+}

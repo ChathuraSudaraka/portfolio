@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { BsUpload, BsStars, BsLightningCharge } from "react-icons/bs";
 import LegalLayout from "../components/Layouts/LegalLayout";
 import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
+import EditorToggle from "../components/sections/BlogPage/Tiptap/EditorToggle";
 
 const CreateBlog = () => {
   const [blogData, setBlogData] = useState({
@@ -631,7 +632,7 @@ const CreateBlog = () => {
                 >
                   <Label className="mb-2 block">Blog Content</Label>
                   <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-                    <Tiptap onUpdate={handleEditorUpdate} />
+                    <EditorToggle onUpdate={handleEditorUpdate} />
                   </div>
                 </div>
 
