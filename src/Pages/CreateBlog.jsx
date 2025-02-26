@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Tiptap from "../components/sections/BlogPage/Tiptap/NotePad";
 import { GradientButton } from "../components/ui/gradient-button";
 import { Input } from "../components/ui/input";
 import { Select } from "../components/ui/select";
 import { Label } from "../components/ui/label";
 import { toast } from "react-toastify";
-import { BsUpload, BsStars, BsLightningCharge } from "react-icons/bs";
+import { BsUpload, BsStars, BsLightningCharge, BsMagic } from "react-icons/bs";
 import LegalLayout from "../components/Layouts/LegalLayout";
-import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
-import EditorToggle from "../components/sections/BlogPage/Tiptap/EditorToggle";
+import EnhancedEditor from "../components/sections/BlogPage/Tiptap/EnhancedEditor";
 
 const CreateBlog = () => {
   const [blogData, setBlogData] = useState({
@@ -30,6 +28,8 @@ const CreateBlog = () => {
   const [isGeneratingCategory, setIsGeneratingCategory] = useState(false);
   const [metadataPrompt, setMetadataPrompt] = useState("");
   const [showMetadataPrompt, setShowMetadataPrompt] = useState(false);
+  const [activeTab, setActiveTab] = useState("editor"); // "editor" or "ai"
+  const [isAIDrawerOpen, setIsAIDrawerOpen] = useState(false);
   const navigate = useNavigate();
 
   // Listen for editor content changes
@@ -384,12 +384,12 @@ const CreateBlog = () => {
   return (
     <LegalLayout>
       <div className="min-h-screen bg-white dark:bg-black">
-        <div className="container mx-auto px-4 py-20 relative">
+        <div className="container mx-auto px-4 py-12 sm:py-20 relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
             <div className="inline-flex items-center space-x-2 bg-secondary/10 dark:bg-secondary/20 px-3 py-2 rounded-full mb-4">
               <span className="relative flex h-3 w-3">
@@ -410,240 +410,254 @@ const CreateBlog = () => {
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
-            {/* Quick generate button at the top */}
-            <div className="mb-6 flex justify-end">
-              <HoverBorderGradient 
-                as="button" 
-                type="button"
-                onClick={() => setShowMetadataPrompt(true)}
-                className="text-sm font-medium"
-              >
-                <div className="flex items-center gap-2">
-                  <BsLightningCharge className="w-4 h-4" />
-                  <span>Auto-Generate with AI</span>
-                </div>
-              </HoverBorderGradient>
+            {/* Blog creation form with tabs */}
+            <div className="mb-6 border-b border-gray-200 dark:border-gray-800">
+              <div className="flex flex-wrap -mb-px">
+                <button
+                  className={`inline-flex items-center px-4 py-2 font-medium text-sm border-b-2 ${
+                    activeTab === "editor"
+                      ? "border-primary text-primary dark:text-primary-400"
+                      : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                  } transition-colors`}
+                  onClick={() => setActiveTab("editor")}
+                >
+                  ✏️ Editor
+                </button>
+                <button
+                  className={`inline-flex items-center px-4 py-2 font-medium text-sm border-b-2 ${
+                    activeTab === "ai"
+                      ? "border-primary text-primary dark:text-primary-400"
+                      : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                  } transition-colors`}
+                  onClick={() => setActiveTab("ai")}
+                >
+                  <BsMagic className="mr-2" /> AI Assistant
+                </button>
+              </div>
             </div>
 
             <form 
               onSubmit={handleSubmit} 
               onKeyDown={(e) => {
-                // Prevent Enter key from submitting the form
                 if (e.key === 'Enter' && e.target.tagName.toLowerCase() !== 'textarea') {
                   e.preventDefault();
                 }
               }}
             >
               <div className="space-y-6">
-                {/* Blog Title with AI generation button */}
-                <div className="group/field">
-                  <Label className="mb-2 block">Blog Title</Label>
-                  <div className="flex gap-2">
-                    <div className="flex-1">
-                      <Input
-                        type="text"
-                        name="title"
-                        value={blogData.title}
-                        onChange={handleChange}
-                        placeholder="Enter a catchy title..."
-                        required
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => generateBlogMetadata('title')}
-                      disabled={isGeneratingTitle}
-                      className="px-4 py-2 bg-purple-500 hover:bg-purple-600 disabled:bg-purple-300 dark:disabled:bg-purple-900 text-white rounded-md flex items-center gap-1 transition-colors text-sm font-medium w-[140px] justify-center"
+                {/* Basic blog details */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Blog Title */}
+                  <div className="space-y-2">
+                    <Label>Blog Title</Label>
+                    <Input
+                      type="text"
+                      name="title"
+                      value={blogData.title}
+                      onChange={handleChange}
+                      placeholder="Enter a catchy title..."
+                      required
+                    />
+                  </div>
+
+                  {/* Category */}
+                  <div className="space-y-2">
+                    <Label>Category</Label>
+                    <Select
+                      name="category"
+                      value={blogData.category}
+                      onChange={handleChange}
                     >
-                      {isGeneratingTitle ? (
-                        <>
-                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          <span>Generating...</span>
-                        </>
-                      ) : (
-                        <>
-                          <BsStars size={16} />
-                          <span>AI Generate</span>
-                        </>
-                      )}
-                    </button>
+                      <option value="Web Development">Web Development</option>
+                      <option value="Technology">Technology</option>
+                      <option value="Programming">Programming</option>
+                      <option value="Design">Design</option>
+                    </Select>
                   </div>
                 </div>
 
-                {/* Category with AI generation button */}
-                <div className="group/field">
-                  <Label className="mb-2 block">Category</Label>
-                  <div className="flex gap-2">
-                    <div className="flex-1">
-                      <Select
-                        name="category"
-                        value={blogData.category}
-                        onChange={handleChange}
-                      >
-                        <option value="Web Development">Web Development</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Programming">Programming</option>
-                        <option value="Design">Design</option>
-                      </Select>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => generateBlogMetadata('category')}
-                      disabled={isGeneratingCategory}
-                      className="px-4 py-2 bg-purple-500 hover:bg-purple-600 disabled:bg-purple-300 dark:disabled:bg-purple-900 text-white rounded-md flex items-center gap-1 transition-colors text-sm font-medium w-[140px] justify-center"
-                    >
-                      {isGeneratingCategory ? (
-                        <>
-                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          <span>Generating...</span>
-                        </>
-                      ) : (
-                        <>
-                          <BsStars size={16} />
-                          <span>AI Suggest</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Tags with AI generation button */}
-                <div className="group/field">
-                  <Label className="mb-2 block">Tags (comma-separated)</Label>
-                  <div className="flex gap-2">
-                    <div className="flex-1">
-                      <Input
-                        type="text"
-                        name="tags"
-                        value={blogData.tags}
-                        onChange={handleChange}
-                        placeholder="React, JavaScript, Web..."
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => generateBlogMetadata('tags')}
-                      disabled={isGeneratingTags}
-                      className="px-4 py-2 bg-purple-500 hover:bg-purple-600 disabled:bg-purple-300 dark:disabled:bg-purple-900 text-white rounded-md flex items-center gap-1 transition-colors text-sm font-medium w-[140px] justify-center"
-                    >
-                      {isGeneratingTags ? (
-                        <>
-                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                          </svg>
-                          <span>Generating...</span>
-                        </>
-                      ) : (
-                        <>
-                          <BsStars size={16} />
-                          <span>AI Generate</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Cover Image with AI generation */}
-                <div className="group/field space-y-2">
-                  <Label className="mb-2 block">Cover Image</Label>
-                  
-                  {/* AI Image Generation */}
-                  <div className="flex flex-col sm:flex-row gap-2 mb-3">
-                    <div className="flex-1">
-                      <Input
-                        type="text"
-                        value={imagePrompt}
-                        onChange={(e) => setImagePrompt(e.target.value)}
-                        placeholder="Describe the image you want to generate..."
-                        className="w-full"
-                      />
-                    </div>
-                    <button
-                      type="button"
-                      onClick={generateCoverImage}
-                      disabled={isGeneratingImage || !imagePrompt.trim()}
-                      className="px-4 py-2 bg-purple-500 hover:bg-purple-600 disabled:bg-purple-300 text-white rounded-md flex items-center gap-2 transition-colors text-sm font-medium"
-                    >
-                      {isGeneratingImage ? (
-                        <>
-                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                            <circle
-                              className="opacity-25"
-                              cx="12"
-                              cy="12"
-                              r="10"
-                              stroke="currentColor"
-                              strokeWidth="4"
-                              fill="none"
-                            />
-                            <path
-                              className="opacity-75"
-                              fill="currentColor"
-                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                            />
-                          </svg>
-                          Generating...
-                        </>
-                      ) : (
-                        <>
-                          <BsStars className="text-white" size={16} />
-                          Generate with AI
-                        </>
-                      )}
-                    </button>
-                  </div>
-                  
-                  {/* URL Input */}
-                  <Label className="mb-2 block text-sm text-gray-500 dark:text-gray-400">Or enter URL directly</Label>
+                {/* Tags */}
+                <div className="space-y-2">
+                  <Label>Tags (comma-separated)</Label>
                   <Input
-                    type="url"
-                    name="image"
-                    value={blogData.image}
+                    type="text"
+                    name="tags"
+                    value={blogData.tags}
                     onChange={handleChange}
-                    placeholder="https://example.com/image.jpg"
+                    placeholder="React, JavaScript, Web..."
                   />
+                </div>
+
+                {/* Cover Image */}
+                <div className="space-y-2">
+                  <Label>Cover Image</Label>
+                  {activeTab === "editor" ? (
+                    <Input
+                      type="url"
+                      name="image"
+                      value={blogData.image}
+                      onChange={handleChange}
+                      placeholder="https://example.com/image.jpg"
+                    />
+                  ) : (
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <div className="flex-1">
+                        <Input
+                          type="text"
+                          value={imagePrompt}
+                          onChange={(e) => setImagePrompt(e.target.value)}
+                          placeholder="Describe the image you want to generate..."
+                          className="w-full"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={generateCoverImage}
+                        disabled={isGeneratingImage || !imagePrompt.trim()}
+                        className="px-4 py-2 bg-gradient-to-r from-primary to-secondary disabled:from-gray-400 disabled:to-gray-300 dark:disabled:from-gray-700 dark:disabled:to-gray-600 text-white rounded-md flex items-center justify-center gap-2 transition-colors text-sm font-medium whitespace-nowrap"
+                      >
+                        {isGeneratingImage ? (
+                          <>
+                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                            <span>Generating...</span>
+                          </>
+                        ) : (
+                          <>
+                            <BsStars size={16} />
+                            <span>Generate</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  )}
                   
                   {/* Image Preview */}
                   {blogData.image && (
-                    <div className="mt-3 relative rounded-lg overflow-hidden group/preview">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300 flex items-end">
-                        <p className="p-3 text-white text-sm">Cover preview</p>
-                      </div>
+                    <div className="mt-3 relative rounded-lg overflow-hidden">
                       <img
                         src={blogData.image}
                         alt="Cover preview"
-                        className="h-52 w-full object-cover rounded-lg"
+                        className="h-40 w-full object-cover rounded-lg"
                       />
                     </div>
                   )}
                 </div>
 
-                {/* Blog Content - Wrap in div with onSubmit prevention */}
-                <div 
-                  className="group/field space-y-2"
-                  onClick={preventAccidentalSubmit}
-                >
-                  <Label className="mb-2 block">Blog Content</Label>
-                  <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
-                    <EditorToggle onUpdate={handleEditorUpdate} />
+                {/* Blog Content */}
+                <div className="space-y-2">
+                  <Label>Blog Content</Label>
+                  <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
+                    <EnhancedEditor 
+                      onUpdate={handleEditorUpdate} 
+                      aiAssistMode={activeTab === "ai"}
+                    />
                   </div>
                 </div>
+
+                {/* AI Assistant Panel - Only shown when AI tab is active */}
+                {activeTab === "ai" && (
+                  <div className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-4">
+                    <div className="mb-4">
+                      <h3 className="text-lg font-medium text-gray-900 dark:text-white flex items-center gap-2 mb-2">
+                        <BsMagic className="text-primary" />
+                        AI Writing Assistant
+                      </h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        Let AI help you generate content for your blog post. Choose from the options below.
+                      </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                      <button
+                        type="button"
+                        onClick={() => generateBlogMetadata('title')}
+                        disabled={isGeneratingTitle}
+                        className="p-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg transition flex flex-col items-center gap-2 text-center"
+                      >
+                        <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full flex items-center justify-center">
+                          {isGeneratingTitle ? (
+                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                          ) : (
+                            <span className="text-lg">T</span>
+                          )}
+                        </div>
+                        <span className="text-sm font-medium">
+                          Generate Title
+                        </span>
+                      </button>
+                      
+                      <button
+                        type="button"
+                        onClick={() => generateBlogMetadata('tags')}
+                        disabled={isGeneratingTags}
+                        className="p-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg transition flex flex-col items-center gap-2 text-center"
+                      >
+                        <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center">
+                          {isGeneratingTags ? (
+                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                          ) : (
+                            <span className="text-lg">#</span>
+                          )}
+                        </div>
+                        <span className="text-sm font-medium">
+                          Generate Tags
+                        </span>
+                      </button>
+                      
+                      <button
+                        type="button"
+                        onClick={() => generateBlogMetadata('category')}
+                        disabled={isGeneratingCategory}
+                        className="p-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg transition flex flex-col items-center gap-2 text-center"
+                      >
+                        <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center">
+                          {isGeneratingCategory ? (
+                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            </svg>
+                          ) : (
+                            <span className="text-lg">C</span>
+                          )}
+                        </div>
+                        <span className="text-sm font-medium">
+                          Select Category
+                        </span>
+                      </button>
+                      
+                      <button
+                        type="button"
+                        onClick={() => setShowMetadataPrompt(true)}
+                        className="p-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg transition flex flex-col items-center gap-2 text-center col-span-full sm:col-span-1"
+                      >
+                        <div className="w-8 h-8 bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-full flex items-center justify-center">
+                          <BsLightningCharge className="text-lg" />
+                        </div>
+                        <span className="text-sm font-medium">
+                          Generate All Metadata
+                        </span>
+                      </button>
+                    </div>
+                  </div>
+                )}
 
                 {/* Submit Button */}
                 <div className="flex justify-end pt-4">
                   <GradientButton
                     type="submit"
-                    className="px-8 py-3 font-medium text-base flex items-center gap-2"
+                    className="px-6 py-2.5 font-medium text-sm sm:text-base flex items-center gap-2"
                     isLoading={isSubmitting}
                   >
-                    {!isSubmitting && <BsUpload className="w-4 h-4 mr-2" />}
+                    {!isSubmitting && <BsUpload className="w-4 h-4" />}
                     {isSubmitting ? "Publishing..." : "Publish Blog"}
                   </GradientButton>
                 </div>
@@ -655,7 +669,7 @@ const CreateBlog = () => {
       
       {/* Modal for quick AI generation of all metadata */}
       {showMetadataPrompt && (
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-5">
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-5">
           <div
             className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm"
             onClick={() => setShowMetadataPrompt(false)}
