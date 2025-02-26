@@ -7,7 +7,7 @@ import { Input } from "../components/ui/input";
 import { Select } from "../components/ui/select";
 import { Label } from "../components/ui/label";
 import { toast } from "react-toastify";
-import { BsUpload } from "react-icons/bs";
+import { BsUpload, BsStars } from "react-icons/bs";
 import LegalLayout from "../components/Layouts/LegalLayout";
 
 const CreateBlog = () => {
@@ -21,6 +21,8 @@ const CreateBlog = () => {
 
   const [editorContent, setEditorContent] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [imagePrompt, setImagePrompt] = useState("");
+  const [isGeneratingImage, setIsGeneratingImage] = useState(false);
   const navigate = useNavigate();
 
   // Listen for editor content changes
@@ -140,6 +142,51 @@ const CreateBlog = () => {
     }
   };
 
+  // Function to generate AI cover image
+  const generateCoverImage = async () => {
+    if (!imagePrompt.trim()) {
+      toast.error("Please enter a prompt for the AI image generation");
+      return;
+    }
+
+    setIsGeneratingImage(true);
+    
+    try {
+      // For demonstration, use Unsplash API to get a relevant image
+      // In a real implementation, you'd use an image generation API like DALL-E, Midjourney, etc.
+      const query = encodeURIComponent(imagePrompt);
+      const response = await fetch(
+        `https://api.unsplash.com/search/photos?query=${query}&client_id=${import.meta.env.VITE_UNSPLASH_API_KEY || "YOUR_UNSPLASH_API_KEY"}`
+      );
+      
+      if (!response.ok) {
+        throw new Error("Failed to generate image");
+      }
+      
+      const data = await response.json();
+      
+      if (data.results && data.results.length > 0) {
+        // Get a random image from the results
+        const randomIndex = Math.floor(Math.random() * Math.min(data.results.length, 5));
+        const imageUrl = data.results[randomIndex].urls.regular;
+        
+        setBlogData(prev => ({
+          ...prev,
+          image: imageUrl
+        }));
+        
+        toast.success("Cover image generated successfully!");
+      } else {
+        toast.warning("No suitable images found. Try a different prompt.");
+      }
+    } catch (error) {
+      console.error("Error generating image:", error);
+      toast.error("Failed to generate image. Please try again.");
+    } finally {
+      setIsGeneratingImage(false);
+    }
+  };
+
   return (
     <LegalLayout>
       <div className="min-h-screen bg-white dark:bg-black">
@@ -219,9 +266,58 @@ const CreateBlog = () => {
                   />
                 </div>
 
-                {/* Cover Image */}
+                {/* Cover Image with AI generation */}
                 <div className="group/field space-y-2">
-                  <Label className="mb-2 block">Cover Image URL</Label>
+                  <Label className="mb-2 block">Cover Image</Label>
+                  
+                  {/* AI Image Generation */}
+                  <div className="flex flex-col sm:flex-row gap-2 mb-3">
+                    <div className="flex-1">
+                      <Input
+                        type="text"
+                        value={imagePrompt}
+                        onChange={(e) => setImagePrompt(e.target.value)}
+                        placeholder="Describe the image you want to generate..."
+                        className="w-full"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={generateCoverImage}
+                      disabled={isGeneratingImage || !imagePrompt.trim()}
+                      className="px-4 py-2 bg-purple-500 hover:bg-purple-600 disabled:bg-purple-300 text-white rounded-md flex items-center gap-2 transition-colors text-sm font-medium"
+                    >
+                      {isGeneratingImage ? (
+                        <>
+                          <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                              fill="none"
+                            />
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            />
+                          </svg>
+                          Generating...
+                        </>
+                      ) : (
+                        <>
+                          <BsStars className="text-white" size={16} />
+                          Generate with AI
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  
+                  {/* URL Input */}
+                  <Label className="mb-2 block text-sm text-gray-500 dark:text-gray-400">Or enter URL directly</Label>
                   <Input
                     type="url"
                     name="image"
@@ -229,6 +325,8 @@ const CreateBlog = () => {
                     onChange={handleChange}
                     placeholder="https://example.com/image.jpg"
                   />
+                  
+                  {/* Image Preview */}
                   {blogData.image && (
                     <div className="mt-3 relative rounded-lg overflow-hidden group/preview">
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300 flex items-end">
