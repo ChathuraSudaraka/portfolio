@@ -75,8 +75,7 @@ export const TracingBeam = ({
               // FIX: Replace CSS variables with actual color values
               backgroundColor:
                 scrollYProgress.get() > 0 ? "#ffffff" : "#14b8a6", // teal-500
-              borderColor:
-                scrollYProgress.get() > 0 ? "#ffffff" : "#0f766e", // teal-700
+              borderColor: scrollYProgress.get() > 0 ? "#ffffff" : "#0f766e", // teal-700
             }}
             className="h-2 w-2 rounded-full border border-neutral-300 bg-white"
           />
