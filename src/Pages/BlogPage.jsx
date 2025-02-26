@@ -66,20 +66,50 @@ const BlogData = () => {
   const generateTableOfContents = useCallback((description) => {
     if (!description) return [];
 
+    // Handle both HTML and Markdown content
     const markdown = description;
-    const headingRegex = /^(#+)\s+(.*)$/gm;
-    const matches = [...(markdown.matchAll?.(headingRegex) || [])];
+    
+    // Match both Markdown headings and HTML headings
+    const headingRegexMd = /^(#+)\s+(.*)$/gm;
+    const headingRegexHtml = /<h([1-6])[^>]*>(.*?)<\/h\1>/g;
+    
+    let matches = [];
+    
+    // Try to match Markdown headings first
+    if (typeof markdown === 'string') {
+      const mdMatches = [...(markdown.matchAll?.(headingRegexMd) || [])];
+      
+      matches = mdMatches.map(match => {
+        const level = match[1].length;
+        const text = match[2].trim();
+        const id = text
+          .toLowerCase()
+          .replace(/<[^>]*>/g, '') // Remove any HTML tags
+          .replace(/ /g, "-")
+          .replace(/[^\w-]+/g, "");
+        
+        return { level, text, id };
+      });
+      
+      // If no Markdown headings found, try HTML headings
+      if (matches.length === 0 && markdown.includes('<h')) {
+        let htmlMatch;
+        while ((htmlMatch = headingRegexHtml.exec(markdown)) !== null) {
+          const level = parseInt(htmlMatch[1], 10);
+          // Remove HTML tags from heading text
+          const rawText = htmlMatch[2];
+          const text = rawText.replace(/<[^>]*>/g, '').trim();
+          const id = text
+            .toLowerCase()
+            .replace(/ /g, "-")
+            .replace(/[^\w-]+/g, "");
+          
+          matches.push({ level, text, id });
+        }
+      }
+    }
 
-    return matches.map((match) => {
-      const level = match[1].length;
-      const text = match[2];
-      const id = text
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, "");
-
-      return { level, text, id };
-    });
+    return matches;
   }, []);
 
   // Define tableOfContents state AFTER the useCallback
@@ -366,17 +396,24 @@ const BlogData = () => {
                     p: ({ children }) => (
                       <p className="mb-4 leading-relaxed">{children}</p>
                     ),
-                    h2: ({ children }) => (
-                      <h2
-                        className="mt-8 mb-4 text-2xl font-bold"
-                        id={children
-                          .toLowerCase()
-                          .replace(/ /g, "-")
-                          .replace(/[^\w-]+/g, "")}
-                      >
-                        {children}
-                      </h2>
-                    ),
+                    h2: ({ children }) => {
+                      const id = children
+                        .toString()
+                        .toLowerCase()
+                        .replace(/<[^>]*>/g, '') // Remove any HTML tags
+                        .replace(/ /g, "-")
+                        .replace(/[^\w-]+/g, "");
+                        
+                      return (
+                        <h2
+                          id={id}
+                          className="mt-8 mb-4 text-2xl font-bold"
+                          style={{ scrollMarginTop: "100px" }} // Add scroll margin for better anchor positioning
+                        >
+                          {children}
+                        </h2>
+                      );
+                    },
                     img: ({ src, alt }) => (
                       <div className="my-8">
                         <img
@@ -623,22 +660,43 @@ const BlogData = () => {
           {/* Sidebar remains unchanged */}
           <aside className="lg:col-span-1 space-y-8 lg:sticky lg:top-8">
             {/* Table of Contents */}
-            <nav className="hidden lg:block bg-gray-100 dark:dark:bg-gray-900/50 rounded-xl p-6">
+            <nav className="hidden lg:block bg-gray-100 dark:bg-gray-900/50 rounded-xl p-6">
               <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">
                 Table of Contents
               </h4>
-              <ul className="space-y-3 text-sm">
-                {tableOfContents.map(({ level, text, id }) => (
-                  <li key={id} className={`ml-${level * 2}`}>
-                    <a
-                      href={`#${id}`}
-                      className="block text-blue-600 dark:text-blue-400 hover:text-black dark:hover:text-white transition-colors"
+              
+              {tableOfContents.length > 0 ? (
+                <ul className="space-y-3 text-sm">
+                  {tableOfContents.map(({ level, text, id }, index) => (
+                    <li 
+                      key={`${id}-${index}`} 
+                      style={{ 
+                        paddingLeft: `${(level - 1) * 0.75}rem`,
+                        borderLeft: level > 1 ? '1px solid rgba(209, 213, 219, 0.5)' : 'none'
+                      }}
+                      className="py-1"
                     >
-                      {text}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+                      <a
+                        href={`#${id}`}
+                        className="block text-blue-600 dark:text-blue-400 hover:text-black dark:hover:text-white transition-colors"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const element = document.getElementById(id);
+                          if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                          }
+                        }}
+                      >
+                        {text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-500 dark:text-gray-400 text-sm italic">
+                  No headings found in this article
+                </p>
+              )}
             </nav>
 
             {/* Related Tags */}
