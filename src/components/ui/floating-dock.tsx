@@ -7,7 +7,7 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useRef, useState } from "react";
 import React from "react";
 import { FiNavigation2 } from "react-icons/fi";
@@ -43,6 +43,8 @@ const FloatingDockMobile = ({
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
+  const location = useLocation();
+  
   return (
     <div className={cn("relative", className)}>
       <AnimatePresence>
@@ -51,33 +53,36 @@ const FloatingDockMobile = ({
             layoutId="nav"
             className="absolute bottom-full mb-2 flex flex-col items-center gap-2"
           >
-            {items.map((item, idx) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
-                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-              >
-                <Link
-                  to={item.href}
+            {items.map((item, idx) => {
+              const isActive = location.pathname === item.href;
+              return (
+                <motion.div
                   key={item.title}
-                  className="h-11 w-11 ml-0.5 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center shadow-md"
-                  onClick={() => setOpen(false)}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    y: 10,
+                    transition: {
+                      delay: idx * 0.05,
+                    },
+                  }}
+                  transition={{ delay: (items.length - 1 - idx) * 0.05 }}
                 >
-                  <div className="w-4 h-4">{item.icon}</div>
-                </Link>
-              </motion.div>
-            ))}
+                  <Link
+                    to={item.href}
+                    key={item.title}
+                    className={`h-11 w-11 ml-0.5 rounded-full ${isActive ? 'bg-blue-100 dark:bg-blue-900' : 'bg-gray-50 dark:bg-neutral-900'} flex items-center justify-center shadow-md`}
+                    onClick={() => setOpen(false)}
+                  >
+                    <div className={`w-4 h-4 ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}>{item.icon}</div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </motion.div>
         )}
       </AnimatePresence>
@@ -109,6 +114,8 @@ const FloatingDockDesktop = ({
   className?: string;
 }) => {
   let mouseX = useMotionValue(Infinity);
+  const location = useLocation();
+  
   return (
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
@@ -118,9 +125,18 @@ const FloatingDockDesktop = ({
         className
       )}
     >
-      {items.map((item) => (
-        <IconContainer mouseX={mouseX} key={item.title} {...item} />
-      ))}
+      {items.map((item) => {
+        const isActive = location.pathname === item.href;
+        return (
+          <div key={item.title}>
+            <IconContainer 
+              mouseX={mouseX}
+              {...item} 
+              isActive={isActive}
+            />
+          </div>
+        );
+      })}
     </motion.div>
   );
 };
@@ -130,11 +146,13 @@ function IconContainer({
   title,
   icon,
   href,
+  isActive,
 }: {
   mouseX: MotionValue;
   title: string;
   icon: React.ReactNode;
   href: string;
+  isActive: boolean;
 }) {
   let ref = useRef<HTMLDivElement>(null);
 
@@ -185,7 +203,11 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="aspect-square rounded-2xl bg-white/20 dark:bg-neutral-800/50 hover:bg-white/30 dark:hover:bg-neutral-700/50 backdrop-blur-md flex items-center justify-center relative shadow-lg border border-gray-200 dark:border-gray-800 transition-colors"
+        className={`aspect-square rounded-2xl ${
+          isActive 
+            ? 'bg-blue-100/40 dark:bg-blue-900/50 border-blue-300 dark:border-blue-700' 
+            : 'bg-white/20 dark:bg-neutral-800/50 border-gray-200 dark:border-gray-800'
+        } hover:bg-white/30 dark:hover:bg-neutral-700/50 backdrop-blur-md flex items-center justify-center relative shadow-lg border transition-colors`}
       >
         <AnimatePresence>
           {hovered && (
@@ -193,7 +215,11 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="px-3 py-1.5 whitespace-pre rounded-lg bg-white/20 dark:bg-neutral-900/80 backdrop-blur-md border border-white/30 dark:border-neutral-800 text-neutral-800 dark:text-white absolute left-1/2 -translate-x-1/2 -bottom-12 w-fit text-sm font-medium shadow-xl"
+              className={`px-3 py-1.5 whitespace-pre rounded-lg ${
+                isActive 
+                  ? 'bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800' 
+                  : 'bg-white/20 dark:bg-neutral-900/80 text-neutral-800 dark:text-white border-white/30 dark:border-neutral-800'
+              } backdrop-blur-md border absolute left-1/2 -translate-x-1/2 -bottom-12 w-fit text-sm font-medium shadow-xl`}
             >
               {title}
             </motion.div>
@@ -201,7 +227,7 @@ function IconContainer({
         </AnimatePresence>
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className="flex items-center justify-center"
+          className={`flex items-center justify-center ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
         >
           {icon}
         </motion.div>
