@@ -58,9 +58,7 @@ const CreateBlog = () => {
 
     // Validate form data
     if (!blogData.title) {
-      toast
-        ? toast.error("Please add a title for your blog")
-        : alert("Please add a title for your blog");
+      toast.error("Please add a title for your blog");
       setIsSubmitting(false);
       return;
     }
@@ -70,34 +68,34 @@ const CreateBlog = () => {
       content === "<p>Write a Blog</p>" ||
       content === "<p></p>"
     ) {
-      toast
-        ? toast.error("Please add some content to your blog")
-        : alert("Please add some content to your blog");
+      toast.error("Please add some content to your blog");
       setIsSubmitting(false);
       return;
     }
 
-    // Generate a guaranteed unique ID
-    const blogId = `user-${Date.now().toString()}`;
-
-    // Create new blog post with proper data structure
-    const newBlog = {
-      id: blogId,
-      title: blogData.title,
-      category: blogData.category,
-      tags: blogData.tags
-        ? blogData.tags.split(",").map((tag) => tag.trim())
-        : [],
-      image: blogData.image,
-      description: content,
-      createdAt: new Date().toISOString(),
-      author: {
-        name: "User",
-        avatar: "/assets/icon.png",
-      },
-    };
-
     try {
+      // Create blog post logic here...
+      
+      // Important: Only remove editor content from localStorage AFTER successful save
+      const blogId = `user-${Date.now().toString()}`;
+      
+      // Create new blog post with proper data structure
+      const newBlog = {
+        id: blogId,
+        title: blogData.title,
+        category: blogData.category,
+        tags: blogData.tags
+          ? blogData.tags.split(",").map((tag) => tag.trim())
+          : [],
+        image: blogData.image,
+        description: content,
+        createdAt: new Date().toISOString(),
+        author: {
+          name: "User",
+          avatar: "/assets/icon.png",
+        },
+      };
+      
       // Simulate network delay
       await new Promise((resolve) => setTimeout(resolve, 800));
 
@@ -113,21 +111,17 @@ const CreateBlog = () => {
       // Save back to localStorage
       localStorage.setItem("userBlogs", JSON.stringify(existingBlogs));
 
-      // Clear the editor content
+      // Clear the editor content after successful save
       localStorage.removeItem("editorContent");
 
       // Show success message
-      toast
-        ? toast.success("Blog published successfully!")
-        : alert("Blog published successfully!");
+      toast.success("Blog published successfully!");
 
       // Redirect to the blog page
       navigate(`/blog/${blogId}`);
     } catch (error) {
       console.error("Error saving blog:", error);
-      toast
-        ? toast.error("Failed to publish blog. Please try again.")
-        : alert("Failed to publish blog. Please try again.");
+      toast.error("Failed to publish blog. Please try again.");
       setIsSubmitting(false);
     }
   };
@@ -135,6 +129,15 @@ const CreateBlog = () => {
   // Handle direct editor content update
   const handleEditorUpdate = (content) => {
     setEditorContent(content);
+  };
+
+  // Add this function to prevent accidental form submissions
+  const preventAccidentalSubmit = (e) => {
+    // Only allow form submission from the actual submit button
+    const target = e.target;
+    if (target.type !== "submit" || target.tagName.toLowerCase() !== "button") {
+      e.preventDefault();
+    }
   };
 
   return (
@@ -166,7 +169,15 @@ const CreateBlog = () => {
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
-            <form onSubmit={handleSubmit}>
+            <form 
+              onSubmit={handleSubmit} 
+              onKeyDown={(e) => {
+                // Prevent Enter key from submitting the form
+                if (e.key === 'Enter' && e.target.tagName.toLowerCase() !== 'textarea') {
+                  e.preventDefault();
+                }
+              }}
+            >
               <div className="space-y-6">
                 {/* Blog Title */}
                 <div className="group/field">
@@ -232,8 +243,11 @@ const CreateBlog = () => {
                   )}
                 </div>
 
-                {/* Blog Content */}
-                <div className="group/field space-y-2">
+                {/* Blog Content - Wrap in div with onSubmit prevention */}
+                <div 
+                  className="group/field space-y-2"
+                  onClick={preventAccidentalSubmit}
+                >
                   <Label className="mb-2 block">Blog Content</Label>
                   <div className="border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden">
                     <Tiptap onUpdate={handleEditorUpdate} />
