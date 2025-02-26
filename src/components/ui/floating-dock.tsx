@@ -8,7 +8,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useRef, useState, ReactNode, RefObject } from "react";
 import React from "react";
 import { FiNavigation2 } from "react-icons/fi";
 
@@ -17,7 +17,7 @@ export const FloatingDock = ({
   desktopClassName,
   mobileClassName,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
+  items: { title: string; icon: ReactNode; href: string }[];
   desktopClassName?: string;
   mobileClassName?: string;
 }) => {
@@ -39,7 +39,7 @@ const FloatingDockMobile = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
+  items: { title: string; icon: ReactNode; href: string }[];
   className?: string;
 }) => {
   const [open, setOpen] = useState(false);
@@ -110,7 +110,7 @@ const FloatingDockDesktop = ({
   items,
   className,
 }: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
+  items: { title: string; icon: ReactNode; href: string }[];
   className?: string;
 }) => {
   let mouseX = useMotionValue(Infinity);
@@ -150,11 +150,11 @@ function IconContainer({
 }: {
   mouseX: MotionValue;
   title: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   href: string;
   isActive: boolean;
 }) {
-  let ref = useRef<HTMLDivElement>(null);
+  let ref = useRef(null) as unknown as RefObject<HTMLDivElement>;
 
   let distance = useTransform(mouseX, (val) => {
     let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
