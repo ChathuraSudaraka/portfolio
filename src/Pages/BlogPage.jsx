@@ -56,17 +56,11 @@ const BlogData = () => {
   const [comments, setComments] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [readingTime, setReadingTime] = useState(0);
-  const [tags, setTags] = useState([
-    "JavaScript",
-    "React",
-    "Web Development",
-    "Programming",
-  ]);
+  const [tags, setTags] = useState([]);
   const [activeTag, setActiveTag] = useState(null);
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editContent, setEditContent] = useState("");
   const [replyingToId, setReplyingToId] = useState(null);
-  
   // FIX: Move useCallback before any conditional logic and make it not dependent on blog
   // This ensures it's always defined in the same order
   const generateTableOfContents = useCallback((description) => {
@@ -87,45 +81,57 @@ const BlogData = () => {
       return { level, text, id };
     });
   }, []);
-  
+
   // Define tableOfContents state AFTER the useCallback
   const [tableOfContents, setTableOfContents] = useState([]);
 
   useEffect(() => {
     console.log("BlogPage - Looking for blog with ID:", id);
-    
+
     try {
       // Get user blogs from localStorage
       const userBlogsStr = localStorage.getItem("userBlogs");
       const userBlogs = userBlogsStr ? JSON.parse(userBlogsStr) : [];
       console.log("User blogs from localStorage:", userBlogs);
-      
+
       // First check user blogs from localStorage with exact string match
-      let foundBlog = userBlogs.find(b => String(b.id) === String(id));
+      let foundBlog = userBlogs.find((b) => String(b.id) === String(id));
       console.log("Found in userBlogs?", foundBlog ? "Yes" : "No");
-      
+
       // If not found, check default blogs
       if (!foundBlog) {
-        foundBlog = blogs.find(b => String(b.id) === String(id));
+        foundBlog = blogs.find((b) => String(b.id) === String(id));
         console.log("Found in default blogs?", foundBlog ? "Yes" : "No");
       }
-      
+
       setBlog(foundBlog);
-      
+
+      // Set tags from the found blog or use default tags if not available
+      if (foundBlog) {
+        // Extract tags safely, ensuring it's always an array
+        const blogTags = Array.isArray(foundBlog.tags) ? 
+          foundBlog.tags : 
+          ["JavaScript", "React", "Web Development", "Programming"];
+        setTags(blogTags);
+      } else {
+        // Default tags if blog not found
+        setTags(["JavaScript", "React", "Web Development", "Programming"]);
+      }
+
       // Calculate reading time if blog is found
       if (foundBlog && typeof foundBlog.description === "string") {
         const wordsPerMinute = 200;
-        const cleanText = foundBlog.description.replace(/<[^>]*>/g, '');
+        const cleanText = foundBlog.description.replace(/<[^>]*>/g, "");
         const wordCount = cleanText.split(/\s+/).length;
         setReadingTime(Math.ceil(wordCount / wordsPerMinute));
-        
+
         // Update table of contents
         setTableOfContents(generateTableOfContents(foundBlog.description));
       }
-      
+
       // Set comments for this blog
       setComments(initialComments.filter((c) => c.blogId === parseInt(id)));
-      
+
       setLoading(false);
     } catch (err) {
       console.error("Error loading blog:", err);
@@ -144,7 +150,7 @@ const BlogData = () => {
       </BlogLayout>
     );
   }
-  
+
   // Show error message
   if (error) {
     return (
@@ -154,7 +160,7 @@ const BlogData = () => {
             <h2 className="text-2xl font-bold mb-4">Error</h2>
             <p className="text-red-500">{error}</p>
             <button
-              onClick={() => window.location.href = "/blog"}
+              onClick={() => (window.location.href = "/blog")}
               className="mt-4 text-blue-500 hover:underline"
             >
               Return to Blog List
@@ -313,9 +319,9 @@ const BlogData = () => {
             <div className="text-lg text-gray-900 dark:text-white">
               {blog && blog.description.startsWith("<") ? (
                 // If it starts with "<", treat as HTML (from Tiptap editor)
-                <div 
+                <div
                   className="prose dark:prose-invert max-w-none"
-                  dangerouslySetInnerHTML={{ __html: blog.description }} 
+                  dangerouslySetInnerHTML={{ __html: blog.description }}
                 />
               ) : (
                 // Otherwise use ReactMarkdown (for existing blogs)
@@ -360,7 +366,11 @@ const BlogData = () => {
                     ),
                     img: ({ src, alt }) => (
                       <div className="my-8">
-                        <img src={src} alt={alt} className="rounded-lg w-full" />
+                        <img
+                          src={src}
+                          alt={alt}
+                          className="rounded-lg w-full"
+                        />
                         {alt && (
                           <p className="text-center text-sm text-gray-500 mt-2">
                             {alt}
@@ -623,13 +633,14 @@ const BlogData = () => {
               <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">
                 Related Tags
               </h4>
+
               <div className="flex flex-wrap gap-2">
-                {tags.map((tag, index) => (
+                {tags.map((tag, idx) => (
                   <span
-                    key={index}
-                    className="px-3 py-1 bg-gray-200 dark:bg-gray-700 rounded-full text-sm text-gray-900 dark:text-gray-100 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors cursor-pointer"
+                    key={idx}
+                    className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-md"
                   >
-                    #{tag}
+                    #{typeof tag === "string" ? tag : "tag"}
                   </span>
                 ))}
               </div>

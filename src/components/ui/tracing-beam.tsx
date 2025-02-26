@@ -72,16 +72,16 @@ export const TracingBeam = ({
           <motion.div
             transition={{ duration: 0.2, delay: 0.5 }}
             animate={{
+              // FIX: Replace CSS variables with actual color values
               backgroundColor:
-                scrollYProgress.get() > 0 ? "white" : "var(--teal-500)",
+                scrollYProgress.get() > 0 ? "#ffffff" : "#14b8a6", // teal-500
               borderColor:
-                scrollYProgress.get() > 0 ? "white" : "var(--teal-700)",
+                scrollYProgress.get() > 0 ? "#ffffff" : "#0f766e", // teal-700
             }}
             className="h-2 w-2 rounded-full border border-neutral-300 bg-white"
           />
         </motion.div>
         <svg
-          viewBox={`0 0 20 ${svgHeight}`}
           width="20"
           height={svgHeight}
           className="ml-2 block"

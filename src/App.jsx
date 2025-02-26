@@ -27,7 +27,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/create" element={<CreateBlog />} /> {/* Add the new route */}
+        <Route path="/blog/create" element={<CreateBlog />} />
         <Route path="/work" element={<Work />} />
         <Route path="/blog/:id" element={<BlogData />} />
         <Route
