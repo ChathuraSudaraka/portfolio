@@ -16,11 +16,8 @@ const Layout = ({ children }) => {
       <div className="fixed top-0 right-0 h-[500px] w-[500px] bg-primary/10 rounded-full blur-3xl" />
       <div className="fixed bottom-0 left-0 h-[500px] w-[500px] bg-violet-500/10 rounded-full blur-3xl" />
 
-      {/* Content wrapper */}
-      <div className="container max-w-7xl mx-auto">
-        <Navbar />
-        {children}
-      </div>
+      {/* <Navbar /> */}
+      <div className="container max-w-7xl mx-auto">{children}</div>
       <Footer />
     </div>
   );
