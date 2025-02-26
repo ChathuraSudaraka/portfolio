@@ -60,14 +60,16 @@ const BlogHero = () => {
                 </span>
               </HoverBorderGradient>
 
-              <GradientButton
-                as={Link}
-                to="#latest-posts"
-                className="px-6 py-3 flex items-center gap-2"
-              >
-                Browse All
-                <FiArrowRight className="text-lg" />
-              </GradientButton>
+              <Link to="/blog/create">
+                <GradientButton
+                  as={Link}
+                  to="/blog/create"
+                  className="px-6 py-3 flex items-center gap-2"
+                >
+                  Browse All
+                  <FiArrowRight className="text-lg" />
+                </GradientButton>
+              </Link>
             </div>
           </motion.div>
 

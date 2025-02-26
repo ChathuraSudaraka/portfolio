@@ -1,13 +1,13 @@
 import React from "react";
-import BlogCard from "../components/sections/BlogPage/BlogContent";
-import Home from "../components/sections/BlogPage/BlogHome";
+import Home from "../components/sections/BlogPage/BlogHero";
 import Layout from "../components/Layouts/Layout";
+import BlogContent from "../components/sections/BlogPage/BlogContent";
 
 const BlogPage = () => {
   return (
     <Layout>
       <Home />
-      <BlogCard />
+      <BlogContent />
     </Layout>
   );
 };

@@ -7,20 +7,37 @@ import { motion } from "framer-motion";
 const BlogCard = ({ blog, index }) => {
   const navigate = useNavigate();
 
-  const handleReadClick = (e) => {
-    e.preventDefault();
-    navigate(`/blog/${blog.id}`);
-  };
-
-  // Fix: Destructure properties with safe defaults, including author
+  // Fix: Safely extract properties with fallbacks
   const {
+    id = "",
     title = "Untitled Blog",
     image = "/assets/project/project-placeholder.jpg",
     date = "No date",
-    content1 = "No content available",
+    createdAt,
+    publishDate,
+    description = "No content available",
     category = "Uncategorized",
     author = {}, // Provide a default empty object for author
   } = blog || {};
+
+  // Ensure ID is always a string for consistency
+  const blogId = String(id);
+
+  // Format date properly - check multiple possible date properties
+  const formatDate = (dateString) => {
+    if (!dateString) return "No date";
+    const date = new Date(dateString);
+    return date instanceof Date && !isNaN(date) 
+      ? date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+      : "No date";
+  };
+
+  const displayDate = formatDate(createdAt || date || publishDate);
+
+  const handleReadClick = (e) => {
+    e.preventDefault();
+    navigate(`/blog/${blogId}`);
+  };
 
   const cardVariants = {
     hidden: {
@@ -107,7 +124,7 @@ const BlogCard = ({ blog, index }) => {
           {/* Date */}
           <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3">
             <FaCalendar className="w-4 h-4" />
-            {date}
+            {displayDate}
           </div>
 
           {/* Title */}
@@ -117,7 +134,7 @@ const BlogCard = ({ blog, index }) => {
 
           {/* Excerpt with flex grow */}
           <p className="text-gray-600 dark:text-gray-300 mb-6 line-clamp-3 flex-1">
-            {content1}
+            {typeof description === 'string' ? description.replace(/<[^>]*>/g, '') : description}
           </p>
 
           {/* Footer with updated styling */}
@@ -166,13 +183,86 @@ const BlogCard = ({ blog, index }) => {
 };
 
 const Article = () => {
-  // Make sure we have blog entries to display
-  const displayBlogs = blogs && blogs.length > 0 ? blogs.slice(0, 6) : [];
+  // State for blogs and loading state
+  const [displayBlogs, setDisplayBlogs] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(true);
+  
+  React.useEffect(() => {
+    // Set loading state when fetching data
+    setIsLoading(true);
+    
+    try {
+      console.log("Loading blog posts for portfolio section...");
+      
+      // Get user blogs from localStorage
+      const userBlogsStr = localStorage.getItem("userBlogs");
+      const userBlogs = userBlogsStr ? JSON.parse(userBlogsStr) : [];
+      console.log("User blogs loaded:", userBlogs.length);
+      
+      // Get static blogs from data file
+      const staticBlogs = Array.isArray(blogs) ? blogs : [];
+      console.log("Static blogs loaded:", staticBlogs.length);
+      
+      // Normalize all blogs to ensure consistent format
+      const normalizedBlogs = [
+        ...staticBlogs.map(blog => ({
+          ...blog,
+          id: String(blog.id),
+          normalizedDate: getNormalizedDate(blog.createdAt || blog.date || blog.publishDate)
+        })),
+        ...userBlogs.map(blog => ({
+          ...blog,
+          id: String(blog.id), 
+          normalizedDate: getNormalizedDate(blog.createdAt || blog.date || blog.publishDate)
+        }))
+      ];
+      
+      // Sort by normalized date (newest first)
+      normalizedBlogs.sort((a, b) => b.normalizedDate - a.normalizedDate);
+      console.log("Total blogs after sorting:", normalizedBlogs.length);
+      
+      // Take the first 6 for display
+      const recentBlogs = normalizedBlogs.slice(0, 6);
+      setDisplayBlogs(recentBlogs);
+      console.log("Displaying the 6 most recent blogs");
+      
+    } catch (error) {
+      console.error("Error loading blogs for portfolio section:", error);
+      // Fallback to just the static blogs
+      const fallbackBlogs = blogs.slice(0, 6).map(blog => ({
+        ...blog, 
+        id: String(blog.id)
+      }));
+      setDisplayBlogs(fallbackBlogs);
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+  
+  // Helper function to get a normalized Date object from various date formats
+  const getNormalizedDate = (dateInput) => {
+    if (!dateInput) return 0;
+    
+    try {
+      // If it's already a Date object
+      if (dateInput instanceof Date) return dateInput.getTime();
+      
+      // If it's a timestamp number
+      if (typeof dateInput === 'number') return dateInput;
+      
+      // If it's a string, parse it
+      const parsed = new Date(dateInput).getTime();
+      return isNaN(parsed) ? 0 : parsed;
+    } catch (e) {
+      console.warn("Date parsing error:", e);
+      return 0;
+    }
+  };
 
   return (
     <section className="relative py-20" id="blog">
       <div className="container px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
-        {/* Header */}
+        {/* Header - existing code */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -202,8 +292,12 @@ const Article = () => {
           </Link>
         </motion.div>
 
-        {/* Blog Grid with error handling */}
-        {displayBlogs.length > 0 ? (
+        {/* Blog Grid with loading state */}
+        {isLoading ? (
+          <div className="flex justify-center items-center py-16">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-secondary"></div>
+          </div>
+        ) : displayBlogs.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {displayBlogs.map((blog, index) => (
               <BlogCard key={blog?.id || index} blog={blog} index={index} />
@@ -215,6 +309,14 @@ const Article = () => {
             <p className="text-gray-600 dark:text-gray-300">
               No blog posts available yet.
             </p>
+            
+            <Link 
+              to="/blog/create" 
+              className="mt-4 inline-flex items-center px-4 py-2 bg-secondary text-white rounded-full hover:bg-secondary/80 transition-colors"
+            >
+              <span className="mr-2">Create your first blog post</span>
+              <FaArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         )}
       </div>

@@ -1,19 +1,60 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiArrowRight, FiCalendar, FiRefreshCcw, FiTag } from "react-icons/fi";
+import { FiRefreshCcw, FiTag } from "react-icons/fi";
 import Category from "./Category";
-import { CardContainer, CardItem } from "../../ui/3d-card";
-import Pagination from "../../common/Pagination";
 import { blogs } from "../../../context/data";
 import SearchBar from "../BlogPage/SearchBar";
+import Pagination from "./Pagination";
+import BlogCard from "./BlogCard";
 
 const BlogContent = () => {
-  // Initialize with all blogs instead of empty array to prevent flash of no content
-  const [filteredBlogs, setFilteredBlogs] = useState(blogs);
+  // Get all blogs including user-created ones
+  const [allBlogs, setAllBlogs] = useState([]);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load blogs from both sources on component mount
+  useEffect(() => {
+    // Debug what's in localStorage
+    console.log("Loading blogs from localStorage");
+    
+    try {
+      // Get user blogs from localStorage
+      const userBlogsString = localStorage.getItem("userBlogs");
+      console.log("Raw userBlogs from localStorage:", userBlogsString);
+      
+      const userBlogs = userBlogsString ? JSON.parse(userBlogsString) : [];
+      console.log("Parsed userBlogs:", userBlogs);
+      
+      // Combine with imported blogs
+      const combinedBlogs = [...blogs, ...userBlogs];
+      
+      // Add unique ID for each blog that doesn't have one
+      const processedBlogs = combinedBlogs.map(blog => ({
+        ...blog,
+        id: blog.id?.toString() || Date.now().toString()
+      }));
+      
+      console.log("Combined blogs:", processedBlogs);
+      
+      // Sort by date (newest first)
+      processedBlogs.sort((a, b) => {
+        const dateA = a.createdAt ? new Date(a.createdAt) : new Date(0);
+        const dateB = b.createdAt ? new Date(b.createdAt) : new Date(0);
+        return dateB - dateA;
+      });
+      
+      setAllBlogs(processedBlogs);
+      setIsLoaded(true);
+    } catch (error) {
+      console.error("Error loading blogs:", error);
+      setAllBlogs(blogs); // Fallback to imported blogs only
+      setIsLoaded(true);
+    }
+  }, []);
 
   // Extract unique categories once
   const uniqueCategories = React.useMemo(() => {
@@ -31,7 +72,6 @@ const BlogContent = () => {
     const timer = setTimeout(() => {
       const filtered = filterBlogs();
       setFilteredBlogs(filtered);
-      setIsLoaded(true);
 
       // Debug info
       console.log(
@@ -40,10 +80,10 @@ const BlogContent = () => {
     }, 100);
 
     return () => clearTimeout(timer);
-  }, [selectedCategory, searchQuery]);
+  }, [selectedCategory, searchQuery, allBlogs]);
 
   const filterBlogs = () => {
-    let filtered = [...blogs]; // Create a fresh copy
+    let filtered = [...allBlogs]; // Use allBlogs instead of blogs
 
     // Apply category filter if not "All"
     if (selectedCategory && selectedCategory !== "All") {
@@ -139,7 +179,7 @@ const BlogContent = () => {
             </div>
           )}
 
-          {/* /* No Results Message */}
+          {/* No Results Message */}
           {isLoaded && filteredBlogs.length === 0 && (
             <motion.div
               className="text-center py-16 my-8 bg-white/50 dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700"
@@ -191,119 +231,6 @@ const BlogContent = () => {
         </div>
       </div>
     </section>
-  );
-};
-
-// BlogCard component with improved error handling
-const BlogCard = ({ blog }) => {
-  if (!blog) return null;
-
-  // Safely extract properties with fallbacks
-  const {
-    id = "",
-    title = "Untitled Article",
-    description = "No description available",
-    image = "/assets/project/project-placeholder.jpg",
-    category = "Uncategorized",
-    author = {},
-  } = blog;
-
-  const displayDate = blog.date || blog.publishDate || "No date";
-
-  return (
-    <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 },
-      }}
-      className="h-full"
-    >
-      <CardContainer className="flex flex-col h-[500px] group bg-white dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-xl transition-all duration-300">
-        {/* Card Image */}
-        <div className="relative w-full h-56 overflow-hidden">
-          {/* Image with fallback */}
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/assets/project/project-placeholder.jpg";
-            }}
-          />
-          {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-
-          {/* Category badge */}
-          <span className="absolute top-4 left-4 bg-primary/90 text-white text-xs font-medium px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-primary/20">
-            {category}
-          </span>
-        </div>
-
-        {/* Content area */}
-        <div className="flex flex-col flex-grow p-5 sm:p-6">
-          {/* Date */}
-          <div className="flex items-center mb-3 text-gray-500 dark:text-gray-400">
-            <FiCalendar className="w-4 h-4 mr-2 text-primary/70" />
-            <span className="text-sm">{displayDate}</span>
-          </div>
-
-          {/* Title */}
-          <CardItem
-            as={Link}
-            to={`/blog/${id}`}
-            translateZ="60"
-            className="text-xl font-bold text-gray-900 dark:text-white mb-3 hover:text-primary dark:hover:text-primary transition-colors line-clamp-2 min-h-[3.5rem]"
-          >
-            {title}
-          </CardItem>
-
-          {/* Description */}
-          <CardItem
-            as="div"
-            translateZ="50"
-            className="flex-grow overflow-hidden mb-5"
-          >
-            <p className="text-gray-600 dark:text-gray-300 line-clamp-4 text-sm">
-              {description}
-            </p>
-          </CardItem>
-
-          {/* Footer */}
-          <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700/50 flex justify-between items-center">
-            {/* Author */}
-            <div className="flex items-center">
-              <div className="relative">
-                <img
-                  className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800 object-cover"
-                  src={author?.avatar || "/assets/icon.png"}
-                  alt={author?.name || "Author"}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src = "/assets/icon.png";
-                  }}
-                />
-                <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></span>
-              </div>
-              <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300 truncate max-w-[100px]">
-                {author?.name || "Chathura Sudaraka"}
-              </span>
-            </div>
-
-            {/* Read more link */}
-            <CardItem
-              as={Link}
-              to={`/blog/${id}`}
-              translateZ="30"
-              className="group/link text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-1"
-            >
-              Read more
-              <FiArrowRight className="ml-1 transition-transform group-hover/link:translate-x-1" />
-            </CardItem>
-          </div>
-        </div>
-      </CardContainer>
-    </motion.div>
   );
 };
 

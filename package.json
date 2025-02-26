@@ -11,6 +11,17 @@
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.2",
+    "@tiptap/extension-bullet-list": "^2.11.5",
+    "@tiptap/extension-code-block": "^2.11.5",
+    "@tiptap/extension-color": "^2.11.5",
+    "@tiptap/extension-highlight": "^2.11.5",
+    "@tiptap/extension-list-item": "^2.11.5",
+    "@tiptap/extension-ordered-list": "^2.11.5",
+    "@tiptap/extension-text-align": "^2.11.5",
+    "@tiptap/extension-text-style": "^2.11.5",
+    "@tiptap/extension-underline": "^2.11.5",
+    "@tiptap/react": "^2.11.5",
+    "@tiptap/starter-kit": "^2.11.5",
     "axios": "^1.6.7",
     "body-parser": "^1.20.3",
     "clsx": "^2.1.1",
@@ -29,7 +40,8 @@
     "react-scroll": "^1.8.9",
     "react-syntax-highlighter": "^15.6.1",
     "react-toastify": "^11.0.5",
-    "tailwind-merge": "^2.6.0"
+    "tailwind-merge": "^2.6.0",
+    "tiptap-extension-font-size": "^1.2.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.10",

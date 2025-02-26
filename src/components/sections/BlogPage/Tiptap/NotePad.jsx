@@ -64,7 +64,8 @@ const fontSizes = [
   { name: "36pt", value: "36pt" },
 ];
 
-const Tiptap = () => {
+// Update the Tiptap component to accept onUpdate prop
+const Tiptap = ({ onUpdate }) => {
   const storedContent = localStorage.getItem("editorContent");
   const initialContent = storedContent ? storedContent : "<p>Write a Blog</p>";
 
@@ -76,6 +77,11 @@ const Tiptap = () => {
     onUpdate({ editor }) {
       const contentToSave = editor.getHTML();
       localStorage.setItem("editorContent", contentToSave);
+      
+      // Call the onUpdate prop if provided
+      if (onUpdate) {
+        onUpdate(contentToSave);
+      }
     },
   });
 

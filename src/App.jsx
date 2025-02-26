@@ -3,7 +3,7 @@ import "./App.css";
 import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
 import Home from "./Pages/home";
 import BlogPage from "./Pages/Blog";
-// import NotePad from "./components/sections/BlogPage/Tiptap/NotePad";
+import CreateBlog from "./Pages/CreateBlog";
 import NotFound from "./Pages/NotFound";
 import BlogData from "./Pages/BlogPage";
 import DarkLight from "./components/common/DarkLight";
@@ -27,9 +27,9 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/create" element={<CreateBlog />} /> {/* Add the new route */}
         <Route path="/work" element={<Work />} />
         <Route path="/blog/:id" element={<BlogData />} />
-        {/* <Route path="/notepad/*" element={<NotePad />} /> */}
         <Route
           path="/legal/*"
           element={

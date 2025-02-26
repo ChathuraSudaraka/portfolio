@@ -50,10 +50,10 @@ class ErrorBoundary extends React.Component {
 
 const BlogData = () => {
   const { id } = useParams();
-  const blog = blogs.find((blog) => blog.id === parseInt(id));
-  const [comments, setComments] = useState(
-    initialComments.filter((c) => c.blogId === parseInt(id))
-  );
+  const [blog, setBlog] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [comments, setComments] = useState([]);
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [readingTime, setReadingTime] = useState(0);
   const [tags, setTags] = useState([
@@ -66,14 +66,109 @@ const BlogData = () => {
   const [editingCommentId, setEditingCommentId] = useState(null);
   const [editContent, setEditContent] = useState("");
   const [replyingToId, setReplyingToId] = useState(null);
+  
+  // FIX: Move useCallback before any conditional logic and make it not dependent on blog
+  // This ensures it's always defined in the same order
+  const generateTableOfContents = useCallback((description) => {
+    if (!description) return [];
+
+    const markdown = description;
+    const headingRegex = /^(#+)\s+(.*)$/gm;
+    const matches = [...(markdown.matchAll?.(headingRegex) || [])];
+
+    return matches.map((match) => {
+      const level = match[1].length;
+      const text = match[2];
+      const id = text
+        .toLowerCase()
+        .replace(/ /g, "-")
+        .replace(/[^\w-]+/g, "");
+
+      return { level, text, id };
+    });
+  }, []);
+  
+  // Define tableOfContents state AFTER the useCallback
+  const [tableOfContents, setTableOfContents] = useState([]);
 
   useEffect(() => {
-    if (blog && typeof blog.description === "string") {
-      const wordsPerMinute = 200;
-      const wordCount = blog.description.split(/\s+/).length;
-      setReadingTime(Math.ceil(wordCount / wordsPerMinute));
+    console.log("BlogPage - Looking for blog with ID:", id);
+    
+    try {
+      // Get user blogs from localStorage
+      const userBlogsStr = localStorage.getItem("userBlogs");
+      const userBlogs = userBlogsStr ? JSON.parse(userBlogsStr) : [];
+      console.log("User blogs from localStorage:", userBlogs);
+      
+      // First check user blogs from localStorage with exact string match
+      let foundBlog = userBlogs.find(b => String(b.id) === String(id));
+      console.log("Found in userBlogs?", foundBlog ? "Yes" : "No");
+      
+      // If not found, check default blogs
+      if (!foundBlog) {
+        foundBlog = blogs.find(b => String(b.id) === String(id));
+        console.log("Found in default blogs?", foundBlog ? "Yes" : "No");
+      }
+      
+      setBlog(foundBlog);
+      
+      // Calculate reading time if blog is found
+      if (foundBlog && typeof foundBlog.description === "string") {
+        const wordsPerMinute = 200;
+        const cleanText = foundBlog.description.replace(/<[^>]*>/g, '');
+        const wordCount = cleanText.split(/\s+/).length;
+        setReadingTime(Math.ceil(wordCount / wordsPerMinute));
+        
+        // Update table of contents
+        setTableOfContents(generateTableOfContents(foundBlog.description));
+      }
+      
+      // Set comments for this blog
+      setComments(initialComments.filter((c) => c.blogId === parseInt(id)));
+      
+      setLoading(false);
+    } catch (err) {
+      console.error("Error loading blog:", err);
+      setError("Failed to load blog. Please try again.");
+      setLoading(false);
     }
-  }, [blog]);
+  }, [id, generateTableOfContents]);
+
+  // Show loading state
+  if (loading) {
+    return (
+      <BlogLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        </div>
+      </BlogLayout>
+    );
+  }
+  
+  // Show error message
+  if (error) {
+    return (
+      <BlogLayout>
+        <div className="min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-4">Error</h2>
+            <p className="text-red-500">{error}</p>
+            <button
+              onClick={() => window.location.href = "/blog"}
+              className="mt-4 text-blue-500 hover:underline"
+            >
+              Return to Blog List
+            </button>
+          </div>
+        </div>
+      </BlogLayout>
+    );
+  }
+
+  // Redirect if blog not found
+  if (!blog) {
+    return <Navigate to="/404" replace />;
+  }
 
   const addComment = (newComment) => {
     setComments((prev) => [
@@ -149,40 +244,9 @@ const BlogData = () => {
     }
   };
 
-  const generateTableOfContents = useCallback(() => {
-    if (!blog?.description) return [];
-
-    const markdown = blog.description;
-    const headingRegex = /^(#+)\s+(.*)$/gm;
-    const matches = [...markdown.matchAll(headingRegex)];
-
-    return matches.map((match) => {
-      const level = match[1].length;
-      const text = match[2];
-      const id = text
-        .toLowerCase()
-        .replace(/ /g, "-")
-        .replace(/[^\w-]+/g, "");
-
-      return { level, text, id };
-    });
-  }, [blog?.description]);
-
-  const [tableOfContents, setTableOfContents] = useState(
-    generateTableOfContents()
-  );
-
-  useEffect(() => {
-    setTableOfContents(generateTableOfContents());
-  }, [generateTableOfContents]);
-
   const filteredBlogs = activeTag
     ? blogs.filter((blog) => blog.tags.includes(activeTag))
     : blogs;
-
-  if (!blog) {
-    return <Navigate to="/404" replace />;
-  }
 
   return (
     <BlogLayout>
@@ -247,54 +311,73 @@ const BlogData = () => {
             </div>
             {/* Content */}
             <div className="text-lg text-gray-900 dark:text-white">
-              <ReactMarkdown
-                components={{
-                  code({ node, inline, className, children, ...props }) {
-                    const match = /language-(\w+)/.exec(className || "");
-                    return !inline && match ? (
-                      <SyntaxHighlighter
-                        style={tomorrow}
-                        language={match[1]}
-                        PreTag="div"
-                        customStyle={{
-                          padding: "1.5rem",
-                          borderRadius: "0.75rem",
-                          fontSize: "0.875rem",
-                          lineHeight: "1.5",
-                        }}
-                        {...props}
+              {blog && blog.description.startsWith("<") ? (
+                // If it starts with "<", treat as HTML (from Tiptap editor)
+                <div 
+                  className="prose dark:prose-invert max-w-none"
+                  dangerouslySetInnerHTML={{ __html: blog.description }} 
+                />
+              ) : (
+                // Otherwise use ReactMarkdown (for existing blogs)
+                <ReactMarkdown
+                  components={{
+                    code({ node, inline, className, children, ...props }) {
+                      const match = /language-(\w+)/.exec(className || "");
+                      return !inline && match ? (
+                        <SyntaxHighlighter
+                          style={tomorrow}
+                          language={match[1]}
+                          PreTag="div"
+                          customStyle={{
+                            padding: "1.5rem",
+                            borderRadius: "0.75rem",
+                            fontSize: "0.875rem",
+                            lineHeight: "1.5",
+                          }}
+                          {...props}
+                        >
+                          {String(children).replace(/\n$/, "")}
+                        </SyntaxHighlighter>
+                      ) : (
+                        <code className={className} {...props}>
+                          {children}
+                        </code>
+                      );
+                    },
+                    p: ({ children }) => (
+                      <p className="mb-4 leading-relaxed">{children}</p>
+                    ),
+                    h2: ({ children }) => (
+                      <h2
+                        className="mt-8 mb-4 text-2xl font-bold"
+                        id={children
+                          .toLowerCase()
+                          .replace(/ /g, "-")
+                          .replace(/[^\w-]+/g, "")}
                       >
-                        {String(children).replace(/\n$/, "")}
-                      </SyntaxHighlighter>
-                    ) : (
-                      <code className={className} {...props}>
                         {children}
-                      </code>
-                    );
-                  },
-                  p: ({ children }) => (
-                    <p className="mb-4 leading-relaxed">{children}</p>
-                  ),
-                  h2: ({ children }) => (
-                    <h2
-                      className="mt-8 mb-4 font-bold"
-                      id={children
-                        .toLowerCase()
-                        .replace(/ /g, "-")
-                        .replace(/[^\w-]+/g, "")}
-                    >
-                      {children}
-                    </h2>
-                  ),
-                  ul: ({ children }) => (
-                    <ul className="my-6 ml-6 list-disc space-y-2">
-                      {children}
-                    </ul>
-                  ),
-                }}
-              >
-                {blog.description}
-              </ReactMarkdown>
+                      </h2>
+                    ),
+                    img: ({ src, alt }) => (
+                      <div className="my-8">
+                        <img src={src} alt={alt} className="rounded-lg w-full" />
+                        {alt && (
+                          <p className="text-center text-sm text-gray-500 mt-2">
+                            {alt}
+                          </p>
+                        )}
+                      </div>
+                    ),
+                    blockquote: ({ children }) => (
+                      <blockquote className="border-l-4 border-blue-500 pl-4 italic my-6 text-gray-700 dark:text-gray-300">
+                        {children}
+                      </blockquote>
+                    ),
+                  }}
+                >
+                  {blog?.description}
+                </ReactMarkdown>
+              )}
               {/* Social Share */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">
