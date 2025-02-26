@@ -109,9 +109,9 @@ const BlogData = () => {
       // Set tags from the found blog or use default tags if not available
       if (foundBlog) {
         // Extract tags safely, ensuring it's always an array
-        const blogTags = Array.isArray(foundBlog.tags) ? 
-          foundBlog.tags : 
-          ["JavaScript", "React", "Web Development", "Programming"];
+        const blogTags = Array.isArray(foundBlog.tags)
+          ? foundBlog.tags
+          : ["JavaScript", "React", "Web Development", "Programming"];
         setTags(blogTags);
       } else {
         // Default tags if blog not found
@@ -291,13 +291,26 @@ const BlogData = () => {
               ))}
             </div>
             <div className="flex items-center space-x-4">
-              <FaUserCircle className="w-12 h-12 text-gray-900 dark:text-white" />
+              {blog.author?.avatar ? (
+                <img
+                  src={blog.author.avatar}
+                  alt={blog.author?.name || blog.author || "Author"}
+                  className="w-12 h-12 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = "/assets/icon.png";
+                  }}
+                />
+              ) : (
+                <FaUserCircle className="w-12 h-12 text-gray-900 dark:text-white" />
+              )}
               <div>
                 <h3 className="font-medium text-gray-900 dark:text-white">
-                  John Doe
+                  {blog.author?.name || blog.author || "Anonymous"}
                 </h3>
                 <p className="text-emerald-600 dark:text-emerald-400">
-                  Posted on {new Date().toLocaleDateString()}
+                  Posted on{" "}
+                  {new Date(blog.createdAt || blog.date || Date.now()).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -310,7 +323,7 @@ const BlogData = () => {
             {/* Featured Image spanning full width */}
             <div className="relative aspect-[16/9] mb-8 rounded-xl overflow-hidden">
               <img
-                src={blog.image}
+                src={blog.image || "/assets/project/project-placeholder.jpg"}
                 alt={blog.title}
                 className="w-full h-full object-cover"
               />

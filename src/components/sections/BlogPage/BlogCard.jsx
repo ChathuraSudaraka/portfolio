@@ -1,11 +1,52 @@
 import React from "react";
 import { FiArrowRight, FiCalendar, FiClock, FiBookmark } from "react-icons/fi";
-import { CardContainer, CardItem } from "../../ui/3d-card";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-const BlogCard = ({ blog }) => {
+const BlogCard = ({ blog, index = 0 }) => {
   if (!blog) return null;
+
+  // Simplified animation variants
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const hoverVariants = {
+    initial: {
+      scale: 1,
+      y: 0,
+      boxShadow:
+        "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+    },
+    hover: {
+      scale: 1.02,
+      y: -5,
+      boxShadow:
+        "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)",
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  // Simple image zoom on hover
+  const imageVariants = {
+    initial: { scale: 1 },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.5 },
+    },
+  };
 
   // Safely extract properties with fallbacks
   const {
@@ -16,7 +57,7 @@ const BlogCard = ({ blog }) => {
     category = "Uncategorized",
     createdAt,
     date,
-    publishDate
+    publishDate,
   } = blog;
 
   // Ensure ID is converted to string for consistent comparison
@@ -26,21 +67,26 @@ const BlogCard = ({ blog }) => {
   const formatDate = (dateString) => {
     if (!dateString) return "No date";
     const date = new Date(dateString);
-    return date instanceof Date && !isNaN(date) 
-      ? date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })
+    return date instanceof Date && !isNaN(date)
+      ? date.toLocaleDateString(undefined, {
+          year: "numeric",
+          month: "short",
+          day: "numeric",
+        })
       : "No date";
   };
 
   const displayDate = formatDate(createdAt || date || publishDate);
-  
+
   // Calculate reading time based on description length
   const calculateReadTime = () => {
     if (!description) return "1 min read";
     const wordsPerMinute = 200;
     // Handle both HTML and plain text descriptions
-    const cleanText = typeof description === 'string' 
-      ? description.replace(/<[^>]*>/g, '') 
-      : '';
+    const cleanText =
+      typeof description === "string"
+        ? description.replace(/<[^>]*>/g, "")
+        : "";
     const wordCount = cleanText.split(/\s+/).length;
     const readTime = Math.ceil(wordCount / wordsPerMinute);
     return `${readTime} min read`;
@@ -50,16 +96,17 @@ const BlogCard = ({ blog }) => {
   const truncateText = (text, maxLength = 120) => {
     if (!text) return "";
     // For HTML content, strip tags first
-    const plainText = typeof text === 'string' ? text.replace(/<[^>]*>/g, '') : '';
-    return plainText.length > maxLength 
-      ? plainText.substring(0, maxLength) + "..." 
+    const plainText =
+      typeof text === "string" ? text.replace(/<[^>]*>/g, "") : "";
+    return plainText.length > maxLength
+      ? plainText.substring(0, maxLength) + "..."
       : plainText;
   };
 
   // Handle bookmark functionality
   const [isBookmarked, setIsBookmarked] = React.useState(() => {
     try {
-      const savedBookmarks = localStorage.getItem('bookmarkedBlogs');
+      const savedBookmarks = localStorage.getItem("bookmarkedBlogs");
       if (savedBookmarks) {
         const bookmarks = JSON.parse(savedBookmarks);
         return Array.isArray(bookmarks) && bookmarks.includes(blogId);
@@ -73,18 +120,22 @@ const BlogCard = ({ blog }) => {
   const toggleBookmark = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
+
     try {
-      const savedBookmarks = JSON.parse(localStorage.getItem('bookmarkedBlogs') || '[]');
-      
+      const savedBookmarks = JSON.parse(
+        localStorage.getItem("bookmarkedBlogs") || "[]"
+      );
+
       if (isBookmarked) {
-        const updated = savedBookmarks.filter(bookmarkId => bookmarkId !== blogId);
-        localStorage.setItem('bookmarkedBlogs', JSON.stringify(updated));
+        const updated = savedBookmarks.filter(
+          (bookmarkId) => bookmarkId !== blogId
+        );
+        localStorage.setItem("bookmarkedBlogs", JSON.stringify(updated));
       } else {
         savedBookmarks.push(blogId);
-        localStorage.setItem('bookmarkedBlogs', JSON.stringify(savedBookmarks));
+        localStorage.setItem("bookmarkedBlogs", JSON.stringify(savedBookmarks));
       }
-      
+
       setIsBookmarked(!isBookmarked);
     } catch (err) {
       console.error("Error toggling bookmark:", err);
@@ -95,60 +146,92 @@ const BlogCard = ({ blog }) => {
   const tags = Array.isArray(blog.tags) ? blog.tags : [];
 
   // Get author information
-  const authorName = blog.author?.name || blog.author || "Anonymous";
-  const authorAvatar = blog.author?.avatar || "/assets/icon.png";
-  
-  // Debug function
-  const debugInfo = () => {
-    console.log({
-      blogId,
-      originalId: id,
-      type: typeof id,
-      title,
-      tags
-    });
+  const getAuthorInfo = (blog) => {
+    // Case 1: blog.author is an object with name and avatar
+    if (typeof blog.author === "object" && blog.author !== null) {
+      return {
+        name: blog.author.name || "Anonymous",
+        avatar: blog.author.avatar || "/assets/icon.png",
+      };
+    }
+
+    // Case 2: blog.author is a string (just the name)
+    if (typeof blog.author === "string") {
+      return {
+        name: blog.author,
+        avatar: "/assets/icon.png",
+      };
+    }
+
+    // Case 3: blog has separate authorName and authorAvatar fields (legacy format)
+    if (blog.authorName || blog.authorAvatar) {
+      return {
+        name: blog.authorName || "Anonymous",
+        avatar: blog.authorAvatar || "/assets/icon.png",
+      };
+    }
+
+    // Default case: no author information
+    return {
+      name: "Anonymous",
+      avatar: "/assets/icon.png",
+    };
   };
+
+  // Use the helper function to get author info
+  const author = getAuthorInfo(blog);
 
   return (
     <motion.div
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 },
-      }}
-      className="h-full"
+      variants={cardVariants}
+      initial="hidden"
+      animate="visible"
+      viewport={{ once: true, margin: "-50px" }}
+      className="h-full flex"
     >
-      <CardContainer className="flex flex-col h-[500px] group bg-white dark:bg-gray-800/90 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm hover:shadow-xl transition-all duration-300">
+      <motion.div
+        className="flex flex-col w-full bg-white dark:bg-gray-800/90 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700"
+        variants={hoverVariants}
+        initial="initial"
+        whileHover="hover"
+      >
         {/* Card Image */}
         <div className="relative w-full h-56 overflow-hidden">
-          <img
+          <motion.img
+            variants={imageVariants}
             src={image}
             alt={title}
-            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            className="w-full h-full object-cover"
             onError={(e) => {
               e.target.onerror = null;
               e.target.src = "/assets/project/project-placeholder.jpg";
             }}
           />
+
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
 
           {/* Category badge */}
-          <span className="absolute top-4 left-4 bg-primary/90 text-white text-xs font-medium px-3 py-1.5 rounded-full uppercase tracking-wider shadow-lg shadow-primary/20">
+          <span className="absolute top-4 left-4 bg-primary/90 text-white text-xs font-medium px-3 py-1.5 rounded-full uppercase tracking-wider">
             {category}
           </span>
-          
+
           {/* Bookmark button */}
-          <button 
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={toggleBookmark}
-            className={`absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full transition-all ${
-              isBookmarked 
-                ? 'bg-primary text-white' 
-                : 'bg-black/30 text-white hover:bg-black/50'
+            className={`absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-full ${
+              isBookmarked
+                ? "bg-primary text-white"
+                : "bg-black/30 text-white hover:bg-black/50"
             }`}
           >
-            <FiBookmark className={`w-4 h-4 ${isBookmarked ? 'fill-white' : ''}`} />
-          </button>
-          
+            <FiBookmark
+              className={`w-4 h-4 ${isBookmarked ? "fill-white" : ""}`}
+            />
+          </motion.button>
+
           {/* Reading time badge */}
           <div className="absolute bottom-4 right-4 flex items-center gap-1 bg-black/50 text-white text-xs px-2 py-1 rounded-md">
             <FiClock className="w-3 h-3" />
@@ -173,12 +256,13 @@ const BlogCard = ({ blog }) => {
           {tags.length > 0 && (
             <div className="flex flex-wrap gap-1 mb-3">
               {tags.slice(0, 3).map((tag, idx) => (
-                <span 
+                <motion.span
                   key={idx}
+                  whileHover={{ scale: 1.05 }}
                   className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-md"
                 >
-                  #{typeof tag === 'string' ? tag : 'tag'}
-                </span>
+                  #{typeof tag === "string" ? tag : "tag"}
+                </motion.span>
               ))}
               {tags.length > 3 && (
                 <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-md">
@@ -202,8 +286,8 @@ const BlogCard = ({ blog }) => {
               <div className="relative">
                 <img
                   className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-800 object-cover"
-                  src={authorAvatar}
-                  alt={authorName}
+                  src={author.avatar}
+                  alt={author.name}
                   onError={(e) => {
                     e.target.onerror = null;
                     e.target.src = "/assets/icon.png";
@@ -212,24 +296,26 @@ const BlogCard = ({ blog }) => {
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white dark:border-gray-800 rounded-full"></span>
               </div>
               <span className="ml-2 text-sm font-medium text-gray-700 dark:text-gray-300 truncate max-w-[100px]">
-                {authorName}
+                {author.name}
               </span>
             </div>
 
-            {/* Read more link with debug option */}
-            <div className="flex items-center gap-2">
+            {/* Read more link with subtle animation */}
+            <motion.div
+              whileHover={{ x: 3 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
               <Link
                 to={`/blog/${blogId}`}
-                onClick={() => debugInfo()}
-                className="group/link text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-1 z-10"
+                className="text-sm font-medium text-primary hover:text-primary-dark flex items-center gap-1"
               >
                 Read more
-                <FiArrowRight className="ml-1 transition-transform group-hover/link:translate-x-1" />
+                <FiArrowRight className="ml-1" />
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
-      </CardContainer>
+      </motion.div>
     </motion.div>
   );
 };
