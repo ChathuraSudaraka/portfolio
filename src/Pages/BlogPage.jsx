@@ -16,6 +16,8 @@ import { FiEdit2, FiTrash2, FiMessageSquare } from "react-icons/fi";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
+import remarkGfm from "remark-gfm";
+import remarkBreaks from "remark-breaks";
 
 // Add Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -363,15 +365,68 @@ const BlogData = () => {
               {blog && blog.description.startsWith("<") ? (
                 // If it starts with "<", treat as HTML (from Tiptap editor)
                 <div
-                  className="prose dark:prose-invert max-w-none"
+                  className="tiptap ProseMirror prose dark:prose-invert max-w-none 
+                           prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
+                           prose-p:my-4 prose-p:leading-relaxed
+                           prose-a:text-blue-600 dark:prose-a:text-blue-400
+                           prose-img:rounded-lg prose-img:my-6
+                           prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:italic
+                           prose-blockquote:my-6 prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
+                           prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:rounded prose-code:p-0.5
+                           prose-pre:bg-gray-900 dark:prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg"
                   dangerouslySetInnerHTML={{ __html: blog.description }}
                 />
               ) : (
                 // Otherwise use ReactMarkdown (for existing blogs)
                 <ReactMarkdown
+                  className="prose dark:prose-invert max-w-none"
+                  remarkPlugins={[remarkGfm, remarkBreaks]}
                   components={{
-                    code({ node, inline, className, children, ...props }) {
-                      const match = /language-(\w+)/.exec(className || "");
+                    h1: ({node, ...props}) => (
+                      <h1 className="text-3xl font-bold mt-8 mb-4 text-gray-900 dark:text-white" {...props} />
+                    ),
+                    h2: ({node, ...props}) => {
+                      const id = (props.children || "")
+                        .toString()
+                        .toLowerCase()
+                        .replace(/<[^>]*>/g, '') 
+                        .replace(/ /g, "-")
+                        .replace(/[^\w-]+/g, "");
+                        
+                      return (
+                        <h2
+                          id={id}
+                          className="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white"
+                          style={{ scrollMarginTop: "100px" }}
+                          {...props} 
+                        />
+                      );
+                    },
+                    h3: ({node, ...props}) => (
+                      <h3 className="text-xl font-bold mt-6 mb-3 text-gray-900 dark:text-white" {...props} />
+                    ),
+                    p: ({children}) => (
+                      <p className="mb-4 leading-relaxed text-gray-900 dark:text-white">{children}</p>
+                    ),
+                    a: ({node, ...props}) => (
+                      <a className="text-blue-600 dark:text-blue-400 hover:underline" {...props} />
+                    ),
+                    ul: ({node, ...props}) => (
+                      <ul className="list-disc pl-6 mb-4 text-gray-900 dark:text-white" {...props} />
+                    ),
+                    ol: ({node, ...props}) => (
+                      <ol className="list-decimal pl-6 mb-4 text-gray-900 dark:text-white" {...props} />
+                    ),
+                    li: ({node, ...props}) => (
+                      <li className="mb-1 text-gray-900 dark:text-white" {...props} />
+                    ),
+                    blockquote: ({children}) => (
+                      <blockquote className="border-l-4 border-blue-500 pl-4 italic my-6 text-gray-700 dark:text-gray-300">
+                        {children}
+                      </blockquote>
+                    ),
+                    code({node, inline, className, children, ...props}) {
+                      const match = /language-(\w+)/.exec(className || '')
                       return !inline && match ? (
                         <SyntaxHighlighter
                           style={tomorrow}
@@ -382,40 +437,20 @@ const BlogData = () => {
                             borderRadius: "0.75rem",
                             fontSize: "0.875rem",
                             lineHeight: "1.5",
+                            margin: "1.5rem 0",
                           }}
                           {...props}
                         >
                           {String(children).replace(/\n$/, "")}
                         </SyntaxHighlighter>
                       ) : (
-                        <code className={className} {...props}>
+                        <code className="bg-gray-100 dark:bg-gray-800 rounded px-1.5 py-0.5 font-mono text-sm" {...props}>
                           {children}
                         </code>
                       );
                     },
-                    p: ({ children }) => (
-                      <p className="mb-4 leading-relaxed">{children}</p>
-                    ),
-                    h2: ({ children }) => {
-                      const id = children
-                        .toString()
-                        .toLowerCase()
-                        .replace(/<[^>]*>/g, '') // Remove any HTML tags
-                        .replace(/ /g, "-")
-                        .replace(/[^\w-]+/g, "");
-                        
-                      return (
-                        <h2
-                          id={id}
-                          className="mt-8 mb-4 text-2xl font-bold"
-                          style={{ scrollMarginTop: "100px" }} // Add scroll margin for better anchor positioning
-                        >
-                          {children}
-                        </h2>
-                      );
-                    },
-                    img: ({ src, alt }) => (
-                      <div className="my-8">
+                    img: ({src, alt}) => (
+                      <div className="my-6">
                         <img
                           src={src}
                           alt={alt}
@@ -428,10 +463,16 @@ const BlogData = () => {
                         )}
                       </div>
                     ),
-                    blockquote: ({ children }) => (
-                      <blockquote className="border-l-4 border-blue-500 pl-4 italic my-6 text-gray-700 dark:text-gray-300">
-                        {children}
-                      </blockquote>
+                    table: ({node, ...props}) => (
+                      <div className="overflow-x-auto my-6">
+                        <table className="border-collapse w-full" {...props} />
+                      </div>
+                    ),
+                    th: ({node, ...props}) => (
+                      <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-left" {...props} />
+                    ),
+                    td: ({node, ...props}) => (
+                      <td className="border border-gray-300 dark:border-gray-700 px-4 py-2" {...props} />
                     ),
                   }}
                 >
