@@ -200,6 +200,26 @@ const CDNEditorMD = ({
         await loadCSS('https://cdn.jsdelivr.net/npm/editor.md@1.5.0/css/editormd.min.css');
         await loadScript('https://cdn.jsdelivr.net/npm/editor.md@1.5.0/editormd.min.js');
         
+        // After loading editor.md script, load the English locale
+        try {
+          // First try loading the locale from our files
+          const englishLocale = await import('./english-locale.js');
+          if (typeof englishLocale.default === 'function') {
+            englishLocale.default(window.editormd);
+          }
+          console.log('Loaded English locale from local file');
+        } catch (localeError) {
+          console.warn('Could not load local English locale:', localeError);
+          // If that fails, use a dynamic import for the CDN version
+          try {
+            await loadScript('https://cdn.jsdelivr.net/npm/editor.md@1.5.0/languages/en.js');
+            console.log('Loaded English locale from CDN');
+          } catch (cdnError) {
+            console.warn('Could not load English locale from CDN:', cdnError);
+            // Not critical, can continue without it
+          }
+        }
+        
         // Make sure the editor is loaded
         if (!window.editormd) {
           throw new Error('Editor.md not available after loading script');
@@ -328,6 +348,12 @@ const CDNEditorMD = ({
               // Set loading state to false
               setLoading(false);
             }, 100);
+          },
+          
+          // Add language setting
+          lang: {
+            name: "en",
+            // This will use the loaded locale from above
           }
         };
         
