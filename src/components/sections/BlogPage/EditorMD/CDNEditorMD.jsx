@@ -244,6 +244,33 @@ const CDNEditorMD = ({
           contentRef.current = initialValue;
         }
         
+        // Add this to the initialize function before creating the editor
+
+        // Register custom toolbar action for AI Assistant
+        if (window.editormd && aiAssistMode) {
+          // Define custom toolbar icon
+          window.editormd.toolbarIconExtensions = {
+            "ai-assistant": {
+              name: "ai-assistant",
+              action: function() {
+                // This will trigger the AI helper
+                const aiHelperButton = document.querySelector('.ai-helper-trigger');
+                if (aiHelperButton) {
+                  aiHelperButton.click();
+                } else {
+                  // Create a virtual button click if the actual button isn't available yet
+                  setTimeout(() => {
+                    const laterAiHelperButton = document.querySelector('.ai-helper-trigger');
+                    if (laterAiHelperButton) laterAiHelperButton.click();
+                  }, 100);
+                }
+              },
+              className: "fa fa-magic",
+              title: "AI Assistant"
+            }
+          };
+        }
+        
         // Create editor configuration
         const editorConfig = {
           width: "100%",
@@ -349,16 +376,29 @@ const CDNEditorMD = ({
               setLoading(false);
             }, 100);
           },
-          
           // Add language setting
           lang: {
             name: "en",
             // This will use the loaded locale from above
           }
         };
+
+        // Add custom handler function for toolbar clicks
+        const toolbarHandlers = {
+          "ai-assistant": function() {
+            // This will be called when the AI Assistant toolbar button is clicked
+            const aiHelperButton = document.querySelector('.ai-helper-trigger');
+            if (aiHelperButton) {
+              aiHelperButton.click();
+            }
+          }
+        };
+
+        // Ensure this is added to the editorConfig
+        editorConfig.toolbarHandlers = toolbarHandlers;
         
         // Add toolbar configuration
-        editorConfig.toolbarIcons = function() {
+        editorConfig.toolbarIcons = function() {    
           const toolbarItems = customToolbarItems || [...DEFAULT_TOOLBAR_ITEMS];
           if (aiAssistMode && !toolbarItems.includes("ai-assistant")) {
             toolbarItems.push("ai-assistant");
@@ -670,8 +710,9 @@ const CDNEditorMD = ({
       </div>
       
       {/* Add AI Helper (conditionally) */}
-      {aiAssistMode && editorInstanceRef.current && (
-        <div className="absolute top-2 right-20 z-50">
+      {aiAssistMode && (
+        <div className={`${loading ? 'hidden' : 'block'} absolute top-2 right-20 z-50`}>
+          <button className="ai-helper-trigger hidden"></button>
           <EditorMDAIHelper editorInstance={editorInstanceRef.current} />
         </div>
       )}

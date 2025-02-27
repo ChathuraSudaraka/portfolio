@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from "framer-motion";
 import { BsStars } from "react-icons/bs";
 import { toast } from "react-toastify";
+import AIButton from './AIButton';
 
 // Helper function to limit message length
 const truncateMessage = (message, maxLength = 200) => {
@@ -93,23 +94,10 @@ const EditorMDAIHelper = ({ editorInstance }) => {
     }
   };
 
-  // Add an AI button to the toolbar
-  const addAIButton = () => {
-    if (editorInstance && editorInstance.toolbar) {
-      // Implementation depends on editor.md's API
-      console.log("Adding AI button to toolbar");
-    }
-  };
-
   return (
     <>
-      <button
-        onClick={() => setShowPromptInput(true)}
-        className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
-        title="AI Writing Assistant"
-      >
-        <BsStars className="text-purple-500" size={16} />
-      </button>
+      {/* AI Button */}
+      <AIButton onClick={() => setShowPromptInput(true)} />
 
       {/* AI Modal */}
       {showPromptInput && (
