@@ -8,7 +8,7 @@ import { Label } from "../components/ui/label";
 import { toast } from "react-toastify";
 import { BsUpload, BsStars, BsLightningCharge, BsMagic } from "react-icons/bs";
 import LegalLayout from "../components/Layouts/LegalLayout";
-import EnhancedEditor from "../components/sections/BlogPage/Tiptap/EnhancedEditor";
+import EnhancedEditor from "../components/sections/BlogPage/Editor/EnhancedEditor";
 
 // Helper function to limit message length
 const truncateMessage = (message, maxLength = 200) => {

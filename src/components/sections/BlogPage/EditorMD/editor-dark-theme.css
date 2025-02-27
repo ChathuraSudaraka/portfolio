@@ -1,0 +1,154 @@
+/* Enhanced dark mode styling for Editor.md */
+
+/* Editor container */
+body.dark .editormd,
+.dark .editormd {
+  border-color: #374151 !important;
+  background-color: #1f2937 !important;
+}
+
+/* Editor toolbar */
+body.dark .editormd-toolbar,
+.dark .editormd-toolbar {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+/* Toolbar buttons */
+body.dark .editormd-menu > li > a,
+.dark .editormd-menu > li > a {
+  color: #e5e7eb !important;
+  border-color: #374151 !important;
+}
+
+body.dark .editormd-menu > li > a:hover,
+body.dark .editormd-menu > li.active > a,
+.dark .editormd-menu > li > a:hover,
+.dark .editormd-menu > li.active > a {
+  background-color: #374151 !important;
+  color: #f9fafb !important;
+}
+
+/* CodeMirror editor area */
+body.dark .CodeMirror,
+.dark .CodeMirror {
+  background-color: #111827 !important;
+  color: #e5e7eb !important;
+  border-color: #374151 !important;
+}
+
+body.dark .CodeMirror-gutters,
+.dark .CodeMirror-gutters {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+/* Line numbers */
+body.dark .CodeMirror-linenumber,
+.dark .CodeMirror-linenumber {
+  color: #6b7280 !important;
+}
+
+/* Preview area */
+body.dark .editormd-preview,
+.dark .editormd-preview {
+  background-color: #111827 !important;
+  color: #e5e7eb !important;
+}
+
+/* Syntax highlighting in preview */
+body.dark .editormd-preview-container pre.prettyprint,
+.dark .editormd-preview-container pre.prettyprint {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+/* Markdown syntax highlighting */
+body.dark .cm-s-default .cm-header,
+.dark .cm-s-default .cm-header {
+  color: #93c5fd !important; /* Light blue for headers */
+}
+
+body.dark .cm-s-default .cm-comment,
+.dark .cm-s-default .cm-comment {
+  color: #6b7280 !important; /* Gray for comments */
+}
+
+body.dark .cm-s-default .cm-string,
+.dark .cm-s-default .cm-string {
+  color: #a7f3d0 !important; /* Light green for strings */
+}
+
+body.dark .cm-s-default .cm-link,
+.dark .cm-s-default .cm-link {
+  color: #93c5fd !important; /* Light blue for links */
+}
+
+body.dark .cm-s-default .cm-url,
+.dark .cm-s-default .cm-url {
+  color: #60a5fa !important; /* Blue for URLs */
+}
+
+body.dark .cm-s-default .cm-tag,
+.dark .cm-s-default .cm-tag {
+  color: #f87171 !important; /* Light red for tags */
+}
+
+body.dark .cm-s-default .cm-quote,
+.dark .cm-s-default .cm-quote {
+  color: #fbbf24 !important; /* Yellow for quotes */
+}
+
+/* Scrollbar styling */
+body.dark .CodeMirror-simplescroll-horizontal,
+body.dark .CodeMirror-simplescroll-vertical,
+.dark .CodeMirror-simplescroll-horizontal,
+.dark .CodeMirror-simplescroll-vertical {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+}
+
+body.dark .CodeMirror-simplescroll-horizontal div,
+body.dark .CodeMirror-simplescroll-vertical div,
+.dark .CodeMirror-simplescroll-horizontal div,
+.dark .CodeMirror-simplescroll-vertical div {
+  background-color: #4b5563 !important;
+  border-color: #6b7280 !important;
+}
+
+/* Modal dialog styling */
+body.dark .editormd-dialog,
+.dark .editormd-dialog {
+  background-color: #1f2937 !important;
+  border-color: #374151 !important;
+  color: #e5e7eb !important;
+}
+
+body.dark .editormd-dialog-header,
+.dark .editormd-dialog-header {
+  background-color: #111827 !important;
+  border-color: #374151 !important;
+}
+
+body.dark .editormd-dialog-close,
+.dark .editormd-dialog-close {
+  color: #e5e7eb !important;
+}
+
+body.dark .editormd-dialog-footer,
+.dark .editormd-dialog-footer {
+  background-color: #111827 !important;
+  border-color: #374151 !important;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .editormd-toolbar {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+  }
+  
+  .editormd {
+    height: 400px !important;
+  }
+}
