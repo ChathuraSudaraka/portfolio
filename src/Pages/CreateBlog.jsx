@@ -9,14 +9,7 @@ import { toast } from "react-toastify";
 import { BsUpload, BsStars, BsLightningCharge, BsMagic } from "react-icons/bs";
 import LegalLayout from "../components/Layouts/LegalLayout";
 import EnhancedEditor from "../components/sections/BlogPage/Editor/EnhancedEditor";
-
-// Helper function to limit message length
-const truncateMessage = (message, maxLength = 200) => {
-  if (typeof message === 'string' && message.length > maxLength) {
-    return message.substring(0, maxLength) + '...';
-  }
-  return message;
-};
+import { prepareAIRequest, extractContentForAI } from "../utils/aiHelpers";
 
 const CreateBlog = () => {
   const [blogData, setBlogData] = useState({
@@ -96,14 +89,25 @@ const CreateBlog = () => {
       // Important: Only remove editor content from localStorage AFTER successful save
       const blogId = `user-${Date.now().toString()}`;
       
+      // Fix tags handling to check type before using split()
+      let formattedTags = [];
+      
+      if (blogData.tags) {
+        if (Array.isArray(blogData.tags)) {
+          // If it's already an array, use it directly
+          formattedTags = blogData.tags;
+        } else if (typeof blogData.tags === 'string') {
+          // If it's a string, split it by comma
+          formattedTags = blogData.tags.split(",").map((tag) => tag.trim());
+        }
+      }
+      
       // Create new blog post with proper data structure
       const newBlog = {
         id: blogId,
         title: blogData.title,
         category: blogData.category,
-        tags: blogData.tags
-          ? blogData.tags.split(",").map((tag) => tag.trim())
-          : [],
+        tags: formattedTags,  // Use the safely formatted tags
         image: blogData.image,
         description: content,
         createdAt: new Date().toISOString(),
@@ -202,7 +206,7 @@ const CreateBlog = () => {
     }
   };
 
-  // Function to generate blog metadata with AI
+  // New function to generate blog metadata with AI
   const generateBlogMetadata = async (type) => {
     // Initialize appropriate loading state
     if (type === 'title') setIsGeneratingTitle(true);
@@ -210,52 +214,35 @@ const CreateBlog = () => {
     if (type === 'category') setIsGeneratingCategory(true);
     
     try {
-      // Get a small sample of the editor content
+      // Get the editor content to use as context for generating metadata
       const content = editorContent || localStorage.getItem("editorContent") || "";
-      const contentSample = content.substring(0, 200); // Limit content size
+      
+      // Extract key content safely
+      const extractedContent = extractContentForAI(content, 150);
       
       // Prepare prompt based on the type of metadata we want to generate
-      let systemPrompt = "Generate blog metadata.";
+      let systemPrompt = "You are a blog metadata generator.";
       let userPrompt = "";
       
       if (type === 'title') {
-        userPrompt = `Generate a blog title for: ${contentSample}`;
+        userPrompt = `Generate a catchy blog title for: ${extractedContent}`;
       } else if (type === 'tags') {
-        userPrompt = `Generate 3-5 comma-separated tags for: ${contentSample}`;
+        userPrompt = `Generate 3-6 comma-separated tags for: ${extractedContent}`;
       } else if (type === 'category') {
-        userPrompt = `Choose category (Web Development, Technology, Programming, Design) for: ${contentSample}`;
+        userPrompt = `Choose category (Web Development, Technology, Programming, or Design) for: ${extractedContent}`;
       }
       
-      // Ensure messages are within character limits
-      const messages = [
-        {
-          role: "system",
-          content: systemPrompt,
-        },
-        {
-          role: "user",
-          content: truncateMessage(userPrompt),
-        },
-      ];
+      // Prepare the API request with size constraints
+      const requestOptions = prepareAIRequest({
+        systemPrompt,
+        userPrompt,
+        maxTokens: 50
+      });
       
-      // Use the AIML API with limited message size
+      // Use the AIML API to generate the metadata
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_AIML_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            frequency_penalty: 0,
-            max_tokens: 50, // Reduced token count
-            n: 1,
-            temperature: 0.7,
-            model: "gpt-4o-mini",
-            messages: messages,
-          }),
-        }
+        requestOptions
       );
 
       if (!response.ok) {
@@ -309,36 +296,17 @@ const CreateBlog = () => {
     setIsGeneratingCategory(true);
     
     try {
-      // Ensure messages are within character limits
-      const messages = [
-        {
-          role: "system", 
-          content: "Generate blog metadata as JSON.",
-        },
-        {
-          role: "user", 
-          content: truncateMessage(`Generate title, tags, category for blog about: ${metadataPrompt}`, 200)
-        }
-      ];
+      // Prepare the API request with size constraints
+      const requestOptions = prepareAIRequest({
+        systemPrompt: "Generate blog metadata as JSON.",
+        userPrompt: `Create title, tags, category (Web Development, Technology, Programming, Design) for: ${metadataPrompt.substring(0, 150)}`,
+        maxTokens: 150
+      });
       
-      // Use AIML API with limited message size
+      // Use the AIML API to generate the metadata
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${import.meta.env.VITE_AIML_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            frequency_penalty: 0,
-            max_tokens: 100, // Reduced token count
-            n: 1,
-            temperature: 0.7,
-            model: "gpt-4o-mini",
-            messages: messages,
-          }),
-        }
+        requestOptions
       );
 
       if (!response.ok) {
@@ -347,6 +315,10 @@ const CreateBlog = () => {
 
       const data = await response.json();
       const generatedContent = data.choices?.[0]?.message?.content?.trim();
+
+      if (!generatedContent) {
+        throw new Error("No content was generated");
+      }
 
       // Extract JSON from the response
       const jsonMatch = generatedContent.match(/({[\s\S]*})/);
@@ -381,11 +353,23 @@ const CreateBlog = () => {
       }));
       
       toast.success("Blog metadata generated successfully!");
-      setShowMetadataPrompt(false);
+      
+      // Close modal after a slight delay to show the toast
+      setTimeout(() => {
+        setShowMetadataPrompt(false);
+      }, 500);
       
     } catch (error) {
       console.error("Error generating metadata:", error);
-      toast.error("Failed to generate blog metadata. Please try again.");
+      
+      // More descriptive error messages
+      if (error.message.includes("limit") || error.message.includes("Free-tier")) {
+        toast.error("API limit reached. Try with shorter prompts.");
+      } else if (error.message.includes("Could not extract")) {
+        toast.error("Could not extract metadata from AI response. Try again.");
+      } else {
+        toast.error("Failed to generate blog metadata. Please try again.");
+      }
     } finally {
       setIsGeneratingTitle(false);
       setIsGeneratingTags(false);
@@ -412,7 +396,6 @@ const CreateBlog = () => {
                 Create Content
               </p>
             </div>
-
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-3">
               Create New <span className="text-secondary">Blog</span>
             </h2>
@@ -545,7 +528,7 @@ const CreateBlog = () => {
                       </button>
                     </div>
                   )}
-                  
+
                   {/* Image Preview */}
                   {blogData.image && (
                     <div className="mt-3 relative rounded-lg overflow-hidden">
@@ -564,7 +547,7 @@ const CreateBlog = () => {
                   <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
                     <EnhancedEditor 
                       onUpdate={handleEditorUpdate} 
-                      aiAssistMode={activeTab === "ai"}
+                      aiAssistMode={activeTab === "ai"} 
                     />
                   </div>
                 </div>
@@ -581,7 +564,7 @@ const CreateBlog = () => {
                         Let AI help you generate content for your blog post. Choose from the options below.
                       </p>
                     </div>
-                    
+
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       <button
                         type="button"
@@ -734,7 +717,6 @@ const CreateBlog = () => {
                 rows={4}
                 autoFocus
               />
-
               <div className="flex justify-end gap-2">
                 <button
                   type="button"
