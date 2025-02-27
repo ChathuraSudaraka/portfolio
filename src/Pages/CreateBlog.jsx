@@ -10,6 +10,14 @@ import { BsUpload, BsStars, BsLightningCharge, BsMagic } from "react-icons/bs";
 import LegalLayout from "../components/Layouts/LegalLayout";
 import EnhancedEditor from "../components/sections/BlogPage/Tiptap/EnhancedEditor";
 
+// Helper function to limit message length
+const truncateMessage = (message, maxLength = 200) => {
+  if (typeof message === 'string' && message.length > maxLength) {
+    return message.substring(0, maxLength) + '...';
+  }
+  return message;
+};
+
 const CreateBlog = () => {
   const [blogData, setBlogData] = useState({
     title: "",
@@ -194,7 +202,7 @@ const CreateBlog = () => {
     }
   };
 
-  // New function to generate blog metadata with AI
+  // Function to generate blog metadata with AI
   const generateBlogMetadata = async (type) => {
     // Initialize appropriate loading state
     if (type === 'title') setIsGeneratingTitle(true);
@@ -202,22 +210,35 @@ const CreateBlog = () => {
     if (type === 'category') setIsGeneratingCategory(true);
     
     try {
-      // Get the editor content to use as context for generating metadata
+      // Get a small sample of the editor content
       const content = editorContent || localStorage.getItem("editorContent") || "";
+      const contentSample = content.substring(0, 200); // Limit content size
       
       // Prepare prompt based on the type of metadata we want to generate
-      let systemPrompt = "You are an expert blog metadata generator.";
+      let systemPrompt = "Generate blog metadata.";
       let userPrompt = "";
       
       if (type === 'title') {
-        userPrompt = `Generate a catchy, SEO-friendly blog title (max 10 words) for the following content. Return only the title with no quotes or additional text: ${content.substring(0, 500)}`;
+        userPrompt = `Generate a blog title for: ${contentSample}`;
       } else if (type === 'tags') {
-        userPrompt = `Generate 3-6 relevant, comma-separated tags for the following blog content. Return only the tags with no quotes or additional text: ${content.substring(0, 500)}`;
+        userPrompt = `Generate 3-5 comma-separated tags for: ${contentSample}`;
       } else if (type === 'category') {
-        userPrompt = `Choose the most appropriate category for this blog content from the following options: Web Development, Technology, Programming, Design. Return only the category name with no quotes or additional text: ${content.substring(0, 500)}`;
+        userPrompt = `Choose category (Web Development, Technology, Programming, Design) for: ${contentSample}`;
       }
       
-      // Use the AIML API to generate the metadata
+      // Ensure messages are within character limits
+      const messages = [
+        {
+          role: "system",
+          content: systemPrompt,
+        },
+        {
+          role: "user",
+          content: truncateMessage(userPrompt),
+        },
+      ];
+      
+      // Use the AIML API with limited message size
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
         {
@@ -228,20 +249,11 @@ const CreateBlog = () => {
           },
           body: JSON.stringify({
             frequency_penalty: 0,
-            max_tokens: 100,
+            max_tokens: 50, // Reduced token count
             n: 1,
             temperature: 0.7,
             model: "gpt-4o-mini",
-            messages: [
-              {
-                role: "system",
-                content: systemPrompt,
-              },
-              {
-                role: "user",
-                content: userPrompt,
-              },
-            ],
+            messages: messages,
           }),
         }
       );
@@ -297,6 +309,19 @@ const CreateBlog = () => {
     setIsGeneratingCategory(true);
     
     try {
+      // Ensure messages are within character limits
+      const messages = [
+        {
+          role: "system", 
+          content: "Generate blog metadata as JSON.",
+        },
+        {
+          role: "user", 
+          content: truncateMessage(`Generate title, tags, category for blog about: ${metadataPrompt}`, 200)
+        }
+      ];
+      
+      // Use AIML API with limited message size
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
         {
@@ -307,20 +332,11 @@ const CreateBlog = () => {
           },
           body: JSON.stringify({
             frequency_penalty: 0,
-            max_tokens: 200,
+            max_tokens: 100, // Reduced token count
             n: 1,
             temperature: 0.7,
             model: "gpt-4o-mini",
-            messages: [
-              {
-                role: "system",
-                content: "You are an expert blog metadata generator. Return your response as a JSON object with title, tags, and category fields.",
-              },
-              {
-                role: "user",
-                content: `Generate a catchy title, 3-6 relevant comma-separated tags, and select the most appropriate category (from: Web Development, Technology, Programming, Design) for a blog about: ${metadataPrompt}. Return as JSON with title, tags, and category fields.`,
-              },
-            ],
+            messages: messages,
           }),
         }
       );
@@ -331,10 +347,6 @@ const CreateBlog = () => {
 
       const data = await response.json();
       const generatedContent = data.choices?.[0]?.message?.content?.trim();
-
-      if (!generatedContent) {
-        throw new Error("No content was generated");
-      }
 
       // Extract JSON from the response
       const jsonMatch = generatedContent.match(/({[\s\S]*})/);

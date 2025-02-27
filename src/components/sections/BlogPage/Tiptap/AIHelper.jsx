@@ -40,6 +40,14 @@ export const Sparkles = () => {
   );
 };
 
+// Helper function to limit message length
+const truncateMessage = (message, maxLength = 200) => {
+  if (typeof message === 'string' && message.length > maxLength) {
+    return message.substring(0, maxLength) + '...';
+  }
+  return message;
+};
+
 const AIHelper = ({ editor }) => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [prompt, setPrompt] = useState("");
@@ -67,14 +75,18 @@ const AIHelper = ({ editor }) => {
     setError(null);
 
     try {
-      // Prepare user messages
-      let userContent = prompt;
-
+      // Prepare user messages - limit content to stay within API restrictions
+      const truncatedPrompt = truncateMessage(prompt);
+      const truncatedSystemPrompt = truncateMessage(systemPrompt, 50);
+      
+      let userContent = truncatedPrompt;
+      
+      // Handle image content if included
       if (includeImage && imageUrl.trim()) {
         userContent = [
           {
             type: "text",
-            text: prompt,
+            text: truncatedPrompt,
           },
           {
             type: "image_url",
@@ -88,7 +100,7 @@ const AIHelper = ({ editor }) => {
       const messages = [
         {
           role: "system",
-          content: systemPrompt,
+          content: truncatedSystemPrompt,
         },
         {
           role: "user",
@@ -96,7 +108,7 @@ const AIHelper = ({ editor }) => {
         },
       ];
 
-      // Fixed API request - removed invalid response_format parameter
+      // Use AIML API with VITE_AIML_API_KEY
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
         {
@@ -107,21 +119,10 @@ const AIHelper = ({ editor }) => {
           },
           body: JSON.stringify({
             frequency_penalty: 1,
-            logprobs: true,
-            top_logprobs: 1,
-            max_tokens: 512,
-            max_completion_tokens: 1,
+            max_tokens: 200, // Reduced token count
             n: 1,
-            presence_penalty: 1,
-            seed: 1,
-            stream: false,
-            top_p: 1,
-            temperature: 1,
+            temperature: 0.7,
             model: "gpt-4o-mini",
-            reasoning_effort: "low",
-            stream_options: {
-              include_usage: true,
-            },
             messages: messages,
           }),
         }
@@ -262,33 +263,28 @@ const AIHelper = ({ editor }) => {
                 autoFocus
               />
 
-              {/* Image URL input */}
               <div className="mb-4">
-                <div className="flex items-center mb-2">
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Image URL (Optional)
+                </label>
+                <input
+                  type="text"
+                  className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-800 dark:text-white mb-1 focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                  value={imageUrl}
+                  onChange={(e) => setImageUrl(e.target.value)}
+                  placeholder="Enter image URL..."
+                />
+                <div className="flex items-center mt-2">
                   <input
                     type="checkbox"
-                    id="includeImage"
+                    className="mr-2"
                     checked={includeImage}
                     onChange={(e) => setIncludeImage(e.target.checked)}
-                    className="mr-2 h-4 w-4 rounded border-gray-300 text-purple-600 focus:ring-purple-500"
                   />
-                  <label
-                    htmlFor="includeImage"
-                    className="text-sm font-medium text-gray-700 dark:text-gray-300"
-                  >
-                    Include an image for analysis
+                  <label className="text-sm text-gray-700 dark:text-gray-300">
+                    Include image in the content
                   </label>
                 </div>
-
-                {includeImage && (
-                  <input
-                    type="url"
-                    placeholder="Enter image URL..."
-                    value={imageUrl}
-                    onChange={(e) => setImageUrl(e.target.value)}
-                    className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-800 dark:text-white focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-                  />
-                )}
               </div>
 
               <div className="flex justify-end gap-2">
@@ -303,11 +299,7 @@ const AIHelper = ({ editor }) => {
                   type="button"
                   className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-md flex items-center gap-2 transition-colors text-sm font-medium"
                   onClick={handleGenerateContent}
-                  disabled={
-                    isGenerating ||
-                    !prompt.trim() ||
-                    (includeImage && !imageUrl.trim())
-                  }
+                  disabled={isGenerating || !prompt.trim()}
                 >
                   {isGenerating ? (
                     <>
