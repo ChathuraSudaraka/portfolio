@@ -85,29 +85,29 @@ const CreateBlog = () => {
 
     try {
       // Create blog post logic here...
-      
+
       // Important: Only remove editor content from localStorage AFTER successful save
       const blogId = `user-${Date.now().toString()}`;
-      
+
       // Fix tags handling to check type before using split()
       let formattedTags = [];
-      
+
       if (blogData.tags) {
         if (Array.isArray(blogData.tags)) {
           // If it's already an array, use it directly
           formattedTags = blogData.tags;
-        } else if (typeof blogData.tags === 'string') {
+        } else if (typeof blogData.tags === "string") {
           // If it's a string, split it by comma
           formattedTags = blogData.tags.split(",").map((tag) => tag.trim());
         }
       }
-      
+
       // Create new blog post with proper data structure
       const newBlog = {
         id: blogId,
         title: blogData.title,
         category: blogData.category,
-        tags: formattedTags,  // Use the safely formatted tags
+        tags: formattedTags, // Use the safely formatted tags
         image: blogData.image,
         description: content,
         createdAt: new Date().toISOString(),
@@ -116,7 +116,7 @@ const CreateBlog = () => {
           avatar: "/assets/icon.png",
         },
       };
-      
+
       // Simulate network delay
       await new Promise((resolve) => setTimeout(resolve, 800));
 
@@ -169,31 +169,35 @@ const CreateBlog = () => {
     }
 
     setIsGeneratingImage(true);
-    
+
     try {
       // For demonstration, use Unsplash API to get a relevant image
       // In a real implementation, you'd use an image generation API like DALL-E, Midjourney, etc.
       const query = encodeURIComponent(imagePrompt);
       const response = await fetch(
-        `https://api.unsplash.com/search/photos?query=${query}&client_id=${import.meta.env.VITE_UNSPLASH_API_KEY || "YOUR_UNSPLASH_API_KEY"}`
+        `https://api.unsplash.com/search/photos?query=${query}&client_id=${
+          import.meta.env.VITE_UNSPLASH_API_KEY || "YOUR_UNSPLASH_API_KEY"
+        }`
       );
-      
+
       if (!response.ok) {
         throw new Error("Failed to generate image");
       }
-      
+
       const data = await response.json();
-      
+
       if (data.results && data.results.length > 0) {
         // Get a random image from the results
-        const randomIndex = Math.floor(Math.random() * Math.min(data.results.length, 5));
+        const randomIndex = Math.floor(
+          Math.random() * Math.min(data.results.length, 5)
+        );
         const imageUrl = data.results[randomIndex].urls.regular;
-        
-        setBlogData(prev => ({
+
+        setBlogData((prev) => ({
           ...prev,
-          image: imageUrl
+          image: imageUrl,
         }));
-        
+
         toast.success("Cover image generated successfully!");
       } else {
         toast.warning("No suitable images found. Try a different prompt.");
@@ -209,36 +213,37 @@ const CreateBlog = () => {
   // New function to generate blog metadata with AI
   const generateBlogMetadata = async (type) => {
     // Initialize appropriate loading state
-    if (type === 'title') setIsGeneratingTitle(true);
-    if (type === 'tags') setIsGeneratingTags(true);
-    if (type === 'category') setIsGeneratingCategory(true);
-    
+    if (type === "title") setIsGeneratingTitle(true);
+    if (type === "tags") setIsGeneratingTags(true);
+    if (type === "category") setIsGeneratingCategory(true);
+
     try {
       // Get the editor content to use as context for generating metadata
-      const content = editorContent || localStorage.getItem("editorContent") || "";
-      
+      const content =
+        editorContent || localStorage.getItem("editorContent") || "";
+
       // Extract key content safely
       const extractedContent = extractContentForAI(content, 150);
-      
+
       // Prepare prompt based on the type of metadata we want to generate
       let systemPrompt = "You are a blog metadata generator.";
       let userPrompt = "";
-      
-      if (type === 'title') {
+
+      if (type === "title") {
         userPrompt = `Generate a catchy blog title for: ${extractedContent}`;
-      } else if (type === 'tags') {
+      } else if (type === "tags") {
         userPrompt = `Generate 3-6 comma-separated tags for: ${extractedContent}`;
-      } else if (type === 'category') {
+      } else if (type === "category") {
         userPrompt = `Choose category (Web Development, Technology, Programming, or Design) for: ${extractedContent}`;
       }
-      
+
       // Prepare the API request with size constraints
       const requestOptions = prepareAIRequest({
         systemPrompt,
         userPrompt,
-        maxTokens: 50
+        maxTokens: 50,
       });
-      
+
       // Use the AIML API to generate the metadata
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
@@ -257,20 +262,26 @@ const CreateBlog = () => {
       }
 
       // Update the appropriate form field with the generated content
-      if (type === 'title') {
-        setBlogData(prev => ({ ...prev, title: generatedContent }));
+      if (type === "title") {
+        setBlogData((prev) => ({ ...prev, title: generatedContent }));
         toast.success("Blog title generated successfully!");
-      } else if (type === 'tags') {
-        setBlogData(prev => ({ ...prev, tags: generatedContent }));
+      } else if (type === "tags") {
+        setBlogData((prev) => ({ ...prev, tags: generatedContent }));
         toast.success("Tags generated successfully!");
-      } else if (type === 'category') {
+      } else if (type === "category") {
         // Only update if the generated category is one of our options
-        const validCategories = ["Web Development", "Technology", "Programming", "Design"];
-        const category = validCategories.find(c => 
-          c.toLowerCase() === generatedContent.toLowerCase()
-        ) || "Web Development";
-        
-        setBlogData(prev => ({ ...prev, category }));
+        const validCategories = [
+          "Web Development",
+          "Technology",
+          "Programming",
+          "Design",
+        ];
+        const category =
+          validCategories.find(
+            (c) => c.toLowerCase() === generatedContent.toLowerCase()
+          ) || "Web Development";
+
+        setBlogData((prev) => ({ ...prev, category }));
         toast.success("Category selected successfully!");
       }
     } catch (error) {
@@ -278,9 +289,9 @@ const CreateBlog = () => {
       toast.error(`Failed to generate ${type}. Please try again.`);
     } finally {
       // Reset the appropriate loading state
-      if (type === 'title') setIsGeneratingTitle(false);
-      if (type === 'tags') setIsGeneratingTags(false);
-      if (type === 'category') setIsGeneratingCategory(false);
+      if (type === "title") setIsGeneratingTitle(false);
+      if (type === "tags") setIsGeneratingTags(false);
+      if (type === "category") setIsGeneratingCategory(false);
     }
   };
 
@@ -290,19 +301,22 @@ const CreateBlog = () => {
       toast.error("Please enter a brief description of your blog");
       return;
     }
-    
+
     setIsGeneratingTitle(true);
     setIsGeneratingTags(true);
     setIsGeneratingCategory(true);
-    
+
     try {
       // Prepare the API request with size constraints
       const requestOptions = prepareAIRequest({
         systemPrompt: "Generate blog metadata as JSON.",
-        userPrompt: `Create title, tags, category (Web Development, Technology, Programming, Design) for: ${metadataPrompt.substring(0, 150)}`,
-        maxTokens: 150
+        userPrompt: `Create title, tags, category (Web Development, Technology, Programming, Design) for: ${metadataPrompt.substring(
+          0,
+          150
+        )}`,
+        maxTokens: 150,
       });
-      
+
       // Use the AIML API to generate the metadata
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
@@ -323,7 +337,7 @@ const CreateBlog = () => {
       // Extract JSON from the response
       const jsonMatch = generatedContent.match(/({[\s\S]*})/);
       let metadata;
-      
+
       if (jsonMatch && jsonMatch[0]) {
         try {
           metadata = JSON.parse(jsonMatch[0]);
@@ -332,12 +346,14 @@ const CreateBlog = () => {
           // Fall back to regex extraction
           const titleMatch = generatedContent.match(/"title"\s*:\s*"([^"]*)"/);
           const tagsMatch = generatedContent.match(/"tags"\s*:\s*"([^"]*)"/);
-          const categoryMatch = generatedContent.match(/"category"\s*:\s*"([^"]*)"/);
-          
+          const categoryMatch = generatedContent.match(
+            /"category"\s*:\s*"([^"]*)"/
+          );
+
           metadata = {
             title: titleMatch ? titleMatch[1] : "",
             tags: tagsMatch ? tagsMatch[1] : "",
-            category: categoryMatch ? categoryMatch[1] : "Web Development"
+            category: categoryMatch ? categoryMatch[1] : "Web Development",
           };
         }
       } else {
@@ -345,25 +361,27 @@ const CreateBlog = () => {
       }
 
       // Update form with generated metadata
-      setBlogData(prev => ({ 
-        ...prev, 
+      setBlogData((prev) => ({
+        ...prev,
         title: metadata.title || prev.title,
         tags: metadata.tags || prev.tags,
-        category: metadata.category || prev.category
+        category: metadata.category || prev.category,
       }));
-      
+
       toast.success("Blog metadata generated successfully!");
-      
+
       // Close modal after a slight delay to show the toast
       setTimeout(() => {
         setShowMetadataPrompt(false);
       }, 500);
-      
     } catch (error) {
       console.error("Error generating metadata:", error);
-      
+
       // More descriptive error messages
-      if (error.message.includes("limit") || error.message.includes("Free-tier")) {
+      if (
+        error.message.includes("limit") ||
+        error.message.includes("Free-tier")
+      ) {
         toast.error("API limit reached. Try with shorter prompts.");
       } else if (error.message.includes("Could not extract")) {
         toast.error("Could not extract metadata from AI response. Try again.");
@@ -431,10 +449,13 @@ const CreateBlog = () => {
               </div>
             </div>
 
-            <form 
-              onSubmit={handleSubmit} 
+            <form
+              onSubmit={handleSubmit}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' && e.target.tagName.toLowerCase() !== 'textarea') {
+                if (
+                  e.key === "Enter" &&
+                  e.target.tagName.toLowerCase() !== "textarea"
+                ) {
                   e.preventDefault();
                 }
               }}
@@ -513,9 +534,24 @@ const CreateBlog = () => {
                       >
                         {isGeneratingImage ? (
                           <>
-                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            <svg
+                              className="animate-spin h-4 w-4"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                fill="none"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              />
                             </svg>
                             <span>Generating...</span>
                           </>
@@ -544,10 +580,10 @@ const CreateBlog = () => {
                 {/* Blog Content */}
                 <div className="space-y-2">
                   <Label>Blog Content</Label>
-                  <div className="border border-gray-200 dark:border-gray-800 rounded-lg overflow-hidden">
-                    <EnhancedEditor 
-                      onUpdate={handleEditorUpdate} 
-                      aiAssistMode={activeTab === "ai"} 
+                  <div className=" overflow-hidden">
+                    <EnhancedEditor
+                      onUpdate={handleEditorUpdate}
+                      aiAssistMode={activeTab === "ai"}
                     />
                   </div>
                 </div>
@@ -561,22 +597,38 @@ const CreateBlog = () => {
                         AI Writing Assistant
                       </h3>
                       <p className="text-sm text-gray-600 dark:text-gray-400">
-                        Let AI help you generate content for your blog post. Choose from the options below.
+                        Let AI help you generate content for your blog post.
+                        Choose from the options below.
                       </p>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                       <button
                         type="button"
-                        onClick={() => generateBlogMetadata('title')}
+                        onClick={() => generateBlogMetadata("title")}
                         disabled={isGeneratingTitle}
                         className="p-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg transition flex flex-col items-center gap-2 text-center"
                       >
                         <div className="w-8 h-8 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-full flex items-center justify-center">
                           {isGeneratingTitle ? (
-                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            <svg
+                              className="animate-spin h-4 w-4"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                fill="none"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              />
                             </svg>
                           ) : (
                             <span className="text-lg">T</span>
@@ -586,18 +638,33 @@ const CreateBlog = () => {
                           Generate Title
                         </span>
                       </button>
-                      
+
                       <button
                         type="button"
-                        onClick={() => generateBlogMetadata('tags')}
+                        onClick={() => generateBlogMetadata("tags")}
                         disabled={isGeneratingTags}
                         className="p-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg transition flex flex-col items-center gap-2 text-center"
                       >
                         <div className="w-8 h-8 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full flex items-center justify-center">
                           {isGeneratingTags ? (
-                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            <svg
+                              className="animate-spin h-4 w-4"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                fill="none"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              />
                             </svg>
                           ) : (
                             <span className="text-lg">#</span>
@@ -607,18 +674,33 @@ const CreateBlog = () => {
                           Generate Tags
                         </span>
                       </button>
-                      
+
                       <button
                         type="button"
-                        onClick={() => generateBlogMetadata('category')}
+                        onClick={() => generateBlogMetadata("category")}
                         disabled={isGeneratingCategory}
                         className="p-3 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-lg transition flex flex-col items-center gap-2 text-center"
                       >
                         <div className="w-8 h-8 bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-full flex items-center justify-center">
                           {isGeneratingCategory ? (
-                            <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                            <svg
+                              className="animate-spin h-4 w-4"
+                              viewBox="0 0 24 24"
+                            >
+                              <circle
+                                className="opacity-25"
+                                cx="12"
+                                cy="12"
+                                r="10"
+                                stroke="currentColor"
+                                strokeWidth="4"
+                                fill="none"
+                              />
+                              <path
+                                className="opacity-75"
+                                fill="currentColor"
+                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                              />
                             </svg>
                           ) : (
                             <span className="text-lg">C</span>
@@ -628,7 +710,7 @@ const CreateBlog = () => {
                           Select Category
                         </span>
                       </button>
-                      
+
                       <button
                         type="button"
                         onClick={() => setShowMetadataPrompt(true)}
@@ -661,7 +743,7 @@ const CreateBlog = () => {
           </div>
         </div>
       </div>
-      
+
       {/* Modal for quick AI generation of all metadata */}
       {showMetadataPrompt && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center p-5">
@@ -729,13 +811,32 @@ const CreateBlog = () => {
                   type="button"
                   className="px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-md flex items-center gap-2 transition-colors text-sm font-medium"
                   onClick={handleGenerateAllMetadata}
-                  disabled={isGeneratingTitle || isGeneratingTags || isGeneratingCategory || !metadataPrompt.trim()}
+                  disabled={
+                    isGeneratingTitle ||
+                    isGeneratingTags ||
+                    isGeneratingCategory ||
+                    !metadataPrompt.trim()
+                  }
                 >
-                  {(isGeneratingTitle || isGeneratingTags || isGeneratingCategory) ? (
+                  {isGeneratingTitle ||
+                  isGeneratingTags ||
+                  isGeneratingCategory ? (
                     <>
                       <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                          fill="none"
+                        />
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        />
                       </svg>
                       Generating...
                     </>

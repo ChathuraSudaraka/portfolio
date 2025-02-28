@@ -298,31 +298,54 @@ const CDNEditorMD = ({
           // Image upload settings
           imageUpload: enableImageUpload,
           imageFormats: ["jpg", "jpeg", "gif", "png", "webp"],
-          imageUploadFunction: enableImageUpload ? 
-            async (files, insertFunction) => {
-              try {
-                for (let i = 0; i < files.length; i++) {
-                  const file = files[i];
+          imageUploadURL: null, // Don't use the built-in upload URL feature
+          
+          // Custom function to handle image uploads
+          onloadPlugin: function() {
+            // Override the default image dialog to use our custom image uploader
+            const editor = this;
+            
+            if (enableImageUpload) {
+              // Extend the default image dialog
+              editor.cm.on("drop", function(_, e) {
+                // Prevent default browser behavior
+                e.preventDefault();
+                
+                // Get the dropped files
+                const files = e.dataTransfer.files;
+                if (files && files.length > 0) {
+                  // Filter for image files
+                  const imageFiles = Array.from(files).filter(file => 
+                    file.type.startsWith('image/')
+                  );
                   
-                  if (!file.type.match(/^image\/(png|jpg|jpeg|gif|webp)$/)) {
-                    console.warn('Invalid image file type');
-                    continue;
-                  }
-                  
-                  // Show loading indicator in editor
-                  insertFunction(`![Uploading ${file.name}...]()`);
-                  
-                  // Upload image
-                  const imageUrl = await uploadImage(file);
-                  
-                  // Replace loading text with actual image
-                  insertFunction(`![${file.name}](${imageUrl})`);
+                  // Process each image file
+                  imageFiles.forEach(async (file) => {
+                    try {
+                      // Show loading indicator
+                      const cursor = editor.cm.getCursor();
+                      editor.cm.replaceRange(`![Uploading ${file.name}...]()`, cursor);
+                      
+                      // Upload the image
+                      const imageUrl = await uploadImage(file);
+                      
+                      // Replace the loading text with the actual image
+                      const doc = editor.cm.getDoc();
+                      const text = doc.getValue();
+                      const updatedText = text.replace(
+                        `![Uploading ${file.name}...]()`,
+                        `![${file.name}](${imageUrl})`
+                      );
+                      doc.setValue(updatedText);
+                    } catch (error) {
+                      console.error("Error uploading dropped image:", error);
+                      alert("Image upload failed: " + error.message);
+                    }
+                  });
                 }
-              } catch (error) {
-                console.error('Error uploading image:', error);
-                alert('Image upload failed: ' + error.message);
-              }
-            } : null,
+              });
+            }
+          },
           
           // Editor events
           onload: function() {
@@ -380,6 +403,61 @@ const CDNEditorMD = ({
           lang: {
             name: "en",
             // This will use the loaded locale from above
+          },
+          toolbarIconsClass: {
+            // ...existing toolbar icons...
+            "ai-assistant": "fa-magic", // FontAwesome magic icon
+            "image": "fa-picture-o" // Ensure the correct icon class is used
+          },
+          
+          toolbarHandlers: {
+            // ...existing handlers...
+            
+            // Custom image handler to override the default one
+            image: function() {
+              const cm = this.cm;
+              const cursor = cm.getCursor();
+              const selection = cm.getSelection();
+              
+              // Create file input
+              const fileInput = document.createElement('input');
+              fileInput.type = 'file';
+              fileInput.accept = 'image/*';
+              fileInput.style.display = 'none';
+              document.body.appendChild(fileInput);
+              
+              fileInput.addEventListener('change', async (event) => {
+                const files = event.target.files;
+                if (files && files.length > 0) {
+                  const file = files[0];
+                  try {
+                    // Show loading indicator
+                    cm.replaceSelection(`![Uploading ${file.name}...]()`, cursor);
+                    
+                    // Upload the image
+                    const imageUrl = await uploadImage(file);
+                    
+                    // Replace the loading text with the actual image markdown
+                    const doc = cm.getDoc();
+                    const text = doc.getValue();
+                    const updatedText = text.replace(
+                      `![Uploading ${file.name}...]()`,
+                      `![${file.name}](${imageUrl})`
+                    );
+                    doc.setValue(updatedText);
+                  } catch (error) {
+                    console.error("Error uploading image:", error);
+                    alert("Image upload failed: " + error.message);
+                  }
+                }
+                
+                // Remove the file input from the DOM
+                document.body.removeChild(fileInput);
+              });
+              
+              // Trigger the file selection dialog
+              fileInput.click();
+            }
           }
         };
 
