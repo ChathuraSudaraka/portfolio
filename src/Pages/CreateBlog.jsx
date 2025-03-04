@@ -8,8 +8,10 @@ import { Label } from "../components/ui/label";
 import { toast } from "react-toastify";
 import { BsUpload, BsStars, BsLightningCharge, BsMagic } from "react-icons/bs";
 import LegalLayout from "../components/Layouts/LegalLayout";
-import EnhancedEditor from "../components/sections/BlogPage/Editor/EnhancedEditor";
+// Use the fixed TipTapEditor
+import TipTapEditor from "../components/sections/BlogPage/TipTap/tiptap";
 import { prepareAIRequest, extractContentForAI } from "../utils/aiHelpers";
+import { getRandomImage } from "../utils/unsplashService";
 
 const CreateBlog = () => {
   const [blogData, setBlogData] = useState({
@@ -30,7 +32,6 @@ const CreateBlog = () => {
   const [metadataPrompt, setMetadataPrompt] = useState("");
   const [showMetadataPrompt, setShowMetadataPrompt] = useState(false);
   const [activeTab, setActiveTab] = useState("editor"); // "editor" or "ai"
-  const [isAIDrawerOpen, setIsAIDrawerOpen] = useState(false);
   const navigate = useNavigate();
 
   // Listen for editor content changes
@@ -39,19 +40,6 @@ const CreateBlog = () => {
     if (storedContent) {
       setEditorContent(storedContent);
     }
-
-    const handleStorageChange = () => {
-      const updatedContent = localStorage.getItem("editorContent");
-      if (updatedContent) {
-        setEditorContent(updatedContent);
-      }
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
   }, []);
 
   const handleChange = (e) => {
@@ -84,30 +72,24 @@ const CreateBlog = () => {
     }
 
     try {
-      // Create blog post logic here...
-
-      // Important: Only remove editor content from localStorage AFTER successful save
-      const blogId = `user-${Date.now().toString()}`;
-
-      // Fix tags handling to check type before using split()
+      // Format tags
       let formattedTags = [];
 
       if (blogData.tags) {
         if (Array.isArray(blogData.tags)) {
-          // If it's already an array, use it directly
           formattedTags = blogData.tags;
         } else if (typeof blogData.tags === "string") {
-          // If it's a string, split it by comma
           formattedTags = blogData.tags.split(",").map((tag) => tag.trim());
         }
       }
 
-      // Create new blog post with proper data structure
+      // Create blog ID and structure
+      const blogId = `user-${Date.now().toString()}`;
       const newBlog = {
         id: blogId,
         title: blogData.title,
         category: blogData.category,
-        tags: formattedTags, // Use the safely formatted tags
+        tags: formattedTags,
         image: blogData.image,
         description: content,
         createdAt: new Date().toISOString(),
@@ -127,7 +109,7 @@ const CreateBlog = () => {
         : [];
 
       // Add new blog
-      existingBlogs.unshift(newBlog); // Add to beginning
+      existingBlogs.unshift(newBlog);
 
       // Save back to localStorage
       localStorage.setItem("userBlogs", JSON.stringify(existingBlogs));
@@ -147,18 +129,10 @@ const CreateBlog = () => {
     }
   };
 
-  // Handle direct editor content update
+  // Handle editor content update
   const handleEditorUpdate = (content) => {
     setEditorContent(content);
-  };
-
-  // Add this function to prevent accidental form submissions
-  const preventAccidentalSubmit = (e) => {
-    // Only allow form submission from the actual submit button
-    const target = e.target;
-    if (target.type !== "submit" || target.tagName.toLowerCase() !== "button") {
-      e.preventDefault();
-    }
+    localStorage.setItem("editorContent", content);
   };
 
   // Function to generate AI cover image
@@ -171,28 +145,9 @@ const CreateBlog = () => {
     setIsGeneratingImage(true);
 
     try {
-      // For demonstration, use Unsplash API to get a relevant image
-      // In a real implementation, you'd use an image generation API like DALL-E, Midjourney, etc.
-      const query = encodeURIComponent(imagePrompt);
-      const response = await fetch(
-        `https://api.unsplash.com/search/photos?query=${query}&client_id=${
-          import.meta.env.VITE_UNSPLASH_API_KEY || "YOUR_UNSPLASH_API_KEY"
-        }`
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to generate image");
-      }
-
-      const data = await response.json();
-
-      if (data.results && data.results.length > 0) {
-        // Get a random image from the results
-        const randomIndex = Math.floor(
-          Math.random() * Math.min(data.results.length, 5)
-        );
-        const imageUrl = data.results[randomIndex].urls.regular;
-
+      const imageUrl = await getRandomImage(imagePrompt);
+      
+      if (imageUrl) {
         setBlogData((prev) => ({
           ...prev,
           image: imageUrl,
@@ -210,22 +165,15 @@ const CreateBlog = () => {
     }
   };
 
-  // New function to generate blog metadata with AI
+  // Function to generate blog metadata with AI
   const generateBlogMetadata = async (type) => {
-    // Initialize appropriate loading state
     if (type === "title") setIsGeneratingTitle(true);
     if (type === "tags") setIsGeneratingTags(true);
     if (type === "category") setIsGeneratingCategory(true);
 
     try {
-      // Get the editor content to use as context for generating metadata
-      const content =
-        editorContent || localStorage.getItem("editorContent") || "";
-
-      // Extract key content safely
+      const content = editorContent || localStorage.getItem("editorContent") || "";
       const extractedContent = extractContentForAI(content, 150);
-
-      // Prepare prompt based on the type of metadata we want to generate
       let systemPrompt = "You are a blog metadata generator.";
       let userPrompt = "";
 
@@ -237,14 +185,12 @@ const CreateBlog = () => {
         userPrompt = `Choose category (Web Development, Technology, Programming, or Design) for: ${extractedContent}`;
       }
 
-      // Prepare the API request with size constraints
       const requestOptions = prepareAIRequest({
         systemPrompt,
         userPrompt,
         maxTokens: 50,
       });
 
-      // Use the AIML API to generate the metadata
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
         requestOptions
@@ -261,7 +207,6 @@ const CreateBlog = () => {
         throw new Error("No content was generated");
       }
 
-      // Update the appropriate form field with the generated content
       if (type === "title") {
         setBlogData((prev) => ({ ...prev, title: generatedContent }));
         toast.success("Blog title generated successfully!");
@@ -269,7 +214,6 @@ const CreateBlog = () => {
         setBlogData((prev) => ({ ...prev, tags: generatedContent }));
         toast.success("Tags generated successfully!");
       } else if (type === "category") {
-        // Only update if the generated category is one of our options
         const validCategories = [
           "Web Development",
           "Technology",
@@ -288,7 +232,6 @@ const CreateBlog = () => {
       console.error(`Error generating ${type}:`, error);
       toast.error(`Failed to generate ${type}. Please try again.`);
     } finally {
-      // Reset the appropriate loading state
       if (type === "title") setIsGeneratingTitle(false);
       if (type === "tags") setIsGeneratingTags(false);
       if (type === "category") setIsGeneratingCategory(false);
@@ -307,7 +250,6 @@ const CreateBlog = () => {
     setIsGeneratingCategory(true);
 
     try {
-      // Prepare the API request with size constraints
       const requestOptions = prepareAIRequest({
         systemPrompt: "Generate blog metadata as JSON.",
         userPrompt: `Create title, tags, category (Web Development, Technology, Programming, Design) for: ${metadataPrompt.substring(
@@ -317,7 +259,6 @@ const CreateBlog = () => {
         maxTokens: 150,
       });
 
-      // Use the AIML API to generate the metadata
       const response = await fetch(
         "https://api.aimlapi.com/v1/chat/completions",
         requestOptions
@@ -334,7 +275,6 @@ const CreateBlog = () => {
         throw new Error("No content was generated");
       }
 
-      // Extract JSON from the response
       const jsonMatch = generatedContent.match(/({[\s\S]*})/);
       let metadata;
 
@@ -360,7 +300,6 @@ const CreateBlog = () => {
         throw new Error("Could not extract metadata from response");
       }
 
-      // Update form with generated metadata
       setBlogData((prev) => ({
         ...prev,
         title: metadata.title || prev.title,
@@ -369,25 +308,12 @@ const CreateBlog = () => {
       }));
 
       toast.success("Blog metadata generated successfully!");
-
-      // Close modal after a slight delay to show the toast
       setTimeout(() => {
         setShowMetadataPrompt(false);
       }, 500);
     } catch (error) {
       console.error("Error generating metadata:", error);
-
-      // More descriptive error messages
-      if (
-        error.message.includes("limit") ||
-        error.message.includes("Free-tier")
-      ) {
-        toast.error("API limit reached. Try with shorter prompts.");
-      } else if (error.message.includes("Could not extract")) {
-        toast.error("Could not extract metadata from AI response. Try again.");
-      } else {
-        toast.error("Failed to generate blog metadata. Please try again.");
-      }
+      toast.error("Failed to generate blog metadata. Please try again.");
     } finally {
       setIsGeneratingTitle(false);
       setIsGeneratingTags(false);
@@ -433,6 +359,7 @@ const CreateBlog = () => {
                       : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                   } transition-colors`}
                   onClick={() => setActiveTab("editor")}
+                  type="button"
                 >
                   ✏️ Editor
                 </button>
@@ -443,6 +370,7 @@ const CreateBlog = () => {
                       : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
                   } transition-colors`}
                   onClick={() => setActiveTab("ai")}
+                  type="button"
                 >
                   <BsMagic className="mr-2" /> AI Assistant
                 </button>
@@ -580,10 +508,10 @@ const CreateBlog = () => {
                 {/* Blog Content */}
                 <div className="space-y-2">
                   <Label>Blog Content</Label>
-                  <div className=" overflow-hidden">
-                    <EnhancedEditor
+                  <div className="overflow-hidden">
+                    <TipTapEditor
                       onUpdate={handleEditorUpdate}
-                      aiAssistMode={activeTab === "ai"}
+                      content={editorContent}
                     />
                   </div>
                 </div>
