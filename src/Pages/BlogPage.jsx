@@ -362,8 +362,8 @@ const BlogData = () => {
             </div>
             {/* Content */}
             <div className="text-lg text-gray-900 dark:text-white">
-              {blog && blog.description.startsWith("<") ? (
-                // If it starts with "<", treat as HTML (from Tiptap editor)
+              {blog && blog.description ? (
+                // Unified approach to handle both HTML and Markdown content
                 <div
                   className="tiptap ProseMirror prose dark:prose-invert max-w-none 
                            prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
@@ -373,112 +373,15 @@ const BlogData = () => {
                            prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:italic
                            prose-blockquote:my-6 prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
                            prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:rounded prose-code:p-0.5
-                           prose-pre:bg-gray-900 dark:prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg"
+                           prose-pre:bg-gray-900 dark:prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg
+                           prose-ul:list-disc prose-ol:list-decimal prose-ul:pl-6 prose-ol:pl-6
+                           prose-li:mb-1 prose-li:pl-1"
                   dangerouslySetInnerHTML={{ __html: blog.description }}
                 />
               ) : (
-                // Otherwise use ReactMarkdown (for existing blogs)
-                <ReactMarkdown
-                  className="prose dark:prose-invert max-w-none"
-                  remarkPlugins={[remarkGfm, remarkBreaks]}
-                  components={{
-                    h1: ({node, ...props}) => (
-                      <h1 className="text-3xl font-bold mt-8 mb-4 text-gray-900 dark:text-white" {...props} />
-                    ),
-                    h2: ({node, ...props}) => {
-                      const id = (props.children || "")
-                        .toString()
-                        .toLowerCase()
-                        .replace(/<[^>]*>/g, '') 
-                        .replace(/ /g, "-")
-                        .replace(/[^\w-]+/g, "");
-                        
-                      return (
-                        <h2
-                          id={id}
-                          className="text-2xl font-bold mt-8 mb-4 text-gray-900 dark:text-white"
-                          style={{ scrollMarginTop: "100px" }}
-                          {...props} 
-                        />
-                      );
-                    },
-                    h3: ({node, ...props}) => (
-                      <h3 className="text-xl font-bold mt-6 mb-3 text-gray-900 dark:text-white" {...props} />
-                    ),
-                    p: ({children}) => (
-                      <p className="mb-4 leading-relaxed text-gray-900 dark:text-white">{children}</p>
-                    ),
-                    a: ({node, ...props}) => (
-                      <a className="text-blue-600 dark:text-blue-400 hover:underline" {...props} />
-                    ),
-                    ul: ({node, ...props}) => (
-                      <ul className="list-disc pl-6 mb-4 text-gray-900 dark:text-white" {...props} />
-                    ),
-                    ol: ({node, ...props}) => (
-                      <ol className="list-decimal pl-6 mb-4 text-gray-900 dark:text-white" {...props} />
-                    ),
-                    li: ({node, ...props}) => (
-                      <li className="mb-1 text-gray-900 dark:text-white" {...props} />
-                    ),
-                    blockquote: ({children}) => (
-                      <blockquote className="border-l-4 border-blue-500 pl-4 italic my-6 text-gray-700 dark:text-gray-300">
-                        {children}
-                      </blockquote>
-                    ),
-                    code({node, inline, className, children, ...props}) {
-                      const match = /language-(\w+)/.exec(className || '')
-                      return !inline && match ? (
-                        <SyntaxHighlighter
-                          style={tomorrow}
-                          language={match[1]}
-                          PreTag="div"
-                          customStyle={{
-                            padding: "1.5rem",
-                            borderRadius: "0.75rem",
-                            fontSize: "0.875rem",
-                            lineHeight: "1.5",
-                            margin: "1.5rem 0",
-                          }}
-                          {...props}
-                        >
-                          {String(children).replace(/\n$/, "")}
-                        </SyntaxHighlighter>
-                      ) : (
-                        <code className="bg-gray-100 dark:bg-gray-800 rounded px-1.5 py-0.5 font-mono text-sm" {...props}>
-                          {children}
-                        </code>
-                      );
-                    },
-                    img: ({src, alt}) => (
-                      <div className="my-6">
-                        <img
-                          src={src}
-                          alt={alt}
-                          className="rounded-lg w-full"
-                        />
-                        {alt && (
-                          <p className="text-center text-sm text-gray-500 mt-2">
-                            {alt}
-                          </p>
-                        )}
-                      </div>
-                    ),
-                    table: ({node, ...props}) => (
-                      <div className="overflow-x-auto my-6">
-                        <table className="border-collapse w-full" {...props} />
-                      </div>
-                    ),
-                    th: ({node, ...props}) => (
-                      <th className="border border-gray-300 dark:border-gray-700 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-left" {...props} />
-                    ),
-                    td: ({node, ...props}) => (
-                      <td className="border border-gray-300 dark:border-gray-700 px-4 py-2" {...props} />
-                    ),
-                  }}
-                >
-                  {blog?.description}
-                </ReactMarkdown>
+                <p>No content available for this blog post.</p>
               )}
+              
               {/* Social Share */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">

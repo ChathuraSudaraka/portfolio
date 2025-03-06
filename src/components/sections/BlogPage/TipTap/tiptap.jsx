@@ -1,13 +1,13 @@
-import './tiptap.scss'
+import "./tiptap.scss";
 
-import Table from '@tiptap/extension-table'
-import TableCell from '@tiptap/extension-table-cell'
-import TableHeader from '@tiptap/extension-table-header'
-import TableRow from '@tiptap/extension-table-row'
-import { EditorContent, useEditor } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import React from 'react'
-import MenuBar from './menubar'
+import Table from "@tiptap/extension-table";
+import TableCell from "@tiptap/extension-table-cell";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import { EditorContent, useEditor } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import React, { useEffect } from "react";
+import MenuBar from "./menubar";
 
 const CustomTableCell = TableCell.extend({
   addAttributes() {
@@ -18,17 +18,17 @@ const CustomTableCell = TableCell.extend({
       // and add a new one …
       backgroundColor: {
         default: null,
-        parseHTML: element => element.getAttribute('data-background-color'),
-        renderHTML: attributes => {
+        parseHTML: (element) => element.getAttribute("data-background-color"),
+        renderHTML: (attributes) => {
           return {
-            'data-background-color': attributes.backgroundColor,
+            "data-background-color": attributes.backgroundColor,
             style: `background-color: ${attributes.backgroundColor}`,
-          }
+          };
         },
       },
-    }
+    };
   },
-})
+});
 
 export const tableHTML = `
   <table style="width:100%">
@@ -53,9 +53,9 @@ export const tableHTML = `
       <td>80</td>
     </tr>
   </table>
-`
+`;
 
-export default () => {
+const TipTapEditor = ({ content = "", onUpdate = () => {} }) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -64,55 +64,46 @@ export default () => {
       }),
       TableRow,
       TableHeader,
-      // Default TableCell
-      // TableCell,
-      // Custom TableCell with backgroundColor attribute
       CustomTableCell,
     ],
-    content: `
-      <h3>
-        Have you seen our tables? They are amazing!
-      </h3>
-      <ul>
-        <li>Tables with rows, cells and headers (optional)</li>
-        <li>Support for <code>colgroup</code> and <code>rowspan</code></li>
-        <li>And even resizable columns (optional)</li>
-      </ul>
-      <p>
-        Here is an example:
-      </p>
-      <table>
-        <tbody>
-          <tr>
-            <th colwidth="200">Name</th>
-            <th colspan="3" colwidth="150,100">Description</th>
-          </tr>
-          <tr>
-            <td>Cyndi Lauper</td>
-            <td>Singer</td>
-            <td>Songwriter</td>
-            <td>Actress</td>
-          </tr>
-          <tr>
-            <td>Marie Curie</td>
-            <td>Scientist</td>
-            <td>Chemist</td>
-            <td>Physicist</td>
-          </tr>
-          <tr>
-            <td>Indira Gandhi</td>
-            <td>Prime minister</td>
-            <td colspan="2">Politician</td>
-          </tr>
-        </tbody>
-      </table>
-    `,
-  })
+    content: content || `<p>Write your blog content here...</p>`,
+    onUpdate: ({ editor }) => {
+      // Call the parent's onUpdate function with the HTML content
+      onUpdate(editor.getHTML());
+    },
+    editorProps: {
+      attributes: {
+        class: "prose dark:prose-invert max-w-none focus:outline-none",
+      },
+    },
+  });
+
+  // Update content when prop changes
+  useEffect(() => {
+    if (editor && content && editor.getHTML() !== content) {
+      editor.commands.setContent(content);
+    }
+  }, [content, editor]);
 
   return (
     <>
       <MenuBar editor={editor} />
-      <EditorContent editor={editor} />
+      <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-b-lg p-2">
+        <EditorContent 
+          editor={editor}
+          className="tiptap ProseMirror prose dark:prose-invert max-w-none 
+                  prose-headings:font-bold prose-h1:text-3xl prose-h2:text-2xl prose-h3:text-xl
+                  prose-p:my-2 prose-p:leading-relaxed
+                  prose-a:text-blue-600 dark:prose-a:text-blue-400
+                  prose-img:rounded-lg prose-img:my-3
+                  prose-blockquote:border-l-4 prose-blockquote:border-blue-500 prose-blockquote:pl-4 prose-blockquote:italic
+                  prose-blockquote:my-3 prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
+                  prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:rounded prose-code:p-0.5
+                  prose-pre:bg-gray-900 dark:prose-pre:bg-gray-900 prose-pre:text-white prose-pre:rounded-lg"
+        />
+      </div>
     </>
-  )
-}
+  );
+};
+
+export default TipTapEditor;

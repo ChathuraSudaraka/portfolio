@@ -14,12 +14,14 @@ export const GradientButton = ({
   className = "", 
   isLoading,
   asChild = false,
+  type = "button", // Default to "button" type, allowing override to "submit"
   ...props 
 }) => {
   const Comp = asChild ? "div" : "button";
   
   return (
     <Comp
+      type={asChild ? undefined : type} // Only apply type if it's a button
       className={`
         relative cursor-pointer group/btn 
         bg-white dark:bg-gray-900

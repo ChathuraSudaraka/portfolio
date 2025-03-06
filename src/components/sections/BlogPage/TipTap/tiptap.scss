@@ -1,17 +1,14 @@
-/* Basic editor styles with enhanced design */
+/* Basic editor styles with enhanced design that match blog display */
 .tiptap {
   /* Base editor styling */
   position: relative;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  min-height: 150px;
-  padding: 1rem;
   overflow: hidden;
 
-  /* Improved focus state with subtle animation */
+  /* Remove focus outline */
   &:focus-within {
-    box-shadow: 0 0 0 2px var(--editor-focus-ring);
+    box-shadow: none;
+    outline: none;
   }
 
   /* Advanced typography */
@@ -38,31 +35,56 @@
     margin-top: 0;
   }
 
-  /* Enhanced paragraph styling */
+  /* Enhanced heading styles */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.1;
+    font-weight: 600;
+    margin-top: 1.25em;
+    margin-bottom: 0.5em;
+  }
+
+  h1 {
+    font-size: 1.875rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+
+  h4, h5, h6 {
+    font-size: 1rem;
+  }
+
+  /* Paragraph styling */
   p {
-    margin: 0.7em 0;
+    margin: 0.5rem 0;
     line-height: 1.6;
   }
 
-  /* List styles with improved indentation and spacing */
-  ul,
-  ol {
-    padding: 0 1rem;
-    margin: 1.25rem 1rem 1.25rem 0.4rem;
+  /* List styles to match blog display */
+  ul, ol {
+    padding-left: 1.5rem;
+    margin: 0.75rem 0;
 
     li {
-      margin-bottom: 0.5em;
-      position: relative;
+      margin-bottom: 0.25rem;
       
-      &::marker {
-        color: var(--list-marker-color);
-      }
-
       p {
-        margin-top: 0.25em;
-        margin-bottom: 0.25em;
+        margin: 0.25rem 0;
       }
     }
+  }
+
+  ul {
+    list-style-type: disc;
+  }
+
+  ol {
+    list-style-type: decimal;
   }
 
   /* Enhanced task list styling */
@@ -73,12 +95,12 @@
     li {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 0.5em;
+      gap: 0.25rem;
+      margin-bottom: 0.25rem;
       
       > label {
         flex: 0 0 auto;
-        margin-right: 0.5rem;
+        margin-right: 0.25rem;
         user-select: none;
       }
       
@@ -123,196 +145,45 @@
     }
   }
 
-  /* Heading styles with improved typography and spacing */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    line-height: 1.1;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 600;
-    text-wrap: pretty;
-    position: relative;
-    
-    /* Anchor link effect */
-    &:hover .heading-anchor {
-      opacity: 1;
-    }
-  }
-
-  .heading-anchor {
-    position: absolute;
-    left: -1.5em;
-    top: 50%;
-    transform: translateY(-50%);
-    opacity: 0;
-    color: var(--anchor-color);
-    font-size: 0.8em;
-    transition: opacity 0.2s;
-    text-decoration: none;
-    
-    &:hover {
-      color: var(--anchor-hover-color);
-    }
-  }
-
-  h1 {
-    font-size: 1.6rem;
-    margin-top: 3.5rem;
-    margin-bottom: 1.5rem;
-    
-    &::after {
-      content: "";
-      display: block;
-      position: relative;
-      width: 100%;
-      max-width: 6rem;
-      height: 0.15rem;
-      background: var(--heading-accent);
-      margin-top: 0.5rem;
-      border-radius: 3px;
-    }
-  }
-
-  h2 {
-    font-size: 1.35rem;
-    margin-top: 3rem;
-    margin-bottom: 1.25rem;
-  }
-
-  h3 {
-    font-size: 1.2rem;
-  }
-
-  h4,
-  h5,
-  h6 {
-    font-size: 1rem;
-  }
-
-  /* Enhanced code and preformatted text styles */
+  /* Code and pre styling */
   code {
-    background-color: var(--code-bg);
-    border-radius: 0.4rem;
-    color: var(--code-color);
-    font-size: 0.85rem;
-    font-family: 'JetBrainsMono', 'Fira Code', 'Cascadia Code', monospace;
-    padding: 0.25em 0.4em;
-    position: relative;
-    border: 1px solid var(--code-border);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    background-color: #f1f5f9;
+    border-radius: 0.25rem;
+    padding: 0.125rem 0.25rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.875em;
   }
 
   pre {
-    background: var(--pre-bg);
-    border-radius: 0.6rem;
-    color: var(--pre-color);
-    font-family: 'JetBrainsMono', 'Fira Code', 'Cascadia Code', monospace;
-    margin: 1.5rem 0;
-    padding: 1rem 1.2rem;
-    position: relative;
-    overflow: auto;
-    border: 1px solid var(--pre-border);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin: 0.75rem 0;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     
-    /* Optional code header for language display */
-    &::before {
-      content: attr(data-language);
-      position: absolute;
-      top: 0;
-      right: 1rem;
-      font-size: 0.75rem;
-      color: var(--pre-language-color);
-      background: var(--pre-language-bg);
-      padding: 0.25rem 0.6rem;
-      border-bottom-left-radius: 0.5rem;
-      border-bottom-right-radius: 0.5rem;
-      font-weight: 500;
-      opacity: 0.8;
-    }
-
     code {
-      background: none;
+      background-color: transparent;
       color: inherit;
-      font-size: 0.9rem;
       padding: 0;
-      border: none;
-      box-shadow: none;
-    }
-    
-    /* Line numbers styling */
-    .line-number {
-      color: var(--line-number-color);
-      opacity: 0.5;
-      display: inline-block;
-      min-width: 1.5rem;
-      text-align: right;
-      margin-right: 0.5rem;
-      user-select: none;
+      border-radius: 0;
     }
   }
 
   /* Enhanced blockquote styling */
   blockquote {
-    border-left: 3px solid var(--blockquote-border);
-    background-color: var(--blockquote-bg);
-    color: var(--blockquote-color);
-    margin: 1.5rem 0;
-    padding: 1rem 1.2rem;
-    border-radius: 0.5rem;
-    position: relative;
-    
-    /* Quote icon */
-    &::before {
-      content: "\201C"; /* Fixed: Using CSS escape sequence for opening double quote */
-      position: absolute;
-      top: -0.5rem;
-      left: 0.5rem;
-      font-size: 4rem;
-      color: var(--blockquote-icon);
-      opacity: 0.15;
-      font-family: Georgia, serif;
-      line-height: 1;
-      pointer-events: none;
-    }
-    
-    p {
-      position: relative;
-      z-index: 1;
-      margin: 0.3em 0;
-      font-style: italic;
-    }
-    
-    cite {
-      display: block;
-      margin-top: 0.8em;
-      font-size: 0.9em;
-      text-align: right;
-      font-style: normal;
-      color: var(--blockquote-cite);
-      
-      &::before {
-        content: "— ";
-      }
-    }
+    border-left: 4px solid #3b82f6;
+    padding-left: 0.75rem;
+    margin: 0.75rem 0;
+    font-style: italic;
+    color: #4b5563;
   }
 
   hr {
     border: none;
-    margin: 2.5rem auto;
-    height: 2px;
-    background: linear-gradient(
-      to right,
-      transparent,
-      var(--hr-color) 20%,
-      var(--hr-color) 80%,
-      transparent
-    );
-    width: 50%;
-    opacity: 0.6;
+    border-top: 1px solid #e5e7eb;
+    margin: 1rem 0;
   }
   
   /* Enhanced image styling */
@@ -320,7 +191,7 @@
     max-width: 100%;
     height: auto;
     border-radius: 0.5rem;
-    margin: 1.5rem 0;
+    margin: 0.75rem 0;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
     
@@ -341,7 +212,7 @@
   
   /* Link styling */
   a {
-    color: var(--link-color);
+    color: #3b82f6;
     text-decoration: none;
     position: relative;
     transition: all 0.2s ease;
@@ -360,6 +231,7 @@
     }
     
     &:hover {
+      text-decoration: underline;
       color: var(--link-hover-color);
       
       &::after {
@@ -377,325 +249,79 @@
     }
   }
 
-  /* Enhanced table styling with clearer borders and better styling */
+  /* Enhanced table styling to match blog display */
   table {
     border-collapse: collapse;
-    margin: 1.8rem 0;
-    overflow: hidden;
-    table-layout: fixed;
     width: 100%;
-    border: 2px solid var(--table-border);
-    border-radius: 8px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    font-size: 0.95rem;
-    position: relative;
-    transition: box-shadow 0.3s ease;
+    margin: 0.75rem 0;
     
-    &:hover {
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    td, th {
+      border: 1px solid #e5e7eb;
+      padding: 0.5rem;
     }
     
-    /* Table controls */
-    .table-controls {
-      position: absolute;
-      top: -2.5rem;
-      right: 0;
-      display: flex;
-      gap: 0.5rem;
-      opacity: 0;
-      transition: opacity 0.2s ease;
-      
-      button {
-        background: var(--table-control-bg);
-        border: none;
-        border-radius: 0.5rem;
-        color: var(--table-control-color);
-        cursor: pointer;
-        font-size: 0.8rem;
-        padding: 0.4rem 0.6rem;
-        transition: all 0.2s ease;
-        
-        &:hover {
-          background: var(--table-control-hover-bg);
-        }
-      }
-    }
-    
-    &:hover .table-controls {
-      opacity: 1;
-    }
-
-    td,
     th {
-      border: 1px solid var(--table-border);
-      box-sizing: border-box;
-      min-width: 1em;
-      padding: 10px 14px;
-      position: relative;
-      vertical-align: top;
-      transition: all 0.2s ease;
-
-      > * {
-        margin-bottom: 0;
-        position: relative;
-      }
-
-      p {
-        margin: 0;
-        min-height: 1.5em;
-      }
-
-      /* Focus styles */
-      &:focus-within {
-        box-shadow: inset 0 0 0 2px var(--table-focus);
-        outline: none;
-        z-index: 1;
-      }
-    }
-
-    /* Table header styling */
-    th {
-      background-color: var(--table-header-bg);
+      background-color: #f9fafb;
       font-weight: 600;
-      text-align: left;
-      color: var(--table-header-text);
-      border-bottom: 2px solid var(--table-border-strong);
-      position: relative;
-      
-      /* Sort indicator icon */
-      &.sortable::after {
-        content: "⇅";
-        position: absolute;
-        right: 0.5rem;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 0.8em;
-        opacity: 0.3;
-      }
-      
-      &.sorted-asc::after {
-        content: "↑";
-        opacity: 1;
-      }
-      
-      &.sorted-desc::after {
-        content: "↓";
-        opacity: 1;
-      }
     }
-
-    /* Alternating row background colors */
+    
     tr:nth-child(even) {
-      background-color: var(--table-row-even);
-    }
-
-    tr:nth-child(odd) {
-      background-color: var(--table-row-odd);
-    }
-    
-    /* Row hover effect */
-    tr:hover {
-      background-color: var(--table-row-hover);
-    }
-
-    /* Cell hover effect */
-    td:hover {
-      background-color: var(--table-cell-hover);
-      z-index: 1;
-    }
-    
-    /* Selected cell styling */
-    .selectedCell:after {
-      background: var(--table-cell-selected);
-      content: "";
-      left: 0; right: 0; top: 0; bottom: 0;
-      pointer-events: none;
-      position: absolute;
-      z-index: 2;
-      border-radius: 4px;
-      animation: pulse 2s infinite;
-      animation-timing-function: ease-in-out;
-    }
-    
-    @keyframes pulse {
-      0% { opacity: 0.4; }
-      50% { opacity: 0.7; }
-      100% { opacity: 0.4; }
-    }
-
-    /* Resize handle styling */
-    .column-resize-handle {
-      background-color: var(--table-resize-handle);
-      bottom: -2px;
-      pointer-events: none;
-      position: absolute;
-      right: -3px;
-      top: -2px;
-      width: 5px;
-      opacity: 0;
-      transition: opacity 0.3s ease, background-color 0.3s ease;
-      border-radius: 3px;
-    }
-    
-    /* Show resize handle on hover */
-    &:hover .column-resize-handle {
-      opacity: 0.6;
-    }
-    
-    /* Active resize handle */
-    .column-resize-handle.active {
-      opacity: 1;
-      background-color: var(--table-resize-handle-active);
+      background-color: #f9fafb;
     }
   }
+}
 
-  /* Table wrapper for overflow control */
-  .tableWrapper {
-    margin: 2.5rem 0;
-    overflow-x: auto;
-    border-radius: 8px;
-    position: relative;
-    
-    /* Scroll shadow indicators */
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 15px;
-      pointer-events: none;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 2;
-    }
-    
-    &::before {
-      left: 0;
-      background: linear-gradient(to right, var(--table-shadow), transparent);
-    }
-    
-    &::after {
-      right: 0;
-      background: linear-gradient(to left, var(--table-shadow), transparent);
-    }
-    
-    &.scroll-left::before {
-      opacity: 1;
-    }
-    
-    &.scroll-right::after {
-      opacity: 1;
-    }
-  }
-
-  /* Better resize cursor */
-  &.resize-cursor {
-    cursor: col-resize;
-    user-select: none;
-  }
-
-  /* Improved selection styling */
-  .ProseMirror-selectednode {
-    outline: 2px solid var(--table-selection);
-    border-radius: 4px;
-    box-shadow: 0 0 0 5px var(--table-selection-glow);
+/* Dark mode adjustments */
+.dark .tiptap {
+  code {
+    background-color: #1e293b;
+    color: #e2e8f0;
   }
   
-  /* Advanced styling for mentions and tags */
-  .mention, .tag {
-    border-radius: 0.4rem;
-    padding: 0.15em 0.4em;
-    white-space: nowrap;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
+  blockquote {
+    color: #94a3b8;
   }
   
-  .mention {
-    background-color: var(--mention-bg);
-    color: var(--mention-color);
-    border-bottom: 1px solid var(--mention-border);
+  table {
+    td, th {
+      border-color: #374151;
+    }
     
-    &:hover {
-      background-color: var(--mention-hover-bg);
+    th {
+      background-color: #1f2937;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #1f2937;
     }
   }
   
-  .tag {
-    background-color: var(--tag-bg);
-    color: var(--tag-color);
-    border: 1px solid var(--tag-border);
-    font-size: 0.85em;
-    
-    &:hover {
-      background-color: var(--tag-hover-bg);
-      transform: translateY(-1px);
-    }
+  hr {
+    border-color: #374151;
   }
+}
+
+/* Make the editor look more like the final blog content */
+.ProseMirror {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  min-height: 15rem;
   
-  /* Enhanced callout boxes */
-  .callout {
-    border-radius: 0.6rem;
-    margin: 1.5rem 0;
-    padding: 1rem 1.2rem 1rem 3.2rem;
-    position: relative;
-    border-left: 4px solid var(--callout-border);
-    background: var(--callout-bg);
-    
-    &::before {
-      position: absolute;
-      left: 1rem;
-      top: 1rem;
-      font-size: 1.2rem;
-      line-height: 1;
-    }
-    
-    &.info {
-      --callout-border: var(--info-color);
-      --callout-bg: var(--info-bg);
-      
-      &::before {
-        content: "ℹ️";
-      }
-    }
-    
-    &.warning {
-      --callout-border: var(--warning-color);
-      --callout-bg: var(--warning-bg);
-      
-      &::before {
-        content: "⚠️";
-      }
-    }
-    
-    &.success {
-      --callout-border: var(--success-color);
-      --callout-bg: var(--success-bg);
-      
-      &::before {
-        content: "✅";
-      }
-    }
-    
-    &.danger {
-      --callout-border: var(--danger-color);
-      --callout-bg: var(--danger-bg);
-      
-      &::before {
-        content: "🚨";
-      }
-    }
-    
-    &.note {
-      --callout-border: var(--note-color);
-      --callout-bg: var(--note-bg);
-      
-      &::before {
-        content: "📝";
-      }
-    }
+  &:focus {
+    outline: none;
+    box-shadow: none;
   }
+}
+
+/* Style overrides for the editor container */
+.tiptap-wrapper {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Additional spacing for the editor content area */
+.EditorContent {
+  margin-top: 0;
 }
 
 /* CSS variables for light mode */

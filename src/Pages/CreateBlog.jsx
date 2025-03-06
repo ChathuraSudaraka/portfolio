@@ -61,12 +61,21 @@ const CreateBlog = () => {
       return;
     }
 
-    if (
-      !content ||
-      content === "<p>Write a Blog</p>" ||
-      content === "<p></p>"
-    ) {
+    // Check for minimum content length - both HTML and text content
+    if (!content || content === "<p>Write a Blog</p>" || content === "<p></p>") {
       toast.error("Please add some content to your blog");
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Extract plain text from HTML content for better validation
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = content;
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
+    
+    // Ensure there's a reasonable amount of content (at least 50 characters)
+    if (textContent.trim().length < 50) {
+      toast.warning("Your blog content seems too short. Please add more details to make it informative.");
       setIsSubmitting(false);
       return;
     }
@@ -84,7 +93,7 @@ const CreateBlog = () => {
       }
 
       // Create blog ID and structure
-      const blogId = `user-${Date.now().toString()}`;
+      const blogId = `${Date.now().toString()}`;
       const newBlog = {
         id: blogId,
         title: blogData.title,
@@ -380,9 +389,12 @@ const CreateBlog = () => {
             <form
               onSubmit={handleSubmit}
               onKeyDown={(e) => {
+                // Only prevent default form submission on Enter key in input fields
+                // This allows the editor to use Enter normally for paragraphs
                 if (
                   e.key === "Enter" &&
-                  e.target.tagName.toLowerCase() !== "textarea"
+                  (e.target.tagName.toLowerCase() === "input" || 
+                   e.target.closest('.tiptap') === null) // Don't prevent in editor
                 ) {
                   e.preventDefault();
                 }
