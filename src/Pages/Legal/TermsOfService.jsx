@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { HoverBorderGradient } from "../../components/ui/hover-border-gradient";
 import { Link } from "react-router-dom";
 import LegalLayout from "../../components/Layouts/LegalLayout";
 
 const TermsOfService = () => {
+  useEffect(() => {
+    document.title = "Terms of Service - Chathura Sudaraka";
+  }, []);
   const sections = [
     {
       title: "1. Portfolio Access",
@@ -55,7 +58,7 @@ const TermsOfService = () => {
 
   return (
     <LegalLayout>
-      <div className="min-h-screen bg-white dark:bg-black pt-20">
+      <div className="min-h-screen bg-white dark:bg-black">
         <div className="container mx-auto px-4 py-20 relative">
           {/* Header */}
           <div className="text-center mb-12">

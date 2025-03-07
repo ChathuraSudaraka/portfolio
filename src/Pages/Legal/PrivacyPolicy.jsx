@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { HoverBorderGradient } from "../../components/ui/hover-border-gradient";
 import { Link } from "react-router-dom";
 import LegalLayout from "../../components/Layouts/LegalLayout";
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    document.title = "Privacy Policy - Chathura Sudaraka";
+  }, []);
   const sections = [
     {
       title: "Data Collection",

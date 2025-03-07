@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
@@ -10,6 +10,10 @@ const NotFound = () => {
   const handleShowGame = () => {
     setShowGame(true);
   };
+
+  useEffect(() => {
+    document.title = "404 - Page Not Found";
+  }, []);
 
   return (
     <section

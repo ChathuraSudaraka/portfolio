@@ -6,6 +6,15 @@ import { GradientButton } from "../../ui/gradient-button";
 import { HoverBorderGradient } from "../../ui/hover-border-gradient";
 
 const BlogHero = () => {
+  const startYear = 2022;
+  const currentYear = new Date().getFullYear();
+  const experienceYears =
+    (currentYear - startYear + (new Date().getMonth() >= 9 ? 1 : 0)).toFixed(
+      1
+    ) + "+";
+
+  const articleCount = "10+";
+  const TechnicalTopics = "5+";
   return (
     <section
       id="blog-hero"
@@ -53,20 +62,21 @@ const BlogHero = () => {
             </p>
 
             {/* CTA buttons */}
-            <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-              <HoverBorderGradient className="px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white">
-                <span className="flex items-center gap-2">
-                  Read Latest <FiBookOpen className="text-lg" />
-                </span>
-              </HoverBorderGradient>
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start">
+              <Link to="/blog">
+                <HoverBorderGradient className="w-full sm:w-auto px-6 py-3 bg-transparent hover:bg-primary/5 text-gray-900 dark:text-white">
+                  <span className="flex items-center justify-center gap-2">
+                    Explore Articles <FiBookOpen className="text-lg" />
+                  </span>
+                </HoverBorderGradient>
+              </Link>
 
               <Link to="/blog/create">
                 <GradientButton
                   as={Link}
-                  to="/blog/create"
-                  className="px-6 py-3 flex items-center gap-2"
+                  className="w-full sm:w-auto px-6 py-3 flex items-center justify-center gap-2"
                 >
-                  Browse All
+                  Write with Me
                   <FiArrowRight className="text-lg" />
                 </GradientButton>
               </Link>
@@ -133,18 +143,23 @@ const BlogHero = () => {
           transition={{ delay: 0.5, duration: 0.6 }}
         >
           <div className="text-center p-4">
-            <h3 className="text-3xl font-bold text-primary mb-2">10+</h3>
+            <h3 className="text-3xl font-bold text-primary mb-2">
+              {/* This should be replaced with a dynamic count from your blog data */}
+              {articleCount || "10+"}
+            </h3>
             <p className="text-gray-600 dark:text-gray-300">
               Articles Published
             </p>
           </div>
           <div className="text-center p-4 border-l-0 sm:border-l border-r-0 sm:border-r border-gray-200 dark:border-gray-800">
-            <h3 className="text-3xl font-bold text-secondary mb-2">5+</h3>
+            <h3 className="text-3xl font-bold text-secondary mb-2">
+              {TechnicalTopics}
+            </h3>
             <p className="text-gray-600 dark:text-gray-300">Technical Topics</p>
           </div>
           <div className="text-center p-4">
             <h3 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-              2+
+              {experienceYears}
             </h3>
             <p className="text-gray-600 dark:text-gray-300">Years Experience</p>
           </div>

@@ -90,6 +90,7 @@ const CookieSettings = () => {
 
   // Detect changes in dark/light mode for toast styling
   useEffect(() => {
+    document.title = "Cookie Settings - Chathura Sudaraka";
     const handleThemeChange = () => {
       // This will ensure toasts match the current theme
       const isDarkMode = document.documentElement.classList.contains("dark");

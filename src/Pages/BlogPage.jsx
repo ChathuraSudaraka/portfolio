@@ -70,42 +70,42 @@ const BlogData = () => {
 
     // Handle both HTML and Markdown content
     const markdown = description;
-    
+
     // Match both Markdown headings and HTML headings
     const headingRegexMd = /^(#+)\s+(.*)$/gm;
     const headingRegexHtml = /<h([1-6])[^>]*>(.*?)<\/h\1>/g;
-    
+
     let matches = [];
-    
+
     // Try to match Markdown headings first
-    if (typeof markdown === 'string') {
+    if (typeof markdown === "string") {
       const mdMatches = [...(markdown.matchAll?.(headingRegexMd) || [])];
-      
-      matches = mdMatches.map(match => {
+
+      matches = mdMatches.map((match) => {
         const level = match[1].length;
         const text = match[2].trim();
         const id = text
           .toLowerCase()
-          .replace(/<[^>]*>/g, '') // Remove any HTML tags
+          .replace(/<[^>]*>/g, "") // Remove any HTML tags
           .replace(/ /g, "-")
           .replace(/[^\w-]+/g, "");
-        
+
         return { level, text, id };
       });
-      
+
       // If no Markdown headings found, try HTML headings
-      if (matches.length === 0 && markdown.includes('<h')) {
+      if (matches.length === 0 && markdown.includes("<h")) {
         let htmlMatch;
         while ((htmlMatch = headingRegexHtml.exec(markdown)) !== null) {
           const level = parseInt(htmlMatch[1], 10);
           // Remove HTML tags from heading text
           const rawText = htmlMatch[2];
-          const text = rawText.replace(/<[^>]*>/g, '').trim();
+          const text = rawText.replace(/<[^>]*>/g, "").trim();
           const id = text
             .toLowerCase()
             .replace(/ /g, "-")
             .replace(/[^\w-]+/g, "");
-          
+
           matches.push({ level, text, id });
         }
       }
@@ -118,6 +118,7 @@ const BlogData = () => {
   const [tableOfContents, setTableOfContents] = useState([]);
 
   useEffect(() => {
+    document.title = blog ? `${blog.title}` : "Blog";
     console.log("BlogPage - Looking for blog with ID:", id);
 
     try {
@@ -342,7 +343,9 @@ const BlogData = () => {
                 </h3>
                 <p className="text-emerald-600 dark:text-emerald-400">
                   Posted on{" "}
-                  {new Date(blog.createdAt || blog.date || Date.now()).toLocaleDateString()}
+                  {new Date(
+                    blog.createdAt || blog.date || Date.now()
+                  ).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -381,7 +384,7 @@ const BlogData = () => {
               ) : (
                 <p>No content available for this blog post.</p>
               )}
-              
+
               {/* Social Share */}
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
                 <div className="flex flex-wrap items-center gap-3 w-full sm:w-auto justify-center sm:justify-start">
@@ -608,15 +611,18 @@ const BlogData = () => {
               <h4 className="font-semibold mb-4 text-gray-900 dark:text-white">
                 Table of Contents
               </h4>
-              
+
               {tableOfContents.length > 0 ? (
                 <ul className="space-y-3 text-sm">
                   {tableOfContents.map(({ level, text, id }, index) => (
-                    <li 
-                      key={`${id}-${index}`} 
-                      style={{ 
+                    <li
+                      key={`${id}-${index}`}
+                      style={{
                         paddingLeft: `${(level - 1) * 0.75}rem`,
-                        borderLeft: level > 1 ? '1px solid rgba(209, 213, 219, 0.5)' : 'none'
+                        borderLeft:
+                          level > 1
+                            ? "1px solid rgba(209, 213, 219, 0.5)"
+                            : "none",
                       }}
                       className="py-1"
                     >
@@ -627,7 +633,7 @@ const BlogData = () => {
                           e.preventDefault();
                           const element = document.getElementById(id);
                           if (element) {
-                            element.scrollIntoView({ behavior: 'smooth' });
+                            element.scrollIntoView({ behavior: "smooth" });
                           }
                         }}
                       >

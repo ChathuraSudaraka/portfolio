@@ -9,8 +9,13 @@ import Article from "../components/sections/Portfolio/blog";
 import Testimonial from "../components/sections/Portfolio/Testimonial";
 import Contact from "../components/sections/Portfolio/Contact";
 import Layout from "../components/Layouts/Layout";
+import { useEffect } from "react";
 
 function index() {
+  useEffect(() => {
+    document.title = "Software engineer - Chathura Sudaraka";
+  }, []);
+
   return (
     <Layout>
       <Home />

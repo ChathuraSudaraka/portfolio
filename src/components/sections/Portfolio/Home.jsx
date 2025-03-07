@@ -11,9 +11,13 @@ const Home = () => {
     window.open(pdf, "_blank");
   };
 
+  const startYear = 2022;
+  const currentYear = new Date().getFullYear();
+  const experienceYears = ((currentYear - startYear) + (new Date().getMonth() >= 9 ? 1 : 0)).toFixed(1) + "+";
+  
   const stats = [
     {
-      value: "2+",
+      value: experienceYears,
       label: "Years Experience",
       icon: "⚡",
       color: "from-yellow-500/20 to-orange-500/20",
