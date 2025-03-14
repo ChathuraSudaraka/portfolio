@@ -47,33 +47,26 @@ const WorkFlow = () => {
     fetch("/projects.json")
       .then((res) => res.json())
       .then((data) => {
-        // Group projects by year
-        const timelineData = [
-          {
-            year: "2024",
-            projects: data.slice(0, 2),
-          },
-          {
-            year: "2023",
-            projects: data.slice(2, 6),
-          },
-          {
-            year: "2022",
-            projects: data.slice(6, 10),
-          },
-          {
-            year: "2021",
-            projects: data.slice(10, 14),
-          },
-          {
-            year: "2020",
-            projects: data.slice(14, 18),
-          },
-          {
-            year: "2019",
-            projects: data.slice(18, 20),
-          },
-        ];
+        // Group projects by year from project data
+        const projectsByYear = {};
+
+        data.forEach((project) => {
+          if (project.year) {
+            if (!projectsByYear[project.year]) {
+              projectsByYear[project.year] = [];
+            }
+            projectsByYear[project.year].push(project);
+          }
+        });
+
+        // Convert to array format sorted by year (descending)
+        const timelineData = Object.keys(projectsByYear)
+          .sort((a, b) => parseInt(b) - parseInt(a))
+          .map((year) => ({
+            year: year,
+            projects: projectsByYear[year],
+          }));
+
         setProjectsData(timelineData);
       })
       .catch((error) => console.error("Error loading projects:", error));
@@ -177,11 +170,6 @@ const WorkFlow = () => {
                                   <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent mb-2">
                                     {project.name}
                                   </h3>
-                                  {project.stats && (
-                                    <p className="text-primary/90 text-sm font-medium">
-                                      {Object.values(project.stats)[0]}
-                                    </p>
-                                  )}
                                 </div>
 
                                 {/* Links with hover effects */}
@@ -223,7 +211,7 @@ const WorkFlow = () => {
                                 <span className="font-medium">Tech Stack</span>
                               </div>
                               <div className="flex flex-wrap gap-2">
-                                {project.technologies?.frontend?.map((tech) => (
+                                {project.technologies.map((tech) => (
                                   <motion.span
                                     key={tech}
                                     whileHover={{ scale: 1.05, y: -2 }}

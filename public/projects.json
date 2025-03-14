@@ -5,55 +5,25 @@
     "tag1": "C#",
     "tag2": ".NET Core",
     "tag3": "MySQL",
-    "description": "A modern library management system with real-time tracking, automated notifications, and an intuitive admin dashboard. Features include QR code-based checkouts, book recommendations, and detailed analytics.",
-    "image": "/assets/project/project-1.webp",
+    "description": "A comprehensive library management solution built with C# and .NET Core. Features include book checkout/return tracking, member management, fine calculation, and detailed reporting for library administrators.",
+    "image": "/assets/project/Library.webp",
     "link": "https://github.com/ChathuraSudaraka/library-management-system",
-    "demo": "https://library-demo.example.com",
-    "stats": {
-      "users": "1000+",
-      "books": "50,000+",
-      "transactions": "10,000+"
-    },
-    "features": [
-      "Automated Check-in/Check-out",
-      "Book Recommendation Engine",
-      "Real-time Availability Tracking",
-      "Member Management"
-    ],
-    "technologies": {
-      "frontend": [".NET MAUI", "WPF", "Material Design"],
-      "backend": ["C#", "ASP.NET Core", "Entity Framework"],
-      "database": ["MySQL", "Redis"],
-      "tools": ["Azure DevOps", "Git"]
-    }
+    "demo": "",
+    "year": "2022",
+    "technologies": [".NET MAUI", "WPF", "Material Design", "MySQL"]
   },
   {
     "id": 2,
     "name": "Point Of Sale System",
     "tag1": "Java",
-    "tag2": "JavaFX",
+    "tag2": "Java Swing",
     "tag3": "MySQL",
-    "description": "Enterprise-grade POS system with inventory management, sales analytics, and multi-branch support. Includes features for both retail and restaurant businesses with customizable workflows.",
+    "description": "A robust POS system built with Java and Java Swing, designed for retail and restaurant businesses. Features inventory management, sales tracking, employee management, and detailed reporting capabilities.",
     "image": "/assets/project/project-2.webp",
     "link": "https://github.com/ChathuraSudaraka/Point-Of-Sale-System",
-    "demo": "https://pos-demo.example.com",
-    "stats": {
-      "transactions": "5000+",
-      "products": "2000+",
-      "dailyUsers": "100+"
-    },
-    "features": [
-      "Inventory Management",
-      "Sales Analytics",
-      "Employee Performance Tracking",
-      "Multi-branch Support"
-    ],
-    "technologies": {
-      "frontend": ["JavaFX", "Scene Builder", "JFoenix"],
-      "backend": ["Java", "Spring Boot"],
-      "database": ["MySQL", "MongoDB"],
-      "tools": ["Maven", "Jenkins"]
-    }
+    "demo": "",
+    "year": "2023",
+    "technologies": ["Java Swing", "Scene Builder", "JFoenix", "MySQL"]
   },
   {
     "id": 3,
@@ -61,502 +31,128 @@
     "tag1": "React Native",
     "tag2": "Node.js",
     "tag3": "Socket.io",
-    "description": "Real-time mobile chat application with end-to-end encryption, multimedia sharing, and group chat capabilities. Features include voice messages, location sharing, and offline support.",
-    "image": "/assets/project/project-3.webp",
+    "description": "A real-time mobile chat application with secure messaging features. Built with React Native and Node.js, it allows for instant communication, media sharing, and supports both individual and group chats.",
+    "image": "/assets/project/chatApp.webp",
     "link": "https://github.com/ChathuraSudaraka/ChatApp",
-    "demo": "https://chat-demo.example.com",
-    "stats": {
-      "users": "500+",
-      "messages": "10,000+",
-      "groups": "100+"
-    },
-    "features": [
-      "End-to-End Encryption",
-      "Real-time Messaging",
-      "File Sharing",
-      "Voice Messages"
-    ],
-    "technologies": {
-      "frontend": ["React Native", "Redux", "Expo"],
-      "backend": ["Node.js", "Express", "Socket.io"],
-      "database": ["MongoDB", "Firebase"],
-      "tools": ["Docker", "AWS"]
-    }
+    "demo": "",
+    "year": "2023",
+    "technologies": ["React Native", "Redux", "Socket.io", "Node.js"]
   },
   {
     "id": 4,
-    "name": "Student Management Portal",
-    "tag1": "PHP",
-    "tag2": "Laravel",
-    "tag3": "Vue.js",
-    "description": "Comprehensive student management system with attendance tracking, grade management, and parent portal. Includes features for online assignments and progress tracking.",
+    "name": "Finance Management System",
+    "tag1": "Java",
+    "tag2": "Java Swing",
+    "tag3": "MySQL",
+    "description": "A finance tracking and management application to help businesses and individuals monitor expenses, track income, and generate financial reports. Includes budget planning, transaction categorization, and visualized analytics.",
     "image": "/assets/project/project-4.webp",
-    "link": "https://github.com/ChathuraSudaraka/student-portal",
-    "demo": "https://student-demo.example.com",
-    "stats": {
-      "students": "3000+",
-      "courses": "50+",
-      "teachers": "100+"
-    },
-    "features": [
-      "Attendance Tracking",
-      "Grade Management",
-      "Online Assignments",
-      "Parent Portal"
-    ],
-    "technologies": {
-      "frontend": ["Vue.js", "Tailwind CSS", "Alpine.js"],
-      "backend": ["PHP", "Laravel", "Livewire"],
-      "database": ["MySQL", "Redis"],
-      "tools": ["Git", "Laravel Forge"]
-    }
+    "link": "https://github.com/ChathuraSudaraka/finance-management-system",
+    "demo": "",
+    "year": "2024",
+    "technologies": ["Java", "Java Swing", "MySQL", "JasperReports"]
   },
   {
     "id": 5,
-    "name": "E-Commerce Platform",
+    "name": "Eshop React Laravel API",
     "tag1": "React",
-    "tag2": "Next.js",
-    "tag3": "Stripe",
-    "description": "Full-featured e-commerce platform with product catalog, shopping cart, payment processing, and order management. Includes features for discount codes, product recommendations, and customer reviews.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/ecommerce-platform",
-    "demo": "https://ecommerce-demo.example.com",
-    "stats": {
-      "products": "1000+",
-      "orders": "5000+",
-      "customers": "2000+"
-    },
-    "features": [
-      "Product Search & Filtering",
-      "Secure Payments with Stripe",
-      "Order Tracking",
-      "Customer Accounts"
-    ],
-    "technologies": {
-      "frontend": ["React", "Next.js", "Tailwind CSS"],
-      "backend": ["Node.js", "Express", "GraphQL"],
-      "database": ["PostgreSQL", "Redis"],
-      "tools": ["Docker", "Vercel", "GitHub Actions"]
-    }
+    "tag2": "Laravel",
+    "tag3": "API",
+    "description": "A full-stack e-commerce platform with a React frontend and Laravel API backend. Features product listings, shopping cart functionality, secure checkout with PayPal integration, and user account management.",
+    "image": "/assets/project/eshop.webp",
+    "link": "https://github.com/ChathuraSudaraka/Eshop-React_Laravel_API",
+    "demo": "",
+    "year": "2024",
+    "technologies": ["React", "Laravel", "RESTful API", "PayPal"]
   },
   {
     "id": 6,
-    "name": "Healthcare Management System",
-    "tag1": "Python",
-    "tag2": "Django",
-    "tag3": "PostgreSQL",
-    "description": "Integrated healthcare management system for clinics and hospitals, featuring patient records, appointment scheduling, billing, and prescription management. Includes telemedicine capabilities and medical imaging integration.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/healthcare-management",
-    "demo": "https://healthcare-demo.example.com",
-    "stats": {
-      "patients": "10,000+",
-      "appointments": "1,000+/month",
-      "practitioners": "200+"
-    },
-    "features": [
-      "Electronic Health Records",
-      "Appointment Scheduling",
-      "Billing & Insurance",
-      "Telemedicine Support"
-    ],
-    "technologies": {
-      "frontend": ["React", "Material-UI", "Chart.js"],
-      "backend": ["Python", "Django", "Django REST Framework"],
-      "database": ["PostgreSQL", "Amazon S3"],
-      "tools": ["Docker", "Nginx", "GitLab CI/CD"]
-    }
+    "name": "Portfolio Website",
+    "tag1": "React",
+    "tag2": "Node.js",
+    "tag3": "Tailwind CSS",
+    "description": "My personal portfolio website built using React and Tailwind CSS. Features a responsive design with dark/light mode, interactive UI components, and showcases my skills, experience, and project portfolio.",
+    "image": "/assets/project/portfolio.png",
+    "link": "https://github.com/ChathuraSudaraka/portfolio",
+    "demo": "https://chathura.eversoft.lk/",
+    "year": "2023",
+    "technologies": ["React", "Tailwind CSS", "Framer Motion", "Node.js"]
   },
   {
     "id": 7,
-    "name": "Smart Home Automation",
-    "tag1": "IoT",
-    "tag2": "Raspberry Pi",
-    "tag3": "MQTT",
-    "description": "Comprehensive smart home automation system controlling lighting, climate, security, and entertainment. Features voice control, mobile app interface, energy monitoring, and automated routines based on user behavior.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/smart-home",
-    "demo": "https://smart-home-demo.example.com",
-    "stats": {
-      "devices": "50+",
-      "automations": "100+",
-      "energySaved": "30%"
-    },
-    "features": [
-      "Voice Control Integration",
-      "Energy Usage Monitoring",
-      "Security System Integration",
-      "Custom Automation Routines"
-    ],
-    "technologies": {
-      "hardware": ["Raspberry Pi", "ESP32", "Zigbee Devices"],
-      "backend": ["Python", "Node.js", "MQTT"],
-      "frontend": ["React Native", "Flutter"],
-      "tools": ["Home Assistant", "Node-RED", "Grafana"]
-    }
+    "name": "KET Family Support Service",
+    "tag1": "JavaScript",
+    "tag2": "Express",
+    "tag3": "Nuxt.js",
+    "description": "A web platform for a family support service organization offering counseling and community resources. Features service booking, resource hub, counselor profiles, and community forum sections.",
+    "image": "/assets/project/ket-family.png",
+    "link": "https://github.com/ChathuraSudaraka/ket-family-support-service",
+    "demo": "http://ket-family-support-service.vercel.app/",
+    "year": "2024",
+    "technologies": ["Nuxt.js", "Tailwind CSS", "Express", "MongoDB"]
   },
   {
     "id": 8,
-    "name": "Financial Analytics Dashboard",
-    "tag1": "Angular",
-    "tag2": "TypeScript",
-    "tag3": "D3.js",
-    "description": "Advanced financial analytics platform with real-time market data, portfolio management, risk assessment, and predictive analytics. Features interactive visualizations, customizable dashboards, and automated reporting.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/finance-analytics",
-    "demo": "https://finance-demo.example.com",
-    "stats": {
-      "dataPoints": "1M+/day",
-      "portfolios": "500+",
-      "accuracy": "98.5%"
-    },
-    "features": [
-      "Real-time Market Data",
-      "Portfolio Performance Tracking",
-      "Risk Analysis",
-      "Predictive Models"
-    ],
-    "technologies": {
-      "frontend": ["Angular", "TypeScript", "D3.js", "NgRx"],
-      "backend": ["Node.js", "Express", "Python (Data Processing)"],
-      "database": ["TimescaleDB", "Redis"],
-      "tools": ["Docker", "Kubernetes", "GitHub Actions"]
-    }
+    "name": "Sachitha Plastic",
+    "tag1": "React",
+    "tag2": "Tailwind CSS",
+    "tag3": "Node.js",
+    "description": "A corporate website and inventory management system for Sachitha Plastic manufacturing company. Includes product catalog, order management, manufacturing process tracking, and distributor portal.",
+    "image": "/assets/project/plastic.png",
+    "link": "https://github.com/ChathuraSudaraka/sachitha-plastic",
+    "demo": "https://www.stclk.com/",
+    "year": "2024",
+    "technologies": ["React", "Node.js", "Express", "MongoDB"]
   },
   {
     "id": 9,
-    "name": "AI-Powered Content Generator",
-    "tag1": "Python",
-    "tag2": "TensorFlow",
-    "tag3": "React",
-    "description": "Content generation platform using artificial intelligence to create articles, marketing copy, and social media posts. Features customizable tone, style, length adjustments, and multiple language support.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/ai-content-generator",
-    "demo": "https://ai-content-demo.example.com",
-    "stats": {
-      "contentGenerated": "50,000+ pieces",
-      "languages": "15+",
-      "users": "1,000+"
-    },
-    "features": [
-      "AI Text Generation",
-      "Style & Tone Customization",
-      "Multi-language Support",
-      "Content Optimization"
-    ],
-    "technologies": {
-      "ai": ["TensorFlow", "Hugging Face Transformers", "GPT-3"],
-      "backend": ["Python", "FastAPI", "Celery"],
-      "frontend": ["React", "Redux", "Chakra UI"],
-      "tools": ["Docker", "AWS Lambda", "GitHub Actions"]
-    }
+    "name": "EverMuzic",
+    "tag1": "JavaScript",
+    "tag2": "Express",
+    "tag3": "MongoDB",
+    "description": "A music streaming platform with artist profiles, playlist creation, and song discovery features. Users can follow artists, create custom playlists, and enjoy personalized music recommendations based on listening habits.",
+    "image": "/assets/project/evermuzic.png",
+    "link": "https://github.com/ChathuraSudaraka/evermuzic",
+    "demo": "https://evermuzic.me/",
+    "year": "2024",
+    "technologies": ["JavaScript", "Express", "MongoDB", "Web Audio API"]
   },
   {
     "id": 10,
-    "name": "Supply Chain Management System",
-    "tag1": "Java",
-    "tag2": "Spring Boot",
-    "tag3": "Blockchain",
-    "description": "End-to-end supply chain management system with blockchain-based tracking, inventory optimization, demand forecasting, and vendor management. Features real-time tracking, quality control, and compliance management.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/supply-chain",
-    "demo": "https://supply-chain-demo.example.com",
-    "stats": {
-      "transactions": "10,000+/day",
-      "suppliers": "250+",
-      "efficiency": "40% improved"
-    },
-    "features": [
-      "Blockchain Product Tracking",
-      "Inventory Optimization",
-      "Demand Forecasting",
-      "Vendor Performance Analysis"
-    ],
-    "technologies": {
-      "backend": ["Java", "Spring Boot", "Hyperledger Fabric"],
-      "frontend": ["React", "Material-UI", "Chart.js"],
-      "database": ["PostgreSQL", "MongoDB"],
-      "tools": ["Docker", "Kubernetes", "Jenkins"]
-    }
+    "name": "Movie Zone",
+    "tag1": "React",
+    "tag2": "API Integration",
+    "tag3": "Tailwind CSS",
+    "description": "A feature-rich movie browsing application that utilizes third-party APIs to provide users with detailed movie information, reviews, ratings, and streaming availability. Includes watchlist functionality and personalized recommendations.",
+    "image": "/assets/project/movie-zone.png",
+    "link": "https://github.com/ChathuraSudaraka/movie-zone",
+    "demo": "https://movie-zone.pages.dev/",
+    "year": "2024",
+    "technologies": ["React", "Tailwind CSS", "RESTful API", "Context API"]
   },
   {
     "id": 11,
-    "name": "Virtual Event Platform",
-    "tag1": "Vue.js",
-    "tag2": "WebRTC",
-    "tag3": "Firebase",
-    "description": "Comprehensive virtual event platform for conferences, webinars, and workshops. Features include live streaming, interactive sessions, networking rooms, virtual exhibitor booths, and detailed analytics.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/virtual-events",
-    "demo": "https://virtual-events-demo.example.com",
-    "stats": {
-      "eventHosted": "100+",
-      "attendees": "50,000+",
-      "engagement": "45 min avg"
-    },
-    "features": [
-      "Live Streaming & Recording",
-      "Virtual Networking Spaces",
-      "Interactive Q&A Sessions",
-      "Attendee Analytics"
-    ],
-    "technologies": {
-      "frontend": ["Vue.js", "Vuex", "TailwindCSS"],
-      "backend": ["Node.js", "Express", "WebRTC"],
-      "database": ["Firebase", "Redis"],
-      "tools": ["Docker", "Google Cloud", "GitHub Actions"]
-    }
+    "name": "Discounts LK",
+    "tag1": "React",
+    "tag2": "Node.js",
+    "tag3": "MongoDB",
+    "description": "A platform that aggregates and showcases deals and discounts across various stores and services in Sri Lanka. Users can search for deals by category, location, and store, with features for deal alerts and user reviews.",
+    "image": "/assets/project/discount.png",
+    "link": "https://github.com/ChathuraSudaraka/discounts-lk",
+    "demo": "",
+    "year": "2024",
+    "technologies": ["React", "Node.js", "Express", "MongoDB"]
   },
   {
     "id": 12,
-    "name": "Fleet Management System",
-    "tag1": "Flutter",
-    "tag2": "Google Maps",
-    "tag3": "AWS",
-    "description": "Comprehensive fleet management solution for tracking vehicles, optimizing routes, monitoring driver behavior, and managing maintenance schedules. Features include real-time GPS tracking, fuel efficiency monitoring, and predictive maintenance.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/fleet-management",
-    "demo": "https://fleet-demo.example.com",
-    "stats": {
-      "vehicles": "500+",
-      "routesOptimized": "1,000+/day",
-      "fuelSaved": "20%"
-    },
-    "features": [
-      "Real-time GPS Tracking",
-      "Route Optimization",
-      "Driver Behavior Analysis",
-      "Maintenance Scheduling"
-    ],
-    "technologies": {
-      "mobile": ["Flutter", "Google Maps API", "Firebase"],
-      "backend": ["Node.js", "Express", "GraphQL"],
-      "database": ["MongoDB", "Amazon TimeStream"],
-      "tools": ["AWS IoT", "Terraform", "GitLab CI/CD"]
-    }
-  },
-  {
-    "id": 13,
-    "name": "Language Learning App",
-    "tag1": "Swift",
-    "tag2": "Kotlin",
-    "tag3": "Machine Learning",
-    "description": "Interactive language learning application with speech recognition, personalized lesson plans, and gamified progress tracking. Features include conversational practice, cultural context lessons, and adaptive learning algorithms.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/language-learning",
-    "demo": "https://language-app-demo.example.com",
-    "stats": {
-      "languages": "12",
-      "users": "100,000+",
-      "exercises": "10,000+"
-    },
-    "features": [
-      "Speech Recognition",
-      "Adaptive Learning Path",
-      "Gamified Experience",
-      "Offline Learning Mode"
-    ],
-    "technologies": {
-      "ios": ["Swift", "SwiftUI", "Core ML"],
-      "android": ["Kotlin", "Jetpack Compose", "TensorFlow Lite"],
-      "backend": ["Python", "Django", "NLP Models"],
-      "tools": ["Firebase", "Fastlane", "App Center"]
-    }
-  },
-  {
-    "id": 14,
-    "name": "Real Estate Management Platform",
+    "name": "Coming Soon",
     "tag1": "React",
-    "tag2": "Node.js",
-    "tag3": "GIS",
-    "description": "Comprehensive real estate management platform for property listings, tenant management, maintenance requests, and financial reporting. Features include virtual tours, document management, and integration with payment processors.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/real-estate-platform",
-    "demo": "https://realestate-demo.example.com",
-    "stats": {
-      "properties": "5,000+",
-      "transactions": "$20M+",
-      "users": "10,000+"
-    },
-    "features": [
-      "Virtual Property Tours",
-      "Tenant Portal",
-      "Maintenance Request Tracking",
-      "Financial Reporting"
-    ],
-    "technologies": {
-      "frontend": ["React", "Redux", "Mapbox"],
-      "backend": ["Node.js", "Express", "Sequelize"],
-      "database": ["PostgreSQL", "PostGIS"],
-      "tools": ["AWS", "Docker", "CircleCI"]
-    }
-  },
-  {
-    "id": 15,
-    "name": "Fitness Tracking Application",
-    "tag1": "React Native",
-    "tag2": "GraphQL",
-    "tag3": "Machine Learning",
-    "description": "Comprehensive fitness tracking application with workout plans, nutrition logging, progress tracking, and social features. Includes AI-powered form correction, personalized recommendations, and wearable device integration.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/fitness-tracker",
-    "demo": "https://fitness-demo.example.com",
-    "stats": {
-      "activeUsers": "50,000+",
-      "workoutsLogged": "1M+",
-      "improvementRate": "35%"
-    },
-    "features": [
-      "Personalized Workout Plans",
-      "Nutrition Tracking",
-      "AI Form Correction",
-      "Wearable Integration"
-    ],
-    "technologies": {
-      "mobile": ["React Native", "Expo", "Redux"],
-      "backend": ["Node.js", "Apollo Server", "GraphQL"],
-      "ml": ["TensorFlow", "CoreML", "TensorFlow Lite"],
-      "tools": ["Firebase", "Google Fit API", "Apple HealthKit"]
-    }
-  },
-  {
-    "id": 16,
-    "name": "Augmented Reality Shopping Experience",
-    "tag1": "AR/VR",
-    "tag2": "Unity",
-    "tag3": "iOS/Android",
-    "description": "Innovative shopping application using augmented reality to allow users to visualize products in their own space before purchasing. Features include virtual try-on for clothing, furniture placement, and detailed product visualization.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/ar-shopping",
-    "demo": "https://ar-shopping-demo.example.com",
-    "stats": {
-      "products": "10,000+",
-      "conversions": "40% higher",
-      "returns": "30% fewer"
-    },
-    "features": [
-      "AR Product Visualization",
-      "Virtual Try-On",
-      "Space Measurement",
-      "3D Product Interaction"
-    ],
-    "technologies": {
-      "ar": ["ARKit", "ARCore", "Unity", "Vuforia"],
-      "mobile": ["Swift", "Kotlin", "React Native"],
-      "backend": ["Node.js", "Express", "MongoDB"],
-      "tools": ["Blender", "3D Model Optimization", "CI/CD Pipeline"]
-    }
-  },
-  {
-    "id": 17,
-    "name": "Digital Asset Management System",
-    "tag1": "Python",
-    "tag2": "React",
-    "tag3": "AWS",
-    "description": "Enterprise-grade digital asset management system with automated metadata extraction, version control, rights management, and advanced search capabilities. Features content distribution, workflow automation, and analytics.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/asset-management",
-    "demo": "https://dam-demo.example.com",
-    "stats": {
-      "assets": "1M+",
-      "storage": "50TB+",
-      "users": "5,000+"
-    },
-    "features": [
-      "AI-Powered Asset Tagging",
-      "Version Control",
-      "Rights Management",
-      "Workflow Automation"
-    ],
-    "technologies": {
-      "frontend": ["React", "Redux", "Styled Components"],
-      "backend": ["Python", "FastAPI", "Celery"],
-      "storage": ["Amazon S3", "ElasticSearch", "MongoDB"],
-      "tools": ["Docker", "Kubernetes", "Terraform"]
-    }
-  },
-  {
-    "id": 18,
-    "name": "Restaurant Management System",
-    "tag1": "Angular",
-    "tag2": "Express",
-    "tag3": "MongoDB",
-    "description": "All-in-one restaurant management system with table reservations, ordering, kitchen display, inventory management, and analytics. Features include online ordering, loyalty programs, and staff management.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/restaurant-management",
-    "demo": "https://restaurant-demo.example.com",
-    "stats": {
-      "restaurants": "100+",
-      "orders": "10,000+/day",
-      "revenue": "$1M+ processed"
-    },
-    "features": [
-      "Table & Reservation Management",
-      "Digital Menu & Ordering",
-      "Kitchen Display System",
-      "Inventory & Staff Management"
-    ],
-    "technologies": {
-      "frontend": ["Angular", "TypeScript", "NGRX"],
-      "backend": ["Node.js", "Express", "Socket.io"],
-      "database": ["MongoDB", "Redis"],
-      "tools": ["Docker", "AWS", "GitHub Actions"]
-    }
-  },
-  {
-    "id": 19,
-    "name": "Environmental Monitoring System",
-    "tag1": "IoT",
-    "tag2": "Python",
-    "tag3": "Data Science",
-    "description": "IoT-based environmental monitoring system for air quality, water quality, noise levels, and weather conditions. Features include real-time alerts, historical data analysis, and predictive modeling for environmental trends.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/environmental-monitoring",
-    "demo": "https://environment-demo.example.com",
-    "stats": {
-      "sensors": "1,000+",
-      "dataPoints": "5M+/day",
-      "locations": "50+"
-    },
-    "features": [
-      "Real-time Monitoring",
-      "Anomaly Detection",
-      "Predictive Analysis",
-      "Geospatial Visualization"
-    ],
-    "technologies": {
-      "hardware": ["Arduino", "ESP32", "Custom Sensors"],
-      "backend": ["Python", "Flask", "Pandas", "Scikit-learn"],
-      "frontend": ["Vue.js", "D3.js", "Leaflet"],
-      "tools": ["InfluxDB", "Grafana", "MQTT"]
-    }
-  },
-  {
-    "id": 20,
-    "name": "Productivity Suite",
-    "tag1": "Electron",
-    "tag2": "TypeScript",
-    "tag3": "Firebase",
-    "description": "Cross-platform productivity suite with task management, note-taking, time tracking, and document collaboration. Features include offline support, cross-device synchronization, and third-party integrations.",
-    "image": "",
-    "link": "https://github.com/ChathuraSudaraka/productivity-suite",
-    "demo": "https://productivity-demo.example.com",
-    "stats": {
-      "users": "100,000+",
-      "tasks": "5M+",
-      "notes": "10M+"
-    },
-    "features": [
-      "Task Management",
-      "Rich Text Note Taking",
-      "Time Tracking",
-      "Cross-device Sync"
-    ],
-    "technologies": {
-      "desktop": ["Electron", "TypeScript", "React"],
-      "mobile": ["React Native", "TypeScript"],
-      "backend": ["Node.js", "Express", "GraphQL"],
-      "tools": ["Firebase", "Redux", "Firestore"]
-    }
+    "tag2": "Firebase",
+    "tag3": "Material-UI",
+    "description": " coming soon..",
+    "image": "/assets/project/recipe.png",
+    "link": "",
+    "demo": "",
+    "year": "2025",
+    "technologies": ["React", "Firebase", "Material-UI"]
   }
 ]
