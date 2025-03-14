@@ -13,8 +13,11 @@ const Home = () => {
 
   const startYear = 2022;
   const currentYear = new Date().getFullYear();
-  const experienceYears = ((currentYear - startYear) + (new Date().getMonth() >= 9 ? 1 : 0)).toFixed(1) + "+";
-  
+  const experienceYears =
+    (currentYear - startYear + (new Date().getMonth() >= 9 ? 1 : 0)).toFixed(
+      1
+    ) + "+";
+
   const stats = [
     {
       value: experienceYears,
@@ -96,9 +99,17 @@ const Home = () => {
               {/* Social Links */}
               <div className="flex items-center gap-3">
                 {[
-                  { icon: FiGithub, href: "#", label: "GitHub" },
-                  { icon: FiLinkedin, href: "#", label: "LinkedIn" },
-                  { icon: FiTwitter, href: "#", label: "Twitter" },
+                  {
+                    icon: FiGithub,
+                    href: "https://github.com/ChathuraSudaraka",
+                    label: "GitHub",
+                  },
+                  {
+                    icon: FiLinkedin,
+                    href: "www.linkedin.com/in/chathura-sudaraka",
+                    label: "LinkedIn",
+                  },
+                  { icon: FiTwitter, href: "https://x.com/CSudaraka78686", label: "Twitter" },
                 ].map((social, index) => (
                   <motion.a
                     key={index}

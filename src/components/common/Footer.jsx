@@ -37,7 +37,7 @@ const Footer = () => {
     },
     {
       icon: FaTwitter,
-      href: "https://twitter.com/YourTwitterHandle",
+      href: "https://x.com/CSudaraka78686",
     },
     {
       icon: FaFacebookF,
