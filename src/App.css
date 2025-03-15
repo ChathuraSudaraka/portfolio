@@ -46,8 +46,14 @@ body {
   0% {
     width: 0%;
   }
+  20% {
+    width: 20%;
+  }
   50% {
-    width: 70%;
+    width: 60%;
+  }
+  80% {
+    width: 85%; 
   }
   100% {
     width: 100%;
@@ -55,20 +61,48 @@ body {
 }
 
 .animate-progress {
-  animation: progress 2s ease-in-out forwards;
+  animation: progress 2s cubic-bezier(0.45, 0.05, 0.55, 0.95) forwards;
 }
 
 /* Enhanced spinner for loading */
 .animate-spin {
-  animation: spin 1s linear infinite;
+  animation: spin 2s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
 }
 
 @keyframes spin {
   from {
-    transform: rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
   }
   to {
-    transform: rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Reverse spin animation */
+.animate-spin-reverse {
+  animation: spinReverse 1.5s cubic-bezier(0.5, 0.1, 0.5, 0.9) infinite;
+}
+
+@keyframes spinReverse {
+  from {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+}
+
+/* Pulse animation for the icon */
+.animate-pulse-subtle {
+  animation: pulseSoft 2s ease-in-out infinite;
+}
+
+@keyframes pulseSoft {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
   }
 }
 
