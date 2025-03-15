@@ -23,12 +23,12 @@ export const FloatingDock = ({
 }) => {
   return (
     <>
-      <div className="hidden md:flex fixed top-10 left-0 right-0 justify-center z-50 pointer-events-none">
+      <div className="hidden md:flex fixed top-10 left-0 right-0 justify-center z-40 pointer-events-none">
         <div className="pointer-events-auto">
           <FloatingDockDesktop items={items} className={desktopClassName} />
         </div>
       </div>
-      <div className="fixed left-4 bottom-6 md:hidden z-50">
+      <div className="fixed left-4 bottom-6 md:hidden z-40">
         <FloatingDockMobile items={items} className={mobileClassName} />
       </div>
     </>

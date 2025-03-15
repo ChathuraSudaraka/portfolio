@@ -1,13 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.primary {
-  @apply text-primary dark:text-primary; /* Replace with your desired primary color */
-  /* Add other styles for your primary color here */
-}
-
-.active {
-  @apply primary; /* Apply the primary color class to the active link */
-  /* Add any other styles you want for the active link */
-}

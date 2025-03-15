@@ -12,12 +12,12 @@ const DarkLight = () => {
   // Initial mounting animation and mobile detection
   useEffect(() => {
     setIsMounted(true);
-    
+
     // Check if mobile view and update state
     const checkMobileView = () => setIsMobileView(window.innerWidth < 768);
     checkMobileView(); // Initial check
     window.addEventListener("resize", checkMobileView);
-    
+
     return () => {
       setIsMounted(false);
       window.removeEventListener("resize", checkMobileView);
@@ -88,7 +88,7 @@ const DarkLight = () => {
 
   return (
     <motion.div
-      className="fixed z-50 top-6 right-4 md:right-8 md:top-10"
+      className="fixed z-40 top-6 right-4 md:right-8 md:top-10"
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{
         opacity: isMounted ? 1 : 0,
