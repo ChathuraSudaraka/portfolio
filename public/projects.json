@@ -106,7 +106,7 @@
   {
     "id": 9,
     "name": "EverMuzic",
-    "tag1": "JavaScript",
+    "tag1": "Nuxt.js",
     "tag2": "Express",
     "tag3": "MongoDB",
     "description": "A music streaming platform with artist profiles, playlist creation, and song discovery features. Users can follow artists, create custom playlists, and enjoy personalized music recommendations based on listening habits.",
@@ -114,7 +114,7 @@
     "link": "https://github.com/ChathuraSudaraka/evermuzic",
     "demo": "https://evermuzic.me/",
     "year": "2024",
-    "technologies": ["JavaScript", "Express", "MongoDB", "Web Audio API"]
+    "technologies": ["Nuxt.js", "Express", "MongoDB", "Web Audio API"]
   },
   {
     "id": 10,
@@ -132,15 +132,15 @@
   {
     "id": 11,
     "name": "Discounts LK",
-    "tag1": "React",
+    "tag1": "React Native",
     "tag2": "Node.js",
-    "tag3": "MongoDB",
+    "tag3": "Tailwind CSS",
     "description": "A platform that aggregates and showcases deals and discounts across various stores and services in Sri Lanka. Users can search for deals by category, location, and store, with features for deal alerts and user reviews.",
     "image": "/assets/project/discount.png",
     "link": "https://github.com/ChathuraSudaraka/discounts-lk",
     "demo": "",
     "year": "2024",
-    "technologies": ["React", "Node.js", "Express", "MongoDB"]
+    "technologies": ["React Native", "Node.js", "Express", "Tailwind CSS"]
   },
   {
     "id": 12,
