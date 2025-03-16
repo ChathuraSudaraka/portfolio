@@ -45,15 +45,15 @@ export default defineConfig({
 
           // Blog-related functionality
           if (
-            id.includes("/Pages/Blog") ||
-            id.includes("/Pages/CreateBlog") ||
-            id.includes("/Pages/BlogPage")
+            id.includes("/pages/Blog") ||
+            id.includes("/pages/CreateBlog") ||
+            id.includes("/pages/BlogPage")
           ) {
             return "blog-features";
           }
 
           // Legal pages
-          if (id.includes("/Pages/Legal/")) {
+          if (id.includes("/pages/Legal/")) {
             return "legal-pages";
           }
         },
