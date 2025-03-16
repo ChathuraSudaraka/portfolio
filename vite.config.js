@@ -45,15 +45,15 @@ export default defineConfig({
 
           // Blog-related functionality
           if (
-            id.includes("/pages/Blog") ||
-            id.includes("/pages/CreateBlog") ||
-            id.includes("/pages/BlogPage")
+            id.includes("/Pages/Blog") ||
+            id.includes("/Pages/CreateBlog") ||
+            id.includes("/Pages/BlogPage")
           ) {
             return "blog-features";
           }
 
           // Legal pages
-          if (id.includes("/pages/Legal/")) {
+          if (id.includes("/Pages/Legal/")) {
             return "legal-pages";
           }
         },
@@ -63,6 +63,9 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
+      "@pages": path.resolve(__dirname, "src/Pages"),
+      "@components": path.resolve(__dirname, "src/components"),
+      "@hooks": path.resolve(__dirname, "src/hooks"),
     },
   },
 });

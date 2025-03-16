@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
-import Home from "./pages/home";
-import BlogPage from "./pages/Blog";
-import CreateBlog from "./pages/CreateBlog";
-import NotFound from "./pages/NotFound";
-import BlogData from "./pages/BlogPage";
+import Home from "./Pages/home";
+import BlogPage from "./Pages/Blog";
+import CreateBlog from "./Pages/CreateBlog";
+import NotFound from "./Pages/NotFound";
+import BlogData from "./Pages/BlogPage";
 import DarkLight from "./components/common/DarkLight";
 import BackToTop from "./components/common/BackToTop";
 import CircleFollowMouse from "./hooks/use-follow-pointer";
-import CookieSettings from "./pages/Legal/CookieSettings";
-import PrivacyPolicy from "./pages/Legal/PrivacyPolicy";
-import TermsOfService from "./pages/Legal/TermsOfService";
-import Work from "./pages/work";
+import CookieSettings from "./Pages/Legal/CookieSettings";
+import PrivacyPolicy from "./Pages/Legal/PrivacyPolicy";
+import TermsOfService from "./Pages/Legal/TermsOfService";
+import Work from "./Pages/work";
 import UseToast from "./hooks/useToast";
 import Navbar from "./components/common/Navbar";
 import LoadingSpinner from "./components/common/LoadingSpinner";
@@ -43,6 +43,7 @@ const AppContent = () => {
       <InitialLoader />
       {showNavbar && <Navbar />}
       <Routes>
+        {/* Main routes */}
         <Route path="/" element={<Home />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/create" element={<CreateBlog />} />
@@ -52,9 +53,9 @@ const AppContent = () => {
           path="/legal/*"
           element={
             <Routes>
-              <Route path="/cookie-settings" element={<CookieSettings />} />
-              <Route path="/terms-of-service" element={<TermsOfService />} />
-              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="cookie-settings" element={<CookieSettings />} />
+              <Route path="terms-of-service" element={<TermsOfService />} />
+              <Route path="privacy-policy" element={<PrivacyPolicy />} />
             </Routes>
           }
         />
