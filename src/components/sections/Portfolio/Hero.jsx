@@ -6,7 +6,7 @@ import { HoverBorderGradient } from "../../ui/hover-border-gradient";
 import banner from "/assets/banner.webp";
 import pdf from "/assets/file/dummy.pdf";
 
-const Home = () => {
+const Hero = () => {
   const handleViewPdf = () => {
     window.open(pdf, "_blank");
   };
@@ -109,7 +109,11 @@ const Home = () => {
                     href: "www.linkedin.com/in/chathura-sudaraka",
                     label: "LinkedIn",
                   },
-                  { icon: FiTwitter, href: "https://x.com/CSudaraka78686", label: "Twitter" },
+                  {
+                    icon: FiTwitter,
+                    href: "https://x.com/CSudaraka78686",
+                    label: "Twitter",
+                  },
                 ].map((social, index) => (
                   <motion.a
                     key={index}
@@ -213,4 +217,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Hero;
