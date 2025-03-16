@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import { Routes, Route, BrowserRouter, useLocation } from "react-router-dom";
-import Home from "./Pages/home";
+import Home from "./Pages/Home";
 import BlogPage from "./Pages/Blog";
 import CreateBlog from "./Pages/CreateBlog";
 import NotFound from "./Pages/NotFound";
@@ -12,7 +12,7 @@ import CircleFollowMouse from "./hooks/use-follow-pointer";
 import CookieSettings from "./Pages/Legal/CookieSettings";
 import PrivacyPolicy from "./Pages/Legal/PrivacyPolicy";
 import TermsOfService from "./Pages/Legal/TermsOfService";
-import Work from "./Pages/work";
+import Work from "./Pages/Work";
 import UseToast from "./hooks/useToast";
 import Navbar from "./components/common/Navbar";
 import LoadingSpinner from "./components/common/LoadingSpinner";
