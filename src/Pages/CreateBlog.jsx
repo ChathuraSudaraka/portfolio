@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { GradientButton } from "../components/ui/gradient-button";
+import GradientButton from "../components/ui/gradient-button";
 import { Input } from "../components/ui/input";
 import { Select } from "../components/ui/select";
 import { Label } from "../components/ui/label";

@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FiEdit3, FiArrowRight, FiBookOpen } from "react-icons/fi";
-import { GradientButton } from "../../ui/gradient-button";
 import { HoverBorderGradient } from "../../ui/hover-border-gradient";
+import GradientButton from "../../ui/gradient-button";
 
 const BlogHero = () => {
   const startYear = 2022;

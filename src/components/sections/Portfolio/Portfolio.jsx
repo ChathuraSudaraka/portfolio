@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
-import { GradientButton } from "../../ui/gradient-button";
+import GradientButton from "../../ui/gradient-button";
 
 const ProjectCard = ({ project, index }) => {
   const cardVariants = {

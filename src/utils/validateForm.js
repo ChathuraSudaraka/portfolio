@@ -1,17 +1,5 @@
-interface ValidationError {
-  field: string;
-  message: string;
-}
-
-interface FormData {
-  first_name: string;
-  last_name: string;
-  user_email: string;
-  message: string;
-}
-
-export const validateForm = (data: FormData): ValidationError[] => {
-  const errors: ValidationError[] = [];
+export const validateForm = (data) => {
+  const errors = [];
 
   // First Name validation
   if (!data.first_name.trim()) {

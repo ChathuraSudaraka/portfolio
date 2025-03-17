@@ -2,9 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiTwitter, FiArrowRight } from "react-icons/fi";
 import { CardContainer, CardBody, CardItem } from "../../ui/3d-card";
-import { HoverBorderGradient } from "../../ui/hover-border-gradient";
 import banner from "/assets/banner.webp";
 import pdf from "/assets/file/dummy.pdf";
+import HoverBorderGradient from "../../ui/hover-border-gradient";
 
 const Hero = () => {
   const handleViewPdf = () => {

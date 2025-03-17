@@ -1,6 +1,4 @@
 "use client";
-
-// import Image from "next/image";
 import React, {
   createContext,
   useState,
@@ -10,23 +8,13 @@ import React, {
 } from "react";
 import { cn } from "../../utils/cn";
 
-const MouseEnterContext = createContext<
-  [boolean, React.Dispatch<React.SetStateAction<boolean>>] | undefined
->(undefined);
+const MouseEnterContext = createContext(undefined);
 
-export const CardContainer = ({
-  children,
-  className,
-  containerClassName,
-}: {
-  children?: React.ReactNode;
-  className?: string;
-  containerClassName?: string;
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+export const CardContainer = ({ children, className, containerClassName }) => {
+  const containerRef = useRef(null);
   const [isMouseEntered, setIsMouseEntered] = useState(false);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e) => {
     if (!containerRef.current) return;
     const { left, top, width, height } =
       containerRef.current.getBoundingClientRect();
@@ -35,12 +23,12 @@ export const CardContainer = ({
     containerRef.current.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
   };
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseEnter = (e) => {
     setIsMouseEntered(true);
     if (!containerRef.current) return;
   };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseLeave = (e) => {
     if (!containerRef.current) return;
     setIsMouseEntered(false);
     containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
@@ -49,7 +37,7 @@ export const CardContainer = ({
     <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
       <div
         className={cn(
-          "flex items-center justify-center",
+          "py-20 flex items-center justify-center",
           containerClassName
         )}
         style={{
@@ -62,7 +50,7 @@ export const CardContainer = ({
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           className={cn(
-            "items-center justify-center relative transition-all duration-200 ease-linear",
+            "flex items-center justify-center relative transition-all duration-200 ease-linear",
             className
           )}
           style={{
@@ -76,13 +64,7 @@ export const CardContainer = ({
   );
 };
 
-export const CardBody = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
+export const CardBody = ({ children, className }) => {
   return (
     <div
       className={cn(
@@ -106,18 +88,8 @@ export const CardItem = ({
   rotateY = 0,
   rotateZ = 0,
   ...rest
-}: {
-  as?: React.ElementType;
-  children: React.ReactNode;
-  className?: string;
-  translateX?: number | string;
-  translateY?: number | string;
-  translateZ?: number | string;
-  rotateX?: number | string;
-  rotateY?: number | string;
-  rotateZ?: number | string;
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef(null);
   const [isMouseEntered] = useMouseEnter();
 
   useEffect(() => {

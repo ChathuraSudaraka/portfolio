@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import { HoverBorderGradient } from "../../components/ui/hover-border-gradient";
 import { Link } from "react-router-dom";
 import LegalLayout from "../../components/Layouts/LegalLayout";
+import HoverBorderGradient from "../../components/ui/hover-border-gradient";
 
 const PrivacyPolicy = () => {
   useEffect(() => {

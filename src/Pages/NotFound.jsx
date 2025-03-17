@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { HoverBorderGradient } from "../components/ui/hover-border-gradient";
 import CatchGame from "../components/common/CatchGame";
+import HoverBorderGradient from "../components/ui/hover-border-gradient";
 
 const NotFound = () => {
   const [showGame, setShowGame] = useState(false);

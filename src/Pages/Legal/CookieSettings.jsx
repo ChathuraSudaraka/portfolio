@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { GradientButton } from "../../components/ui/gradient-button";
 import LegalLayout from "../../components/Layouts/LegalLayout";
 import { toast } from "react-toastify";
+import GradientButton from "../../components/ui/gradient-button";
 
 const CookieSettings = () => {
   // Load preferences from localStorage on initial load

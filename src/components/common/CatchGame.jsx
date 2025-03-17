@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { GradientButton } from '../ui/gradient-button';
+import GradientButton from '../ui/gradient-button';
 
 const CatchGame = () => {
   const [score, setScore] = useState(0);

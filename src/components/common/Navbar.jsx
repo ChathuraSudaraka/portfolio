@@ -1,8 +1,8 @@
 import React from "react";
-import { FloatingDock } from "../ui/floating-dock";
 import { AiFillHome } from "react-icons/ai";
 import { FaProjectDiagram } from "react-icons/fa";
 import { FaBlog } from "react-icons/fa";
+import FloatingDock from "../ui/floating-dock";
 
 const Navbar = () => {
   const links = [
@@ -22,7 +22,11 @@ const Navbar = () => {
       href: "/blog",
     },
   ];
-  return <FloatingDock items={links} />;
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+      <FloatingDock items={links} />
+    </nav>
+  );
 };
 
 export default Navbar;

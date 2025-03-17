@@ -172,37 +172,34 @@ const Framework = () => {
       </div>
 
       {/* Desktop/Tablet Layout */}
-      <div className="hidden sm:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <div className="hidden sm:grid grid-cols-2 lg:grid-cols-4 gap-4 px-4 sm:px-6 lg:px-8 max-w-[1920px] mx-auto">
         {frameworks.map((framework, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
-            className="w-full h-full"
+            className="aspect-[1/1] w-full"
           >
             <PinContainer 
               title={framework.category}
-              containerClassName="w-full h-full min-h-[160px] md:min-h-[180px] lg:min-h-[200px]"
+              containerClassName="w-full h-full"
             >
-              <div className="relative group h-full">
-                <div className="relative bg-white/10 dark:bg-gray-900/30 backdrop-blur-md rounded-xl p-3 md:p-4 lg:p-5 h-full flex items-center justify-center border border-gray-200/20 dark:border-gray-700/20">
+              <div className="relative group h-full w-full">
+                <div className="relative bg-white/10 dark:bg-gray-900/30 backdrop-blur-md rounded-xl p-4 h-full w-full flex items-center justify-center border border-gray-200/20 dark:border-gray-700/20">
                   <div className="flex flex-col items-center gap-3">
                     <motion.div
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      className="relative w-12 md:w-14 lg:w-16 h-12 md:h-14 lg:h-16"
+                      className="relative w-14 h-14"
                     >
                       <div className="absolute inset-0 bg-gradient-to-tr from-primary/20 to-secondary/20 rounded-full blur-xl" />
                       <div className="relative w-full h-full flex items-center justify-center bg-white dark:bg-gray-800 rounded-full shadow-lg">
-                        <framework.icon 
-                          className="w-6 md:w-7 lg:w-8 h-6 md:h-7 lg:h-8" 
-                          style={{ color: framework.color }} 
-                        />
+                        <framework.icon className="w-7 h-7" style={{ color: framework.color }} />
                       </div>
                     </motion.div>
 
-                    <h3 className="text-sm md:text-base font-medium text-center text-gray-900 dark:text-white">
+                    <h3 className="text-base font-medium text-center text-gray-900 dark:text-white">
                       {framework.name}
                     </h3>
                   </div>

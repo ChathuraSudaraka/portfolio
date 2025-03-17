@@ -6,8 +6,8 @@ import { validateForm } from "../../../utils/validateForm";
 import { Label } from "../../ui/label";
 import { Input } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
-import { GradientButton } from "../../ui/gradient-button";
 import { useCustomToast } from "../../../hooks/useToast";
+import GradientButton from "../../ui/gradient-button";
 
 const ContactInfo = ({ icon: Icon, title, value, link }) => (
   <motion.a

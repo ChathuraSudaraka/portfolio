@@ -1,15 +1,9 @@
-"use client";
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useEffect, useRef, useState } from "react";
 
-interface TimelineEntry {
-  title: string;
-  content: React.ReactNode;
-}
-
-export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+export const Timeline = ({ data }) => {
+  const ref = useRef(null);
+  const containerRef = useRef(null);
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -66,7 +60,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                     type: "spring",
                     stiffness: 260,
                     damping: 20,
-                    delay: 0.2 + 0.1,
+                    delay: 0.3,
                   }}
                   className="h-4 w-4 rounded-full bg-white dark:bg-black border-2 border-white dark:border-black"
                 />
@@ -95,10 +89,11 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               >
                 {item.title}
               </motion.h3>
-              {item.content}{" "}
+              {item.content}
             </motion.div>
           </div>
         ))}
+
         <div
           className="absolute md:left-8 left-8 top-0 w-[2px] bg-[linear-gradient(to_bottom,var(--tw-gradient-stops))] from-transparent from-[0%] via-neutral-200 dark:via-neutral-700 to-transparent to-[99%]"
           style={{
@@ -120,3 +115,5 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     </div>
   );
 };
+
+export default Timeline;
