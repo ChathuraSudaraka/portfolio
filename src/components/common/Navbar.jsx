@@ -23,9 +23,14 @@ const Navbar = () => {
     },
   ];
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
-      <FloatingDock items={links} />
-    </nav>
+    <>
+      <nav className="hidden md:block fixed top-0 left-0 right-0 z-40 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+        <FloatingDock items={links} />
+      </nav>
+      <div className="block md:hidden">
+        <FloatingDock items={links} />
+      </div>
+    </>
   );
 };
 

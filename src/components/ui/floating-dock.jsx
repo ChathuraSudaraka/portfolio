@@ -1,5 +1,11 @@
 import React, { useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import { FiNavigation2 } from "react-icons/fi";
 
@@ -11,7 +17,7 @@ export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
           <FloatingDockDesktop items={items} className={desktopClassName} />
         </div>
       </div>
-      <div className="fixed left-4 bottom-6 md:hidden z-40">
+      <div className="fixed md:hidden bottom-6 left-4 md:left-8 md:bottom-10 z-40">
         <FloatingDockMobile items={items} className={mobileClassName} />
       </div>
     </>
@@ -21,37 +27,43 @@ export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
 const FloatingDockMobile = ({ items, className }) => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
-  
+
   return (
     <div className={`relative ${className || ""}`}>
       <AnimatePresence>
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute bottom-full mb-2 flex flex-col items-center gap-2"
+            className="absolute bottom-full mb-4 flex flex-col-reverse items-center gap-3"
+            style={{ minWidth: "max-content" }}
           >
             {items.map((item, idx) => {
               const isActive = location.pathname === item.href;
               return (
                 <motion.div
                   key={item.title}
-                  initial={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{
                     opacity: 0,
-                    y: 10,
-                    transition: { delay: idx * 0.05 },
+                    y: 20,
+                    transition: { duration: 0.2, delay: idx * 0.05 },
                   }}
                   transition={{ delay: (items.length - 1 - idx) * 0.05 }}
+                  className="ml-1.5"
                 >
                   <Link
                     to={item.href}
-                    className={`h-11 w-11 ml-0.5 rounded-full ${
-                      isActive ? 'bg-blue-100 dark:bg-blue-900' : 'bg-gray-50 dark:bg-neutral-900'
-                    } flex items-center justify-center shadow-md`}
+                    className={`h-12 w-12 rounded-full ${
+                      isActive
+                        ? "bg-blue-100 dark:bg-blue-900"
+                        : "bg-white dark:bg-neutral-800"
+                    } flex items-center justify-center shadow-lg border border-gray-200 dark:border-gray-700`}
                     onClick={() => setOpen(false)}
                   >
-                    <div className={`w-4 h-4 ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}>
+                    <div
+                      className={`w-5 h-5 ${isActive ? "text-blue-600 dark:text-blue-400" : ""}`}
+                    >
                       {item.icon}
                     </div>
                   </Link>
@@ -63,13 +75,16 @@ const FloatingDockMobile = ({ items, className }) => {
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center shadow-lg border border-gray-200 dark:border-gray-700"
+        className="h-14 w-14 rounded-full bg-white dark:bg-neutral-800 flex items-center justify-center shadow-lg border border-gray-200 dark:border-gray-700"
       >
         <motion.div
           animate={{ rotate: open ? 180 : 0 }}
           transition={{ duration: 0.2 }}
         >
-          <FiNavigation2 className="h-5 w-5 text-neutral-500 dark:text-neutral-400" style={{ strokeWidth: 2.5 }} />
+          <FiNavigation2
+            className="h-6 w-6 text-neutral-500 dark:text-neutral-400"
+            style={{ strokeWidth: 2.5 }}
+          />
         </motion.div>
       </button>
     </div>
@@ -79,7 +94,7 @@ const FloatingDockMobile = ({ items, className }) => {
 const FloatingDockDesktop = ({ items, className }) => {
   let mouseX = useMotionValue(Infinity);
   const location = useLocation();
-  
+
   return (
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
@@ -88,9 +103,9 @@ const FloatingDockDesktop = ({ items, className }) => {
     >
       {items.map((item) => (
         <div key={item.title}>
-          <IconContainer 
+          <IconContainer
             mouseX={mouseX}
-            {...item} 
+            {...item}
             isActive={location.pathname === item.href}
           />
         </div>
@@ -112,9 +127,21 @@ function IconContainer({ mouseX, title, icon, href, isActive }) {
   let heightTransform = useTransform(distance, [-150, 0, 150], [45, 90, 45]);
   let iconSizeTransform = useTransform(distance, [-150, 0, 150], [24, 44, 24]);
 
-  let width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  let height = useSpring(heightTransform, { mass: 0.1, stiffness: 150, damping: 12 });
-  let iconSize = useSpring(iconSizeTransform, { mass: 0.1, stiffness: 150, damping: 12 });
+  let width = useSpring(widthTransform, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
+  let height = useSpring(heightTransform, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
+  let iconSize = useSpring(iconSizeTransform, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
 
   return (
     <Link to={href}>
@@ -124,9 +151,9 @@ function IconContainer({ mouseX, title, icon, href, isActive }) {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
         className={`aspect-square rounded-2xl ${
-          isActive 
-            ? 'bg-blue-100/40 dark:bg-blue-900/50 border-blue-300 dark:border-blue-700' 
-            : 'bg-white/20 dark:bg-neutral-800/50 border-gray-200 dark:border-gray-800'
+          isActive
+            ? "bg-blue-100/40 dark:bg-blue-900/50 border-blue-300 dark:border-blue-700"
+            : "bg-white/20 dark:bg-neutral-800/50 border-gray-200 dark:border-gray-800"
         } hover:bg-white/30 dark:hover:bg-neutral-700/50 backdrop-blur-md flex items-center justify-center relative shadow-lg border transition-colors`}
       >
         <AnimatePresence>
@@ -136,9 +163,9 @@ function IconContainer({ mouseX, title, icon, href, isActive }) {
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
               className={`px-3 py-1.5 whitespace-pre rounded-lg ${
-                isActive 
-                  ? 'bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800' 
-                  : 'bg-white/20 dark:bg-neutral-900/80 text-neutral-800 dark:text-white border-white/30 dark:border-neutral-800'
+                isActive
+                  ? "bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-blue-200 border-blue-200 dark:border-blue-800"
+                  : "bg-white/20 dark:bg-neutral-900/80 text-neutral-800 dark:text-white border-white/30 dark:border-neutral-800"
               } backdrop-blur-md border absolute left-1/2 -translate-x-1/2 -bottom-12 w-fit text-sm font-medium shadow-xl`}
             >
               {title}
@@ -147,7 +174,7 @@ function IconContainer({ mouseX, title, icon, href, isActive }) {
         </AnimatePresence>
         <motion.div
           style={{ width: iconSize, height: iconSize }}
-          className={`flex items-center justify-center ${isActive ? 'text-blue-600 dark:text-blue-400' : ''}`}
+          className={`flex items-center justify-center ${isActive ? "text-blue-600 dark:text-blue-400" : ""}`}
         >
           {icon}
         </motion.div>
